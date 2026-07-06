@@ -9,9 +9,10 @@ import { initFlowbite } from 'flowbite';
   styleUrl: './app.css',
 })
 export class App implements AfterViewInit {
+  readonly title = () => 'levenzi_frontend';
 
   ngAfterViewInit() {
     initFlowbite();
   }
-
 }
+

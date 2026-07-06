@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageActions } from './page-actions';
+import { LvPageActionsComponent } from './page-actions';
 
 describe('PageActions', () => {
-  let component: PageActions;
-  let fixture: ComponentFixture<PageActions>;
+  let component: LvPageActionsComponent;
+  let fixture: ComponentFixture<LvPageActionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageActions],
+      imports: [LvPageActionsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PageActions);
+    fixture = TestBed.createComponent(LvPageActionsComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

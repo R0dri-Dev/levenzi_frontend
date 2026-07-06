@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotificationItem } from './notification-item';
+import { LvNotificationItemComponent } from './notification-item';
 
 describe('NotificationItem', () => {
-  let component: NotificationItem;
-  let fixture: ComponentFixture<NotificationItem>;
+  let component: LvNotificationItemComponent;
+  let fixture: ComponentFixture<LvNotificationItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotificationItem],
+      imports: [LvNotificationItemComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NotificationItem);
+    fixture = TestBed.createComponent(LvNotificationItemComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

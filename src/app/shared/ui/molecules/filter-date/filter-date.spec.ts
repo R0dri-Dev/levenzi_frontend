@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterDate } from './filter-date';
+import { LvFilterDateComponent } from './filter-date';
 
 describe('FilterDate', () => {
-  let component: FilterDate;
-  let fixture: ComponentFixture<FilterDate>;
+  let component: LvFilterDateComponent;
+  let fixture: ComponentFixture<LvFilterDateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilterDate],
+      imports: [LvFilterDateComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FilterDate);
+    fixture = TestBed.createComponent(LvFilterDateComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

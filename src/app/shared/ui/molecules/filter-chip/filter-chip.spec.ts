@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterChip } from './filter-chip';
+import { LvFilterChipComponent } from './filter-chip';
 
 describe('FilterChip', () => {
-  let component: FilterChip;
-  let fixture: ComponentFixture<FilterChip>;
+  let component: LvFilterChipComponent;
+  let fixture: ComponentFixture<LvFilterChipComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilterChip],
+      imports: [LvFilterChipComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FilterChip);
+    fixture = TestBed.createComponent(LvFilterChipComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

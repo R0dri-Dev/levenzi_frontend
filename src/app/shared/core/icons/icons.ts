@@ -45,8 +45,10 @@ export const LV_ICONS = {
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   arrowLeft: ArrowLeft,
-  arrowRight: ArrowRight
+  arrowRight: ArrowRight,
+  spinner: X
 } as const;
 
 export type IconKeys = keyof typeof LV_ICONS;
 export type IconComponent = typeof LV_ICONS[IconKeys];
+

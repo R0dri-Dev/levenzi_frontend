@@ -8,7 +8,7 @@ export * from './breakpoints';
 export * from './z-index';
 
 export * from './button.theme';
-//export * from './input.theme';
+export * from './input.theme';
 export * from './icon.theme';
 export * from './card.theme';
 export * from './table.theme';

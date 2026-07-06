@@ -14,7 +14,7 @@ import { IconSize, IconStroke, LV_ICONS } from '../../../core/icons';
 
 export class LvIconComponent {
 
-  readonly name = input.required<keyof typeof LV_ICONS>();
+  readonly name = input<keyof typeof LV_ICONS>('home');
 
   readonly size = input<IconSize>('md');
 

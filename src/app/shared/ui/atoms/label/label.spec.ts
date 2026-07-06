@@ -1,17 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Label } from './label';
+import { LvLabelComponent } from './label';
 
-describe('Label', () => {
-  let component: Label;
-  let fixture: ComponentFixture<Label>;
+describe('LvLabelComponent', () => {
+  let component: LvLabelComponent;
+  let fixture: ComponentFixture<LvLabelComponent>;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Label],
+      imports: [LvLabelComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Label);
+    fixture = TestBed.createComponent(LvLabelComponent);
+
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -19,4 +21,17 @@ describe('Label', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set default props', () => {
+    expect(component.text()).toBe('');
+    expect(component.for()).toBe('');
+    expect(component.variant()).toBe('primary');
+    expect(component.size()).toBe('md');
+    expect(component.disabled()).toBe(false);
+  });
+
+  it('should compute classes', () => {
+    expect(component.classes()).toContain('font-medium');
+  });
 });
+

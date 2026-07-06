@@ -1,1 +1,8 @@
-<p>textarea works!</p>
+<textarea
+  [value]="value()"
+  [placeholder]="placeholder()"
+  [disabled]="disabled()"
+  [class]="classes()"
+  (input)="handleInput($any($event.target).value)"
+></textarea>
+

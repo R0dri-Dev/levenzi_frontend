@@ -1,1 +1,112 @@
-<p>navbar works!</p>
+<nav [class]="classes().navbar" role="navigation">
+  <!-- Brand -->
+  <div [class]="classes().brand">
+    <a [routerLink]="brandRoute()" class="flex items-center gap-2 no-underline">
+      @if (brandIcon()) {
+        <lv-icon [name]="brandIcon()!" size="lg" />
+      }
+      <span>{{ brand() }}</span>
+    </a>
+  </div>
+
+  <!-- Desktop Menu -->
+  <div [class]="classes().desktopMenu">
+    @for (item of items(); track $index) {
+      @if (item.route) {
+        <a
+          [routerLink]="item.route"
+          [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+          (click)="handleItemClick(item)"
+          class="no-underline"
+        >
+          @if (item.icon) {
+            <lv-icon [name]="item.icon" size="sm" />
+          }
+          {{ item.label }}
+        </a>
+      } @else {
+        <button
+          (click)="handleItemClick(item)"
+          [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+          class="bg-transparent border-0 cursor-pointer"
+        >
+          @if (item.icon) {
+            <lv-icon [name]="item.icon" size="sm" />
+          }
+          {{ item.label }}
+        </button>
+      }
+    }
+  </div>
+
+  <!-- Actions -->
+  <div [class]="classes().actions">
+    <!-- Search -->
+    @if (showSearch()) {
+      <lv-search-box
+        placeholder="Buscar..."
+        size="sm"
+        (onSearch)="handleSearch($event)"
+        class="w-48"
+      />
+    }
+
+    <!-- User Menu -->
+    @if (showUserMenu() && user()) {
+      <lv-user-menu
+        [user]="user()!"
+        [items]="userMenuItems()"
+        [showUserInfo]="false"
+        (onItemClick)="handleUserAction($event)"
+      />
+    }
+
+    <!-- Content projection para acciones extra -->
+    <ng-content select="[actions]"></ng-content>
+
+    <!-- Mobile Menu Button -->
+    @if (showMobileMenu()) {
+      <lv-icon-button
+        [class]="classes().mobileButton"
+        [icon]="mobileOpen() ? 'x' : 'menu'"
+        variant="ghost"
+        (onClick)="toggleMobileMenu()"
+        aria-label="Menú"
+      />
+    }
+  </div>
+</nav>
+
+<!-- Mobile Menu Dropdown -->
+@if (mobileOpen() && showMobileMenu()) {
+  <div [class]="classes().mobileMenu">
+    <div class="flex flex-col gap-1 py-2">
+      @for (item of items(); track $index) {
+        @if (item.route) {
+          <a
+            [routerLink]="item.route"
+            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+            (click)="handleItemClick(item)"
+            class="py-2 px-3 no-underline rounded-xl"
+          >
+            @if (item.icon) {
+              <lv-icon [name]="item.icon" size="sm" />
+            }
+            {{ item.label }}
+          </a>
+        } @else {
+          <button
+            (click)="handleItemClick(item)"
+            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+            class="py-2 px-3 text-left bg-transparent border-0 cursor-pointer rounded-xl"
+          >
+            @if (item.icon) {
+              <lv-icon [name]="item.icon" size="sm" />
+            }
+            {{ item.label }}
+          </button>
+        }
+      }
+    </div>
+  </div>
+}

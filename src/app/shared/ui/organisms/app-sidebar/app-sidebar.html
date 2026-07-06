@@ -1,1 +1,80 @@
-<p>app-sidebar works!</p>
+<aside [class]="classes().sidebar" role="navigation">
+  <!-- Toggle Button -->
+  @if (showToggle()) {
+    <div class="flex justify-end p-2">
+      <lv-icon-button
+        [icon]="isCollapsed() ? 'chevron-right' : 'chevron-left'"
+        variant="ghost"
+        size="sm"
+        (onClick)="toggleSidebar()"
+        aria-label="Colapsar sidebar"
+      />
+    </div>
+  }
+
+  <!-- Header -->
+  @if (header()) {
+    <div [class]="classes().header">
+      {{ header() }}
+    </div>
+  }
+
+  <!-- Items -->
+  <nav class="flex flex-col gap-0.5 p-2">
+    @for (item of items(); track $index) {
+      @if (item.divider) {
+        <hr [class]="classes().divider" />
+      } @else {
+        @if (item.route) {
+          <a
+            [routerLink]="item.route"
+            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+            (click)="handleItemClick(item)"
+            [attr.aria-current]="isActive(item) ? 'page' : null"
+          >
+            @if (item.icon) {
+              <lv-icon [name]="item.icon" [class]="classes().icon" />
+            }
+
+            @if (!isCollapsedMode()) {
+              <span [class]="classes().label">{{ item.label }}</span>
+
+              @if (item.badge) {
+                <lv-badge [variant]="item.badgeColor || 'primary'" size="sm">
+                  {{ item.badge }}
+                </lv-badge>
+              }
+            }
+          </a>
+        } @else {
+          <button
+            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+            (click)="handleItemClick(item)"
+            class="w-full text-left"
+          >
+            @if (item.icon) {
+              <lv-icon [name]="item.icon" [class]="classes().icon" />
+            }
+
+            @if (!isCollapsedMode()) {
+              <span [class]="classes().label">{{ item.label }}</span>
+
+              @if (item.badge) {
+                <lv-badge [variant]="item.badgeColor || 'primary'" size="sm">
+                  {{ item.badge }}
+                </lv-badge>
+              }
+            }
+          </button>
+        }
+      }
+    }
+  </nav>
+
+  <!-- Footer -->
+  @if (footer()) {
+    <div [class]="classes().footer" class="mt-auto">
+      {{ footer() }}
+    </div>
+  }
+</aside>

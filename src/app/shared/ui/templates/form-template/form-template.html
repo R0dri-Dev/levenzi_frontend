@@ -1,1 +1,27 @@
-<p>form-template works!</p>
+<div [class]="classes().template">
+  <!-- Header -->
+  @if (title()) {
+    <div [class]="classes().header">
+      <div>
+        <h2 [class]="classes().title">{{ title() }}</h2>
+        @if (subtitle()) {
+          <p [class]="classes().subtitle">{{ subtitle() }}</p>
+        }
+      </div>
+      <ng-content select="[header-actions]"></ng-content>
+    </div>
+  }
+
+  <!-- Form -->
+  <form (ngSubmit)="onSubmit.emit()">
+    <!-- Body -->
+    <div [class]="classes().body">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Footer -->
+    <div [class]="classes().footer">
+      <ng-content select="[footer-actions]"></ng-content>
+    </div>
+  </form>
+</div>

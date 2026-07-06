@@ -1,0 +1,171 @@
+<div [class]="classes().wrapper">
+  <!-- Loading State -->
+  @if (loading()) {
+    <div class="flex items-center justify-center py-12">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400"></div>
+      <span class="ml-3 text-gray-500 dark:text-gray-400">Cargando...</span>
+    </div>
+  } @else {
+    <!-- Table -->
+    <table [class]="classes().table">
+      <!-- Header -->
+      <thead [class]="classes().head">
+        <tr>
+          <!-- Select All -->
+          @if (selectable()) {
+            <th [class]="classes().headCell({ align: 'center' })">
+              <input
+                type="checkbox"
+                [class]="classes().checkbox"
+                [checked]="selectAll()"
+                (change)="toggleSelectAll()"
+                [disabled]="data().length === 0"
+                aria-label="Seleccionar todos"
+              />
+            </th>
+          }
+
+          <!-- Columns -->
+          @for (col of visibleColumns(); track col.key) {
+            <th
+              [class]="classes().headCell(col)"
+              [style.width]="col.width || 'auto'"
+              (click)="col.sortable ? toggleSort(col.key) : null"
+              [class.cursor-pointer]="col.sortable"
+            >
+              <div class="flex items-center gap-1">
+                {{ col.label }}
+
+                @if (col.sortable) {
+                  <span [class]="classes().sortIcon">
+                    @if (getSortDirection(col.key) === 'asc') {
+                      <lv-icon name="chevron-up" size="xs" [class]="classes().sortActive" />
+                    } @else if (getSortDirection(col.key) === 'desc') {
+                      <lv-icon name="chevron-down" size="xs" [class]="classes().sortActive" />
+                    } @else {
+                      <lv-icon name="chevron-up-down" size="xs" />
+                    }
+                  </span>
+                }
+              </div>
+            </th>
+          }
+
+          <!-- Actions Header -->
+          @if (hasActions()) {
+            <th [class]="classes().headCell({ align: 'center' })">
+              Acciones
+            </th>
+          }
+        </tr>
+      </thead>
+
+      <!-- Body -->
+      <tbody [class]="classes().body">
+        @if (data().length === 0) {
+          <tr>
+            <td
+              [colSpan]="visibleColumns().length + (selectable() ? 1 : 0) + (hasActions() ? 1 : 0)"
+              [class]="classes().empty"
+            >
+              <lv-empty-state
+                title="Sin datos"
+                [description]="emptyMessage()"
+                icon="inbox"
+                size="sm"
+              />
+            </td>
+          </tr>
+        } @else {
+          @for (item of data(); track $index) {
+            <tr
+              [class]="classes().row(item)"
+              (click)="handleRowClick(item)"
+              class="cursor-pointer"
+            >
+              <!-- Select Checkbox -->
+              @if (selectable()) {
+                <td [class]="classes().cell({ align: 'center' })">
+                  <input
+                    type="checkbox"
+                    [class]="classes().checkbox"
+                    [checked]="isSelected(item)"
+                    (change)="toggleSelection(item)"
+                    (click)="$event.stopPropagation()"
+                    aria-label="Seleccionar fila"
+                  />
+                </td>
+              }
+
+              <!-- Data Cells -->
+              @for (col of visibleColumns(); track col.key) {
+                <td
+                  [class]="classes().cell(col)"
+                  [class]="col.cellClass || ''"
+                >
+                  {{ getCellValue(item, col) }}
+                </td>
+              }
+
+              <!-- Actions -->
+              @if (hasActions()) {
+                <td [class]="classes().cell({ align: 'center' })">
+                  <div class="flex items-center justify-center gap-1">
+                    @for (action of actions(); track $index) {
+                      @if (isActionVisible(action, item)) {
+                        <lv-icon-button
+                          [icon]="action.icon || 'more-horizontal'"
+                          [variant]="action.variant || 'ghost'"
+                          [size]="action.size || 'sm'"
+                          [disabled]="isActionDisabled(action, item)"
+                          (onClick)="action.action(item); $event.stopPropagation()"
+                          [attr.aria-label]="action.label"
+                        />
+                      }
+                    }
+                  </div>
+                </td>
+              }
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    @if (pagination() && data().length > 0) {
+      <div [class]="classes().pagination">
+        <div [class]="classes().paginationInfo">
+          Mostrando {{ getStartItem() }} - {{ getEndItem() }} de {{ totalItems() }} registros
+        </div>
+
+        <div [class]="classes().paginationButtons">
+          <button
+            [class]="classes().paginationButton(false)"
+            [disabled]="pagination()?.currentPage === 1"
+            (click)="handlePageChange((pagination()?.currentPage || 1) - 1)"
+          >
+            <lv-icon name="chevron-left" size="xs" />
+          </button>
+
+          @for (page of [].constructor(getTotalPages()); track $index) {
+            <button
+              [class]="classes().paginationButton(pagination()?.currentPage === $index + 1)"
+              (click)="handlePageChange($index + 1)"
+            >
+              {{ $index + 1 }}
+            </button>
+          }
+
+          <button
+            [class]="classes().paginationButton(false)"
+            [disabled]="pagination()?.currentPage === getTotalPages()"
+            (click)="handlePageChange((pagination()?.currentPage || 1) + 1)"
+          >
+            <lv-icon name="chevron-right" size="xs" />
+          </button>
+        </div>
+      </div>
+    }
+  }
+</div>

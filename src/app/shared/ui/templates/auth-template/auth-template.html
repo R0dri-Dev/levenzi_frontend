@@ -1,1 +1,67 @@
-<p>auth-template works!</p>
+<!-- Variant: Split -->
+@if (variant() === 'split') {
+  <div [class]="LV_AUTH_TEMPLATE_SPLIT">
+    <!-- Left Panel -->
+    <div [class]="getSplitClasses().left">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold mb-4">
+          {{ logo() || 'Levenzi' }}
+        </h1>
+        <p class="text-lg opacity-90 max-w-sm mx-auto">
+          {{ subtitle() || 'Bienvenido a la plataforma' }}
+        </p>
+        @if (backgroundImage()) {
+          <div class="mt-8">
+            <img [src]="backgroundImage()" alt="Background" class="rounded-xl shadow-2xl max-w-md mx-auto" />
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div [class]="getSplitClasses().right">
+      <div [class]="classes().container">
+        <div [class]="classes().card">
+          <div class="p-8">
+            <ng-content></ng-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- Variant: Centered / Default -->
+  <div [class]="classes().template">
+    <div [class]="classes().container">
+      <div class="flex items-center justify-center min-h-screen py-8">
+        <div [class]="classes().card">
+          <div class="p-8">
+            <!-- Logo -->
+            @if (showBranding() && logo()) {
+              <div [class]="classes().logo">
+                <a [href]="logoUrl()" class="no-underline text-gray-900 dark:text-white">
+                  {{ logo() }}
+                </a>
+              </div>
+            }
+
+            <!-- Header -->
+            @if (title() || subtitle()) {
+              <div [class]="classes().header">
+                @if (title()) {
+                  <h2 [class]="classes().title">{{ title() }}</h2>
+                }
+                @if (subtitle()) {
+                  <p [class]="classes().subtitle">{{ subtitle() }}</p>
+                }
+              </div>
+            }
+
+            <!-- Content -->
+            <ng-content></ng-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

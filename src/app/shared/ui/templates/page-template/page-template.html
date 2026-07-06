@@ -1,1 +1,11 @@
-<p>page-template works!</p>
+<div [class]="classes().template">
+  <div [class]="classes().container">
+    <ng-content select="[header]"></ng-content>
+
+    <div [class]="classes().content">
+      <ng-content></ng-content>
+    </div>
+
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</div>

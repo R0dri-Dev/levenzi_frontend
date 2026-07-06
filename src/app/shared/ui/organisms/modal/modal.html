@@ -1,1 +1,44 @@
-<p>modal works!</p>
+@if (isOpen()) {
+  <div
+    #overlay
+    [class]="classes().overlay"
+    (click)="handleOverlayClick($event)"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div #modal [class]="classes().modal">
+      <!-- Header -->
+      <div [class]="classes().header">
+        <h3 [class]="classes().title">{{ title() }}</h3>
+        <lv-icon-button
+          icon="x"
+          variant="ghost"
+          size="sm"
+          (onClick)="close()"
+          aria-label="Cerrar"
+        />
+      </div>
+
+      <!-- Body -->
+      <div [class]="classes().body">
+        <ng-content></ng-content>
+      </div>
+
+      <!-- Footer -->
+      @if (actions().length > 0) {
+        <div [class]="classes().footer">
+          @for (action of actions(); track $index) {
+            <lv-button
+              [variant]="action.variant || 'primary'"
+              [disabled]="action.disabled || false"
+              [loading]="action.loading || false"
+              (onClick)="handleAction(action)"
+            >
+              {{ action.label }}
+            </lv-button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}

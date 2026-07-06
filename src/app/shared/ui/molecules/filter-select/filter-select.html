@@ -1,1 +1,27 @@
-<p>filter-select works!</p>
+<div [class]="classes().container">
+  @if (label()) {
+    <span [class]="classes().label">{{ label() }}</span>
+  }
+
+  @if (options().length > 0) {
+    <select
+      [class]="classes().select"
+      [value]="selectedValue()"
+      (change)="onSelectChange(($event.target as HTMLSelectElement).value)"
+      [disabled]="disabled()"
+    >
+      @if (placeholder()) {
+        <option value="">{{ placeholder() }}</option>
+      }
+      @for (option of options(); track option.value) {
+        <option [value]="option.value">
+          {{ option.label }}
+        </option>
+      }
+    </select>
+
+    <div [class]="classes().arrow">
+      <lv-icon name="chevron-down" [size]="size()" />
+    </div>
+  }
+</div>

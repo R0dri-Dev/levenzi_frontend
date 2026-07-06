@@ -1,1 +1,35 @@
-<p>filter-date works!</p>
+<div [class]="classes().container">
+  @if (label()) {
+    <span [class]="classes().label">{{ label() }}</span>
+  }
+
+  <lv-icon name="calendar" [size]="size()" [class]="classes().icon" />
+
+  <input
+    type="date"
+    [class]="classes().input"
+    [value]="startValue()"
+    (input)="onStartChange(($event.target as HTMLInputElement).value)"
+    [disabled]="disabled()"
+    aria-label="Fecha inicio"
+  />
+
+  <span class="text-gray-400 dark:text-gray-500">a</span>
+
+  <input
+    type="date"
+    [class]="classes().input"
+    [value]="endValue()"
+    (input)="onEndChange(($event.target as HTMLInputElement).value)"
+    [disabled]="disabled()"
+    aria-label="Fecha fin"
+  />
+
+  @if (showPresets()) {
+    <div class="flex gap-1 ml-2">
+      <lv-button size="xs" variant="ghost" (onClick)="applyPreset('today')">Hoy</lv-button>
+      <lv-button size="xs" variant="ghost" (onClick)="applyPreset('week')">Semana</lv-button>
+      <lv-button size="xs" variant="ghost" (onClick)="applyPreset('month')">Mes</lv-button>
+    </div>
+  }
+</div>

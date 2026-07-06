@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Input } from './input';
+import { LvInputComponent } from './input';
 
-describe('Input', () => {
-  let component: Input;
-  let fixture: ComponentFixture<Input>;
+describe('LvInputComponent', () => {
+  let component: LvInputComponent;
+  let fixture: ComponentFixture<LvInputComponent>;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Input],
+      imports: [LvInputComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Input);
+    fixture = TestBed.createComponent(LvInputComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -20,3 +21,4 @@ describe('Input', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -1,1 +1,13 @@
-<p>select works!</p>
+<select
+  [disabled]="disabled()"
+  [value]="value()"
+  [class]="classes()"
+  (change)="handleChange(($any($event.target).value))"
+>
+  @for (opt of options(); track opt.value) {
+    <option [value]="opt.value" [disabled]="opt.disabled">
+      {{ opt.label }}
+    </option>
+  }
+</select>
+

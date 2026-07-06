@@ -1,18 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Alert } from './alert';
+import { LvAlertComponent } from './alert';
 
-describe('Alert', () => {
-  let component: Alert;
-  let fixture: ComponentFixture<Alert>;
+describe('LvAlertComponent', () => {
+  let component: LvAlertComponent;
+  let fixture: ComponentFixture<LvAlertComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Alert],
+      imports: [LvAlertComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Alert);
+    fixture = TestBed.createComponent(LvAlertComponent);
     component = fixture.componentInstance;
+
+
     await fixture.whenStable();
   });
 
@@ -20,3 +22,4 @@ describe('Alert', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -1,15 +1,24 @@
-export const LV_PAGE_HEADER_THEME = {
+// src/app/shared/theme/page-header.theme.ts
+export const LV_PAGE_HEADER_BASE =
+  'w-full transition-all duration-200';
 
-  container:
-    'mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between',
+export const LV_PAGE_HEADER_VARIANTS = {
+  default: 'bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4',
+  compact: 'bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2',
+  'with-image': 'bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-8',
+};
 
-  title:
-    'text-3xl font-bold text-gray-900',
+export const LV_PAGE_HEADER_CONTENT =
+  'flex items-center justify-between';
 
-  subtitle:
-    'mt-1 text-sm text-gray-500',
+export const LV_PAGE_HEADER_TITLE =
+  'text-2xl font-bold';
 
-  actions:
-    'flex flex-wrap gap-3'
+export const LV_PAGE_HEADER_SUBTITLE =
+  'text-sm opacity-80';
 
-} as const;
+export const LV_PAGE_HEADER_ACTIONS =
+  'flex items-center gap-2';
+
+export const LV_PAGE_HEADER_BREADCRUMB =
+  'text-sm opacity-70 mb-1';

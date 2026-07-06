@@ -1,1 +1,11 @@
-<p>input works!</p>
+<input
+  [type]="type()"
+  [value]="value()"
+  [placeholder]="placeholder()"
+  [disabled]="disabled()"
+  [autocomplete]="autocomplete()"
+  [class]="classes()"
+  (input)="handleInput($any($event.target).value)"
+/>
+
+

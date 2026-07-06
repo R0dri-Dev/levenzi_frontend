@@ -1,1 +1,25 @@
-<p>stat-card works!</p>
+<div [class]="classes().card">
+  <div class="flex items-start justify-between">
+    <div class="space-y-1">
+      <p [class]="classes().title">{{ title() }}</p>
+      <p [class]="classes().value">{{ value() }}</p>
+
+      @if (trend() && trendValue()) {
+        <span [class]="getTrendClass()">
+          <lv-icon [name]="getTrendIcon()" size="xs" />
+          {{ trendValue() }}
+        </span>
+      }
+    </div>
+
+    @if (icon()) {
+      <div [class]="classes().icon">
+        <lv-icon [name]="icon()!" size="lg" />
+      </div>
+    }
+  </div>
+
+  @if (description()) {
+    <p [class]="classes().description" class="mt-2">{{ description() }}</p>
+  }
+</div>

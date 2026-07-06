@@ -1,1 +1,25 @@
-<p>empty-state works!</p>
+<div [class]="classes().container">
+  <lv-icon [name]="icon()" [class]="classes().icon" />
+
+  <h3 [class]="classes().title">{{ title() }}</h3>
+
+  @if (description()) {
+    <p [class]="classes().description">{{ description() }}</p>
+  }
+
+  @if (actionLabel()) {
+    <div [class]="classes().actions">
+      <lv-button
+        variant="primary"
+        (onClick)="handleAction()"
+      >
+        @if (actionIcon()) {
+          <lv-icon [name]="actionIcon()!" size="sm" />
+        }
+        {{ actionLabel() }}
+      </lv-button>
+    </div>
+  }
+
+  <ng-content></ng-content>
+</div>

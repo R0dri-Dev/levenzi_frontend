@@ -1,1 +1,29 @@
-<p>notification-item works!</p>
+<div
+  [class]="classes().container"
+  (click)="handleClick()"
+  role="alert"
+>
+  <div [class]="classes().icon">
+    <lv-icon [name]="getIconName()" size="sm" />
+  </div>
+
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center justify-between gap-2">
+      <h4 [class]="classes().title">{{ title() }}</h4>
+      @if (closable()) {
+        <lv-icon-button
+          icon="x"
+          size="xs"
+          variant="ghost"
+          (onClick)="handleClose()"
+          [class]="classes().close"
+          aria-label="Cerrar notificación"
+        />
+      }
+    </div>
+    <p [class]="classes().message">{{ message() }}</p>
+    @if (time()) {
+      <time [class]="classes().time">{{ time() }}</time>
+    }
+  </div>
+</div>

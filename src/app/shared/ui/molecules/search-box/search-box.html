@@ -1,1 +1,33 @@
-<p>search-box works!</p>
+<div [class]="classes().container">
+  <!-- Icon usando lv-icon -->
+  <div [class]="classes().icon">
+    <lv-icon name="search" [size]="size()" />
+  </div>
+
+  <!-- Input usando lv-input -->
+  <lv-input
+    #input
+    type="text"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [value]="searchValue()"
+    [size]="size()"
+    variant="primary"
+    (onValueChange)="onInputChange($event)"
+    (onFocus)="onFocus.emit()"
+    (onBlur)="onBlur.emit()"
+    [attr.aria-label]="placeholder()"
+  />
+
+  <!-- Clear button usando lv-icon-button -->
+  @if (searchValue()) {
+    <lv-icon-button
+      icon="x"
+      [size]="size()"
+      variant="ghost"
+      [disabled]="disabled()"
+      (onClick)="clearSearch()"
+      aria-label="Limpiar búsqueda"
+    />
+  }
+</div>

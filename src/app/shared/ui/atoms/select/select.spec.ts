@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Select } from './select';
+import { LvSelectComponent } from './select';
 
-describe('Select', () => {
-  let component: Select;
-  let fixture: ComponentFixture<Select>;
+
+describe('LvSelectComponent', () => {
+  let component: LvSelectComponent;
+  let fixture: ComponentFixture<LvSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Select],
+      imports: [LvSelectComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Select);
+    fixture = TestBed.createComponent(LvSelectComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -20,3 +21,4 @@ describe('Select', () => {
     expect(component).toBeTruthy();
   });
 });
+

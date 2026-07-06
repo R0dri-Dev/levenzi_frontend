@@ -1,1 +1,30 @@
-<p>page-header works!</p>
+<header [class]="classes().header">
+  <div [class]="classes().content">
+    <div [class]="getAlignmentClass()">
+      <!-- Breadcrumb -->
+      @if (breadcrumb().length > 0) {
+        <div [class]="classes().breadcrumb">
+          <lv-breadcrumb [items]="breadcrumb()" />
+        </div>
+      }
+
+      <!-- Title -->
+      <h1 [class]="classes().title">
+        @if (icon()) {
+          <lv-icon [name]="icon()!" size="lg" class="mr-2" />
+        }
+        {{ title() }}
+      </h1>
+
+      <!-- Subtitle -->
+      @if (subtitle()) {
+        <p [class]="classes().subtitle">{{ subtitle() }}</p>
+      }
+    </div>
+
+    <!-- Actions -->
+    <div [class]="classes().actions">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</header>

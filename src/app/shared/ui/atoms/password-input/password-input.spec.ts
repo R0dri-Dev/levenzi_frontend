@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PasswordInput } from './password-input';
+import { LvPasswordInputComponent } from './password-input';
 
-describe('PasswordInput', () => {
-  let component: PasswordInput;
-  let fixture: ComponentFixture<PasswordInput>;
+describe('LvPasswordInputComponent', () => {
+  let component: LvPasswordInputComponent;
+  let fixture: ComponentFixture<LvPasswordInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PasswordInput],
+      imports: [LvPasswordInputComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PasswordInput);
+    fixture = TestBed.createComponent(LvPasswordInputComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -19,4 +19,15 @@ describe('PasswordInput', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have default name/placeholder/value as empty strings', () => {
+    expect(component.name()).toBe('');
+    expect(component.placeholder()).toBe('');
+    expect(component.value()).toBe('');
+  });
+
+  it('should compute classes', () => {
+    expect(component.classes()).toContain('rounded-xl');
+  });
 });
+

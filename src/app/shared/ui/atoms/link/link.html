@@ -1,1 +1,24 @@
-<p>link works!</p>
+@if(routerLink()){
+
+<a
+[class]="classes()"
+[routerLink]="routerLink()">
+
+<ng-content/>
+
+</a>
+
+}
+
+@else{
+
+<a
+[class]="classes()"
+[href]="href()"
+[target]="external() ? '_blank' : '_self'">
+
+<ng-content/>
+
+</a>
+
+}

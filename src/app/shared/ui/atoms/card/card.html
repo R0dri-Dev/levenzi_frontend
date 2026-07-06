@@ -1,1 +1,12 @@
-<p>card works!</p>
+<section [class]="classes()">
+  @if (headerText()) {
+    <div [class]="headerClasses()">{{ headerText() }}</div>
+  }
+
+  <div [class]="bodyClasses()"><ng-content /></div>
+
+  @if (footerText()) {
+    <div [class]="footerClasses()">{{ footerText() }}</div>
+  }
+</section>
+

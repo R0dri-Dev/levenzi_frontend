@@ -1,1 +1,24 @@
-<p>filter-chip works!</p>
+<div
+  [class]="classes().chip"
+  (click)="handleClick()"
+  [attr.role]="'button'"
+  [attr.aria-disabled]="disabled()"
+>
+  @if (icon()) {
+    <lv-icon [name]="icon()!" [size]="size()" />
+  }
+
+  <span>{{ label() }}</span>
+
+  @if (removable()) {
+    <lv-icon-button
+      icon="x"
+      [size]="size()"
+      variant="ghost"
+      [disabled]="disabled()"
+      (onClick)="handleRemove($event)"
+      class="p-0"
+      aria-label="Eliminar filtro"
+    />
+  }
+</div>

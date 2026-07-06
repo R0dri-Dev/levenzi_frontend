@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Textarea } from './textarea';
+import { LvTextareaComponent } from './textarea';
 
-describe('Textarea', () => {
-  let component: Textarea;
-  let fixture: ComponentFixture<Textarea>;
+describe('LvTextareaComponent', () => {
+  let component: LvTextareaComponent;
+  let fixture: ComponentFixture<LvTextareaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Textarea],
+      imports: [LvTextareaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Textarea);
+    fixture = TestBed.createComponent(LvTextareaComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -20,3 +20,4 @@ describe('Textarea', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -1,1 +1,55 @@
-<p>app-footer works!</p>
+<footer [class]="classes().footer" role="contentinfo">
+  <div [class]="classes().content">
+    <!-- Footer Sections -->
+    @if (sections().length > 0) {
+      <div [class]="classes().grid">
+        @for (section of sections(); track $index) {
+          <div>
+            <h5 [class]="classes().sectionTitle">{{ section.title }}</h5>
+            <ul class="space-y-2">
+              @for (link of section.links; track $index) {
+                <li>
+                  @if (link.route) {
+                    <a [routerLink]="link.route" [class]="classes().link">
+                      @if (link.icon) {
+                        <lv-icon [name]="link.icon" size="sm" />
+                      }
+                      {{ link.label }}
+                    </a>
+                  } @else if (link.url) {
+                    <a [href]="link.url" target="_blank" [class]="classes().link">
+                      @if (link.icon) {
+                        <lv-icon [name]="link.icon" size="sm" />
+                      }
+                      {{ link.label }}
+                    </a>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Bottom -->
+    <div [class]="classes().bottom">
+      <span [class]="classes().copyright">{{ copyright() }}</span>
+
+      @if (socialLinks().length > 0) {
+        <div [class]="classes().social">
+          @for (social of socialLinks(); track $index) {
+            <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+              <lv-icon-button
+                [icon]="social.icon || 'link'"
+                variant="ghost"
+                size="sm"
+                [attr.aria-label]="social.label"
+              />
+            </a>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</footer>

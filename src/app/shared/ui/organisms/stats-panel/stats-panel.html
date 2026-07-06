@@ -1,1 +1,13 @@
-<p>stats-panel works!</p>
+<div [class]="'grid ' + gridClass() + ' gap-4'">
+  @for (stat of stats(); track $index) {
+    <lv-stat-card
+      [title]="stat.title"
+      [value]="stat.value"
+      [icon]="stat.icon"
+      [variant]="stat.variant || 'primary'"
+      [trend]="stat.trend"
+      [trendValue]="stat.trendValue"
+      [description]="stat.description"
+    />
+  }
+</div>

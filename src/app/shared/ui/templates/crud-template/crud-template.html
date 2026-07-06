@@ -1,1 +1,29 @@
-<p>crud-template works!</p>
+<div [class]="classes().template">
+  <!-- Toolbar -->
+  <div [class]="classes().toolbar">
+    <div>
+      @if (title()) {
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+          {{ title() }}
+        </h2>
+      }
+      @if (subtitle()) {
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          {{ subtitle() }}
+        </p>
+      }
+    </div>
+
+    <div [class]="classes().actions">
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <ng-content select="[filters]"></ng-content>
+
+  <!-- Content -->
+  <div [class]="classes().content">
+    <ng-content></ng-content>
+  </div>
+</div>

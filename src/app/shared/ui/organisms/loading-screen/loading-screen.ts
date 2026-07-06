@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-loading-screen',
-  imports: [],
+  selector: 'lv-loading-screen',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './loading-screen.html',
   styleUrl: './loading-screen.css',
 })
-export class LoadingScreen {}
+export class LvLoadingScreenComponent {
+  readonly message = input<string>('Cargando...');
+  readonly fullScreen = input(false);
+}

@@ -1,1 +1,23 @@
-<p>divider works!</p>
+@if(text()){
+
+<div class="flex items-center gap-4">
+
+    <div class="flex-1 border-t border-gray-200"></div>
+
+    <span class="text-sm text-gray-500">
+
+        {{text()}}
+
+    </span>
+
+    <div class="flex-1 border-t border-gray-200"></div>
+
+</div>
+
+}
+
+@else{
+
+<div [class]="classes()"></div>
+
+}

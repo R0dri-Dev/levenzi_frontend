@@ -1,1 +1,41 @@
-<p>error-template works!</p>
+<div [class]="classes().template">
+  <div [class]="classes().container">
+    <!-- Icon -->
+    <lv-icon
+      [name]="getErrorIcon()"
+      size="xl"
+      [class]="LV_ERROR_TEMPLATE_VARIANTS[this.variant()]"
+    />
+
+    <!-- Code -->
+    <h1 [class]="classes().code">
+      {{ code() }}
+    </h1>
+
+    <!-- Title -->
+    <h2 [class]="classes().title">
+      {{ title() }}
+    </h2>
+
+    <!-- Message -->
+    <p [class]="classes().message">
+      {{ message() }}
+    </p>
+
+    <!-- Actions -->
+    @if (showHomeButton()) {
+      <div [class]="classes().actions">
+        <lv-button
+          variant="primary"
+          [routerLink]="homeRoute()"
+          (onClick)="handleAction()"
+        >
+          <lv-icon name="home" size="sm" />
+          Ir al inicio
+        </lv-button>
+      </div>
+    }
+
+    <ng-content></ng-content>
+  </div>
+</div>

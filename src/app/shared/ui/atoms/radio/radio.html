@@ -1,1 +1,8 @@
-<p>radio works!</p>
+<input
+type="radio"
+[name]="name()"
+[value]="value()"
+[checked]="checked()"
+[disabled]="disabled()"
+[class]="classes()"
+(change)="changed.emit(value())">

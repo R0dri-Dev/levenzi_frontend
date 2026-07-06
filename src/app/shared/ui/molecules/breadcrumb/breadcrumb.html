@@ -1,1 +1,31 @@
-<p>breadcrumb works!</p>
+<nav aria-label="Breadcrumb">
+  <ol [class]="classes().base">
+    @for (item of items(); track $index) {
+      <li [class]="classes().item">
+        @if (!$first) {
+          <span [class]="classes().separator">{{ separator() }}</span>
+        }
+
+        @if (item.path && !item.active) {
+          <a
+            [routerLink]="item.path"
+            [class]="classes().link"
+            [attr.aria-current]="item.active ? 'page' : null"
+          >
+            @if (item.icon) {
+              <lv-icon [name]="item.icon" size="sm" />
+            }
+            {{ item.label }}
+          </a>
+        } @else {
+          <span [class]="classes().active">
+            @if (item.icon) {
+              <lv-icon [name]="item.icon" size="sm" />
+            }
+            {{ item.label }}
+          </span>
+        }
+      </li>
+    }
+  </ol>
+</nav>

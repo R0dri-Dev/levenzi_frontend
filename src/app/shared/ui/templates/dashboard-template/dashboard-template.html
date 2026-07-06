@@ -1,1 +1,28 @@
-<p>dashboard-template works!</p>
+<div [class]="classes().template">
+  <!-- Sidebar -->
+  @if (hasSidebar()) {
+    <div [class]="classes().sidebar">
+      <ng-content select="[sidebar]"></ng-content>
+    </div>
+  }
+
+  <!-- Main -->
+  <div [class]="classes().main">
+    <!-- Header -->
+    @if (layout() === 'top-nav' || layout() === 'both') {
+      <div [class]="classes().header">
+        <ng-content select="[header]"></ng-content>
+      </div>
+    }
+
+    <!-- Content -->
+    <main [class]="classes().content">
+      <ng-content></ng-content>
+    </main>
+
+    <!-- Footer -->
+    <div [class]="classes().footer">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+</div>

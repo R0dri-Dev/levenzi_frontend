@@ -1,1 +1,16 @@
-<p>remember-me works!</p>
+<label [class]="classes().container">
+  <input
+    type="checkbox"
+    [class]="classes().checkbox"
+    [checked]="internalChecked()"
+    (change)="toggle($event)"
+    [disabled]="disabled()"
+    aria-label="Recordarme"
+  />
+
+  <span [class]="classes().label">
+    @if (label()) {
+      {{ label() }}
+    }
+  </span>
+</label>

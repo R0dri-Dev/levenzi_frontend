@@ -1,1 +1,24 @@
-<p>avatar works!</p>
+<div [class]="classes()">
+
+  @if(src()){
+
+    <img
+      class="h-full w-full object-cover"
+      [src]="src()"
+      [alt]="alt()">
+
+  }
+
+  @else{
+
+    {{ initials() }}
+
+  }
+
+  @if(status() !== 'none'){
+
+    <span [class]="statusClass()"></span>
+
+  }
+
+</div>

@@ -1,1 +1,35 @@
-<p>confirm-dialog works!</p>
+@if (isOpen()) {
+  <div [class]="classes().overlay" role="dialog" aria-modal="true">
+    <div [class]="classes().dialog">
+      <div class="p-6">
+        <!-- Icon -->
+        <div [class]="classes().icon">
+          <lv-icon [name]="getIconName()" size="lg" />
+        </div>
+
+        <!-- Title -->
+        <h3 [class]="classes().title">{{ title() }}</h3>
+
+        <!-- Message -->
+        <p [class]="classes().message">{{ message() }}</p>
+
+        <!-- Actions -->
+        <div [class]="classes().actions">
+          <lv-button
+            variant="secondary"
+            (onClick)="handleCancel()"
+          >
+            {{ cancelLabel() }}
+          </lv-button>
+          <lv-button
+            [variant]="getConfirmVariant()"
+            [loading]="confirmLoading()"
+            (onClick)="handleConfirm()"
+          >
+            {{ confirmLabel() }}
+          </lv-button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

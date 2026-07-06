@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterSelect } from './filter-select';
+import { LvFilterSelectComponent } from './filter-select';
 
-describe('FilterSelect', () => {
-  let component: FilterSelect;
-  let fixture: ComponentFixture<FilterSelect>;
+describe('LvFilterSelectComponent', () => {
+  let component: LvFilterSelectComponent;
+  let fixture: ComponentFixture<LvFilterSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilterSelect],
+      imports: [LvFilterSelectComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FilterSelect);
+    fixture = TestBed.createComponent(LvFilterSelectComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

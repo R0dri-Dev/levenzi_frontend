@@ -48,7 +48,7 @@
           @if (item.route) {
             <a
               [routerLink]="item.route"
-              [class]="[classes().item, item.danger ? classes().itemDanger : ''].filter(Boolean).join(' ')"
+              [class]="itemClass(item)"
               role="menuitem"
               (click)="close()"
             >
@@ -60,7 +60,7 @@
           } @else {
             <button
               type="button"
-              [class]="[classes().item, item.danger ? classes().itemDanger : ''].filter(Boolean).join(' ')"
+              [class]="itemClass(item)"
               role="menuitem"
               (click)="handleItemClick(item)"
             >

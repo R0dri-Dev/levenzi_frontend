@@ -1,6 +1,6 @@
 // src/app/shared/types/login-form.types.ts
-export interface LoginFormData {
-  email: string;
-  password: string;
+import type { LoginCredentials } from './auth.types';
+
+export interface LoginFormData extends LoginCredentials {
   rememberMe: boolean;
 }

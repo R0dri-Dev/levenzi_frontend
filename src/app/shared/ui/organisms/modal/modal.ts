@@ -2,6 +2,7 @@ import { Component, computed, input, output, signal, HostListener, ElementRef, v
 import { CommonModule } from '@angular/common';
 
 import { LvButtonComponent } from '../../atoms/button/button';
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 
 import {
   LV_MODAL_OVERLAY,
@@ -18,7 +19,7 @@ import type { ModalSize, ModalVariant, ModalAction } from '../../../types/modal.
 @Component({
   selector: 'lv-modal',
   standalone: true,
-  imports: [CommonModule, LvButtonComponent],
+  imports: [CommonModule, LvButtonComponent, LvIconButtonComponent],
   templateUrl: './modal.html',
   styleUrl: './modal.css',
 })
@@ -61,6 +62,10 @@ export class LvModalComponent {
 
   close(): void {
     this.onClose.emit();
+  }
+
+  handleCloseClick(): void {
+    this.close();
   }
 
   handleOverlayClick(event: MouseEvent): void {

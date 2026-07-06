@@ -1,1 +1,7 @@
-<p>form-error works!</p>
+<div [class]="classes().container" role="alert">
+	@if (showIcon()) {
+		<lv-icon [name]="icon()" [class]="classes().icon" size="sm" />
+	}
+
+	<p [class]="classes().message">{{ message() }}</p>
+</div>

@@ -1,1 +1,18 @@
-<p>filters-panel works!</p>
+<lv-card>
+	<div class="space-y-4">
+		<ng-content select="[header]"></ng-content>
+
+		<lv-page-filter
+			[variant]="variant()"
+			[layout]="layout()"
+			[spacing]="spacing()"
+			[fullWidth]="fullWidth()"
+		>
+			<ng-content select="[left]"></ng-content>
+			<ng-content select="[filters]"></ng-content>
+			<ng-content select="[right]"></ng-content>
+		</lv-page-filter>
+
+		<ng-content select="[footer]"></ng-content>
+	</div>
+</lv-card>

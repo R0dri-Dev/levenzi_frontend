@@ -1,7 +1,7 @@
 import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import type { Option } from '../../../interfaces/option.interface';
+import type { Option } from '../../../types/option.types';
 
 import {
   LV_SELECT_BASE,

@@ -1,1 +1,9 @@
-<p>login works!</p>
+<section class="min-h-screen flex items-center justify-center px-4 py-10">
+	<lv-login-form
+		[loading]="loading()"
+		[error]="error()"
+		(onSubmit)="handleSubmit($event)"
+		(onForgotPassword)="handleForgotPassword()"
+		(onRegister)="handleRegister()"
+	/>
+</section>

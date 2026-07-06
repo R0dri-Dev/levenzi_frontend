@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { LvButtonComponent } from '../../atoms/button/button';
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 import { LvUserMenuComponent } from '../../molecules/user-menu/user-menu';
 import { LvSearchBoxComponent } from '../../molecules/search-box/search-box';
 
@@ -28,6 +29,7 @@ import { LvIconComponent } from '../../icons/icon/icon';
     CommonModule,
     RouterModule,
     LvIconComponent,
+    LvIconButtonComponent,
     LvButtonComponent,
     LvUserMenuComponent,
     LvSearchBoxComponent,
@@ -44,7 +46,7 @@ export class LvNavbarComponent {
   readonly brandRoute = input<string>('/');
   readonly items = input<NavbarItem[]>([]);
   readonly user = input<NavbarUser>();
-  readonly userMenuItems = input<any[]>([]);
+  readonly userMenuItems = input<NavbarItem[]>([]);
   readonly showSearch = input(false);
   readonly showUserMenu = input(true);
   readonly showMobileMenu = input(true);
@@ -53,10 +55,10 @@ export class LvNavbarComponent {
   readonly onMenuToggle = output<void>();
   readonly onItemClick = output<NavbarItem>();
   readonly onSearch = output<string>();
-  readonly onUserAction = output<any>();
+  readonly onUserAction = output<NavbarItem>();
 
   // State
-  private mobileOpen = signal(false);
+  readonly mobileOpen = signal(false);
 
   // Computed
   readonly classes = computed(() => {
@@ -96,11 +98,17 @@ export class LvNavbarComponent {
     return item.active || false;
   }
 
+  itemClass(item: NavbarItem): string {
+    return [this.classes().item, this.isActive(item) ? this.classes().itemActive : '']
+      .filter(Boolean)
+      .join(' ');
+  }
+
   handleSearch(query: string): void {
     this.onSearch.emit(query);
   }
 
-  handleUserAction(item: any): void {
+  handleUserAction(item: NavbarItem): void {
     this.onUserAction.emit(item);
   }
 }

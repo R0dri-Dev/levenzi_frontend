@@ -1,1 +1,10 @@
-<p>icon-button works!</p>
+<button
+	[type]="type()"
+	[class]="classes()"
+	[disabled]="disabled()"
+	[attr.aria-label]="label()"
+	[attr.aria-disabled]="disabled()"
+	(click)="handleClick($event)"
+>
+	<lv-icon [name]="icon()" size="sm" />
+</button>

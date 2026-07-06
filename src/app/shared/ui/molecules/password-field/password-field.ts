@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { LvLabelComponent } from '../../atoms/label/label';
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 
 import {
   LV_PASSWORD_FIELD_BASE,
@@ -22,7 +23,7 @@ import { LvIconComponent } from '../../icons/icon/icon';
 @Component({
   selector: 'lv-password-field',
   standalone: true,
-  imports: [CommonModule, FormsModule, LvIconComponent, LvLabelComponent],
+  imports: [CommonModule, FormsModule, LvIconComponent, LvLabelComponent, LvIconButtonComponent],
   templateUrl: './password-field.html',
   styleUrl: './password-field.css',
 })

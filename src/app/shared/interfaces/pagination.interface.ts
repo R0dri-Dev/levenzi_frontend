@@ -1,11 +1,1 @@
-export interface Pagination {
-
-  page: number;
-
-  perPage: number;
-
-  total: number;
-
-  lastPage: number;
-
-}
+export type { Pagination } from '../types/pagination.types';

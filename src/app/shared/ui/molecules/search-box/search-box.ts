@@ -2,6 +2,7 @@ import { Component, computed, input, output, signal, effect, ElementRef, viewChi
 import { CommonModule } from '@angular/common';
 
 import { LvInputComponent } from '../../atoms/input/input';
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 
 import {
   LV_SEARCH_BOX_BASE,
@@ -14,7 +15,7 @@ import { LvIconComponent } from '../../icons/icon/icon';
 @Component({
   selector: 'lv-search-box',
   standalone: true,
-  imports: [CommonModule, LvInputComponent, LvIconComponent, LvIconComponent],
+  imports: [CommonModule, LvInputComponent, LvIconComponent, LvIconButtonComponent],
   templateUrl: './search-box.html',
   styleUrl: './search-box.css',
 })

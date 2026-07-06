@@ -115,11 +115,11 @@
                       @if (isActionVisible(action, item)) {
                         <lv-icon-button
                           [icon]="action.icon || 'more-horizontal'"
+                          [label]="action.label"
                           [variant]="action.variant || 'ghost'"
                           [size]="action.size || 'sm'"
                           [disabled]="isActionDisabled(action, item)"
                           (onClick)="action.action(item); $event.stopPropagation()"
-                          [attr.aria-label]="action.label"
                         />
                       }
                     }

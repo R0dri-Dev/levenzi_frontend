@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { HttpInterceptorFn } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 import { authInterceptor } from './auth-interceptor';
 
@@ -8,7 +10,9 @@ describe('authInterceptor', () => {
     TestBed.runInInjectionContext(() => authInterceptor(req, next));
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideRouter([])],
+    });
   });
 
   it('should be created', () => {

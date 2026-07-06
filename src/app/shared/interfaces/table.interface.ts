@@ -1,20 +1,15 @@
 // src/app/shared/interfaces/table.interface.ts
-import type { SortDirection, TableAlign } from '../types/table.types';
+export type {
+  TableAlign,
+  SortDirection,
+  TableVariant,
+  TableSize,
+  TableAction,
+  TablePagination,
+  TableSort,
+  TableSelection,
+} from '../types/table.types';
 
-export interface TableColumn<T = unknown> {
-  header: string;
-  accessor: keyof T | ((row: T) => unknown);
-  align?: TableAlign;  // ← AHORA FUNCIONA
-  sortable?: boolean;
-}
-
-export interface TableRowData {
-  id?: number | string;
-}
-
-export interface Table<T = unknown> {
-  columns: Array<TableColumn<T>>;
-  rows: Array<T & TableRowData>;
-  sortBy?: string;
-  sortDirection?: SortDirection;
-}
+export type TableColumn<T = unknown> = import('../types/table.types').TableColumn<T>;
+export type TableRowData = import('../types/table.types').TableRowData;
+export type Table<T = unknown> = import('../types/table.types').Table<T>;

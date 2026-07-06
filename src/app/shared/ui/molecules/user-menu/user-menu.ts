@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal, HostListener } from '@angular/core';
+import { Component, computed, input, output, signal, HostListener, ElementRef, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -36,7 +36,7 @@ export class LvUserMenuComponent {
   readonly onItemClick = output<UserMenuItem>();
 
   private isOpen = signal(false);
-  private dropdownRef = signal<HTMLElement | null>(null);
+  readonly dropdownRef = viewChild<ElementRef<HTMLElement>>('dropdown');
 
   readonly classes = computed(() => ({
     base: LV_USER_MENU_BASE,
@@ -56,10 +56,14 @@ export class LvUserMenuComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
-    const dropdown = this.dropdownRef();
+    const dropdown = this.dropdownRef()?.nativeElement;
     if (dropdown && !dropdown.contains(target)) {
       this.close();
     }
+  }
+
+  itemClass(item: UserMenuItem): string {
+    return [this.classes().item, item.danger ? this.classes().itemDanger : ''].filter(Boolean).join(' ');
   }
 
   toggle(): void {

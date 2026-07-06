@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageFilter } from './page-filter';
+import { LvPageFilterComponent } from './page-filter';
 
-describe('PageFilter', () => {
-  let component: PageFilter;
-  let fixture: ComponentFixture<PageFilter>;
+describe('LvPageFilterComponent', () => {
+  let component: LvPageFilterComponent;
+  let fixture: ComponentFixture<LvPageFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageFilter],
+      imports: [LvPageFilterComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PageFilter);
+    fixture = TestBed.createComponent(LvPageFilterComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

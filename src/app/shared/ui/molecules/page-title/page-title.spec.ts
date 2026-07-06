@@ -1,22 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageTitle } from './page-title';
+import { LvPageTitleComponent } from './page-title';
 
-describe('PageTitle', () => {
-  let component: PageTitle;
-  let fixture: ComponentFixture<PageTitle>;
+describe('LvPageTitleComponent', () => {
+  let component: LvPageTitleComponent;
+  let fixture: ComponentFixture<LvPageTitleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageTitle],
+      imports: [LvPageTitleComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PageTitle);
+    fixture = TestBed.createComponent(LvPageTitleComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the title and subtitle', () => {
+    fixture.componentRef.setInput('title', 'Pacientes');
+    fixture.componentRef.setInput('subtitle', 'Gestiona el listado principal');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('Pacientes');
+    expect(fixture.nativeElement.textContent).toContain('Gestiona el listado principal');
   });
 });

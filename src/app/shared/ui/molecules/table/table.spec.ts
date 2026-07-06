@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Table } from './table';
+import { LvTableComponent } from './table';
 
-describe('Table', () => {
-  let component: Table;
-  let fixture: ComponentFixture<Table>;
+describe('LvTableComponent', () => {
+  let component: LvTableComponent;
+  let fixture: ComponentFixture<LvTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Table],
+      imports: [LvTableComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Table);
+    fixture = TestBed.createComponent(LvTableComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

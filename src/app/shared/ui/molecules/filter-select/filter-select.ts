@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -32,6 +32,15 @@ export class LvFilterSelectComponent {
   readonly onSelect = output<string>();
 
   readonly selectedValue = signal('');
+
+  constructor() {
+    effect(() => {
+      const externalValue = this.value();
+      if (externalValue !== this.selectedValue()) {
+        this.selectedValue.set(externalValue);
+      }
+    });
+  }
 
   readonly classes = computed(() => {
     const base = LV_FILTER_SELECT_BASE;

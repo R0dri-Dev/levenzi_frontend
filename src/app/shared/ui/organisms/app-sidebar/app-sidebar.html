@@ -4,10 +4,10 @@
     <div class="flex justify-end p-2">
       <lv-icon-button
         [icon]="isCollapsed() ? 'chevron-right' : 'chevron-left'"
+        label="Colapsar sidebar"
         variant="ghost"
         size="sm"
         (onClick)="toggleSidebar()"
-        aria-label="Colapsar sidebar"
       />
     </div>
   }
@@ -28,7 +28,7 @@
         @if (item.route) {
           <a
             [routerLink]="item.route"
-            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+            [class]="itemClass(item)"
             (click)="handleItemClick(item)"
             [attr.aria-current]="isActive(item) ? 'page' : null"
           >
@@ -48,7 +48,7 @@
           </a>
         } @else {
           <button
-            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+            [class]="itemClass(item)"
             (click)="handleItemClick(item)"
             class="w-full text-left"
           >

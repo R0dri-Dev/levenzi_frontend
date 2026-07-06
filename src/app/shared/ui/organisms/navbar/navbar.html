@@ -15,7 +15,7 @@
       @if (item.route) {
         <a
           [routerLink]="item.route"
-          [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+          [class]="itemClass(item)"
           (click)="handleItemClick(item)"
           class="no-underline"
         >
@@ -67,11 +67,11 @@
     <!-- Mobile Menu Button -->
     @if (showMobileMenu()) {
       <lv-icon-button
-        [class]="classes().mobileButton"
-        [icon]="mobileOpen() ? 'x' : 'menu'"
-        variant="ghost"
+        [icon]="mobileOpen() ? 'close' : 'menu'"
+        label="Menú"
+        [variant]="'ghost'"
+        size="md"
         (onClick)="toggleMobileMenu()"
-        aria-label="Menú"
       />
     }
   </div>
@@ -85,7 +85,7 @@
         @if (item.route) {
           <a
             [routerLink]="item.route"
-            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
+            [class]="itemClass(item)"
             (click)="handleItemClick(item)"
             class="py-2 px-3 no-underline rounded-xl"
           >

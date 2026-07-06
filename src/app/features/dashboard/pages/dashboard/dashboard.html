@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<section class="grid gap-6 lg:grid-cols-[1.5fr_0.85fr]">
+	<article class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+		<p class="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Dashboard</p>
+		<h2 class="mt-3 text-3xl font-bold text-slate-900">Sesión iniciada correctamente</h2>
+		<p class="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
+			La autenticación ya está conectada con Laravel. Desde aquí puedes seguir construyendo módulos protegidos
+			con el token guardado en el cliente.
+		</p>
+
+		<div class="mt-8 flex flex-wrap gap-3">
+			<lv-button variant="primary" [loading]="loggingOut()" (onClick)="logout()">
+				Cerrar sesión
+			</lv-button>
+		</div>
+	</article>
+
+	<aside class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+		<p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Estado</p>
+		<ul class="mt-4 space-y-3 text-sm text-slate-600">
+			<li>Token guardado localmente</li>
+			<li>Interceptors activos para `/api`</li>
+			<li>Guards protegiendo rutas privadas</li>
+		</ul>
+	</aside>
+</section>

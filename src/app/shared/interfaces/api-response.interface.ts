@@ -1,5 +1,1 @@
-
-export interface ApiResponse<T> {
-  data: T;
-  message?: string;
-}
+export type { ApiResponse } from '../types/api-response.types';

@@ -1,6 +1,8 @@
 import { Component, computed, input, output, signal, HostListener, ElementRef, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
+
 
 import {
   LV_DRAWER_OVERLAY,
@@ -18,7 +20,7 @@ import type { DrawerPosition, DrawerSize, DrawerVariant } from '../../../types/d
 @Component({
   selector: 'lv-drawer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LvIconButtonComponent],
   templateUrl: './drawer.html',
   styleUrl: './drawer.css',
 })
@@ -61,6 +63,10 @@ export class LvDrawerComponent {
 
   close(): void {
     this.onClose.emit();
+  }
+
+  handleCloseClick(): void {
+    this.close();
   }
 
   handleOverlayClick(event: MouseEvent): void {

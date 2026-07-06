@@ -1,5 +1,1 @@
-export interface Option<T = string | number> {
-  label: string;
-  value: T;
-  disabled?: boolean;
-}
+export type { Option } from '../types/option.types';

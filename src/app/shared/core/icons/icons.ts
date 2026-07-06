@@ -17,10 +17,16 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
+  ChevronsUpDown,
   ArrowLeft,
   ArrowRight,
   CircleCheck,
-  X
+  X,
+  Inbox,
+  Mail,
+  MoreHorizontal,
+  LoaderCircle
 } from 'lucide-angular';
 
 export const LV_ICONS = {
@@ -41,12 +47,24 @@ export const LV_ICONS = {
   filter: Filter,
   check: CircleCheck,
   close: X,
+  x: X,
   chevronDown: ChevronDown,
+  'chevron-down': ChevronDown,
   chevronLeft: ChevronLeft,
+  'chevron-left': ChevronLeft,
   chevronRight: ChevronRight,
+  'chevron-right': ChevronRight,
+  chevronUp: ChevronUp,
+  'chevron-up': ChevronUp,
+  chevronUpDown: ChevronsUpDown,
+  'chevron-up-down': ChevronsUpDown,
   arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
-  spinner: X
+  inbox: Inbox,
+  mail: Mail,
+  moreHorizontal: MoreHorizontal,
+  'more-horizontal': MoreHorizontal,
+  spinner: LoaderCircle
 } as const;
 
 export type IconKeys = keyof typeof LV_ICONS;

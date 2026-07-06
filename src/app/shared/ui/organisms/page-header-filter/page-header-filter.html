@@ -1,1 +1,23 @@
-<p>page-header-filter works!</p>
+<section class="space-y-4">
+	<lv-page-header
+		[title]="title()"
+		[subtitle]="subtitle()"
+		[variant]="variant()"
+		[alignment]="alignment()"
+		[icon]="icon()"
+		[breadcrumb]="breadcrumb()"
+	>
+		<ng-content select="[header-actions]"></ng-content>
+	</lv-page-header>
+
+	<lv-filter-bar
+		[variant]="filterVariant()"
+		[layout]="filterLayout()"
+		[spacing]="filterSpacing()"
+		[fullWidth]="filterFullWidth()"
+	>
+		<ng-content select="[left]"></ng-content>
+		<ng-content select="[filters]"></ng-content>
+		<ng-content select="[right]"></ng-content>
+	</lv-filter-bar>
+</section>

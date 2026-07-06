@@ -1,4 +1,4 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -8,6 +8,7 @@ import { LvButtonComponent } from '../../atoms/button/button';
 import { LvLabelComponent } from '../../atoms/label/label';
 import { LvPasswordFieldComponent } from '../../molecules/password-field/password-field';
 import { LvRememberMeComponent } from '../../molecules/remember-me/remember-me';
+import { LvFormErrorComponent } from '../../molecules/form-error/form-error';
 
 import {
   LV_LOGIN_FORM_BASE,
@@ -33,6 +34,7 @@ import type { LoginFormData } from '../../../types/login-form.types';
     LvLabelComponent,
     LvPasswordFieldComponent,
     LvRememberMeComponent,
+    LvFormErrorComponent,
   ],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
@@ -42,8 +44,8 @@ export class LvLoginFormComponent {
   readonly onForgotPassword = output<void>();
   readonly onRegister = output<void>();
 
-  readonly loading = signal(false);
-  readonly error = signal<string | null>(null);
+  readonly loading = input(false);
+  readonly error = input<string | null>(null);
 
   readonly formData = signal<LoginFormData>({
     email: '',
@@ -54,7 +56,6 @@ export class LvLoginFormComponent {
   handleSubmit(): void {
     if (this.loading()) return;
 
-    this.error.set(null);
     this.onSubmit.emit(this.formData());
   }
 

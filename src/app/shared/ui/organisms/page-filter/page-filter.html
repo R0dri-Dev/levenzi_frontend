@@ -1,1 +1,12 @@
-<p>page-filter works!</p>
+<div [class]="classes().container">
+	<lv-filter-bar
+		[variant]="variant()"
+		[layout]="layout()"
+		[spacing]="spacing()"
+		[fullWidth]="fullWidth()"
+	>
+		<ng-content select="[left]"></ng-content>
+		<ng-content select="[filters]"></ng-content>
+		<ng-content select="[right]"></ng-content>
+	</lv-filter-bar>
+</div>

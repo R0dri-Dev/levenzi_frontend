@@ -1,4 +1,6 @@
 // src/app/shared/types/navbar.types.ts
+import type { UserIdentity } from './user.types';
+
 export type NavbarVariant = 'default' | 'glass' | 'dark';
 export type NavbarPosition = 'fixed' | 'sticky' | 'static';
 
@@ -10,9 +12,4 @@ export interface NavbarItem {
   action?: () => void;
 }
 
-export interface NavbarUser {
-  name: string;
-  email: string;
-  avatar?: string;
-  initials?: string;
-}
+export interface NavbarUser extends UserIdentity { }

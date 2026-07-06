@@ -23,11 +23,11 @@
   @if (searchValue()) {
     <lv-icon-button
       icon="x"
+      label="Limpiar búsqueda"
       [size]="size()"
       variant="ghost"
       [disabled]="disabled()"
       (onClick)="clearSearch()"
-      aria-label="Limpiar búsqueda"
     />
   }
 </div>

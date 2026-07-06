@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { LvBadgeComponent } from '../../atoms/badge/badge';
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 import { LvIconComponent } from '../../icons/icon/icon';
 
 import {
@@ -24,14 +25,14 @@ import type { AppSidebarVariant, AppSidebarPosition, AppSidebarItem } from '../.
 @Component({
   selector: 'lv-app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule, LvIconComponent, LvBadgeComponent],
+  imports: [CommonModule, RouterModule, LvIconComponent, LvBadgeComponent, LvIconButtonComponent],
   templateUrl: './app-sidebar.html',
   styleUrl: './app-sidebar.css',
 })
 export class LvAppSidebarComponent {
   readonly variant = input<AppSidebarVariant>('default');
   readonly position = input<AppSidebarPosition>('left');
-  readonly size = input<'sm' | 'md' | 'lg'>('md');  // ← AGREGA ESTA LÍNEA
+  readonly size = input<'sm' | 'md' | 'lg'>('md');
   readonly compact = input(false);
   readonly items = input.required<AppSidebarItem[]>();
   readonly header = input<string>('');
@@ -70,6 +71,10 @@ export class LvAppSidebarComponent {
 
   isActive(item: AppSidebarItem): boolean {
     return item.active || false;
+  }
+
+  itemClass(item: AppSidebarItem): string {
+    return [this.classes().item, this.isActive(item) ? this.classes().itemActive : ''].filter(Boolean).join(' ');
   }
 
   toggleSidebar(): void {

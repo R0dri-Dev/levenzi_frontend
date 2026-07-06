@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { LvButtonComponent } from '../../atoms/button/button';
 import { LvBadgeComponent } from '../../atoms/badge/badge';
+import { LvEmptyStateComponent } from '../empty-state/empty-state';
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 
 import {
   LV_TABLE_BASE,
@@ -44,14 +46,15 @@ import { LvIconComponent } from '../../icons/icon/icon';
   imports: [
     CommonModule,
     LvIconComponent,
-    LvIconComponent,
     LvButtonComponent,
-    LvBadgeComponent
+    LvBadgeComponent,
+    LvEmptyStateComponent,
+    LvIconButtonComponent
   ],
   templateUrl: './table.html',
   styleUrl: './table.css',
 })
-export class LvTableComponent<T = any> {
+export class LvTableComponent<T = unknown> {
   // Inputs
   readonly data = input.required<T[]>();
   readonly columns = input.required<TableColumn<T>[]>();
@@ -94,7 +97,7 @@ export class LvTableComponent<T = any> {
       wrapper: LV_TABLE_WRAPPER,
       table: [base, variant].filter(Boolean).join(' '),
       head: LV_TABLE_HEAD,
-      headCell: (col: TableColumn) => {
+      headCell: (col: TableColumn<T>) => {
         const size = LV_TABLE_HEAD_CELL_SIZES[this.size()];
         const align = LV_TABLE_HEAD_CELL_ALIGN[col.align || 'left'];
         return [LV_TABLE_HEAD_CELL, size, align].filter(Boolean).join(' ');
@@ -104,7 +107,7 @@ export class LvTableComponent<T = any> {
         const selected = this.isSelected(item) ? LV_TABLE_ROW_SELECTED : '';
         return [LV_TABLE_ROW, selected].filter(Boolean).join(' ');
       },
-      cell: (col: TableColumn) => {
+      cell: (col: TableColumn<T>) => {
         const size = LV_TABLE_CELL_SIZES[this.size()];
         const align = LV_TABLE_CELL_ALIGN[col.align || 'left'];
         return [LV_TABLE_CELL, size, align].filter(Boolean).join(' ');
@@ -135,7 +138,7 @@ export class LvTableComponent<T = any> {
   }
 
   // Methods
-  getCellValue(item: T, column: TableColumn): any {
+  getCellValue(item: T, column: TableColumn<T>): unknown {
     const value = (item as any)[column.key];
     return column.render ? column.render(item) : value;
   }

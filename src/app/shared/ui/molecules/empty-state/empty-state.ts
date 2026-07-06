@@ -17,6 +17,7 @@ import {
 } from '../../../theme/empty-state.theme';
 import type { EmptyStateSize, EmptyStateVariant } from '../../../types/empty-state.types';
 import { LvIconComponent } from '../../icons/icon/icon';
+import type { IconKeys } from '../../../core/icons';
 
 @Component({
   selector: 'lv-empty-state',
@@ -28,11 +29,11 @@ import { LvIconComponent } from '../../icons/icon/icon';
 export class LvEmptyStateComponent {
   readonly title = input.required<string>();
   readonly description = input<string>();
-  readonly icon = input<string>('inbox');
+  readonly icon = input<IconKeys>('inbox');
   readonly size = input<EmptyStateSize>('md');
   readonly variant = input<EmptyStateVariant>('default');
   readonly actionLabel = input<string>();
-  readonly actionIcon = input<string>();
+  readonly actionIcon = input<IconKeys>();
 
   readonly onAction = output<void>();
 

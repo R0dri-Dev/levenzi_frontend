@@ -14,13 +14,13 @@ import { IconSize, IconStroke, LV_ICONS } from '../../../core/icons';
 
 export class LvIconComponent {
 
-  readonly name = input<keyof typeof LV_ICONS>('home');
+  readonly name = input<string>('home');
 
   readonly size = input<IconSize>('md');
 
   readonly strokeWidth = input<IconStroke>(2);
 
-  readonly icon = computed(() => LV_ICONS[this.name()]);
+  readonly icon = computed(() => LV_ICONS[this.name() as keyof typeof LV_ICONS] ?? LV_ICONS.home);
 
   readonly classes = computed(() => [
     LV_ICON_THEME.base,

@@ -16,10 +16,10 @@
         <h3 [class]="classes().title">{{ title() }}</h3>
         <lv-icon-button
           icon="x"
+          label="Cerrar drawer"
           variant="ghost"
           size="sm"
-          (onClick)="close()"
-          aria-label="Cerrar"
+          (onClick)="handleCloseClick()"
         />
       </div>
 

@@ -1,6 +1,7 @@
 // src/app/shared/types/table.types.ts
+import type { HorizontalAlignment } from './alignment.types';
 
-export type TableAlign = 'left' | 'center' | 'right';
+export type TableAlign = HorizontalAlignment;
 export type SortDirection = 'asc' | 'desc';
 export type TableVariant = 'default' | 'striped' | 'bordered' | 'hover';
 export type TableSize = 'sm' | 'md' | 'lg';

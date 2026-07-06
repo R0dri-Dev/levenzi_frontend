@@ -12,10 +12,10 @@
         <h3 [class]="classes().title">{{ title() }}</h3>
         <lv-icon-button
           icon="x"
+          label="Cerrar modal"
           variant="ghost"
           size="sm"
-          (onClick)="close()"
-          aria-label="Cerrar"
+          (onClick)="handleCloseClick()"
         />
       </div>
 
@@ -32,6 +32,7 @@
               [variant]="action.variant || 'primary'"
               [disabled]="action.disabled || false"
               [loading]="action.loading || false"
+              type="button"
               (onClick)="handleAction(action)"
             >
               {{ action.label }}

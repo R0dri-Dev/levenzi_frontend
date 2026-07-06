@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginForm } from './login-form';
+import { LvLoginFormComponent } from './login-form';
 
-describe('LoginForm', () => {
-  let component: LoginForm;
-  let fixture: ComponentFixture<LoginForm>;
+describe('LvLoginFormComponent', () => {
+  let component: LvLoginFormComponent;
+  let fixture: ComponentFixture<LvLoginFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginForm],
+      imports: [LvLoginFormComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginForm);
+    fixture = TestBed.createComponent(LvLoginFormComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

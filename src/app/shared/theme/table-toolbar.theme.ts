@@ -8,8 +8,8 @@ export const LV_TABLE_TOOLBAR_LAYOUTS = {
 
 export const LV_TABLE_TOOLBAR_VARIANTS = {
   default: 'p-2 bg-transparent',
-  card: 'p-4 bg-white dark:bg-gray-800 rounded-t-xl border-b border-gray-200 dark:border-gray-700',
-  table: 'p-3 bg-gray-50 dark:bg-gray-800 rounded-t-xl border-b border-gray-200 dark:border-gray-700',
+  card: 'p-4 bg-white rounded-t-xl border-b border-gray-200',
+  table: 'p-3 bg-gray-50 rounded-t-xl border-b border-gray-200',
 };
 
 export const LV_TABLE_TOOLBAR_SPACING = {

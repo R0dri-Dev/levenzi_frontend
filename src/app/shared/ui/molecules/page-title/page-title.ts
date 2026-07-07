@@ -16,7 +16,7 @@ import type { IconKeys } from '../../../core/icons';
 })
 export class LvPageTitleComponent {
   readonly title = input.required<string>();
-  readonly subtitle = input<string>();
+  readonly subtitle = input<string>('');
   readonly level = input<HeadingLevel>('2');
   readonly icon = input<IconKeys>();
 

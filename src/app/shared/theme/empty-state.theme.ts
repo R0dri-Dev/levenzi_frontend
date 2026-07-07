@@ -11,12 +11,12 @@ export const LV_EMPTY_STATE_SIZES = {
 
 export const LV_EMPTY_STATE_VARIANTS = {
   default: 'bg-transparent',
-  card: 'bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700',
-  full: 'bg-gray-50 dark:bg-gray-900 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-700',
+  card: 'bg-white rounded-xl border border-gray-200',
+  full: 'bg-gray-50 rounded-xl border-2 border-dashed border-gray-300',
 };
 
 export const LV_EMPTY_STATE_ICON =
-  'text-gray-400 dark:text-gray-500';
+  'text-gray-400';
 
 export const LV_EMPTY_STATE_ICON_SIZES = {
   sm: 'w-12 h-12',
@@ -26,7 +26,7 @@ export const LV_EMPTY_STATE_ICON_SIZES = {
 };
 
 export const LV_EMPTY_STATE_TITLE =
-  'text-gray-900 dark:text-white font-semibold';
+  'text-gray-900';
 
 export const LV_EMPTY_STATE_TITLE_SIZES = {
   sm: 'text-base',
@@ -36,7 +36,7 @@ export const LV_EMPTY_STATE_TITLE_SIZES = {
 };
 
 export const LV_EMPTY_STATE_DESCRIPTION =
-  'text-gray-500 dark:text-gray-400 max-w-sm';
+  'text-gray-500';
 
 export const LV_EMPTY_STATE_DESCRIPTION_SIZES = {
   sm: 'text-sm',

@@ -4,7 +4,7 @@ export const LV_CRUD_TEMPLATE_BASE =
 
 export const LV_CRUD_TEMPLATE_VARIANTS = {
   default: 'space-y-4',
-  card: 'space-y-4 p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700',
+  card: 'space-y-4 p-4 bg-white  rounded-2xl border border-gray-200',
   table: 'space-y-4',
 };
 

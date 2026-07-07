@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoadingScreen } from './loading-screen';
+import { LvLoadingScreenComponent } from './loading-screen';
 
-describe('LoadingScreen', () => {
-  let component: LoadingScreen;
-  let fixture: ComponentFixture<LoadingScreen>;
+describe('LvLoadingScreenComponent', () => {
+  let component: LvLoadingScreenComponent;
+  let fixture: ComponentFixture<LvLoadingScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoadingScreen],
+      imports: [LvLoadingScreenComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoadingScreen);
+    fixture = TestBed.createComponent(LvLoadingScreenComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

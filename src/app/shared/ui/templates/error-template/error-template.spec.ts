@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorTemplate } from './error-template';
+import { LvErrorTemplateComponent } from './error-template';
 
-describe('ErrorTemplate', () => {
-  let component: ErrorTemplate;
-  let fixture: ComponentFixture<ErrorTemplate>;
+describe('LvErrorTemplateComponent', () => {
+  let component: LvErrorTemplateComponent;
+  let fixture: ComponentFixture<LvErrorTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ErrorTemplate],
+      imports: [LvErrorTemplateComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ErrorTemplate);
+    fixture = TestBed.createComponent(LvErrorTemplateComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

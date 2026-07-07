@@ -9,6 +9,7 @@ import { LvPasswordFieldComponent } from '../../molecules/password-field/passwor
 import { LvCheckboxComponent } from '../../atoms/checkbox/checkbox';
 
 import type { RegisterFormData } from '../../../types/register-form.types';
+import { LvFormErrorComponent } from '../../molecules/form-error/form-error';
 
 @Component({
   selector: 'lv-register-form',
@@ -21,6 +22,7 @@ import type { RegisterFormData } from '../../../types/register-form.types';
     LvButtonComponent,
     LvPasswordFieldComponent,
     LvCheckboxComponent,
+    LvFormErrorComponent
   ],
   templateUrl: './register-form.html',
   styleUrl: './register-form.css',

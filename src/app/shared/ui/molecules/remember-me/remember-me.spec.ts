@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RememberMe } from './remember-me';
+import { LvRememberMeComponent } from './remember-me';
 
-describe('RememberMe', () => {
-  let component: RememberMe;
-  let fixture: ComponentFixture<RememberMe>;
+describe('LvRememberMeComponent', () => {
+  let component: LvRememberMeComponent;
+  let fixture: ComponentFixture<LvRememberMeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RememberMe],
+      imports: [LvRememberMeComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RememberMe);
+    fixture = TestBed.createComponent(LvRememberMeComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -42,7 +42,7 @@ export class LvAppSidebarComponent {
   readonly onItemClick = output<AppSidebarItem>();
   readonly onToggle = output<void>();
 
-  private isCollapsed = signal(false);
+  protected isCollapsed = signal(false);
 
   readonly classes = computed(() => {
     const base = LV_APP_SIDEBAR_BASE;

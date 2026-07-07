@@ -1,5 +1,5 @@
 export const LV_SEARCH_BOX_BASE = 'relative flex items-center w-full';
-export const LV_SEARCH_BOX_INPUT = 'w-full pl-10 pr-10 border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200';
+export const LV_SEARCH_BOX_INPUT = 'w-full pl-10 pr-10 border border-gray-300 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200';
 
 export const LV_SEARCH_BOX_VARIANTS = {
   default: 'rounded-lg',
@@ -20,7 +20,7 @@ export const LV_SEARCH_BOX_ICON_SIZES = {
   lg: 'w-6 h-6',
 };
 
-export const LV_SEARCH_BOX_CLEAR = 'absolute right-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200 cursor-pointer';
+export const LV_SEARCH_BOX_CLEAR = 'absolute right-3 text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer';
 export const LV_SEARCH_BOX_CLEAR_SIZES = {
   sm: 'w-3 h-3',
   md: 'w-4 h-4',

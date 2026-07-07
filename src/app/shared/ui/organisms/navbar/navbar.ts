@@ -1,9 +1,12 @@
+// src/app/shared/ui/organisms/navbar/navbar.ts
 import { Component, computed, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { LvButtonComponent } from '../../atoms/button/button';
 import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
+import { LvIconComponent } from '../../icons/icon/icon';
+import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import { LvUserMenuComponent } from '../../molecules/user-menu/user-menu';
 import { LvSearchBoxComponent } from '../../molecules/search-box/search-box';
 
@@ -20,7 +23,7 @@ import {
   LV_NAVBAR_MOBILE_MENU,
 } from '../../../theme/navbar.theme';
 import type { NavbarVariant, NavbarPosition, NavbarItem, NavbarUser } from '../../../types/navbar.types';
-import { LvIconComponent } from '../../icons/icon/icon';
+import type { UserMenuItem, UserMenuUser } from '../../../types/user-menu.types';
 
 @Component({
   selector: 'lv-navbar',
@@ -31,14 +34,14 @@ import { LvIconComponent } from '../../icons/icon/icon';
     LvIconComponent,
     LvIconButtonComponent,
     LvButtonComponent,
+    LvParagraphComponent,
     LvUserMenuComponent,
     LvSearchBoxComponent,
   ],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
 })
 export class LvNavbarComponent {
-  // Inputs
+  // ============ INPUTS ============
   readonly variant = input<NavbarVariant>('default');
   readonly position = input<NavbarPosition>('sticky');
   readonly brand = input<string>('');
@@ -51,20 +54,20 @@ export class LvNavbarComponent {
   readonly showUserMenu = input(true);
   readonly showMobileMenu = input(true);
 
-  // Outputs
+  // ============ OUTPUTS ============
   readonly onMenuToggle = output<void>();
   readonly onItemClick = output<NavbarItem>();
   readonly onSearch = output<string>();
   readonly onUserAction = output<NavbarItem>();
 
-  // State
+  // ============ STATE ============
   readonly mobileOpen = signal(false);
 
-  // Computed
+  // ============ COMPUTED ============
   readonly classes = computed(() => {
     const base = LV_NAVBAR_BASE;
-    const variant = LV_NAVBAR_VARIANTS[this.variant()];
-    const position = LV_NAVBAR_POSITIONS[this.position()];
+    const variant = LV_NAVBAR_VARIANTS[this.variant()] || '';
+    const position = LV_NAVBAR_POSITIONS[this.position()] || '';
 
     return {
       navbar: [base, variant, position].filter(Boolean).join(' '),
@@ -78,7 +81,29 @@ export class LvNavbarComponent {
     };
   });
 
-  // Methods
+  readonly convertedUserMenuItems = computed((): UserMenuItem[] => {
+    return this.userMenuItems().map(item => ({
+      label: item.label,
+      icon: item.icon,
+      route: item.route,
+      action: item.action,
+      divider: item.divider || false,
+      danger: item.danger || false,
+    }));
+  });
+
+  // ✅ Convertir NavbarUser a UserMenuUser
+  readonly convertedUser = computed((): UserMenuUser | undefined => {
+    const user = this.user();
+    if (!user) return undefined;
+    return {
+      name: user.name,
+      email: user.email,
+      avatar: user.avatar,
+    };
+  });
+
+  // ============ METHODS ============
   toggleMobileMenu(): void {
     this.mobileOpen.update(v => !v);
     this.onMenuToggle.emit();
@@ -98,17 +123,27 @@ export class LvNavbarComponent {
     return item.active || false;
   }
 
-  itemClass(item: NavbarItem): string {
-    return [this.classes().item, this.isActive(item) ? this.classes().itemActive : '']
-      .filter(Boolean)
-      .join(' ');
+  getItemClass(item: NavbarItem): string {
+    const classes = [this.classes().item];
+    if (this.isActive(item)) {
+      classes.push(this.classes().itemActive);
+    }
+    return classes.filter(Boolean).join(' ');
   }
 
   handleSearch(query: string): void {
     this.onSearch.emit(query);
   }
 
-  handleUserAction(item: NavbarItem): void {
-    this.onUserAction.emit(item);
+  handleUserAction(item: UserMenuItem): void {
+    const navbarItem: NavbarItem = {
+      label: item.label,
+      icon: item.icon,
+      route: item.route,
+      action: item.action,
+      divider: item.divider,
+      danger: item.danger,
+    };
+    this.onUserAction.emit(navbarItem);
   }
 }

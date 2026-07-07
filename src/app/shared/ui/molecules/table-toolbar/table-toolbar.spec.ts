@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableToolbar } from './table-toolbar';
+import { LvTableToolbarComponent } from './table-toolbar';
 
-describe('TableToolbar', () => {
-  let component: TableToolbar;
-  let fixture: ComponentFixture<TableToolbar>;
+describe('LvTableToolbarComponent', () => {
+  let component: LvTableToolbarComponent;
+  let fixture: ComponentFixture<LvTableToolbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableToolbar],
+      imports: [LvTableToolbarComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TableToolbar);
+    fixture = TestBed.createComponent(LvTableToolbarComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

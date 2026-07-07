@@ -1,6 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 
 import {
   LV_NOTIFICATION_ITEM_BASE,
@@ -20,7 +20,7 @@ import { LvIconComponent } from '../../icons/icon/icon';
 @Component({
   selector: 'lv-notification-item',
   standalone: true,
-  imports: [CommonModule, LvIconComponent],
+  imports: [CommonModule, LvIconComponent, LvIconButtonComponent],
   templateUrl: './notification-item.html',
   styleUrl: './notification-item.css',
 })
@@ -32,6 +32,7 @@ export class LvNotificationItemComponent {
   readonly time = input<string>();
   readonly closable = input(true);
   readonly autoClose = input<number>();
+  readonly onDismiss = output<void>();
 
   readonly onClose = output<void>();
   readonly onClick = output<void>();
@@ -61,5 +62,9 @@ export class LvNotificationItemComponent {
 
   handleClick(): void {
     this.onClick.emit();
+  }
+  
+   dismiss(): void {
+    this.onDismiss.emit();
   }
 }

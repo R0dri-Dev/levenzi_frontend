@@ -19,11 +19,14 @@ import {
 } from '../../../theme/password-field.theme';
 import type { PasswordFieldVariant, PasswordFieldSize, PasswordFieldStrength } from '../../../types/password-field.types';
 import { LvIconComponent } from '../../icons/icon/icon';
+import { LvFormErrorComponent } from '../form-error/form-error';
+import { LvInputComponent } from '../../atoms/input/input';
+import type { InputType } from '../../../types/input.types';
 
 @Component({
   selector: 'lv-password-field',
   standalone: true,
-  imports: [CommonModule, FormsModule, LvIconComponent, LvLabelComponent, LvIconButtonComponent],
+  imports: [CommonModule, FormsModule, LvIconComponent, LvLabelComponent, LvIconButtonComponent, LvFormErrorComponent, LvInputComponent],
   templateUrl: './password-field.html',
   styleUrl: './password-field.css',
 })
@@ -39,19 +42,19 @@ export class LvPasswordFieldComponent {
   readonly minLength = input<number>(8);
   readonly hint = input<string>('');
   readonly error = input<string>('');
-
   readonly onValueChange = output<string>();
   readonly onToggleVisibility = output<boolean>();
 
   readonly inputElement = viewChild<ElementRef<HTMLInputElement>>('input');
-  private showPassword = signal(false);
-  private internalValue = signal('');
+  showPassword = signal(false);
+  internalValue = signal('');
+
 
   readonly classes = computed(() => {
     const base = LV_PASSWORD_FIELD_BASE;
     const container = LV_PASSWORD_FIELD_CONTAINER;
     const size = LV_PASSWORD_FIELD_SIZES[this.size()];
-    const error = this.error() ? 'border-red-500 dark:border-red-500 focus-within:ring-red-500' : '';
+    const error = this.error() ? 'border-red-500 focus-within:ring-red-500' : '';
 
     return {
       container: [base].filter(Boolean).join(' '),
@@ -73,7 +76,7 @@ export class LvPasswordFieldComponent {
     });
   }
 
-  get inputType(): string {
+  get inputType(): InputType {
     return this.showPassword() ? 'text' : 'password';
   }
 

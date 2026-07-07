@@ -1,7 +1,7 @@
 // src/app/shared/types/app-sidebar.types.ts
 import type { IconKeys } from '../core/icons';
 
-export type AppSidebarVariant = 'default' | 'dark' | 'compact';
+export type AppSidebarVariant = 'default' | 'compact';
 export type AppSidebarPosition = 'left' | 'right';
 
 export interface AppSidebarItem {

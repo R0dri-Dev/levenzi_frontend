@@ -18,6 +18,7 @@ import type { LabelSize, LabelVariant } from '../../../types/label.types';
 export class LvLabelComponent {
   readonly text = input<string>('');
   readonly for = input<string>('');
+  readonly required = input(false);
 
   readonly variant = input<LabelVariant>('primary');
   readonly size = input<LabelSize>('md');

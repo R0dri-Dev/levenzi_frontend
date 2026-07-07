@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LvInputComponent } from '../../atoms/input/input';
 import { LvButtonComponent } from '../../atoms/button/button';
+import { LvFormErrorComponent } from '../../molecules/form-error/form-error';
 
 @Component({
   selector: 'lv-forgot-password-form',
@@ -13,6 +14,7 @@ import { LvButtonComponent } from '../../atoms/button/button';
     FormsModule,
     LvInputComponent,
     LvButtonComponent,
+    LvFormErrorComponent
   ],
   templateUrl: './forgot-password-form.html',
   styleUrl: './forgot-password-form.css',

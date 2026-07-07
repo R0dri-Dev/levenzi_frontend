@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ForgotPasswordForm } from './forgot-password-form';
+import { LvForgotPasswordFormComponent } from './forgot-password-form';
 
-describe('ForgotPasswordForm', () => {
-  let component: ForgotPasswordForm;
-  let fixture: ComponentFixture<ForgotPasswordForm>;
+describe('LvForgotPasswordFormComponent', () => {
+  let component: LvForgotPasswordFormComponent;
+  let fixture: ComponentFixture<LvForgotPasswordFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ForgotPasswordForm],
+      imports: [LvForgotPasswordFormComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ForgotPasswordForm);
+    fixture = TestBed.createComponent(LvForgotPasswordFormComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

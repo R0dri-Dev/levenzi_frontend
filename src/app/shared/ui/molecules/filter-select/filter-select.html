@@ -7,7 +7,7 @@
     <select
       [class]="classes().select"
       [value]="selectedValue()"
-      (change)="onSelectChange(($event.target as HTMLSelectElement).value)"
+      (change)="onSelectChange($any($event.target).value)"
       [disabled]="disabled()"
     >
       @if (placeholder()) {

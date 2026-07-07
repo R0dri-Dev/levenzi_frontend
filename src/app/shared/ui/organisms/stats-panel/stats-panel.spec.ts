@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatsPanel } from './stats-panel';
+import { LvStatsPanelComponent } from './stats-panel';
 
-describe('StatsPanel', () => {
-  let component: StatsPanel;
-  let fixture: ComponentFixture<StatsPanel>;
+describe('LvStatsPanelComponent', () => {
+  let component: LvStatsPanelComponent;
+  let fixture: ComponentFixture<LvStatsPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StatsPanel],
+      imports: [LvStatsPanelComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(StatsPanel);
+    fixture = TestBed.createComponent(LvStatsPanelComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

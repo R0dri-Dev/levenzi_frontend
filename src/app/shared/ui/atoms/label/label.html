@@ -1,4 +1,6 @@
-<label [attr.for]="for()" [class]="classes()" [attr.aria-disabled]="disabled()">
+<label [attr.for]="for()" class="lv-label">
   {{ text() }}
+  @if (required()) {
+    <span class="text-red-500 ml-0.5">*</span>
+  }
 </label>
-

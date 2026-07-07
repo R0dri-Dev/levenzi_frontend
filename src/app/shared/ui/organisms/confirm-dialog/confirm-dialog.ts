@@ -15,11 +15,12 @@ import {
   LV_CONFIRM_DIALOG_ACTIONS,
 } from '../../../theme/confirm-dialog.theme';
 import type { ConfirmDialogVariant, ConfirmDialogSize } from '../../../types/confirm-dialog.types';
+import { LvIconComponent } from '../../icons/icon/icon';
 
 @Component({
   selector: 'lv-confirm-dialog',
   standalone: true,
-  imports: [CommonModule, LvButtonComponent],
+  imports: [CommonModule, LvButtonComponent, LvIconComponent],
   templateUrl: './confirm-dialog.html',
   styleUrl: './confirm-dialog.css',
 })

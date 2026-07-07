@@ -1,11 +1,11 @@
 <div class="w-full max-w-md mx-auto">
-  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+  <div class="bg-white rounded-2xl shadow-xl p-8">
     <!-- Header -->
     <div class="text-center mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+      <h2 class="text-2xl font-bold text-gray-900">
         Crear Cuenta
       </h2>
-      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      <p class="text-sm text-gray-500 mt-1">
         Regístrate para comenzar
       </p>
     </div>
@@ -24,7 +24,7 @@
         [value]="formData().name"
         (onValueChange)="updateField('name', $event)"
         icon="user"
-        required
+        [required]="true"
       />
 
       <!-- Email -->
@@ -34,7 +34,7 @@
         [value]="formData().email"
         (onValueChange)="updateField('email', $event)"
         icon="mail"
-        required
+        [required]="true"
       />
 
       <!-- Password -->
@@ -43,7 +43,7 @@
         [value]="formData().password"
         (onValueChange)="updateField('password', $event)"
         [showStrength]="true"
-        required
+        [required]="true"
       />
 
       <!-- Confirm Password -->
@@ -51,7 +51,7 @@
         placeholder="Confirmar contraseña"
         [value]="formData().confirmPassword"
         (onValueChange)="updateField('confirmPassword', $event)"
-        required
+        [required]="true"
       />
 
       <!-- Password Match Error -->
@@ -64,7 +64,7 @@
         [checked]="formData().acceptTerms"
         (onChange)="updateField('acceptTerms', $event)"
       >
-        Acepto los <a href="#" class="text-blue-600 dark:text-blue-400 no-underline">términos y condiciones</a>
+        Acepto los <a href="#" class="text-blue-600 no-underline">términos y condiciones</a>
       </lv-checkbox>
 
       <!-- Submit -->
@@ -81,12 +81,12 @@
 
       <!-- Login -->
       <div class="text-center mt-4">
-        <span class="text-sm text-gray-500 dark:text-gray-400">
+        <span class="text-sm text-gray-500 ">
           ¿Ya tienes cuenta?
           <button
             type="button"
             (click)="handleLogin()"
-            class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200 bg-transparent border-0 cursor-pointer font-medium"
+            class="text-blue-600 hover:text-blue-700  transition-colors duration-200 bg-transparent border-0 cursor-pointer font-medium"
           >
             Inicia Sesión
           </button>

@@ -14,7 +14,7 @@ export type InputType =
   | 'color'
   | 'checkbox';
 
-export type InputVariant = 'primary' | 'outline' | 'ghost' | 'danger';
+export type InputVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success';
 export type InputSize = 'sm' | 'md' | 'lg';
 
 export type InputAutocomplete =

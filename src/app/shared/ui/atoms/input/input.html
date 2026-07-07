@@ -1,11 +1,33 @@
-<input
-  [type]="type()"
-  [value]="value()"
-  [placeholder]="placeholder()"
-  [disabled]="disabled()"
-  [autocomplete]="autocomplete()"
-  [class]="classes()"
-  (input)="handleInput($any($event.target).value)"
-/>
+<!-- shared/ui/atoms/input/input.html -->
+<div class="relative">
+  @if (icon() && iconPosition() === 'left') {
+    <lv-icon
+      [name]="icon()!"
+      size="sm"
+      [class]="classes().icon"
+    />
+  }
 
+  <input
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [value]="internalValue()"
+    [disabled]="disabled()"
+    [readonly]="readonly()"
+    [required]="required()"
+    [attr.minlength]="minlength()"
+    [attr.maxlength]="maxlength()"
+    (input)="onInputChange($event)"
+    (blur)="onBlurEvent()"
+    (focus)="onFocusEvent()"
+    [class]="classes().input"
+  />
 
+  @if (icon() && iconPosition() === 'right') {
+    <lv-icon
+      [name]="icon()!"
+      size="sm"
+      [class]="classes().icon + ' right-3 left-auto'"
+    />
+  }
+</div>

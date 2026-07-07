@@ -5,7 +5,9 @@
       @if (brandIcon()) {
         <lv-icon [name]="brandIcon()!" size="lg" />
       }
-      <span>{{ brand() }}</span>
+      <lv-paragraph weight="semibold" color="gray">
+        {{ brand() }}
+      </lv-paragraph>
     </a>
   </div>
 
@@ -15,26 +17,32 @@
       @if (item.route) {
         <a
           [routerLink]="item.route"
-          [class]="itemClass(item)"
+          [class]="getItemClass(item)"
           (click)="handleItemClick(item)"
           class="no-underline"
         >
           @if (item.icon) {
             <lv-icon [name]="item.icon" size="sm" />
           }
-          {{ item.label }}
+          <lv-paragraph size="sm" color="gray">
+            {{ item.label }}
+          </lv-paragraph>
         </a>
       } @else {
-        <button
-          (click)="handleItemClick(item)"
-          [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
-          class="bg-transparent border-0 cursor-pointer"
+        <!-- ✅ USAR LV-BUTTON en lugar de button nativo -->
+        <lv-button
+          variant="ghost"
+          size="sm"
+          (onClick)="handleItemClick(item)"
+          [class]="getItemClass(item)"
         >
           @if (item.icon) {
             <lv-icon [name]="item.icon" size="sm" />
           }
-          {{ item.label }}
-        </button>
+          <lv-paragraph size="sm" color="gray">
+            {{ item.label }}
+          </lv-paragraph>
+        </lv-button>
       }
     }
   </div>
@@ -54,8 +62,8 @@
     <!-- User Menu -->
     @if (showUserMenu() && user()) {
       <lv-user-menu
-        [user]="user()!"
-        [items]="userMenuItems()"
+        [user]="convertedUser()!"
+        [items]="convertedUserMenuItems()"
         [showUserInfo]="false"
         (onItemClick)="handleUserAction($event)"
       />
@@ -69,7 +77,7 @@
       <lv-icon-button
         [icon]="mobileOpen() ? 'close' : 'menu'"
         label="Menú"
-        [variant]="'ghost'"
+        variant="ghost"
         size="md"
         (onClick)="toggleMobileMenu()"
       />
@@ -85,26 +93,32 @@
         @if (item.route) {
           <a
             [routerLink]="item.route"
-            [class]="itemClass(item)"
-            (click)="handleItemClick(item)"
+            [class]="getItemClass(item)"
             class="py-2 px-3 no-underline rounded-xl"
+            (click)="handleItemClick(item)"
           >
             @if (item.icon) {
               <lv-icon [name]="item.icon" size="sm" />
             }
-            {{ item.label }}
+            <lv-paragraph size="sm" color="gray">
+              {{ item.label }}
+            </lv-paragraph>
           </a>
         } @else {
-          <button
-            (click)="handleItemClick(item)"
-            [class]="[classes().item, isActive(item) ? classes().itemActive : ''].filter(Boolean).join(' ')"
-            class="py-2 px-3 text-left bg-transparent border-0 cursor-pointer rounded-xl"
+          <lv-button
+            variant="ghost"
+            size="sm"
+            (onClick)="handleItemClick(item)"
+            [class]="getItemClass(item)"
+            [fullWidth]="true"
           >
             @if (item.icon) {
               <lv-icon [name]="item.icon" size="sm" />
             }
-            {{ item.label }}
-          </button>
+            <lv-paragraph size="sm" color="gray">
+              {{ item.label }}
+            </lv-paragraph>
+          </lv-button>
         }
       }
     </div>

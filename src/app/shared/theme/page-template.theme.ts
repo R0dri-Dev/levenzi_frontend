@@ -1,6 +1,6 @@
 // src/app/shared/theme/page-template.theme.ts
 export const LV_PAGE_TEMPLATE_BASE =
-  'min-h-screen bg-gray-50 dark:bg-gray-900';
+  'min-h-screen bg-gray-50';
 
 export const LV_PAGE_TEMPLATE_VARIANTS = {
   default: 'p-6',

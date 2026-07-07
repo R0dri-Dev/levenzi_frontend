@@ -4,6 +4,7 @@ export const LV_ICON_BUTTON_BASE =
   'inline-flex items-center justify-center rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 disabled:cursor-not-allowed disabled:opacity-60';
 
 export const LV_ICON_BUTTON_SIZES: Record<ButtonSize, string> = {
+  xs: 'h-6 w-6',
   sm: 'h-8 w-8',
   md: 'h-10 w-10',
   lg: 'h-12 w-12',

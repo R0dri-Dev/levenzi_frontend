@@ -11,14 +11,13 @@
     <div class="flex items-center justify-between gap-2">
       <h4 [class]="classes().title">{{ title() }}</h4>
       @if (closable()) {
-        <lv-icon-button
-          icon="x"
-          size="xs"
-          variant="ghost"
-          (onClick)="handleClose()"
-          [class]="classes().close"
-          aria-label="Cerrar notificación"
-        />
+       <lv-icon-button
+        icon="x"
+        label="Dismiss notification"
+        size="sm"
+        variant="ghost"
+        (click)="dismiss()"
+      />
       }
     </div>
     <p [class]="classes().message">{{ message() }}</p>

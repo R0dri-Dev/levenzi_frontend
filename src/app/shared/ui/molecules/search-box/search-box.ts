@@ -33,7 +33,8 @@ export class LvSearchBoxComponent implements AfterViewInit {
   readonly onFocus = output<void>();
   readonly onBlur = output<void>();
 
-  private searchValue = signal<string>('');
+  searchValue = signal<string>('');
+
   private debounceTimer: any = null;
   readonly inputElement = viewChild<ElementRef<HTMLInputElement>>('input');
 

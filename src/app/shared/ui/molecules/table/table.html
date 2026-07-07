@@ -1,9 +1,11 @@
 <div [class]="classes().wrapper">
   <!-- Loading State -->
   @if (loading()) {
-    <div class="flex items-center justify-center py-12">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400"></div>
-      <span class="ml-3 text-gray-500 dark:text-gray-400">Cargando...</span>
+    <div [class]="classes().loadingSpinner">
+      <lv-spinner size="md" />
+      <lv-paragraph size="sm" color="gray" class="ml-3">
+        Cargando...
+      </lv-paragraph>
     </div>
   } @else {
     <!-- Table -->
@@ -13,12 +15,10 @@
         <tr>
           <!-- Select All -->
           @if (selectable()) {
-            <th [class]="classes().headCell({ align: 'center' })">
-              <input
-                type="checkbox"
-                [class]="classes().checkbox"
+            <th [class]="classes().headCell(selectColumn())">
+              <lv-checkbox
                 [checked]="selectAll()"
-                (change)="toggleSelectAll()"
+                (onChange)="toggleSelectAll()"
                 [disabled]="data().length === 0"
                 aria-label="Seleccionar todos"
               />
@@ -34,7 +34,9 @@
               [class.cursor-pointer]="col.sortable"
             >
               <div class="flex items-center gap-1">
-                {{ col.label }}
+                <lv-paragraph size="sm" weight="semibold" color="gray">
+                  {{ col.label }}
+                </lv-paragraph>
 
                 @if (col.sortable) {
                   <span [class]="classes().sortIcon">
@@ -53,8 +55,10 @@
 
           <!-- Actions Header -->
           @if (hasActions()) {
-            <th [class]="classes().headCell({ align: 'center' })">
-              Acciones
+            <th [class]="classes().headCell(actionsColumn())">
+              <lv-paragraph size="sm" weight="semibold" color="gray">
+                Acciones
+              </lv-paragraph>
             </th>
           }
         </tr>
@@ -85,12 +89,10 @@
             >
               <!-- Select Checkbox -->
               @if (selectable()) {
-                <td [class]="classes().cell({ align: 'center' })">
-                  <input
-                    type="checkbox"
-                    [class]="classes().checkbox"
+                <td [class]="classes().cell(selectColumn())">
+                  <lv-checkbox
                     [checked]="isSelected(item)"
-                    (change)="toggleSelection(item)"
+                    (onChange)="toggleSelection(item)"
                     (click)="$event.stopPropagation()"
                     aria-label="Seleccionar fila"
                   />
@@ -103,18 +105,20 @@
                   [class]="classes().cell(col)"
                   [class]="col.cellClass || ''"
                 >
-                  {{ getCellValue(item, col) }}
+                  <lv-paragraph size="sm" color="gray">
+                    {{ getCellValue(item, col) }}
+                  </lv-paragraph>
                 </td>
               }
 
               <!-- Actions -->
               @if (hasActions()) {
-                <td [class]="classes().cell({ align: 'center' })">
+                <td [class]="classes().cell(actionsColumn())">
                   <div class="flex items-center justify-center gap-1">
                     @for (action of actions(); track $index) {
                       @if (isActionVisible(action, item)) {
                         <lv-icon-button
-                          [icon]="action.icon || 'more-horizontal'"
+                          [icon]="getActionIcon(action.icon)"
                           [label]="action.label"
                           [variant]="action.variant || 'ghost'"
                           [size]="action.size || 'sm'"
@@ -134,36 +138,41 @@
 
     <!-- Pagination -->
     @if (pagination() && data().length > 0) {
-      <div [class]="classes().pagination">
+      <div [class]="classes().paginationWrapper">
         <div [class]="classes().paginationInfo">
-          Mostrando {{ getStartItem() }} - {{ getEndItem() }} de {{ totalItems() }} registros
+          <lv-paragraph size="sm" color="gray">
+            Mostrando {{ getStartItem() }} - {{ getEndItem() }} de {{ totalItems() }} registros
+          </lv-paragraph>
         </div>
 
         <div [class]="classes().paginationButtons">
-          <button
-            [class]="classes().paginationButton(false)"
+          <lv-icon-button
+            icon="chevron-left"
+            label="Página anterior"
+            variant="ghost"
+            size="sm"
             [disabled]="pagination()?.currentPage === 1"
-            (click)="handlePageChange((pagination()?.currentPage || 1) - 1)"
-          >
-            <lv-icon name="chevron-left" size="xs" />
-          </button>
+            (onClick)="handlePageChange((pagination()?.currentPage || 1) - 1)"
+          />
 
           @for (page of [].constructor(getTotalPages()); track $index) {
-            <button
-              [class]="classes().paginationButton(pagination()?.currentPage === $index + 1)"
-              (click)="handlePageChange($index + 1)"
+            <lv-button
+              [variant]="pagination()?.currentPage === $index + 1 ? 'primary' : 'ghost'"
+              size="sm"
+              (onClick)="handlePageChange($index + 1)"
             >
               {{ $index + 1 }}
-            </button>
+            </lv-button>
           }
 
-          <button
-            [class]="classes().paginationButton(false)"
+          <lv-icon-button
+            icon="chevron-right"
+            label="Página siguiente"
+            variant="ghost"
+            size="sm"
             [disabled]="pagination()?.currentPage === getTotalPages()"
-            (click)="handlePageChange((pagination()?.currentPage || 1) + 1)"
-          >
-            <lv-icon name="chevron-right" size="xs" />
-          </button>
+            (onClick)="handlePageChange((pagination()?.currentPage || 1) + 1)"
+          />
         </div>
       </div>
     }

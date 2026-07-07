@@ -8,13 +8,13 @@ export type TableSize = 'sm' | 'md' | 'lg';
 
 // ===== INTERFAZ PARA EL COMPONENTE TABLE =====
 export interface TableColumn<T = any> {
-  key: string;                    // ← NECESARIO
-  label: string;                  // ← NECESARIO
+  key: string;                    
+  label: string;                  
   align?: TableAlign;
   width?: string;
   sortable?: boolean;
-  hidden?: boolean;               // ← NECESARIO
-  render?: (item: T) => string;   // ← NECESARIO
+  hidden?: boolean;               
+  render?: (item: T) => string;   
   cellClass?: string;
   headerClass?: string;
 }

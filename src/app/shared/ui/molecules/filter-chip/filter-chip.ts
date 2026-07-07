@@ -1,7 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import {
   LV_FILTER_CHIP_BASE,
   LV_FILTER_CHIP_VARIANTS,
@@ -11,11 +10,13 @@ import {
 } from '../../../theme/filter-chip.theme';
 import type { FilterChipVariant, FilterChipSize, FilterChipShape } from '../../../types/filter-chip.types';
 import { LvIconComponent } from '../../icons/icon/icon';
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
+
 
 @Component({
   selector: 'lv-filter-chip',
   standalone: true,
-  imports: [CommonModule, LvIconComponent, LvIconComponent],
+  imports: [CommonModule, LvIconComponent, LvIconButtonComponent],
   templateUrl: './filter-chip.html',
   styleUrl: './filter-chip.css',
 })

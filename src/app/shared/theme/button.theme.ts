@@ -4,6 +4,7 @@ export const LV_BUTTON_BASE =
   'inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 disabled:cursor-not-allowed disabled:opacity-60';
 
 export const LV_BUTTON_SIZES: Record<ButtonSize, string> = {
+  xs: 'px-2 py-1 text-xs',
   sm: 'px-3 py-2 text-sm',
   md: 'px-4 py-2.5 text-sm',
   lg: 'px-5 py-3 text-base'

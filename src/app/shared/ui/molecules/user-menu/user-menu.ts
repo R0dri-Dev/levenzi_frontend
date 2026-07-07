@@ -35,7 +35,7 @@ export class LvUserMenuComponent {
 
   readonly onItemClick = output<UserMenuItem>();
 
-  private isOpen = signal(false);
+  protected isOpen = signal(false);
   readonly dropdownRef = viewChild<ElementRef<HTMLElement>>('dropdown');
 
   readonly classes = computed(() => ({

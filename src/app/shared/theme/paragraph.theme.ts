@@ -1,4 +1,5 @@
 import {
+  ParagraphAlign,
   ParagraphSize,
   ParagraphWeight,
 } from '../types/paragraph.types';
@@ -18,4 +19,12 @@ export const LV_PARAGRAPH_WEIGHTS: Record<ParagraphWeight, string> = {
   medium: 'font-medium',
   semibold: 'font-semibold',
   bold: 'font-bold',
+};
+
+
+export const LV_PARAGRAPH_ALIGN: Record<ParagraphAlign, string> = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+  justify: 'text-justify',
 };

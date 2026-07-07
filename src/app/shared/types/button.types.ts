@@ -9,6 +9,7 @@ export type ButtonVariant =
   | 'ghost';
 
 export type ButtonSize =
+  | 'xs'
   | 'sm'
   | 'md'
   | 'lg';

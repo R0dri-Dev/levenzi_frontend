@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
+import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 
 import {
   LV_APP_FOOTER_BASE,
@@ -16,11 +16,12 @@ import {
 } from '../../../theme/app-footer.theme';
 import type { AppFooterVariant, FooterSection, FooterLink } from '../../../types/app-footer.types';
 import { LvIconComponent } from '../../icons/icon/icon';
+import { IconKeys } from '../../../core/icons';
 
 @Component({
   selector: 'lv-app-footer',
   standalone: true,
-  imports: [CommonModule, RouterModule, LvIconComponent],
+  imports: [CommonModule, RouterModule, LvIconComponent, LvIconButtonComponent],
   templateUrl: './app-footer.html',
   styleUrl: './app-footer.css',
 })
@@ -45,4 +46,7 @@ export class LvAppFooterComponent {
       social: LV_APP_FOOTER_SOCIAL,
     };
   });
+  getSocialIcon(icon: string | undefined): IconKeys {
+    return (icon as IconKeys) || 'link';
+  }
 }

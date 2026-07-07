@@ -1,1 +1,6 @@
-<p>logo works!</p>
+<a [routerLink]="link()" [class]="classes()" class="no-underline">
+  @if (showIcon()) {
+    <lv-icon name="company" size="md" />
+  }
+  {{ text() }}
+</a>

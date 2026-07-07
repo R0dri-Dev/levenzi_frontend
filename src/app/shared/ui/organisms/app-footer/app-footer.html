@@ -41,10 +41,11 @@
           @for (social of socialLinks(); track $index) {
             <a [href]="social.url" target="_blank" rel="noopener noreferrer">
               <lv-icon-button
-                [icon]="social.icon || 'link'"
+                [icon]="getSocialIcon(social.icon)"
+                label="Social link"
                 variant="ghost"
                 size="sm"
-                [attr.aria-label]="social.label"
+                (onClick)="social.action?.()"
               />
             </a>
           }

@@ -9,27 +9,28 @@
     type="date"
     [class]="classes().input"
     [value]="startValue()"
-    (input)="onStartChange(($event.target as HTMLInputElement).value)"
+    (input)="onStartChange($any($event.target).value)"
     [disabled]="disabled()"
     aria-label="Fecha inicio"
   />
 
-  <span class="text-gray-400 dark:text-gray-500">a</span>
+  <span class="text-gray-400">a</span>
 
   <input
     type="date"
     [class]="classes().input"
     [value]="endValue()"
-    (input)="onEndChange(($event.target as HTMLInputElement).value)"
+    (input)="onEndChange($any($event.target).value)"
     [disabled]="disabled()"
     aria-label="Fecha fin"
   />
 
   @if (showPresets()) {
     <div class="flex gap-1 ml-2">
-      <lv-button size="xs" variant="ghost" (onClick)="applyPreset('today')">Hoy</lv-button>
-      <lv-button size="xs" variant="ghost" (onClick)="applyPreset('week')">Semana</lv-button>
-      <lv-button size="xs" variant="ghost" (onClick)="applyPreset('month')">Mes</lv-button>
+      <lv-button size="sm" variant="ghost" (onClick)="applyPreset('today')">Hoy</lv-button>
+      <lv-button size="sm" variant="ghost" (onClick)="applyPreset('week')">Semana</lv-button>
+      <lv-button size="sm" variant="ghost" (onClick)="applyPreset('month')">Mes</lv-button>
     </div>
   }
 </div>
+

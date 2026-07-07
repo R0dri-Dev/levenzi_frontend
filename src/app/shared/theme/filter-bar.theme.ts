@@ -8,8 +8,8 @@ export const LV_FILTER_BAR_LAYOUTS = {
 
 export const LV_FILTER_BAR_VARIANTS = {
   default: 'p-2 bg-transparent gap-2',
-  card: 'p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 gap-3',
-  table: 'p-3 bg-gray-50 dark:bg-gray-800 rounded-t-xl border-b border-gray-200 dark:border-gray-700 gap-2',
+  card: 'p-4 bg-white rounded-xl border border-gray-200 gap-3',
+  table: 'p-3 bg-gray-50 rounded-t-xl border-b border-gray-200 gap-2',
 };
 
 export const LV_FILTER_BAR_SPACING = {
@@ -21,4 +21,4 @@ export const LV_FILTER_BAR_SPACING = {
 };
 
 export const LV_FILTER_BAR_ITEM = 'flex items-center gap-2';
-export const LV_FILTER_BAR_LABEL = 'text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap';
+export const LV_FILTER_BAR_LABEL = 'text-sm font-medium text-gray-700 whitespace-nowrap';

@@ -31,7 +31,8 @@ export class LvRememberMeComponent {
 
   readonly onToggle = output<boolean>();
 
-  private internalChecked = signal(false);
+  internalChecked = signal(false);
+
 
   readonly classes = computed(() => {
     const base = LV_REMEMBER_ME_BASE;

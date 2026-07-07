@@ -1,4 +1,5 @@
-import { Component, computed, input } from '@angular/core';
+// src/app/shared/ui/templates/form-template/form-template.ts
+import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
@@ -13,12 +14,21 @@ import {
 } from '../../../theme/form-template.theme';
 import type { FormTemplateVariant, FormTemplateSize } from '../../../types/form-template.types';
 
+import { LvHeadingComponent } from '../../atoms/heading/heading';
+import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
+import { LvCardComponent } from '../../atoms/card/card';
+
 @Component({
   selector: 'lv-form-template',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    LvHeadingComponent,
+    LvParagraphComponent,
+    LvCardComponent
+  ],
   templateUrl: './form-template.html',
-  styleUrl: './form-template.css',
+  // styleUrl: './form-template.css',
 })
 export class LvFormTemplateComponent {
   readonly variant = input<FormTemplateVariant>('card');
@@ -26,11 +36,14 @@ export class LvFormTemplateComponent {
   readonly title = input<string>('');
   readonly subtitle = input<string>('');
   readonly loading = input(false);
+  readonly footerText = input<string>('');
+
+  readonly onSubmit = output<void>();
 
   readonly classes = computed(() => {
     const base = LV_FORM_TEMPLATE_BASE;
-    const variant = LV_FORM_TEMPLATE_VARIANTS[this.variant()];
-    const size = LV_FORM_TEMPLATE_SIZES[this.size()];
+    const variant = LV_FORM_TEMPLATE_VARIANTS[this.variant()] || '';
+    const size = LV_FORM_TEMPLATE_SIZES[this.size()] || '';
 
     return {
       template: [base, variant, size].filter(Boolean).join(' '),

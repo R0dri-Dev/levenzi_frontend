@@ -4,23 +4,34 @@
     <lv-icon
       [name]="getErrorIcon()"
       size="xl"
-      [class]="LV_ERROR_TEMPLATE_VARIANTS[this.variant()]"
+      [class]="classes().icon"
     />
 
     <!-- Code -->
-    <h1 [class]="classes().code">
-      {{ code() }}
-    </h1>
+    <lv-heading
+      [level]="'1'"
+      [text]="code()"
+      [align]="'center'"
+      [class]="classes().code"
+    />
 
     <!-- Title -->
-    <h2 [class]="classes().title">
-      {{ title() }}
-    </h2>
+    <lv-heading
+      [level]="'2'"
+      [text]="title()"
+      [align]="'center'"
+      [class]="classes().title"
+    />
 
     <!-- Message -->
-    <p [class]="classes().message">
+    <lv-paragraph
+      size="lg"
+      color="gray"
+      [align]="'center'"
+      [class]="classes().message"
+    >
       {{ message() }}
-    </p>
+    </lv-paragraph>
 
     <!-- Actions -->
     @if (showHomeButton()) {

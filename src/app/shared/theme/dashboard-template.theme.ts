@@ -1,6 +1,6 @@
 // src/app/shared/theme/dashboard-template.theme.ts
 export const LV_DASHBOARD_TEMPLATE_BASE =
-  'min-h-screen bg-gray-50 dark:bg-gray-900';
+  'min-h-screen bg-gray-50';
 
 export const LV_DASHBOARD_TEMPLATE_VARIANTS = {
   default: 'p-6',

@@ -1,7 +1,15 @@
-<div [class]="classes().container" role="alert">
-	@if (showIcon()) {
-		<lv-icon [name]="icon()" [class]="classes().icon" size="sm" />
-	}
-
-	<p [class]="classes().message">{{ message() }}</p>
-</div>
+<!-- shared/ui/atoms/form-error/form-error.html -->
+@if (message()) {
+  <div [class]="classes().container">
+    @if (showIcon() && icon()) {
+      <lv-icon
+        [name]="icon()"
+        size="sm"
+        [class]="classes().icon"
+      />
+    }
+    <lv-paragraph [size]="size()">
+      {{ message() }}
+    </lv-paragraph>
+  </div>
+}

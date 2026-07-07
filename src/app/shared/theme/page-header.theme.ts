@@ -3,8 +3,8 @@ export const LV_PAGE_HEADER_BASE =
   'w-full transition-all duration-200';
 
 export const LV_PAGE_HEADER_VARIANTS = {
-  default: 'bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4',
-  compact: 'bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2',
+  default: 'bg-white border-b border-gray-200 px-6 py-4',
+  compact: 'bg-white border-b border-gray-200 px-4 py-2',
   'with-image': 'bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-8',
 };
 

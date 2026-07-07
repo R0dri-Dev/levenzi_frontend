@@ -12,15 +12,24 @@ import {
   LV_ERROR_TEMPLATE_TITLE,
   LV_ERROR_TEMPLATE_MESSAGE,
   LV_ERROR_TEMPLATE_ACTIONS,
+  LV_ERROR_TEMPLATE_ICON,
 } from '../../../theme/error-template.theme';
 import type { ErrorTemplateVariant, ErrorTemplateSize } from '../../../types/error-template.types';
 import { LvIconComponent } from '../../icons/icon/icon';
+import { LvHeadingComponent } from '../../atoms/heading/heading';
+import { LvParagraphComponent } from '../../atoms';
 
 @Component({
   selector: 'lv-error-template',
   standalone: true,
-  imports: [CommonModule, RouterModule, LvButtonComponent, LvIconComponent],
-  templateUrl: './error-template.html',
+  imports: [
+    CommonModule,
+    RouterModule,
+    LvButtonComponent,
+    LvHeadingComponent,
+    LvParagraphComponent,
+    LvIconComponent
+  ], templateUrl: './error-template.html',
   styleUrl: './error-template.css',
 })
 export class LvErrorTemplateComponent {
@@ -34,11 +43,13 @@ export class LvErrorTemplateComponent {
 
   readonly onAction = output<void>();
 
+  protected readonly LV_ERROR_TEMPLATE_VARIANTS = LV_ERROR_TEMPLATE_VARIANTS;
+
   readonly classes = computed(() => {
     const base = LV_ERROR_TEMPLATE_BASE;
     const container = LV_ERROR_TEMPLATE_CONTAINER;
     const code = [LV_ERROR_TEMPLATE_CODE, LV_ERROR_TEMPLATE_VARIANTS[this.variant()]].filter(Boolean).join(' ');
-
+    const variantColor = LV_ERROR_TEMPLATE_VARIANTS[this.variant()] || LV_ERROR_TEMPLATE_VARIANTS['default'];
     return {
       template: base,
       container: container,
@@ -46,6 +57,7 @@ export class LvErrorTemplateComponent {
       title: LV_ERROR_TEMPLATE_TITLE,
       message: LV_ERROR_TEMPLATE_MESSAGE,
       actions: LV_ERROR_TEMPLATE_ACTIONS,
+      icon: LV_ERROR_TEMPLATE_ICON,
     };
   });
 

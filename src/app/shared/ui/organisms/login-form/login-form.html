@@ -1,13 +1,11 @@
-<div [class]="'w-full max-w-md mx-auto'">
-  <div [class]="'bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8'">
+<div [class]="LV_LOGIN_FORM_BASE">
+  <div [class]="LV_LOGIN_FORM_CARD">
     <!-- Header -->
-    <div [class]="'text-center mb-8'">
-      <h2 [class]="'text-2xl font-bold text-gray-900 dark:text-white'">
-        Iniciar Sesión
-      </h2>
-      <p [class]="'text-sm text-gray-500 dark:text-gray-400 mt-1'">
+    <div [class]="LV_LOGIN_FORM_HEADER">
+      <lv-heading [level]="'2'" [text]="'Iniciar Sesión'" [align]="'center'" />
+      <lv-paragraph size="md" color="gray" [align]="'center'">
         Ingresa tus credenciales para acceder
-      </p>
+      </lv-paragraph>
     </div>
 
     <!-- Error -->
@@ -16,7 +14,7 @@
     }
 
     <!-- Form -->
-    <form (ngSubmit)="handleSubmit()" [class]="'space-y-4'">
+    <form (ngSubmit)="handleSubmit()" [class]="LV_LOGIN_FORM_FIELDS">
       <!-- Email -->
       <lv-input
         type="email"
@@ -24,7 +22,7 @@
         [value]="formData().email"
         (onValueChange)="updateEmail($event)"
         icon="mail"
-        required
+        [required]="true"
       />
 
       <!-- Password -->
@@ -32,11 +30,11 @@
         placeholder="Contraseña"
         [value]="formData().password"
         (onValueChange)="updatePassword($event)"
-        required
+        [required]="true"
       />
 
       <!-- Remember Me & Forgot Password -->
-      <div class="flex items-center justify-between">
+      <div [class]="LV_LOGIN_FORM_ACTIONS">
         <lv-remember-me
           [checked]="formData().rememberMe"
           (onToggle)="updateRememberMe($event)"
@@ -44,7 +42,7 @@
         <button
           type="button"
           (click)="handleForgotPassword()"
-          class="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200 bg-transparent border-0 cursor-pointer"
+          [class]="LV_LOGIN_FORM_FORGOT_PASSWORD"
         >
           ¿Olvidaste tu contraseña?
         </button>
@@ -62,17 +60,17 @@
       </lv-button>
 
       <!-- Register -->
-      <div [class]="'text-center mt-4'">
-        <span class="text-sm text-gray-500 dark:text-gray-400">
+      <div [class]="LV_LOGIN_FORM_EXTRA">
+        <lv-paragraph size="sm" color="gray" [align]="'center'">
           ¿No tienes cuenta?
           <button
             type="button"
             (click)="handleRegister()"
-            class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200 bg-transparent border-0 cursor-pointer font-medium"
+            [class]="LV_LOGIN_FORM_REGISTER_LINK"
           >
             Regístrate
           </button>
-        </span>
+        </lv-paragraph>
       </div>
     </form>
   </div>

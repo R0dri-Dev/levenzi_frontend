@@ -1,10 +1,15 @@
+// shared/ui/molecules/table/table.ts
 import { Component, computed, input, output, signal, effect, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LvButtonComponent } from '../../atoms/button/button';
 import { LvBadgeComponent } from '../../atoms/badge/badge';
-import { LvEmptyStateComponent } from '../empty-state/empty-state';
+import { LvCheckboxComponent } from '../../atoms/checkbox/checkbox';
+import { LvIconComponent } from '../../icons/icon/icon';
 import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
+import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
+import { LvSpinnerComponent } from '../../atoms/spinner/spinner';
+import { LvEmptyStateComponent } from '../empty-state/empty-state';
 
 import {
   LV_TABLE_BASE,
@@ -38,7 +43,7 @@ import type {
   TableVariant,
   TableSize
 } from '../../../types/table.types';
-import { LvIconComponent } from '../../icons/icon/icon';
+import type { IconKeys } from '../../../core/icons';
 
 @Component({
   selector: 'lv-table',
@@ -48,14 +53,16 @@ import { LvIconComponent } from '../../icons/icon/icon';
     LvIconComponent,
     LvButtonComponent,
     LvBadgeComponent,
+    LvCheckboxComponent,
+    LvParagraphComponent,
+    LvSpinnerComponent,
     LvEmptyStateComponent,
     LvIconButtonComponent
   ],
   templateUrl: './table.html',
-  styleUrl: './table.css',
 })
 export class LvTableComponent<T = unknown> {
-  // Inputs
+  // ============ INPUTS ============
   readonly data = input.required<T[]>();
   readonly columns = input.required<TableColumn<T>[]>();
   readonly variant = input<TableVariant>('default');
@@ -67,17 +74,17 @@ export class LvTableComponent<T = unknown> {
   readonly pagination = input<TablePagination>();
   readonly sort = model<TableSort | null>(null);
 
-  // Outputs
+  // ============ OUTPUTS ============
   readonly onRowClick = output<T>();
   readonly onSort = output<TableSort>();
   readonly onPageChange = output<number>();
   readonly onSelectionChange = output<T[]>();
 
-  // State
-  private selectedItems = signal<T[]>([]);
-  private selectAll = signal(false);
+  // ============ STATE ============
+  selectedItems = signal<T[]>([]);
+  selectAll = signal(false);
 
-  // Computed
+  // ============ COMPUTED ============
   readonly visibleColumns = computed(() => {
     return this.columns().filter(col => !col.hidden);
   });
@@ -90,46 +97,81 @@ export class LvTableComponent<T = unknown> {
     return this.pagination()?.totalItems || this.data().length;
   });
 
+  // ✅ AGREGAR: Columnas para select y acciones
+  readonly selectColumn = computed((): TableColumn<T> => ({
+    key: '__select',
+    label: '',
+    align: 'center'
+  }));
+
+  readonly actionsColumn = computed((): TableColumn<T> => ({
+    key: '__actions',
+    label: 'Acciones',
+    align: 'center'
+  }));
+
+  // ✅ AGREGAR: Método para obtener icono de acción
+  getActionIcon(icon: string | undefined): IconKeys {
+    return (icon as IconKeys) || 'more-horizontal';
+  }
+
+  // ✅ AGREGAR: Clases extendidas con loadingSpinner, paginationWrapper, etc.
   readonly classes = computed(() => {
     const base = LV_TABLE_BASE;
-    const variant = LV_TABLE_VARIANTS[this.variant()];
+    const variant = LV_TABLE_VARIANTS[this.variant()] || '';
+    const wrapper = LV_TABLE_WRAPPER;
+    const head = LV_TABLE_HEAD;
+    const body = LV_TABLE_BODY;
+    const empty = LV_TABLE_EMPTY;
+    const checkbox = LV_TABLE_CHECKBOX;
+    const sortIcon = LV_TABLE_SORT_ICON;
+    const sortActive = LV_TABLE_SORT_ACTIVE;
+    const pagination = LV_TABLE_PAGINATION;
+    const paginationInfo = LV_TABLE_PAGINATION_INFO;
+    const paginationButtons = LV_TABLE_PAGINATION_BUTTONS;
+    const paginationButton = LV_TABLE_PAGINATION_BUTTON;
+    const paginationButtonActive = LV_TABLE_PAGINATION_BUTTON_ACTIVE;
+
     return {
-      wrapper: LV_TABLE_WRAPPER,
+      wrapper,
       table: [base, variant].filter(Boolean).join(' '),
-      head: LV_TABLE_HEAD,
+      head,
       headCell: (col: TableColumn<T>) => {
-        const size = LV_TABLE_HEAD_CELL_SIZES[this.size()];
+        const size = LV_TABLE_HEAD_CELL_SIZES[this.size()] || LV_TABLE_HEAD_CELL_SIZES.md;
         const align = LV_TABLE_HEAD_CELL_ALIGN[col.align || 'left'];
         return [LV_TABLE_HEAD_CELL, size, align].filter(Boolean).join(' ');
       },
-      body: LV_TABLE_BODY,
+      body,
       row: (item: T) => {
         const selected = this.isSelected(item) ? LV_TABLE_ROW_SELECTED : '';
         return [LV_TABLE_ROW, selected].filter(Boolean).join(' ');
       },
       cell: (col: TableColumn<T>) => {
-        const size = LV_TABLE_CELL_SIZES[this.size()];
+        const size = LV_TABLE_CELL_SIZES[this.size()] || LV_TABLE_CELL_SIZES.md;
         const align = LV_TABLE_CELL_ALIGN[col.align || 'left'];
         return [LV_TABLE_CELL, size, align].filter(Boolean).join(' ');
       },
-      empty: LV_TABLE_EMPTY,
-      checkbox: LV_TABLE_CHECKBOX,
-      sortIcon: LV_TABLE_SORT_ICON,
-      sortActive: LV_TABLE_SORT_ACTIVE,
-      pagination: LV_TABLE_PAGINATION,
-      paginationInfo: LV_TABLE_PAGINATION_INFO,
-      paginationButtons: LV_TABLE_PAGINATION_BUTTONS,
+      empty,
+      checkbox,
+      sortIcon,
+      sortActive,
+      pagination,
+      paginationInfo,
+      paginationButtons,
       paginationButton: (active: boolean) => {
-        return [LV_TABLE_PAGINATION_BUTTON, active ? LV_TABLE_PAGINATION_BUTTON_ACTIVE : '']
-          .filter(Boolean).join(' ');
+        return [paginationButton, active ? paginationButtonActive : ''].filter(Boolean).join(' ');
       },
+      loadingSpinner: 'flex items-center justify-center py-12',
+      loadingSpinnerIcon: 'animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600',
+      loadingText: 'ml-3 text-gray-500',
+      paginationWrapper: 'flex items-center justify-between px-4 py-3 border-t border-gray-200',
+      paginationButtonDisabled: 'disabled:opacity-50 disabled:cursor-not-allowed',
     };
   });
 
-  // Lifecycle
+  // ============ LIFECYCLE ============
   constructor() {
     effect(() => {
-      // Reset selection when data changes
       if (this.selectable()) {
         this.selectedItems.set([]);
         this.selectAll.set(false);
@@ -137,7 +179,7 @@ export class LvTableComponent<T = unknown> {
     });
   }
 
-  // Methods
+  // ============ METHODS ============
   getCellValue(item: T, column: TableColumn<T>): unknown {
     const value = (item as any)[column.key];
     return column.render ? column.render(item) : value;

@@ -1,0 +1,288 @@
+@reference "../../../../../styles.css";
+/* textarea.css - Estilos propios del componente */
+.lv-textarea-wrapper {
+  @apply w-full space-y-1.5;
+}
+
+/* Label */
+.lv-textarea-label {
+  @apply block text-sm font-medium;
+  color: var(--color-secondary-700);
+}
+
+.lv-textarea-required {
+  color: var(--color-danger-500);
+  @apply ml-0.5;
+}
+
+/* Container */
+.lv-textarea-container {
+  @apply relative w-full transition-all duration-200;
+  @apply focus-within:ring-2 focus-within:ring-offset-0;
+}
+
+/* Textarea base */
+.lv-textarea {
+  @apply w-full bg-white transition-colors duration-200 resize-y;
+  @apply placeholder:text-secondary-400;
+  @apply disabled:bg-secondary-50 disabled:cursor-not-allowed disabled:opacity-60;
+  @apply min-h-[3rem];
+}
+
+/* Tamaños */
+.lv-textarea-xs .lv-textarea {
+  @apply px-2 py-1 text-xs rounded;
+}
+.lv-textarea-sm .lv-textarea {
+  @apply px-3 py-1.5 text-sm rounded-md;
+}
+.lv-textarea-md .lv-textarea {
+  @apply px-4 py-2 text-sm rounded-lg;
+}
+.lv-textarea-lg .lv-textarea {
+  @apply px-5 py-2.5 text-base rounded-lg;
+}
+.lv-textarea-xl .lv-textarea {
+  @apply px-6 py-3 text-lg rounded-xl;
+}
+
+/* Variante Outline */
+.lv-textarea-outline .lv-textarea {
+  @apply border-2 bg-white;
+  border-color: var(--color-secondary-300);
+}
+.lv-textarea-outline .lv-textarea:focus {
+  @apply outline-none;
+  border-color: var(--color-primary-500);
+}
+.lv-textarea-outline.lv-textarea-primary .lv-textarea:focus {
+  border-color: var(--color-primary-500);
+}
+.lv-textarea-outline.lv-textarea-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-textarea-outline.lv-textarea-secondary .lv-textarea:focus {
+  border-color: var(--color-secondary-500);
+}
+.lv-textarea-outline.lv-textarea-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-textarea-outline.lv-textarea-success .lv-textarea:focus {
+  border-color: var(--color-success-500);
+}
+.lv-textarea-outline.lv-textarea-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-textarea-outline.lv-textarea-danger .lv-textarea:focus {
+  border-color: var(--color-danger-500);
+}
+.lv-textarea-outline.lv-textarea-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-textarea-outline.lv-textarea-warning .lv-textarea:focus {
+  border-color: var(--color-warning-500);
+}
+.lv-textarea-outline.lv-textarea-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-textarea-outline.lv-textarea-info .lv-textarea:focus {
+  border-color: var(--color-info-500);
+}
+.lv-textarea-outline.lv-textarea-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-textarea-outline.lv-textarea-neutral .lv-textarea:focus {
+  border-color: var(--color-neutral-500);
+}
+.lv-textarea-outline.lv-textarea-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Variante Solid (Filled) */
+.lv-textarea-solid .lv-textarea {
+  @apply border-0 bg-secondary-100;
+}
+.lv-textarea-solid .lv-textarea:focus {
+  @apply outline-none bg-secondary-200;
+}
+.lv-textarea-solid.lv-textarea-primary .lv-textarea {
+  background-color: var(--color-primary-50);
+}
+.lv-textarea-solid.lv-textarea-primary .lv-textarea:focus {
+  background-color: var(--color-primary-100);
+}
+.lv-textarea-solid.lv-textarea-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-textarea-solid.lv-textarea-secondary .lv-textarea {
+  background-color: var(--color-secondary-100);
+}
+.lv-textarea-solid.lv-textarea-secondary .lv-textarea:focus {
+  background-color: var(--color-secondary-200);
+}
+.lv-textarea-solid.lv-textarea-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-textarea-solid.lv-textarea-success .lv-textarea {
+  background-color: var(--color-success-50);
+}
+.lv-textarea-solid.lv-textarea-success .lv-textarea:focus {
+  background-color: var(--color-success-100);
+}
+.lv-textarea-solid.lv-textarea-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-textarea-solid.lv-textarea-danger .lv-textarea {
+  background-color: var(--color-danger-50);
+}
+.lv-textarea-solid.lv-textarea-danger .lv-textarea:focus {
+  background-color: var(--color-danger-100);
+}
+.lv-textarea-solid.lv-textarea-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-textarea-solid.lv-textarea-warning .lv-textarea {
+  background-color: var(--color-warning-50);
+}
+.lv-textarea-solid.lv-textarea-warning .lv-textarea:focus {
+  background-color: var(--color-warning-100);
+}
+.lv-textarea-solid.lv-textarea-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-textarea-solid.lv-textarea-info .lv-textarea {
+  background-color: var(--color-info-50);
+}
+.lv-textarea-solid.lv-textarea-info .lv-textarea:focus {
+  background-color: var(--color-info-100);
+}
+.lv-textarea-solid.lv-textarea-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-textarea-solid.lv-textarea-neutral .lv-textarea {
+  background-color: var(--color-neutral-100);
+}
+.lv-textarea-solid.lv-textarea-neutral .lv-textarea:focus {
+  background-color: var(--color-neutral-200);
+}
+.lv-textarea-solid.lv-textarea-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Variante Ghost */
+.lv-textarea-ghost .lv-textarea {
+  @apply border-0 bg-transparent;
+}
+.lv-textarea-ghost .lv-textarea:focus {
+  @apply outline-none;
+}
+.lv-textarea-ghost.lv-textarea-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-textarea-ghost.lv-textarea-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-textarea-ghost.lv-textarea-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-textarea-ghost.lv-textarea-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-textarea-ghost.lv-textarea-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-textarea-ghost.lv-textarea-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-textarea-ghost.lv-textarea-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Variante Light */
+.lv-textarea-light .lv-textarea {
+  @apply border-0 bg-secondary-50;
+}
+.lv-textarea-light .lv-textarea:focus {
+  @apply outline-none bg-secondary-100;
+}
+.lv-textarea-light.lv-textarea-primary .lv-textarea {
+  background-color: var(--color-primary-50);
+}
+.lv-textarea-light.lv-textarea-primary .lv-textarea:focus {
+  background-color: var(--color-primary-100);
+}
+.lv-textarea-light.lv-textarea-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-textarea-light.lv-textarea-secondary .lv-textarea {
+  background-color: var(--color-secondary-50);
+}
+.lv-textarea-light.lv-textarea-secondary .lv-textarea:focus {
+  background-color: var(--color-secondary-100);
+}
+.lv-textarea-light.lv-textarea-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-textarea-light.lv-textarea-success .lv-textarea {
+  background-color: var(--color-success-50);
+}
+.lv-textarea-light.lv-textarea-success .lv-textarea:focus {
+  background-color: var(--color-success-100);
+}
+.lv-textarea-light.lv-textarea-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-textarea-light.lv-textarea-danger .lv-textarea {
+  background-color: var(--color-danger-50);
+}
+.lv-textarea-light.lv-textarea-danger .lv-textarea:focus {
+  background-color: var(--color-danger-100);
+}
+.lv-textarea-light.lv-textarea-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-textarea-light.lv-textarea-warning .lv-textarea {
+  background-color: var(--color-warning-50);
+}
+.lv-textarea-light.lv-textarea-warning .lv-textarea:focus {
+  background-color: var(--color-warning-100);
+}
+.lv-textarea-light.lv-textarea-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-textarea-light.lv-textarea-info .lv-textarea {
+  background-color: var(--color-info-50);
+}
+.lv-textarea-light.lv-textarea-info .lv-textarea:focus {
+  background-color: var(--color-info-100);
+}
+.lv-textarea-light.lv-textarea-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-textarea-light.lv-textarea-neutral .lv-textarea {
+  background-color: var(--color-neutral-50);
+}
+.lv-textarea-light.lv-textarea-neutral .lv-textarea:focus {
+  background-color: var(--color-neutral-100);
+}
+.lv-textarea-light.lv-textarea-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Error state */
+.lv-textarea-container.lv-textarea-error .lv-textarea {
+  border-color: var(--color-danger-500) !important;
+}
+.lv-textarea-container.lv-textarea-error:focus-within {
+  --tw-ring-color: var(--color-danger-500) !important;
+}
+
+.lv-textarea-error {
+  @apply text-sm;
+  color: var(--color-danger-600);
+}
+
+.lv-textarea-hint {
+  @apply text-sm;
+  color: var(--color-secondary-500);
+}

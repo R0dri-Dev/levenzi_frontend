@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardTemplate } from './dashboard-template';
+import { LvDashboardTemplateComponent } from './dashboard-template';
 
-describe('DashboardTemplate', () => {
-  let component: DashboardTemplate;
-  let fixture: ComponentFixture<DashboardTemplate>;
+describe('LvDashboardTemplateComponent', () => {
+  let component: LvDashboardTemplateComponent;
+  let fixture: ComponentFixture<LvDashboardTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardTemplate],
+      imports: [LvDashboardTemplateComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DashboardTemplate);
+    fixture = TestBed.createComponent(LvDashboardTemplateComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

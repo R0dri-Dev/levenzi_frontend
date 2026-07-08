@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Paragraph } from './paragraph';
+import { LvParagraphComponent } from './paragraph';
 
-describe('Paragraph', () => {
-  let component: Paragraph;
-  let fixture: ComponentFixture<Paragraph>;
+describe('LvParagraphComponent', () => {
+  let component: LvParagraphComponent;
+  let fixture: ComponentFixture<LvParagraphComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Paragraph],
+      imports: [LvParagraphComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Paragraph);
+    fixture = TestBed.createComponent(LvParagraphComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,5 +1,6 @@
-<span [class]="classes()">
-
-<ng-content/>
-
+<span
+  class="lv-tag lv-tag-{{ color() }} lv-tag-{{ size() }}"
+  [class.lv-tag-outline]="outline()"
+  [class.lv-tag-rounded]="rounded()">
+  <ng-content />
 </span>

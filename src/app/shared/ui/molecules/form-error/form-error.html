@@ -1,14 +1,9 @@
-<!-- shared/ui/atoms/form-error/form-error.html -->
 @if (message()) {
-  <div [class]="classes().container">
-    @if (showIcon() && icon()) {
-      <lv-icon
-        [name]="icon()"
-        size="sm"
-        [class]="classes().icon"
-      />
+  <div class="lv-form-error lv-form-error-{{ variant() }} lv-form-error-{{ size() }}">
+    @if (showIcon()) {
+      <lv-icon [name]="icon()" size="sm" class="lv-form-error-icon" />
     }
-    <lv-paragraph [size]="size()">
+    <lv-paragraph [size]="size()" class="lv-form-error-text">
       {{ message() }}
     </lv-paragraph>
   </div>

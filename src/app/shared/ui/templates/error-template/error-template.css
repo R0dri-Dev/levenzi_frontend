@@ -1,0 +1,104 @@
+@reference "../../../../../styles.css";
+.lv-error {
+  @apply flex items-center justify-center min-h-screen p-4;
+  @apply bg-secondary-50;
+}
+
+.lv-error-container {
+  @apply flex flex-col items-center gap-4 max-w-md w-full;
+}
+
+.lv-error-icon {
+  @apply w-20 h-20;
+}
+
+.lv-error-icon-404 {
+  color: var(--color-warning-500);
+}
+.lv-error-icon-500 {
+  color: var(--color-danger-500);
+}
+.lv-error-icon-403 {
+  color: var(--color-danger-500);
+}
+.lv-error-icon-default {
+  color: var(--color-neutral-400);
+}
+
+.lv-error-code {
+  @apply font-bold tracking-tight;
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.lv-error-message {
+  @apply max-w-sm;
+}
+
+.lv-error-actions {
+  @apply flex flex-wrap items-center justify-center gap-3 mt-2;
+}
+
+/* Sizes */
+.lv-error-xs .lv-error-container {
+  @apply max-w-xs;
+}
+.lv-error-xs .lv-error-code {
+  @apply text-4xl;
+}
+.lv-error-xs .lv-error-icon {
+  @apply w-12 h-12;
+}
+
+.lv-error-sm .lv-error-container {
+  @apply max-w-sm;
+}
+.lv-error-sm .lv-error-code {
+  @apply text-5xl;
+}
+.lv-error-sm .lv-error-icon {
+  @apply w-16 h-16;
+}
+
+.lv-error-md .lv-error-container {
+  @apply max-w-md;
+}
+.lv-error-md .lv-error-code {
+  @apply text-6xl;
+}
+.lv-error-md .lv-error-icon {
+  @apply w-20 h-20;
+}
+
+.lv-error-lg .lv-error-container {
+  @apply max-w-lg;
+}
+.lv-error-lg .lv-error-code {
+  @apply text-7xl;
+}
+.lv-error-lg .lv-error-icon {
+  @apply w-24 h-24;
+}
+
+.lv-error-xl .lv-error-container {
+  @apply max-w-xl;
+}
+.lv-error-xl .lv-error-code {
+  @apply text-8xl;
+}
+.lv-error-xl .lv-error-icon {
+  @apply w-28 h-28;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-error-code {
+    @apply text-5xl;
+  }
+  .lv-error-icon {
+    @apply w-16 h-16;
+  }
+  .lv-error {
+    @apply p-3;
+  }
+}

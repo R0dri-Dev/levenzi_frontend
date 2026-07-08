@@ -1,24 +1,23 @@
-<nav aria-label="Breadcrumb">
-  <ol [class]="classes().base">
+<nav aria-label="Breadcrumb" class="lv-breadcrumb">
+  <ol class="lv-breadcrumb-list">
     @for (item of items(); track $index) {
-      <li [class]="classes().item">
+      <li class="lv-breadcrumb-item">
         @if (!$first) {
-          <span [class]="classes().separator">{{ separator() }}</span>
+          <span class="lv-breadcrumb-separator">{{ separator() }}</span>
         }
 
         @if (item.path && !item.active) {
-          <a
+          <lv-link
             [routerLink]="item.path"
-            [class]="classes().link"
-            [attr.aria-current]="item.active ? 'page' : null"
-          >
+            [color]="color()"
+            [underline]="true">
             @if (item.icon) {
               <lv-icon [name]="item.icon" size="sm" />
             }
             {{ item.label }}
-          </a>
+          </lv-link>
         } @else {
-          <span [class]="classes().active">
+          <span class="lv-breadcrumb-active">
             @if (item.icon) {
               <lv-icon [name]="item.icon" size="sm" />
             }

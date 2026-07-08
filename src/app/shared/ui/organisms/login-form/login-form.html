@@ -1,21 +1,17 @@
-<div [class]="LV_LOGIN_FORM_BASE">
-  <div [class]="LV_LOGIN_FORM_CARD">
-    <!-- Header -->
-    <div [class]="LV_LOGIN_FORM_HEADER">
-      <lv-heading [level]="'2'" [text]="'Iniciar Sesión'" [align]="'center'" />
-      <lv-paragraph size="md" color="gray" [align]="'center'">
+<div class="lv-login-form">
+  <div class="lv-login-card">
+    <div class="lv-login-header">
+      <lv-heading level="2" text="Iniciar Sesión" align="center" color="primary" />
+      <lv-paragraph size="md" color="neutral" align="center" [muted]="true">
         Ingresa tus credenciales para acceder
       </lv-paragraph>
     </div>
 
-    <!-- Error -->
     @if (error()) {
-      <lv-form-error [message]="error()!" class="mb-4" />
+      <lv-form-error [message]="error()!" />
     }
 
-    <!-- Form -->
-    <form (ngSubmit)="handleSubmit()" [class]="LV_LOGIN_FORM_FIELDS">
-      <!-- Email -->
+    <form (ngSubmit)="handleSubmit()" class="lv-login-fields">
       <lv-input
         type="email"
         placeholder="Correo electrónico"
@@ -23,53 +19,47 @@
         (onValueChange)="updateEmail($event)"
         icon="mail"
         [required]="true"
-      />
+        [size]="'lg'" />
 
-      <!-- Password -->
       <lv-password-field
         placeholder="Contraseña"
         [value]="formData().password"
         (onValueChange)="updatePassword($event)"
         [required]="true"
-      />
+        [size]="'lg'" />
 
-      <!-- Remember Me & Forgot Password -->
-      <div [class]="LV_LOGIN_FORM_ACTIONS">
+      <div class="lv-login-actions">
         <lv-remember-me
           [checked]="formData().rememberMe"
           (onToggle)="updateRememberMe($event)"
-        />
-        <button
-          type="button"
-          (click)="handleForgotPassword()"
-          [class]="LV_LOGIN_FORM_FORGOT_PASSWORD"
-        >
+          [size]="'sm'" />
+
+        <lv-link
+          color="primary"
+          [underline]="true"
+          (click)="handleForgotPassword()">
           ¿Olvidaste tu contraseña?
-        </button>
+        </lv-link>
       </div>
 
-      <!-- Submit -->
       <lv-button
         type="submit"
         variant="primary"
         [loading]="loading()"
         [fullWidth]="true"
-        size="lg"
-      >
+        size="lg">
         Iniciar Sesión
       </lv-button>
 
-      <!-- Register -->
-      <div [class]="LV_LOGIN_FORM_EXTRA">
-        <lv-paragraph size="sm" color="gray" [align]="'center'">
+      <div class="lv-login-extra">
+        <lv-paragraph size="sm" color="neutral" align="center" [muted]="true">
           ¿No tienes cuenta?
-          <button
-            type="button"
-            (click)="handleRegister()"
-            [class]="LV_LOGIN_FORM_REGISTER_LINK"
-          >
+          <lv-link
+            color="primary"
+            [underline]="true"
+            (click)="handleRegister()">
             Regístrate
-          </button>
+          </lv-link>
         </lv-paragraph>
       </div>
     </form>

@@ -1,0 +1,60 @@
+@reference "../../../../../styles.css";
+/* skeleton.css - Estilos propios del componente */
+.lv-skeleton {
+  @apply bg-secondary-200;
+  @apply min-w-[1rem] min-h-[1rem];
+}
+
+/* Animación shimmer */
+.lv-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary-200) 25%,
+    var(--color-secondary-100) 50%,
+    var(--color-secondary-200) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.lv-skeleton:not(.lv-skeleton-no-animation) {
+  animation: lv-skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes lv-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Circle */
+.lv-skeleton-circle {
+  @apply rounded-full;
+}
+
+/* Rounded */
+.lv-skeleton-rounded-none {
+  @apply rounded-none;
+}
+.lv-skeleton-rounded-sm {
+  @apply rounded-sm;
+}
+.lv-skeleton-rounded-md {
+  @apply rounded-md;
+}
+.lv-skeleton-rounded-lg {
+  @apply rounded-lg;
+}
+.lv-skeleton-rounded-xl {
+  @apply rounded-xl;
+}
+.lv-skeleton-rounded-full {
+  @apply rounded-full;
+}
+
+/* No animation */
+.lv-skeleton-no-animation {
+  animation: none !important;
+}

@@ -1,28 +1,23 @@
-<div [class]="classes().template">
-  <!-- Sidebar -->
+<div class="lv-dashboard lv-dashboard-{{ variant() }} lv-dashboard-{{ layout() }}">
   @if (hasSidebar()) {
-    <div [class]="classes().sidebar">
+    <aside class="lv-dashboard-sidebar">
       <ng-content select="[sidebar]"></ng-content>
-    </div>
+    </aside>
   }
 
-  <!-- Main -->
-  <div [class]="classes().main">
-    <!-- Header -->
-    @if (layout() === 'top-nav' || layout() === 'both') {
-      <div [class]="classes().header">
+  <div class="lv-dashboard-main">
+    @if (hasHeader()) {
+      <header class="lv-dashboard-header">
         <ng-content select="[header]"></ng-content>
-      </div>
+      </header>
     }
 
-    <!-- Content -->
-    <main [class]="classes().content">
+    <main class="lv-dashboard-content">
       <ng-content></ng-content>
     </main>
 
-    <!-- Footer -->
-    <div [class]="classes().footer">
+    <footer class="lv-dashboard-footer">
       <ng-content select="[footer]"></ng-content>
-    </div>
+    </footer>
   </div>
 </div>

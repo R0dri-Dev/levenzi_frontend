@@ -1,0 +1,348 @@
+@reference "../../../../../styles.css";
+/* select.css - Estilos propios del componente */
+.lv-select-wrapper {
+  @apply w-full space-y-1.5;
+}
+
+/* Label */
+.lv-select-label {
+  @apply block text-sm font-medium;
+  color: var(--color-secondary-700);
+}
+
+.lv-select-required {
+  color: var(--color-danger-500);
+  @apply ml-0.5;
+}
+
+/* Container */
+.lv-select-container {
+  @apply relative w-full transition-all duration-200;
+  @apply focus-within:ring-2 focus-within:ring-offset-0;
+}
+
+/* Select base */
+.lv-select {
+  @apply w-full bg-white transition-colors duration-200 appearance-none;
+  @apply placeholder:text-secondary-400;
+  @apply disabled:bg-secondary-50 disabled:cursor-not-allowed disabled:opacity-60;
+  @apply pr-10;
+}
+
+.lv-select option {
+  @apply bg-white text-secondary-900;
+}
+.lv-select option:disabled {
+  @apply text-secondary-400;
+}
+
+/* Tamaños */
+.lv-select-xs .lv-select {
+  @apply px-2 py-1 text-xs rounded;
+  height: var(--size-xs);
+}
+.lv-select-xs .lv-select-arrow {
+  @apply right-2 w-3 h-3;
+}
+
+.lv-select-sm .lv-select {
+  @apply px-3 py-1.5 text-sm rounded-md;
+  height: var(--size-sm);
+}
+.lv-select-sm .lv-select-arrow {
+  @apply right-3 w-4 h-4;
+}
+
+.lv-select-md .lv-select {
+  @apply px-4 py-2 text-sm rounded-lg;
+  height: var(--size-md);
+}
+.lv-select-md .lv-select-arrow {
+  @apply right-4 w-4 h-4;
+}
+
+.lv-select-lg .lv-select {
+  @apply px-5 py-2.5 text-base rounded-lg;
+  height: var(--size-lg);
+}
+.lv-select-lg .lv-select-arrow {
+  @apply right-5 w-5 h-5;
+}
+
+.lv-select-xl .lv-select {
+  @apply px-6 py-3 text-lg rounded-xl;
+  height: var(--size-xl);
+}
+.lv-select-xl .lv-select-arrow {
+  @apply right-6 w-5 h-5;
+}
+
+/* Variante Outline */
+.lv-select-outline .lv-select {
+  @apply border-2 bg-white;
+  border-color: var(--color-secondary-300);
+}
+.lv-select-outline .lv-select:focus {
+  @apply outline-none;
+  border-color: var(--color-primary-500);
+}
+.lv-select-outline.lv-select-primary .lv-select:focus {
+  border-color: var(--color-primary-500);
+}
+.lv-select-outline.lv-select-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-select-outline.lv-select-secondary .lv-select:focus {
+  border-color: var(--color-secondary-500);
+}
+.lv-select-outline.lv-select-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-select-outline.lv-select-success .lv-select:focus {
+  border-color: var(--color-success-500);
+}
+.lv-select-outline.lv-select-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-select-outline.lv-select-danger .lv-select:focus {
+  border-color: var(--color-danger-500);
+}
+.lv-select-outline.lv-select-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-select-outline.lv-select-warning .lv-select:focus {
+  border-color: var(--color-warning-500);
+}
+.lv-select-outline.lv-select-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-select-outline.lv-select-info .lv-select:focus {
+  border-color: var(--color-info-500);
+}
+.lv-select-outline.lv-select-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-select-outline.lv-select-neutral .lv-select:focus {
+  border-color: var(--color-neutral-500);
+}
+.lv-select-outline.lv-select-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Variante Solid (Filled) */
+.lv-select-solid .lv-select {
+  @apply border-0 bg-secondary-100;
+}
+.lv-select-solid .lv-select:focus {
+  @apply outline-none bg-secondary-200;
+}
+.lv-select-solid.lv-select-primary .lv-select {
+  background-color: var(--color-primary-50);
+}
+.lv-select-solid.lv-select-primary .lv-select:focus {
+  background-color: var(--color-primary-100);
+}
+.lv-select-solid.lv-select-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-select-solid.lv-select-secondary .lv-select {
+  background-color: var(--color-secondary-100);
+}
+.lv-select-solid.lv-select-secondary .lv-select:focus {
+  background-color: var(--color-secondary-200);
+}
+.lv-select-solid.lv-select-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-select-solid.lv-select-success .lv-select {
+  background-color: var(--color-success-50);
+}
+.lv-select-solid.lv-select-success .lv-select:focus {
+  background-color: var(--color-success-100);
+}
+.lv-select-solid.lv-select-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-select-solid.lv-select-danger .lv-select {
+  background-color: var(--color-danger-50);
+}
+.lv-select-solid.lv-select-danger .lv-select:focus {
+  background-color: var(--color-danger-100);
+}
+.lv-select-solid.lv-select-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-select-solid.lv-select-warning .lv-select {
+  background-color: var(--color-warning-50);
+}
+.lv-select-solid.lv-select-warning .lv-select:focus {
+  background-color: var(--color-warning-100);
+}
+.lv-select-solid.lv-select-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-select-solid.lv-select-info .lv-select {
+  background-color: var(--color-info-50);
+}
+.lv-select-solid.lv-select-info .lv-select:focus {
+  background-color: var(--color-info-100);
+}
+.lv-select-solid.lv-select-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-select-solid.lv-select-neutral .lv-select {
+  background-color: var(--color-neutral-100);
+}
+.lv-select-solid.lv-select-neutral .lv-select:focus {
+  background-color: var(--color-neutral-200);
+}
+.lv-select-solid.lv-select-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Variante Ghost */
+.lv-select-ghost .lv-select {
+  @apply border-0 bg-transparent;
+}
+.lv-select-ghost .lv-select:focus {
+  @apply outline-none;
+}
+.lv-select-ghost.lv-select-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-select-ghost.lv-select-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-select-ghost.lv-select-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-select-ghost.lv-select-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-select-ghost.lv-select-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-select-ghost.lv-select-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-select-ghost.lv-select-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Variante Light */
+.lv-select-light .lv-select {
+  @apply border-0 bg-secondary-50;
+}
+.lv-select-light .lv-select:focus {
+  @apply outline-none bg-secondary-100;
+}
+.lv-select-light.lv-select-primary .lv-select {
+  background-color: var(--color-primary-50);
+}
+.lv-select-light.lv-select-primary .lv-select:focus {
+  background-color: var(--color-primary-100);
+}
+.lv-select-light.lv-select-primary:focus-within {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-select-light.lv-select-secondary .lv-select {
+  background-color: var(--color-secondary-50);
+}
+.lv-select-light.lv-select-secondary .lv-select:focus {
+  background-color: var(--color-secondary-100);
+}
+.lv-select-light.lv-select-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-select-light.lv-select-success .lv-select {
+  background-color: var(--color-success-50);
+}
+.lv-select-light.lv-select-success .lv-select:focus {
+  background-color: var(--color-success-100);
+}
+.lv-select-light.lv-select-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-select-light.lv-select-danger .lv-select {
+  background-color: var(--color-danger-50);
+}
+.lv-select-light.lv-select-danger .lv-select:focus {
+  background-color: var(--color-danger-100);
+}
+.lv-select-light.lv-select-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-select-light.lv-select-warning .lv-select {
+  background-color: var(--color-warning-50);
+}
+.lv-select-light.lv-select-warning .lv-select:focus {
+  background-color: var(--color-warning-100);
+}
+.lv-select-light.lv-select-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-select-light.lv-select-info .lv-select {
+  background-color: var(--color-info-50);
+}
+.lv-select-light.lv-select-info .lv-select:focus {
+  background-color: var(--color-info-100);
+}
+.lv-select-light.lv-select-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-select-light.lv-select-neutral .lv-select {
+  background-color: var(--color-neutral-50);
+}
+.lv-select-light.lv-select-neutral .lv-select:focus {
+  background-color: var(--color-neutral-100);
+}
+.lv-select-light.lv-select-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Arrow */
+.lv-select-arrow {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none transition-colors duration-200;
+  color: var(--color-secondary-400);
+}
+
+.lv-select-container:focus-within .lv-select-arrow {
+  color: var(--color-primary-500);
+}
+.lv-select-container.lv-select-primary:focus-within .lv-select-arrow {
+  color: var(--color-primary-500);
+}
+.lv-select-container.lv-select-secondary:focus-within .lv-select-arrow {
+  color: var(--color-secondary-500);
+}
+.lv-select-container.lv-select-success:focus-within .lv-select-arrow {
+  color: var(--color-success-500);
+}
+.lv-select-container.lv-select-danger:focus-within .lv-select-arrow {
+  color: var(--color-danger-500);
+}
+.lv-select-container.lv-select-warning:focus-within .lv-select-arrow {
+  color: var(--color-warning-500);
+}
+.lv-select-container.lv-select-info:focus-within .lv-select-arrow {
+  color: var(--color-info-500);
+}
+.lv-select-container.lv-select-neutral:focus-within .lv-select-arrow {
+  color: var(--color-neutral-500);
+}
+
+/* Error state */
+.lv-select-container.lv-select-error .lv-select {
+  border-color: var(--color-danger-500) !important;
+}
+.lv-select-container.lv-select-error:focus-within {
+  --tw-ring-color: var(--color-danger-500) !important;
+}
+.lv-select-container.lv-select-error .lv-select-arrow {
+  color: var(--color-danger-500) !important;
+}
+
+.lv-select-error {
+  @apply text-sm;
+  color: var(--color-danger-600);
+}

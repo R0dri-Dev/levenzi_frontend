@@ -1,1 +1,87 @@
-<p>profile-dropdown works!</p>
+<div class="lv-profile-dropdown" #dropdown>
+  <lv-button
+    variant="secondary"
+    appearance="ghost"
+    size="sm"
+    class="lv-profile-trigger"
+    (onClick)="toggle()"
+    aria-haspopup="true"
+    [attr.aria-expanded]="isOpen()">
+
+    <lv-avatar
+      [src]="user().avatar || ''"
+      [initials]="getInitials()"
+      [alt]="user().name"
+      size="sm" />
+
+    @if (showUserInfo()) {
+      <div class="lv-profile-info">
+        <lv-paragraph size="sm" weight="semibold" color="neutral">
+          {{ user().name }}
+        </lv-paragraph>
+        <lv-paragraph size="xs" color="neutral" [muted]="true">
+          {{ user().email }}
+        </lv-paragraph>
+      </div>
+    }
+
+    <lv-icon name="chevron-down" size="sm" class="lv-profile-chevron" />
+  </lv-button>
+
+  @if (isOpen()) {
+    <div class="lv-profile-dropdown-menu" role="menu">
+      @if (showUserInfo()) {
+        <div class="lv-profile-header">
+          <lv-avatar
+            [src]="user().avatar || ''"
+            [initials]="getInitials()"
+            [alt]="user().name"
+            size="md" />
+          <div class="lv-profile-header-info">
+            <lv-paragraph size="sm" weight="semibold" color="neutral">
+              {{ user().name }}
+            </lv-paragraph>
+            <lv-paragraph size="xs" color="neutral" [muted]="true">
+              {{ user().email }}
+            </lv-paragraph>
+          </div>
+        </div>
+      }
+
+      @for (item of items(); track $index) {
+        @if (item.divider) {
+          <lv-divider />
+        } @else {
+          @if (item.route) {
+            <lv-link
+              [routerLink]="item.route"
+              color="neutral"
+              [underline]="false"
+              class="lv-profile-menu-item"
+              [class.lv-profile-menu-item-danger]="item.danger"
+              (click)="close()">
+              @if (item.icon) {
+                <lv-icon [name]="item.icon" size="sm" />
+              }
+              {{ item.label }}
+            </lv-link>
+          } @else {
+            <lv-button
+              variant="secondary"
+              appearance="ghost"
+              size="sm"
+              [fullWidth]="true"
+              class="lv-profile-menu-item"
+              [class.lv-profile-menu-item-danger]="item.danger"
+              (onClick)="handleItemClick(item)">
+              @if (item.icon) {
+                <lv-icon [name]="item.icon" size="sm" />
+              }
+              {{ item.label }}
+            </lv-button>
+          }
+        }
+      }
+    </div>
+  }
+</div>

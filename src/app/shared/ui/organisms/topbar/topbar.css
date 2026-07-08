@@ -1,0 +1,51 @@
+@reference "../../../../../styles.css";
+.lv-topbar {
+  @apply w-full bg-white border-b border-secondary-200;
+}
+
+.lv-topbar-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply flex items-center justify-between h-16 gap-4;
+}
+
+.lv-topbar-left {
+  @apply flex items-center gap-2 flex-shrink-0;
+}
+
+.lv-topbar-mobile-toggle {
+  @apply lg:hidden;
+}
+
+.lv-topbar-center {
+  @apply flex-1 max-w-md;
+}
+
+.lv-topbar-search {
+  @apply w-full;
+}
+
+.lv-topbar-right {
+  @apply flex items-center gap-1 flex-shrink-0;
+}
+
+.lv-topbar-badge {
+  @apply absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs font-medium flex items-center justify-center;
+  background-color: var(--color-danger-500);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-topbar-container {
+    @apply px-3 h-14 gap-2;
+  }
+  .lv-topbar-center {
+    @apply flex-1 max-w-xs;
+  }
+}
+
+@media (max-width: 1024px) {
+  .lv-topbar-center {
+    @apply max-w-sm;
+  }
+}

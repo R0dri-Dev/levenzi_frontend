@@ -1,38 +1,28 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import type { Option } from '../../../types/option.types';
-
-import {
-  LV_SELECT_BASE,
-  LV_SELECT_SIZES,
-  LV_SELECT_VARIANTS,
-} from '../../../theme/select.theme';
-import type { SelectVariant, SelectSize } from '../../../types/select.types';
+import { LvSize, LvColorVariant, LvAppearance } from '../../../types';
+import { Option } from '../../../interfaces/option.interface';
 
 @Component({
   selector: 'lv-select',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './select.html',
-  styleUrl: './select.css',
+  styleUrls: ['./select.css'],
 })
 export class LvSelectComponent {
   readonly options = input<Option[]>([]);
   readonly value = input<string | number>('');
   readonly disabled = input(false);
-
-  readonly variant = input<SelectVariant>('primary');
-  readonly size = input<SelectSize>('md');
+  readonly variant = input<LvColorVariant>('primary');
+  readonly appearance = input<LvAppearance>('outline');
+  readonly size = input<LvSize>('md');
+  readonly placeholder = input<string>('Selecciona una opción');
+  readonly label = input<string>('');
+  readonly required = input(false);
+  readonly error = input<string>('');
 
   readonly onValueChange = output<string | number>();
-
-  readonly classes = computed(() => {
-    const base = LV_SELECT_BASE;
-    const variant = LV_SELECT_VARIANTS[this.variant()];
-    const size = LV_SELECT_SIZES[this.size()];
-    return [base, variant, size].filter(Boolean).join(' ');
-  });
 
   handleChange(raw: string): void {
     if (this.disabled()) return;
@@ -40,4 +30,3 @@ export class LvSelectComponent {
     this.onValueChange.emit(Number.isNaN(num) ? raw : num);
   }
 }
-

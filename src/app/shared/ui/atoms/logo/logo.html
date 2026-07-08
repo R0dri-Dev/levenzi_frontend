@@ -1,6 +1,11 @@
-<a [routerLink]="link()" [class]="classes()" class="no-underline">
+<a
+  [routerLink]="link()"
+  class="lv-logo lv-logo-{{ size() }} lv-logo-{{ color() }}"
+  [class.lv-logo-bold]="bold()">
+
   @if (showIcon()) {
-    <lv-icon name="company" size="md" />
+    <lv-icon name="company" [size]="size()" />
   }
-  {{ text() }}
+
+  <span class="lv-logo-text">{{ text() }}</span>
 </a>

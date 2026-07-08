@@ -1,0 +1,72 @@
+@reference "../../../../../styles.css";
+.lv-page-header {
+  @apply w-full py-6 bg-white border-b border-secondary-200;
+}
+
+.lv-page-header-content {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4;
+}
+
+.lv-page-header-text {
+  @apply flex-1 min-w-0;
+}
+
+.lv-page-header-breadcrumb {
+  @apply mb-2;
+}
+
+.lv-page-header-actions {
+  @apply flex items-center gap-2 flex-shrink-0 flex-wrap;
+}
+
+/* Alignments */
+.lv-page-header-left .lv-page-header-text {
+  @apply text-left;
+}
+.lv-page-header-left .lv-page-header-actions {
+  @apply sm:ml-auto;
+}
+
+.lv-page-header-center .lv-page-header-content {
+  @apply flex-col items-center text-center;
+}
+.lv-page-header-center .lv-page-header-actions {
+  @apply justify-center;
+}
+
+.lv-page-header-right .lv-page-header-text {
+  @apply text-right;
+}
+.lv-page-header-right .lv-page-header-content {
+  @apply flex-col sm:flex-row-reverse;
+}
+.lv-page-header-right .lv-page-header-actions {
+  @apply sm:mr-auto;
+}
+
+.lv-page-header-justify .lv-page-header-text {
+  @apply text-justify;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-page-header {
+    @apply py-4;
+  }
+  .lv-page-header-content {
+    @apply flex-col items-stretch;
+  }
+  .lv-page-header-actions {
+    @apply justify-start;
+  }
+  .lv-page-header-center .lv-page-header-actions {
+    @apply justify-center;
+  }
+  .lv-page-header-right .lv-page-header-content {
+    @apply flex-col;
+  }
+  .lv-page-header-right .lv-page-header-actions {
+    @apply mr-0;
+  }
+}

@@ -1,10 +1,9 @@
 <button
-	[type]="type()"
-	[class]="classes()"
-	[disabled]="disabled()"
-	[attr.aria-label]="label()"
-	[attr.aria-disabled]="disabled()"
-	(click)="handleClick($event)"
->
-	<lv-icon [name]="icon()" size="sm" />
+  [type]="type()"
+  class="lv-icon-button lv-icon-button-{{ variant() }} lv-icon-button-{{ color() }} lv-icon-button-{{ size() }}"
+  [disabled]="disabled()"
+  [attr.aria-label]="label()"
+  [attr.aria-disabled]="disabled()"
+  (click)="handleClick($event)">
+  <lv-icon [name]="icon()" size="sm" />
 </button>

@@ -1,1 +1,43 @@
-<p>toast-container works!</p>
+<div class="lv-toasts-container lv-toasts-{{ position() }}">
+  @for (toast of toasts(); track toast.id) {
+    <div
+      class="lv-toast lv-toast-{{ toast.variant || 'info' }}"
+      role="alert">
+
+      <div class="lv-toast-icon">
+        <lv-icon [name]="toast.icon || 'info'" size="sm" />
+      </div>
+
+      <div class="lv-toast-content">
+        @if (toast.title) {
+          <lv-paragraph size="sm" weight="semibold" color="neutral">
+            {{ toast.title }}
+          </lv-paragraph>
+        }
+        <lv-paragraph size="sm" color="neutral">
+          {{ toast.message }}
+        </lv-paragraph>
+      </div>
+
+      <div class="lv-toast-actions">
+        @if (toast.action) {
+          <lv-button
+            variant="secondary"
+            appearance="ghost"
+            size="sm"
+            (onClick)="handleAction(toast)">
+            {{ toast.action.label }}
+          </lv-button>
+        }
+        @if (toast.closable !== false) {
+          <lv-icon-button
+            icon="x"
+            label="Cerrar"
+            variant="ghost"
+            size="sm"
+            (onClick)="closeToast(toast.id)" />
+        }
+      </div>
+    </div>
+  }
+</div>

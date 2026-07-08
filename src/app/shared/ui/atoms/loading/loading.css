@@ -1,0 +1,41 @@
+@reference "../../../../../styles.css";
+/* loading.css - Estilos propios del componente */
+.lv-loading {
+  @apply flex flex-col items-center justify-center gap-3;
+  @apply p-6;
+}
+
+.lv-loading-text {
+  @apply text-sm font-medium;
+  color: var(--color-secondary-600);
+}
+
+/* Fullscreen */
+.lv-loading-fullscreen {
+  @apply fixed inset-0 z-50;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+}
+
+/* Overlay */
+.lv-loading-overlay {
+  @apply absolute inset-0 z-10;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+/* Animación de entrada */
+.lv-loading {
+  animation: lv-loading-fade-in 0.3s ease-out;
+}
+
+@keyframes lv-loading-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

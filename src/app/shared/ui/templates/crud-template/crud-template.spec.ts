@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudTemplate } from './crud-template';
+import { LvCrudTemplateComponent } from './crud-template';
 
-describe('CrudTemplate', () => {
-  let component: CrudTemplate;
-  let fixture: ComponentFixture<CrudTemplate>;
+describe('LvCrudTemplateComponent', () => {
+  let component: LvCrudTemplateComponent;
+  let fixture: ComponentFixture<LvCrudTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CrudTemplate],
+      imports: [LvCrudTemplateComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CrudTemplate);
+    fixture = TestBed.createComponent(LvCrudTemplateComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,0 +1,45 @@
+@reference "../../../../../styles.css";
+.lv-pagination {
+  @apply flex items-center justify-between gap-4 flex-wrap;
+}
+
+.lv-pagination-total {
+  @apply text-sm;
+  color: var(--color-secondary-600);
+}
+
+.lv-pagination-controls {
+  @apply flex items-center gap-1 flex-wrap;
+}
+
+.lv-pagination-ellipsis {
+  @apply px-2 text-sm;
+  color: var(--color-secondary-400);
+}
+
+/* Sizes */
+.lv-pagination-xs .lv-pagination-total {
+  @apply text-xs;
+}
+.lv-pagination-sm .lv-pagination-total {
+  @apply text-sm;
+}
+.lv-pagination-md .lv-pagination-total {
+  @apply text-sm;
+}
+.lv-pagination-lg .lv-pagination-total {
+  @apply text-base;
+}
+.lv-pagination-xl .lv-pagination-total {
+  @apply text-base;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-pagination {
+    @apply flex-col items-stretch gap-2;
+  }
+  .lv-pagination-controls {
+    @apply justify-center;
+  }
+}

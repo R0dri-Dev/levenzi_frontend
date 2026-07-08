@@ -1,27 +1,17 @@
-import { Component, computed, input } from '@angular/core';
-import { LV_SKELETON_BASE } from '../../../theme/skeleton.theme';
-
+import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
-
   selector: 'lv-skeleton',
-
   standalone: true,
-
-  templateUrl: './skeleton.html'
-
+  imports: [CommonModule],
+  templateUrl: './skeleton.html',
+  styleUrls: ['./skeleton.css'],
 })
 export class LvSkeletonComponent {
-
   readonly width = input('100%');
-
   readonly height = input('1rem');
-
   readonly circle = input(false);
-
-  readonly classes = computed(() => [
-    LV_SKELETON_BASE,
-    this.circle() ? 'rounded-full' : 'rounded-lg'
-  ].join(' '));
-
+  readonly rounded = input<'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'>('lg');
+  readonly animated = input(true);
 }

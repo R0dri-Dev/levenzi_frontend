@@ -1,9 +1,8 @@
 <div
-
-[class]="classes()"
-
-[style.width]="width()"
-
-[style.height]="height()">
-
+  class="lv-skeleton"
+  [class.lv-skeleton-circle]="circle()"
+  [class.lv-skeleton-rounded-{{ rounded() }}]="!circle()"
+  [class.lv-skeleton-no-animation]="!animated()"
+  [style.width]="width()"
+  [style.height]="height()">
 </div>

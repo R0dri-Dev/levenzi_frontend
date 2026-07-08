@@ -1,0 +1,190 @@
+@reference "../../../../../styles.css";
+.lv-filter-chip {
+  @apply inline-flex items-center gap-1.5 font-medium transition-all duration-200;
+  @apply cursor-pointer select-none;
+}
+
+.lv-filter-chip-label {
+  @apply truncate;
+}
+
+/* Appearances */
+.lv-filter-chip-solid {
+  @apply text-white;
+}
+.lv-filter-chip-solid.lv-filter-chip-primary {
+  background-color: var(--color-primary-600);
+}
+.lv-filter-chip-solid.lv-filter-chip-secondary {
+  background-color: var(--color-secondary-600);
+}
+.lv-filter-chip-solid.lv-filter-chip-success {
+  background-color: var(--color-success-600);
+}
+.lv-filter-chip-solid.lv-filter-chip-danger {
+  background-color: var(--color-danger-600);
+}
+.lv-filter-chip-solid.lv-filter-chip-warning {
+  background-color: var(--color-warning-500);
+}
+.lv-filter-chip-solid.lv-filter-chip-info {
+  background-color: var(--color-info-600);
+}
+.lv-filter-chip-solid.lv-filter-chip-neutral {
+  background-color: var(--color-neutral-600);
+}
+
+.lv-filter-chip-light {
+  @apply bg-secondary-100 text-secondary-700;
+}
+.lv-filter-chip-light.lv-filter-chip-primary {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-700);
+}
+.lv-filter-chip-light.lv-filter-chip-secondary {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-700);
+}
+.lv-filter-chip-light.lv-filter-chip-success {
+  background-color: var(--color-success-100);
+  color: var(--color-success-700);
+}
+.lv-filter-chip-light.lv-filter-chip-danger {
+  background-color: var(--color-danger-100);
+  color: var(--color-danger-700);
+}
+.lv-filter-chip-light.lv-filter-chip-warning {
+  background-color: var(--color-warning-100);
+  color: var(--color-warning-700);
+}
+.lv-filter-chip-light.lv-filter-chip-info {
+  background-color: var(--color-info-100);
+  color: var(--color-info-700);
+}
+.lv-filter-chip-light.lv-filter-chip-neutral {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+}
+
+.lv-filter-chip-outline {
+  @apply bg-transparent border-2;
+}
+.lv-filter-chip-outline.lv-filter-chip-primary {
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-600);
+}
+.lv-filter-chip-outline.lv-filter-chip-secondary {
+  border-color: var(--color-secondary-600);
+  color: var(--color-secondary-600);
+}
+.lv-filter-chip-outline.lv-filter-chip-success {
+  border-color: var(--color-success-600);
+  color: var(--color-success-600);
+}
+.lv-filter-chip-outline.lv-filter-chip-danger {
+  border-color: var(--color-danger-600);
+  color: var(--color-danger-600);
+}
+.lv-filter-chip-outline.lv-filter-chip-warning {
+  border-color: var(--color-warning-500);
+  color: var(--color-warning-500);
+}
+.lv-filter-chip-outline.lv-filter-chip-info {
+  border-color: var(--color-info-600);
+  color: var(--color-info-600);
+}
+.lv-filter-chip-outline.lv-filter-chip-neutral {
+  border-color: var(--color-neutral-600);
+  color: var(--color-neutral-600);
+}
+
+.lv-filter-chip-ghost {
+  @apply bg-transparent text-secondary-600;
+}
+.lv-filter-chip-ghost.lv-filter-chip-primary {
+  color: var(--color-primary-600);
+}
+.lv-filter-chip-ghost.lv-filter-chip-secondary {
+  color: var(--color-secondary-600);
+}
+.lv-filter-chip-ghost.lv-filter-chip-success {
+  color: var(--color-success-600);
+}
+.lv-filter-chip-ghost.lv-filter-chip-danger {
+  color: var(--color-danger-600);
+}
+.lv-filter-chip-ghost.lv-filter-chip-warning {
+  color: var(--color-warning-500);
+}
+.lv-filter-chip-ghost.lv-filter-chip-info {
+  color: var(--color-info-600);
+}
+.lv-filter-chip-ghost.lv-filter-chip-neutral {
+  color: var(--color-neutral-600);
+}
+
+/* Sizes */
+.lv-filter-chip-xs {
+  @apply px-2 py-0.5 text-xs rounded;
+  gap: 0.25rem;
+}
+.lv-filter-chip-sm {
+  @apply px-2.5 py-0.5 text-xs rounded-md;
+  gap: 0.375rem;
+}
+.lv-filter-chip-md {
+  @apply px-3 py-1 text-sm rounded-md;
+  gap: 0.5rem;
+}
+.lv-filter-chip-lg {
+  @apply px-3.5 py-1.5 text-sm rounded-lg;
+  gap: 0.5rem;
+}
+.lv-filter-chip-xl {
+  @apply px-4 py-2 text-base rounded-lg;
+  gap: 0.625rem;
+}
+
+/* Shapes */
+.lv-filter-chip-rounded {
+  @apply rounded-full;
+}
+.lv-filter-chip-pill {
+  @apply rounded-full px-4;
+}
+
+/* Selected */
+.lv-filter-chip-selected {
+  @apply ring-2 ring-offset-1;
+}
+.lv-filter-chip-selected.lv-filter-chip-primary {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-filter-chip-selected.lv-filter-chip-secondary {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-filter-chip-selected.lv-filter-chip-success {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-filter-chip-selected.lv-filter-chip-danger {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-filter-chip-selected.lv-filter-chip-warning {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-filter-chip-selected.lv-filter-chip-info {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-filter-chip-selected.lv-filter-chip-neutral {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Disabled */
+.lv-filter-chip-disabled {
+  @apply opacity-50 cursor-not-allowed pointer-events-none;
+}
+
+/* Remove button */
+.lv-filter-chip-remove {
+  @apply p-0;
+}

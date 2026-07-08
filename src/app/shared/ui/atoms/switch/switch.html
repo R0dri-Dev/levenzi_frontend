@@ -1,11 +1,16 @@
-<button
-
-type="button"
-
-[class]="classes()"
-
-(click)="toggle()">
-
-<span [class]="thumb()"></span>
-
-</button>
+<label class="lv-switch-wrapper">
+  <button
+    type="button"
+    role="switch"
+    [attr.aria-checked]="checked()"
+    [attr.aria-disabled]="disabled()"
+    class="lv-switch lv-switch-{{ size() }} lv-switch-{{ color() }}"
+    [class.lv-switch-checked]="checked()"
+    [class.lv-switch-disabled]="disabled()"
+    (click)="toggle()">
+    <span class="lv-switch-thumb"></span>
+  </button>
+  @if (label()) {
+    <span class="lv-switch-label">{{ label() }}</span>
+  }
+</label>

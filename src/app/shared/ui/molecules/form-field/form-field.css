@@ -1,0 +1,8 @@
+@reference "../../../../../styles.css";
+.lv-form-field {
+  @apply flex flex-col gap-1.5 w-full;
+}
+
+.lv-form-field-control {
+  @apply w-full;
+}

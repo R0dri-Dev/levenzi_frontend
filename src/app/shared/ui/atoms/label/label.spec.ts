@@ -25,13 +25,8 @@ describe('LvLabelComponent', () => {
   it('should set default props', () => {
     expect(component.text()).toBe('');
     expect(component.for()).toBe('');
-    expect(component.variant()).toBe('primary');
     expect(component.size()).toBe('md');
     expect(component.disabled()).toBe(false);
-  });
-
-  it('should compute classes', () => {
-    expect(component.classes()).toContain('font-medium');
   });
 });
 

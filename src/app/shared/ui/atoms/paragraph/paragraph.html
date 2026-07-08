@@ -1,3 +1,6 @@
-<p [class]="classes()">
-    <ng-content/>
+<p
+  class="lv-paragraph lv-paragraph-{{ size() }} lv-paragraph-{{ weight() }} lv-paragraph-{{ color() }} lv-paragraph-{{ align() }}"
+  [class.lv-paragraph-truncate]="truncate()"
+  [class.lv-paragraph-muted]="muted()">
+  <ng-content />
 </p>

@@ -1,0 +1,72 @@
+@reference "../../../../../styles.css";
+.lv-search-box {
+  @apply relative flex items-center w-full;
+}
+
+.lv-search-box-icon {
+  @apply absolute left-3 pointer-events-none z-10;
+  color: var(--color-secondary-400);
+}
+
+.lv-search-box lv-input {
+  @apply w-full;
+}
+
+.lv-search-box lv-input ::ng-deep input {
+  @apply pl-9;
+}
+
+.lv-search-box-clear {
+  @apply absolute right-1 z-10;
+}
+
+/* Sizes */
+.lv-search-box-xs .lv-search-box-icon {
+  @apply w-3 h-3 left-2;
+}
+.lv-search-box-xs lv-input ::ng-deep input {
+  @apply pl-7;
+}
+.lv-search-box-xs .lv-search-box-clear {
+  @apply right-0.5;
+}
+
+.lv-search-box-sm .lv-search-box-icon {
+  @apply w-3.5 h-3.5 left-2.5;
+}
+.lv-search-box-sm lv-input ::ng-deep input {
+  @apply pl-8;
+}
+.lv-search-box-sm .lv-search-box-clear {
+  @apply right-0.5;
+}
+
+.lv-search-box-md .lv-search-box-icon {
+  @apply w-4 h-4 left-3;
+}
+.lv-search-box-md lv-input ::ng-deep input {
+  @apply pl-9;
+}
+.lv-search-box-md .lv-search-box-clear {
+  @apply right-1;
+}
+
+.lv-search-box-lg .lv-search-box-icon {
+  @apply w-5 h-5 left-3.5;
+}
+.lv-search-box-lg lv-input ::ng-deep input {
+  @apply pl-10;
+}
+.lv-search-box-lg .lv-search-box-clear {
+  @apply right-1.5;
+}
+
+.lv-search-box-xl .lv-search-box-icon {
+  @apply w-5 h-5 left-4;
+}
+.lv-search-box-xl lv-input ::ng-deep input {
+  @apply pl-11;
+}
+.lv-search-box-xl .lv-search-box-clear {
+  @apply right-2;
+}

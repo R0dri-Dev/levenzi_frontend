@@ -1,36 +1,35 @@
-<div [class]="classes().container">
+<div class="lv-filter-date lv-filter-date-{{ size() }}">
   @if (label()) {
-    <span [class]="classes().label">{{ label() }}</span>
+    <span class="lv-filter-date-label">{{ label() }}</span>
   }
 
-  <lv-icon name="calendar" [size]="size()" [class]="classes().icon" />
+  <lv-icon name="calendar" [size]="size()" color="neutral" />
 
-  <input
+  <lv-input
     type="date"
-    [class]="classes().input"
+    [size]="size()"
     [value]="startValue()"
-    (input)="onStartChange($any($event.target).value)"
+    (onValueChange)="onStartChange($event)"
     [disabled]="disabled()"
-    aria-label="Fecha inicio"
+    placeholder="Inicio"
   />
 
-  <span class="text-gray-400">a</span>
+  <span class="lv-filter-date-separator">a</span>
 
-  <input
+  <lv-input
     type="date"
-    [class]="classes().input"
+    [size]="size()"
     [value]="endValue()"
-    (input)="onEndChange($any($event.target).value)"
+    (onValueChange)="onEndChange($event)"
     [disabled]="disabled()"
-    aria-label="Fecha fin"
+    placeholder="Fin"
   />
 
   @if (showPresets()) {
-    <div class="flex gap-1 ml-2">
-      <lv-button size="sm" variant="ghost" (onClick)="applyPreset('today')">Hoy</lv-button>
-      <lv-button size="sm" variant="ghost" (onClick)="applyPreset('week')">Semana</lv-button>
-      <lv-button size="sm" variant="ghost" (onClick)="applyPreset('month')">Mes</lv-button>
+    <div class="lv-filter-date-presets">
+      <lv-button size="sm" appearance="ghost" (onClick)="applyPreset('today')">Hoy</lv-button>
+      <lv-button size="sm" appearance="ghost" (onClick)="applyPreset('week')">Semana</lv-button>
+      <lv-button size="sm" appearance="ghost" (onClick)="applyPreset('month')">Mes</lv-button>
     </div>
   }
 </div>
-

@@ -1,14 +1,16 @@
 <div
-  [class]="classes().chip"
+  class="lv-filter-chip lv-filter-chip-{{ appearance() }} lv-filter-chip-{{ variant() }} lv-filter-chip-{{ size() }} lv-filter-chip-{{ shape() }}"
+  [class.lv-filter-chip-selected]="selected()"
+  [class.lv-filter-chip-disabled]="disabled()"
   (click)="handleClick()"
-  [attr.role]="'button'"
-  [attr.aria-disabled]="disabled()"
->
+  role="button"
+  [attr.aria-disabled]="disabled()">
+
   @if (icon()) {
     <lv-icon [name]="icon()!" [size]="size()" />
   }
 
-  <span>{{ label() }}</span>
+  <span class="lv-filter-chip-label">{{ label() }}</span>
 
   @if (removable()) {
     <lv-icon-button
@@ -18,9 +20,7 @@
       variant="ghost"
       [disabled]="disabled()"
       (onClick)="handleRemove($event)"
-      class="p-0"
-      aria-label="Eliminar filtro"
-    />
+      class="lv-filter-chip-remove"
+      aria-label="Eliminar filtro" />
   }
 </div>
-

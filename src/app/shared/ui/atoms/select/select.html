@@ -1,13 +1,42 @@
-<select
-  [disabled]="disabled()"
-  [value]="value()"
-  [class]="classes()"
-  (change)="handleChange(($any($event.target).value))"
->
-  @for (opt of options(); track opt.value) {
-    <option [value]="opt.value" [disabled]="opt.disabled">
-      {{ opt.label }}
-    </option>
+<div class="lv-select-wrapper">
+  @if (label()) {
+    <label class="lv-select-label">
+      {{ label() }}
+      @if (required()) {
+        <span class="lv-select-required">*</span>
+      }
+    </label>
   }
-</select>
 
+  <div class="lv-select-container lv-select-{{ appearance() }} lv-select-{{ variant() }} lv-select-{{ size() }}">
+    <select
+      [disabled]="disabled()"
+      [value]="value()"
+      [required]="required()"
+      [attr.aria-invalid]="!!error()"
+      class="lv-select"
+      (change)="handleChange(($any($event.target)).value)">
+
+      @if (placeholder()) {
+        <option value="" disabled>{{ placeholder() }}</option>
+      }
+
+      @for (opt of options(); track opt.value) {
+        <option [value]="opt.value" [disabled]="opt.disabled">
+          {{ opt.label }}
+        </option>
+      }
+    </select>
+
+    <!-- Flecha personalizada -->
+    <span class="lv-select-arrow">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </span>
+  </div>
+
+  @if (error()) {
+    <p class="lv-select-error">{{ error() }}</p>
+  }
+</div>

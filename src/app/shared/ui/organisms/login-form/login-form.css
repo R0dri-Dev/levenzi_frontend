@@ -1,0 +1,37 @@
+@reference "../../../../../styles.css";
+.lv-login-form {
+  @apply w-full max-w-md mx-auto;
+}
+
+.lv-login-card {
+  @apply bg-white rounded-2xl shadow-xl p-8;
+}
+
+.lv-login-header {
+  @apply flex flex-col items-center gap-2 mb-6;
+}
+
+.lv-login-fields {
+  @apply flex flex-col gap-4;
+}
+
+.lv-login-actions {
+  @apply flex items-center justify-between gap-4;
+}
+
+.lv-login-extra {
+  @apply mt-4 pt-4 border-t border-secondary-200;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-login-card {
+    @apply p-6 shadow-none;
+  }
+  .lv-login-actions {
+    @apply flex-col items-stretch gap-2;
+  }
+  .lv-login-actions lv-link {
+    @apply text-center;
+  }
+}

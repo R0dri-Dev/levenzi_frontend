@@ -1,0 +1,84 @@
+@reference "../../../../../styles.css";
+.lv-crud {
+  @apply w-full;
+}
+
+.lv-crud-toolbar {
+  @apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6;
+}
+
+.lv-crud-header {
+  @apply flex flex-col gap-0.5;
+}
+
+.lv-crud-actions {
+  @apply flex items-center gap-2 flex-wrap flex-shrink-0;
+}
+
+.lv-crud-content {
+  @apply w-full;
+}
+
+/* Variants */
+.lv-crud-default {
+  @apply bg-transparent;
+}
+.lv-crud-bordered {
+  @apply bg-white border border-secondary-200 rounded-lg p-6;
+}
+.lv-crud-shadow {
+  @apply bg-white rounded-lg shadow-md p-6;
+}
+
+/* Sizes */
+.lv-crud-xs .lv-crud-toolbar {
+  @apply mb-3;
+}
+.lv-crud-sm .lv-crud-toolbar {
+  @apply mb-4;
+}
+.lv-crud-md .lv-crud-toolbar {
+  @apply mb-5;
+}
+.lv-crud-lg .lv-crud-toolbar {
+  @apply mb-6;
+}
+.lv-crud-xl .lv-crud-toolbar {
+  @apply mb-7;
+}
+.lv-crud-2xl .lv-crud-toolbar {
+  @apply mb-8;
+}
+
+.lv-crud-xs {
+  @apply p-2;
+}
+.lv-crud-sm {
+  @apply p-3;
+}
+.lv-crud-md {
+  @apply p-4;
+}
+.lv-crud-lg {
+  @apply p-5;
+}
+.lv-crud-xl {
+  @apply p-6;
+}
+.lv-crud-2xl {
+  @apply p-8;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-crud-toolbar {
+    @apply flex-col items-stretch;
+  }
+  .lv-crud-actions {
+    @apply justify-start;
+  }
+  .lv-crud-bordered,
+  .lv-crud-shadow {
+    @apply p-4;
+  }
+}

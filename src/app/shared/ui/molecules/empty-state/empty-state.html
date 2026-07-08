@@ -1,18 +1,31 @@
-<div [class]="classes().container">
-  <lv-icon [name]="icon()" [class]="classes().icon" />
+<div
+  class="lv-empty-state lv-empty-state-{{ size() }} lv-empty-state-{{ variant() }}">
 
-  <h3 [class]="classes().title">{{ title() }}</h3>
+  <lv-icon
+    [name]="icon()"
+    size="xl"
+    color="neutral" />
+
+  <lv-heading
+    [level]="size() === 'lg' ? '2' : size() === 'md' ? '3' : '4'"
+    [text]="title()"
+    color="neutral"
+    [align]="'center'" />
 
   @if (description()) {
-    <p [class]="classes().description">{{ description() }}</p>
+    <lv-paragraph
+      [size]="size() === 'lg' ? 'lg' : size() === 'md' ? 'md' : 'sm'"
+      color="neutral"
+      [align]="'center'">
+      {{ description() }}
+    </lv-paragraph>
   }
 
   @if (actionLabel()) {
-    <div [class]="classes().actions">
+    <div class="lv-empty-state-actions">
       <lv-button
         variant="primary"
-        (onClick)="handleAction()"
-      >
+        (onClick)="handleAction()">
         @if (actionIcon()) {
           <lv-icon [name]="actionIcon()!" size="sm" />
         }

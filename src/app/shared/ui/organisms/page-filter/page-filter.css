@@ -1,0 +1,20 @@
+@reference "../../../../../styles.css";
+.lv-page-filter {
+  @apply w-full;
+}
+
+.lv-page-filter-xs {
+  @apply p-1;
+}
+.lv-page-filter-sm {
+  @apply p-1.5;
+}
+.lv-page-filter-md {
+  @apply p-2;
+}
+.lv-page-filter-lg {
+  @apply p-2.5;
+}
+.lv-page-filter-xl {
+  @apply p-3;
+}

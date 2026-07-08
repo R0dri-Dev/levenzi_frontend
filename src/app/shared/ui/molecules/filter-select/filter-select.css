@@ -1,0 +1,152 @@
+@reference "../../../../../styles.css";
+.lv-filter-select {
+  @apply flex items-center gap-2 flex-wrap;
+}
+
+.lv-filter-select-label {
+  @apply text-sm font-medium;
+  color: var(--color-secondary-700);
+}
+
+.lv-filter-select-wrapper {
+  @apply relative flex items-center;
+}
+
+.lv-filter-select-input {
+  @apply appearance-none bg-white border-2 rounded-lg px-3 py-2 pr-8 text-sm;
+  @apply transition-colors duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-0;
+  @apply disabled:bg-secondary-50 disabled:cursor-not-allowed disabled:opacity-60;
+  border-color: var(--color-secondary-300);
+  height: var(--size-md);
+  min-width: 150px;
+}
+
+.lv-filter-select-input:focus {
+  border-color: var(--color-primary-500);
+}
+.lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-primary-500);
+}
+
+.lv-filter-select-arrow {
+  @apply absolute right-2 pointer-events-none;
+  color: var(--color-secondary-400);
+}
+
+.lv-filter-select-wrapper:focus-within .lv-filter-select-arrow {
+  color: var(--color-primary-500);
+}
+
+/* Colores */
+.lv-filter-select-primary .lv-filter-select-input:focus {
+  border-color: var(--color-primary-500);
+}
+.lv-filter-select-primary .lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-filter-select-primary:focus-within .lv-filter-select-arrow {
+  color: var(--color-primary-500);
+}
+
+.lv-filter-select-secondary .lv-filter-select-input:focus {
+  border-color: var(--color-secondary-500);
+}
+.lv-filter-select-secondary .lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-filter-select-secondary:focus-within .lv-filter-select-arrow {
+  color: var(--color-secondary-500);
+}
+
+.lv-filter-select-success .lv-filter-select-input:focus {
+  border-color: var(--color-success-500);
+}
+.lv-filter-select-success .lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-filter-select-success:focus-within .lv-filter-select-arrow {
+  color: var(--color-success-500);
+}
+
+.lv-filter-select-danger .lv-filter-select-input:focus {
+  border-color: var(--color-danger-500);
+}
+.lv-filter-select-danger .lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-filter-select-danger:focus-within .lv-filter-select-arrow {
+  color: var(--color-danger-500);
+}
+
+.lv-filter-select-warning .lv-filter-select-input:focus {
+  border-color: var(--color-warning-500);
+}
+.lv-filter-select-warning .lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-filter-select-warning:focus-within .lv-filter-select-arrow {
+  color: var(--color-warning-500);
+}
+
+.lv-filter-select-info .lv-filter-select-input:focus {
+  border-color: var(--color-info-500);
+}
+.lv-filter-select-info .lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-filter-select-info:focus-within .lv-filter-select-arrow {
+  color: var(--color-info-500);
+}
+
+.lv-filter-select-neutral .lv-filter-select-input:focus {
+  border-color: var(--color-neutral-500);
+}
+.lv-filter-select-neutral .lv-filter-select-input:focus {
+  --tw-ring-color: var(--color-neutral-500);
+}
+.lv-filter-select-neutral:focus-within .lv-filter-select-arrow {
+  color: var(--color-neutral-500);
+}
+
+/* Sizes */
+.lv-filter-select-xs .lv-filter-select-input {
+  @apply px-2 py-0.5 text-xs rounded;
+  height: var(--size-xs);
+  min-width: 100px;
+  padding-right: 1.5rem;
+}
+.lv-filter-select-sm .lv-filter-select-input {
+  @apply px-2.5 py-1 text-xs rounded-md;
+  height: var(--size-sm);
+  min-width: 120px;
+  padding-right: 1.75rem;
+}
+.lv-filter-select-md .lv-filter-select-input {
+  @apply px-3 py-1.5 text-sm rounded-md;
+  height: var(--size-md);
+  min-width: 150px;
+  padding-right: 2rem;
+}
+.lv-filter-select-lg .lv-filter-select-input {
+  @apply px-4 py-2 text-sm rounded-lg;
+  height: var(--size-lg);
+  min-width: 180px;
+  padding-right: 2.25rem;
+}
+.lv-filter-select-xl .lv-filter-select-input {
+  @apply px-5 py-2.5 text-base rounded-lg;
+  height: var(--size-xl);
+  min-width: 200px;
+  padding-right: 2.5rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-filter-select {
+    @apply flex-col items-stretch;
+  }
+  .lv-filter-select-input {
+    @apply w-full;
+  }
+}

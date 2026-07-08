@@ -1,0 +1,39 @@
+@reference "../../../../../styles.css";
+.lv-page-actions {
+  @apply flex items-center flex-wrap;
+}
+
+.lv-page-actions-start {
+  @apply justify-start;
+}
+.lv-page-actions-center {
+  @apply justify-center;
+}
+.lv-page-actions-end {
+  @apply justify-end;
+}
+.lv-page-actions-between {
+  @apply justify-between;
+}
+.lv-page-actions-around {
+  @apply justify-around;
+}
+.lv-page-actions-evenly {
+  @apply justify-evenly;
+}
+
+.lv-page-actions-gap-1 {
+  @apply gap-1;
+}
+.lv-page-actions-gap-2 {
+  @apply gap-2;
+}
+.lv-page-actions-gap-3 {
+  @apply gap-3;
+}
+.lv-page-actions-gap-4 {
+  @apply gap-4;
+}
+.lv-page-actions-gap-5 {
+  @apply gap-5;
+}

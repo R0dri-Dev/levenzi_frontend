@@ -1,89 +1,80 @@
-<!-- Variant: Split -->
 @if (variant() === 'split') {
-  <div [class]="LV_AUTH_TEMPLATE_SPLIT">
-    <!-- Left Panel -->
-    <div [class]="LV_AUTH_TEMPLATE_SPLIT_LEFT">
-      <div class="text-center">
+  <div class="lv-auth-split">
+    <div class="lv-auth-split-left">
+      <div class="lv-auth-split-content">
         <lv-logo
-          [text]="logo() || 'Levenzi'"
+          [text]="logo()"
           size="lg"
           [showIcon]="true"
-          class="mb-4"
-          color="white"
-        />
+          [link]="logoUrl()"
+          color="primary" />
 
-        <lv-paragraph size="lg" color="white" [align]="'center'" class="opacity-90 max-w-sm mx-auto">
+        <lv-paragraph
+          size="lg"
+          color="neutral"
+          align="center"
+          class="lv-auth-split-subtitle">
           {{ subtitle() || 'Bienvenido a la plataforma' }}
         </lv-paragraph>
 
         @if (backgroundImage()) {
-          <div class="mt-8">
-            <lv-card variant="elevated" class="max-w-md mx-auto overflow-hidden">
-              <img
-                [src]="backgroundImage()"
-                alt="Background"
-                class="w-full h-auto rounded-xl"
-              />
-            </lv-card>
+          <div class="lv-auth-split-image">
+            <img [src]="backgroundImage()" alt="Background" />
           </div>
         }
       </div>
     </div>
 
-    <!-- Right Panel -->
-    <div [class]="LV_AUTH_TEMPLATE_SPLIT_RIGHT">
-      <div [class]="classes().container">
-        <div [class]="classes().card">
-          <div class="p-8">
+    <div class="lv-auth-split-right">
+      <div class="lv-auth-split-card">
+        <lv-card [shadow]="true">
+          <div class="lv-auth-split-form">
             <ng-content></ng-content>
           </div>
-        </div>
+        </lv-card>
       </div>
     </div>
   </div>
 } @else {
-  <div [class]="classes().template">
-    <div [class]="classes().container">
-      <div class="flex items-center justify-center">
-        <div class="p-6 sm:p-8" [class]="classes().card">
-          <div class="w-full">
-            @if (showBranding() && logo()) {
-              <div [class]="LV_AUTH_TEMPLATE_LOGO">
-                <lv-logo
-                  [text]="logo()"
-                  size="lg"
-                  [showIcon]="true"
-                  [link]="logoUrl()"
-                  color="gray"
-                />
-              </div>
-            }
+  <div class="lv-auth-centered lv-auth-centered-{{ size() }}">
+    <div class="lv-auth-centered-container">
+      <lv-card [shadow]="true" class="lv-auth-centered-card">
+        <div class="lv-auth-centered-content">
+          @if (showBranding() && logo()) {
+            <div class="lv-auth-centered-logo">
+              <lv-logo
+                [text]="logo()"
+                size="lg"
+                [showIcon]="true"
+                [link]="logoUrl()"
+                [color]="color()" />
+            </div>
+          }
 
-            @if (title() || subtitle()) {
-              <div [class]="LV_AUTH_TEMPLATE_HEADER">
-                @if (title()) {
-                  <lv-heading
-                    [level]="'2'"
-                    [text]="title()"
-                    [align]="'center'"
-                  />
-                }
-                @if (subtitle()) {
-                  <lv-paragraph
-                    size="md"
-                    color="gray"
-                    [align]="'center'"
-                  >
-                    {{ subtitle() }}
-                  </lv-paragraph>
-                }
-              </div>
-            }
+          @if (title() || subtitle()) {
+            <div class="lv-auth-centered-header">
+              @if (title()) {
+                <lv-heading
+                  level="2"
+                  [text]="title()"
+                  [color]="color()"
+                  [textAlign]="align()" />
+              }
+              @if (subtitle()) {
+                <lv-paragraph
+                  size="md"
+                  color="neutral"
+                  [align]="align()"
+                  [muted]="true">
+                  {{ subtitle() }}
+                </lv-paragraph>
+              }
+            </div>
+          }
 
-            <ng-content></ng-content>
-          </div>
+          <ng-content></ng-content>
         </div>
-      </div>
+      </lv-card>
     </div>
   </div>
 }

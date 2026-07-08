@@ -1,31 +1,29 @@
 @if (isOpen()) {
-  <div [class]="classes().overlay" role="dialog" aria-modal="true">
-    <div [class]="classes().dialog">
-      <div class="p-6">
-        <!-- Icon -->
-        <div [class]="classes().icon">
-          <lv-icon [name]="getIconName()" size="lg" />
+  <div class="lv-confirm-overlay" role="dialog" aria-modal="true">
+    <div class="lv-confirm-dialog lv-confirm-dialog-{{ size() }}">
+      <div class="lv-confirm-content">
+        <div class="lv-confirm-icon lv-confirm-icon-{{ variant() }}">
+          <lv-icon name="x" size="lg" />
         </div>
 
-        <!-- Title -->
-        <h3 [class]="classes().title">{{ title() }}</h3>
+        <lv-heading level="3" color="neutral" align="center">
+          {{ title() }}
+        </lv-heading>
 
-        <!-- Message -->
-        <p [class]="classes().message">{{ message() }}</p>
+        <lv-paragraph color="neutral" align="center">
+          {{ message() }}
+        </lv-paragraph>
 
-        <!-- Actions -->
-        <div [class]="classes().actions">
+        <div class="lv-confirm-actions">
           <lv-button
             variant="secondary"
-            (onClick)="handleCancel()"
-          >
+            (onClick)="handleCancel()">
             {{ cancelLabel() }}
           </lv-button>
           <lv-button
-            [variant]="getConfirmVariant()"
+            [variant]="variant()"
             [loading]="confirmLoading()"
-            (onClick)="handleConfirm()"
-          >
+            (onClick)="handleConfirm()">
             {{ confirmLabel() }}
           </lv-button>
         </div>

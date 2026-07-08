@@ -1,0 +1,161 @@
+@reference "../../../../../styles.css";
+/* checkbox.css - Estilos propios del componente */
+.lv-checkbox {
+  @apply inline-flex items-center gap-2 cursor-pointer;
+}
+
+.lv-checkbox-input {
+  @apply sr-only;
+}
+
+.lv-checkbox-custom {
+  @apply flex-shrink-0 rounded transition-colors;
+  @apply border-2 border-secondary-300;
+}
+
+/* Tamaños */
+.lv-checkbox-xs .lv-checkbox-custom {
+  @apply w-3 h-3;
+}
+.lv-checkbox-sm .lv-checkbox-custom {
+  @apply w-4 h-4;
+}
+.lv-checkbox-md .lv-checkbox-custom {
+  @apply w-5 h-5;
+}
+.lv-checkbox-lg .lv-checkbox-custom {
+  @apply w-6 h-6;
+}
+.lv-checkbox-xl .lv-checkbox-custom {
+  @apply w-7 h-7;
+}
+
+/* Variantes - checked */
+.lv-checkbox-primary .lv-checkbox-input:checked + .lv-checkbox-custom {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+}
+.lv-checkbox-primary .lv-checkbox-input:checked + .lv-checkbox-custom::after {
+  content: '✓';
+  @apply text-white flex items-center justify-center text-xs;
+}
+
+.lv-checkbox-secondary .lv-checkbox-input:checked + .lv-checkbox-custom {
+  background-color: var(--color-secondary-600);
+  border-color: var(--color-secondary-600);
+}
+.lv-checkbox-secondary .lv-checkbox-input:checked + .lv-checkbox-custom::after {
+  content: '✓';
+  @apply text-white flex items-center justify-center text-xs;
+}
+
+.lv-checkbox-success .lv-checkbox-input:checked + .lv-checkbox-custom {
+  background-color: var(--color-success-600);
+  border-color: var(--color-success-600);
+}
+.lv-checkbox-success .lv-checkbox-input:checked + .lv-checkbox-custom::after {
+  content: '✓';
+  @apply text-white flex items-center justify-center text-xs;
+}
+
+.lv-checkbox-danger .lv-checkbox-input:checked + .lv-checkbox-custom {
+  background-color: var(--color-danger-600);
+  border-color: var(--color-danger-600);
+}
+.lv-checkbox-danger .lv-checkbox-input:checked + .lv-checkbox-custom::after {
+  content: '✓';
+  @apply text-white flex items-center justify-center text-xs;
+}
+
+.lv-checkbox-warning .lv-checkbox-input:checked + .lv-checkbox-custom {
+  background-color: var(--color-warning-500);
+  border-color: var(--color-warning-500);
+}
+.lv-checkbox-warning .lv-checkbox-input:checked + .lv-checkbox-custom::after {
+  content: '✓';
+  @apply text-white flex items-center justify-center text-xs;
+}
+
+.lv-checkbox-info .lv-checkbox-input:checked + .lv-checkbox-custom {
+  background-color: var(--color-info-600);
+  border-color: var(--color-info-600);
+}
+.lv-checkbox-info .lv-checkbox-input:checked + .lv-checkbox-custom::after {
+  content: '✓';
+  @apply text-white flex items-center justify-center text-xs;
+}
+
+.lv-checkbox-neutral .lv-checkbox-input:checked + .lv-checkbox-custom {
+  background-color: var(--color-neutral-600);
+  border-color: var(--color-neutral-600);
+}
+.lv-checkbox-neutral .lv-checkbox-input:checked + .lv-checkbox-custom::after {
+  content: '✓';
+  @apply text-white flex items-center justify-center text-xs;
+}
+
+/* Hover */
+.lv-checkbox:hover .lv-checkbox-custom {
+  border-color: var(--color-primary-400);
+}
+.lv-checkbox-primary:hover .lv-checkbox-custom {
+  border-color: var(--color-primary-400);
+}
+.lv-checkbox-secondary:hover .lv-checkbox-custom {
+  border-color: var(--color-secondary-400);
+}
+.lv-checkbox-success:hover .lv-checkbox-custom {
+  border-color: var(--color-success-400);
+}
+.lv-checkbox-danger:hover .lv-checkbox-custom {
+  border-color: var(--color-danger-400);
+}
+.lv-checkbox-warning:hover .lv-checkbox-custom {
+  border-color: var(--color-warning-400);
+}
+.lv-checkbox-info:hover .lv-checkbox-custom {
+  border-color: var(--color-info-400);
+}
+.lv-checkbox-neutral:hover .lv-checkbox-custom {
+  border-color: var(--color-neutral-400);
+}
+
+/* Disabled */
+.lv-checkbox .lv-checkbox-input:disabled + .lv-checkbox-custom {
+  @apply opacity-50 cursor-not-allowed;
+}
+.lv-checkbox .lv-checkbox-input:disabled ~ .lv-checkbox-label {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Focus */
+.lv-checkbox .lv-checkbox-input:focus + .lv-checkbox-custom {
+  @apply ring-2 ring-offset-2;
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-checkbox-primary .lv-checkbox-input:focus + .lv-checkbox-custom {
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-checkbox-secondary .lv-checkbox-input:focus + .lv-checkbox-custom {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-checkbox-success .lv-checkbox-input:focus + .lv-checkbox-custom {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-checkbox-danger .lv-checkbox-input:focus + .lv-checkbox-custom {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-checkbox-warning .lv-checkbox-input:focus + .lv-checkbox-custom {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-checkbox-info .lv-checkbox-input:focus + .lv-checkbox-custom {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-checkbox-neutral .lv-checkbox-input:focus + .lv-checkbox-custom {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* Label */
+.lv-checkbox-label {
+  @apply text-sm text-secondary-700 select-none;
+}

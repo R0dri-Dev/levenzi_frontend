@@ -4,8 +4,8 @@ import { finalize } from 'rxjs';
 
 import { Auth } from '../../../../core/services/auth';
 import { LV_ROUTES } from '../../../../shared/constants/routes';
-import type { LoginFormData } from '../../../../shared/types/login-form.types';
 import { LvLoginFormComponent } from '../../../../shared/ui/organisms/login-form/login-form';
+import { LoginFormData } from '../../../../shared/interfaces/login.interface';
 
 @Component({
   selector: 'app-login',

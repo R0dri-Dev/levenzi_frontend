@@ -1,0 +1,50 @@
+@reference "../../../../../styles.css";
+/* spinner.css - Estilos propios del componente */
+.lv-spinner {
+  @apply animate-spin rounded-full border-4 border-solid;
+  border-color: var(--color-secondary-200);
+}
+
+.lv-spinner {
+  border-top-color: var(--color-primary-600);
+}
+
+/* Tamaños */
+.lv-spinner-xs {
+  @apply w-3 h-3 border-2;
+}
+.lv-spinner-sm {
+  @apply w-4 h-4 border-2;
+}
+.lv-spinner-md {
+  @apply w-6 h-6 border-[3px];
+}
+.lv-spinner-lg {
+  @apply w-8 h-8 border-4;
+}
+.lv-spinner-xl {
+  @apply w-10 h-10 border-4;
+}
+
+/* Colores usando tokens */
+.lv-spinner-primary {
+  border-top-color: var(--color-primary-600);
+}
+.lv-spinner-secondary {
+  border-top-color: var(--color-secondary-600);
+}
+.lv-spinner-success {
+  border-top-color: var(--color-success-600);
+}
+.lv-spinner-danger {
+  border-top-color: var(--color-danger-600);
+}
+.lv-spinner-warning {
+  border-top-color: var(--color-warning-500);
+}
+.lv-spinner-info {
+  border-top-color: var(--color-info-600);
+}
+.lv-spinner-neutral {
+  border-top-color: var(--color-neutral-600);
+}

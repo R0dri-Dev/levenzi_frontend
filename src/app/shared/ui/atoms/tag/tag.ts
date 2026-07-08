@@ -1,24 +1,17 @@
-import { Component, computed, input } from '@angular/core';
-import { TagVariant } from '../../../types/tag.types';
-import { LV_TAG_BASE, LV_TAG_VARIANTS } from '../../../theme/tag.theme';
-
+import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LvColorVariant } from '../../../types';
 
 @Component({
-
   selector: 'lv-tag',
-
   standalone: true,
-
-  templateUrl: './tag.html'
-
+  imports: [CommonModule],
+  templateUrl: './tag.html',
+  styleUrls: ['./tag.css'],
 })
 export class LvTagComponent {
-
-  readonly variant = input<TagVariant>('primary');
-
-  readonly classes = computed(() => [
-    LV_TAG_BASE,
-    LV_TAG_VARIANTS[this.variant()]
-  ].join(' '));
-
+  readonly color = input<LvColorVariant>('primary');
+  readonly size = input<'sm' | 'md' | 'lg'>('md');
+  readonly outline = input(false);
+  readonly rounded = input(false);
 }

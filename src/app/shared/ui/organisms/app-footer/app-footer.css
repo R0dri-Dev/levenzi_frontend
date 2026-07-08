@@ -1,0 +1,50 @@
+@reference "../../../../../styles.css";
+.lv-app-footer {
+  @apply w-full bg-white border-t border-secondary-200;
+}
+
+.lv-app-footer-content {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+}
+
+.lv-app-footer-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8;
+}
+
+.lv-app-footer-section {
+  @apply flex flex-col gap-3;
+}
+
+.lv-app-footer-links {
+  @apply list-none m-0 p-0 space-y-2;
+}
+
+.lv-app-footer-links li {
+  @apply flex items-center gap-1.5;
+}
+
+.lv-app-footer-links lv-link {
+  @apply text-sm;
+}
+
+.lv-app-footer-bottom {
+  @apply flex flex-col sm:flex-row items-center justify-between gap-4 pt-6;
+}
+
+.lv-app-footer-social {
+  @apply flex items-center gap-3;
+}
+
+.lv-app-footer-social lv-link {
+  @apply text-secondary-400 hover:text-secondary-600 transition-colors;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-app-footer-grid {
+    @apply grid-cols-1 gap-6;
+  }
+  .lv-app-footer-bottom {
+    @apply flex-col text-center;
+  }
+}

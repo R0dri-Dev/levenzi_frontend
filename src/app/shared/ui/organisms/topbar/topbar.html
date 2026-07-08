@@ -1,1 +1,60 @@
-<p>topbar works!</p>
+<header class="lv-topbar">
+  <div class="lv-topbar-container">
+    <!-- Left: Logo + Mobile Toggle -->
+    <div class="lv-topbar-left">
+      @if (showMobileMenu()) {
+        <lv-icon-button
+          icon="menu"
+          label="Menú"
+          variant="ghost"
+          size="md"
+          class="lv-topbar-mobile-toggle"
+          (onClick)="toggleMobile()" />
+      }
+
+      <lv-logo
+        [text]="brand()"
+        [link]="brandRoute()"
+        size="md"
+        color="primary" />
+    </div>
+
+    <!-- Center: Search -->
+    @if (showSearch()) {
+      <div class="lv-topbar-center">
+        <lv-search-box
+          placeholder="Buscar..."
+          size="sm"
+          (onSearch)="handleSearch($event)"
+          class="lv-topbar-search" />
+      </div>
+    }
+
+    <!-- Right: Actions -->
+    <div class="lv-topbar-right">
+      @for (action of actions(); track $index) {
+        <lv-icon-button
+          [icon]="action.icon"
+          [label]="action.label"
+          variant="ghost"
+          size="md"
+          (onClick)="action.action()">
+          @if (action.badge && action.badge > 0) {
+            <span class="lv-topbar-badge">{{ action.badge }}</span>
+          }
+        </lv-icon-button>
+      }
+
+      @if (showNotifications()) {
+        <lv-notifications-panel (onNotificationClick)="handleNotificationClick()" />
+      }
+
+      @if (showProfile() && user()) {
+        <lv-profile-dropdown
+          [user]="user()!"
+          [showUserInfo]="false"
+          (onItemClick)="handleProfileAction($event.label)" />
+      }
+    </div>
+  </div>
+</header>

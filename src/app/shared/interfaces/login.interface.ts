@@ -1,5 +1,5 @@
-export type {
-  LoginCredentials,
-  LoginRequest,
-  LoginResponse,
-} from '../types/auth.types';
+export interface LoginFormData {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}

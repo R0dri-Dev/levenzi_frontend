@@ -1,0 +1,86 @@
+@reference "../../../../../styles.css";
+/* paragraph.css - Estilos propios del componente */
+.lv-paragraph {
+  @apply m-0 leading-relaxed;
+}
+
+/* Tamaños usando tokens */
+.lv-paragraph-xs {
+  @apply text-xs;
+}
+.lv-paragraph-sm {
+  @apply text-sm;
+}
+.lv-paragraph-md {
+  @apply text-base;
+}
+.lv-paragraph-lg {
+  @apply text-lg;
+}
+.lv-paragraph-xl {
+  @apply text-xl;
+}
+
+/* Pesos */
+.lv-paragraph-light {
+  @apply font-light;
+}
+.lv-paragraph-normal {
+  @apply font-normal;
+}
+.lv-paragraph-medium {
+  @apply font-medium;
+}
+.lv-paragraph-semibold {
+  @apply font-semibold;
+}
+.lv-paragraph-bold {
+  @apply font-bold;
+}
+
+/* Colores usando tokens */
+.lv-paragraph-primary {
+  color: var(--color-primary-700);
+}
+.lv-paragraph-secondary {
+  color: var(--color-secondary-700);
+}
+.lv-paragraph-success {
+  color: var(--color-success-700);
+}
+.lv-paragraph-danger {
+  color: var(--color-danger-700);
+}
+.lv-paragraph-warning {
+  color: var(--color-warning-700);
+}
+.lv-paragraph-info {
+  color: var(--color-info-700);
+}
+.lv-paragraph-neutral {
+  color: var(--color-neutral-700);
+}
+
+/* Alineación */
+.lv-paragraph-left {
+  @apply text-left;
+}
+.lv-paragraph-center {
+  @apply text-center;
+}
+.lv-paragraph-right {
+  @apply text-right;
+}
+.lv-paragraph-justify {
+  @apply text-justify;
+}
+
+/* Truncate */
+.lv-paragraph-truncate {
+  @apply truncate;
+}
+
+/* Muted */
+.lv-paragraph-muted {
+  color: var(--color-secondary-500);
+}

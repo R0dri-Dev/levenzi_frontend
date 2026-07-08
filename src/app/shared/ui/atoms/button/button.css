@@ -1,0 +1,117 @@
+@reference "../../../../../styles.css";
+.lv-button {
+  @apply inline-flex items-center justify-center gap-2 font-medium transition-colors;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+/* Tamaños usando tokens */
+.lv-button-xs {
+  @apply px-2 py-1 text-xs rounded-md;
+  height: var(--size-xs);
+}
+
+.lv-button-sm {
+  @apply px-3 py-1.5 text-sm rounded-md;
+  height: var(--size-sm);
+}
+
+.lv-button-md {
+  @apply px-4 py-2 text-sm rounded-lg;
+  height: var(--size-md);
+}
+
+.lv-button-lg {
+  @apply px-5 py-2.5 text-base rounded-lg;
+  height: var(--size-lg);
+}
+
+.lv-button-xl {
+  @apply px-6 py-3 text-lg rounded-lg;
+  height: var(--size-xl);
+}
+
+/* Variantes usando tokens de color */
+.lv-button-primary {
+  background-color: var(--color-primary-600);
+  color: white;
+}
+.lv-button-primary:hover {
+  background-color: var(--color-primary-700);
+}
+.lv-button-primary:focus {
+  --tw-ring-color: var(--color-primary-500);
+}
+
+.lv-button-secondary {
+  background-color: var(--color-secondary-600);
+  color: white;
+}
+.lv-button-secondary:hover {
+  background-color: var(--color-secondary-700);
+}
+.lv-button-secondary:focus {
+  --tw-ring-color: var(--color-secondary-500);
+}
+
+.lv-button-success {
+  background-color: var(--color-success-600);
+  color: white;
+}
+.lv-button-success:hover {
+  background-color: var(--color-success-700);
+}
+.lv-button-success:focus {
+  --tw-ring-color: var(--color-success-500);
+}
+
+.lv-button-danger {
+  background-color: var(--color-danger-600);
+  color: white;
+}
+.lv-button-danger:hover {
+  background-color: var(--color-danger-700);
+}
+.lv-button-danger:focus {
+  --tw-ring-color: var(--color-danger-500);
+}
+
+.lv-button-warning {
+  background-color: var(--color-warning-500);
+  color: white;
+}
+.lv-button-warning:hover {
+  background-color: var(--color-warning-600);
+}
+.lv-button-warning:focus {
+  --tw-ring-color: var(--color-warning-400);
+}
+
+.lv-button-info {
+  background-color: var(--color-info-600);
+  color: white;
+}
+.lv-button-info:hover {
+  background-color: var(--color-info-700);
+}
+.lv-button-info:focus {
+  --tw-ring-color: var(--color-info-500);
+}
+
+.lv-button-neutral {
+  background-color: var(--color-neutral-600);
+  color: white;
+}
+.lv-button-neutral:hover {
+  background-color: var(--color-neutral-700);
+}
+.lv-button-neutral:focus {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+.lv-button-full {
+  @apply w-full;
+}
+
+.lv-button-loading {
+  @apply cursor-wait;
+}

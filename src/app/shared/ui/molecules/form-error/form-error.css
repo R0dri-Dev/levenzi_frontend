@@ -1,0 +1,58 @@
+@reference "../../../../../styles.css";
+.lv-form-error {
+  @apply flex items-start gap-2 rounded-md;
+}
+
+.lv-form-error-icon {
+  @apply flex-shrink-0 mt-0.5;
+}
+
+.lv-form-error-text {
+  @apply flex-1;
+}
+
+/* Variants */
+.lv-form-error-error {
+  @apply text-danger-600;
+}
+.lv-form-error-error .lv-form-error-icon {
+  color: var(--color-danger-500);
+}
+
+.lv-form-error-warning {
+  @apply text-warning-600;
+}
+.lv-form-error-warning .lv-form-error-icon {
+  color: var(--color-warning-500);
+}
+
+.lv-form-error-info {
+  @apply text-info-600;
+}
+.lv-form-error-info .lv-form-error-icon {
+  color: var(--color-info-500);
+}
+
+.lv-form-error-success {
+  @apply text-success-600;
+}
+.lv-form-error-success .lv-form-error-icon {
+  color: var(--color-success-500);
+}
+
+/* Sizes */
+.lv-form-error-xs {
+  @apply gap-1 p-0.5;
+}
+.lv-form-error-sm {
+  @apply gap-1.5 p-1;
+}
+.lv-form-error-md {
+  @apply gap-2 p-1.5;
+}
+.lv-form-error-lg {
+  @apply gap-2.5 p-2;
+}
+.lv-form-error-xl {
+  @apply gap-3 p-2.5;
+}

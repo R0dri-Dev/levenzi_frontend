@@ -1,0 +1,80 @@
+@reference "../../../../../styles.css";
+.lv-app-navbar {
+  @apply w-full bg-white border-b border-secondary-200;
+  @apply sticky top-0 z-50;
+}
+
+.lv-app-navbar-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply flex items-center justify-between h-16;
+}
+
+.lv-app-navbar-links {
+  @apply hidden md:flex items-center gap-1 list-none m-0 p-0;
+}
+
+.lv-app-navbar-links li {
+  @apply flex items-center;
+}
+
+.lv-app-navbar-links lv-link {
+  @apply px-3 py-2 rounded-md text-sm font-medium;
+  color: var(--color-secondary-600);
+}
+
+.lv-app-navbar-links lv-link:hover {
+  color: var(--color-secondary-900);
+  @apply bg-secondary-100;
+}
+
+.lv-app-navbar-link-active {
+  color: var(--color-primary-600) !important;
+  @apply bg-primary-50;
+}
+
+.lv-app-navbar-actions {
+  @apply flex items-center gap-2;
+}
+
+.lv-app-navbar-mobile-toggle {
+  @apply md:hidden;
+}
+
+.lv-app-navbar-mobile {
+  @apply md:hidden border-t border-secondary-200;
+  @apply bg-white;
+}
+
+.lv-app-navbar-mobile-links {
+  @apply flex flex-col p-4 gap-1 list-none m-0;
+}
+
+.lv-app-navbar-mobile-links li {
+  @apply w-full;
+}
+
+.lv-app-navbar-mobile-links lv-link {
+  @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium w-full;
+  color: var(--color-secondary-600);
+}
+
+.lv-app-navbar-mobile-links lv-link:hover {
+  color: var(--color-secondary-900);
+  @apply bg-secondary-100;
+}
+
+/* Animation */
+.lv-app-navbar-mobile {
+  animation: lv-navbar-slide-down 0.2s ease-out;
+}
+
+@keyframes lv-navbar-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

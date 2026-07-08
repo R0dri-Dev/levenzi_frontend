@@ -1,1 +1,115 @@
-<p>user-profile works!</p>
+<div class="lv-user-profile">
+  <lv-card [shadow]="true">
+    <div class="lv-user-profile-header">
+      <div class="lv-user-profile-avatar">
+        <lv-avatar
+          [src]="user().avatar || ''"
+          [initials]="getInitials()"
+          [alt]="user().name"
+          [size]="size()" />
+
+        @if (user().role) {
+          <lv-badge
+            [variant]="getRoleColor()">
+            {{ user().role }}
+          </lv-badge>
+        }
+      </div>
+
+      <div class="lv-user-profile-info">
+        <lv-heading level="2" color="neutral">
+          {{ user().name }}
+        </lv-heading>
+
+        <lv-paragraph size="md" color="neutral" [muted]="true">
+          {{ user().email }}
+        </lv-paragraph>
+
+        @if (user().department) {
+          <lv-paragraph size="sm" color="neutral" [muted]="true">
+            {{ user().department }}
+          </lv-paragraph>
+        }
+      </div>
+
+      @if (showActions()) {
+        <div class="lv-user-profile-actions">
+          <lv-button
+            variant="secondary"
+            [size]="size()"
+            (onClick)="handleMessage()">
+            <lv-icon name="mail" size="sm" />
+            Mensaje
+          </lv-button>
+          <lv-button
+            variant="primary"
+            [size]="size()"
+            (onClick)="handleFollow()">
+            <lv-icon name="user-plus" size="sm" />
+            Seguir
+          </lv-button>
+          <lv-button
+            variant="secondary"
+            appearance="ghost"
+            [size]="size()"
+            (onClick)="handleEdit()">
+            <lv-icon name="edit" size="sm" />
+          </lv-button>
+        </div>
+      }
+    </div>
+  </lv-card>
+
+  @if (showStats() && stats().length > 0) {
+    <lv-stats-panel [stats]="convertStatsToStatItems()" [columns]="4" />
+  }
+
+  <div class="lv-user-profile-grid">
+    @if (showBio() && user().bio) {
+      <lv-card [shadow]="true">
+        <lv-heading level="4" color="neutral">
+          Sobre mí
+        </lv-heading>
+        <lv-divider />
+        <lv-paragraph color="neutral">
+          {{ user().bio }}
+        </lv-paragraph>
+      </lv-card>
+    }
+
+    @if (showDetails()) {
+      <lv-card [shadow]="true">
+        <lv-heading level="4" color="neutral">
+          Información
+        </lv-heading>
+        <lv-divider />
+        <div class="lv-user-profile-details">
+          @if (user().location) {
+            <div class="lv-user-profile-detail">
+              <lv-icon name="map-pin" size="sm" />
+              <lv-paragraph size="sm" color="neutral">
+                {{ user().location }}
+              </lv-paragraph>
+            </div>
+          }
+          @if (user().phone) {
+            <div class="lv-user-profile-detail">
+              <lv-icon name="phone" size="sm" />
+              <lv-paragraph size="sm" color="neutral">
+                {{ user().phone }}
+              </lv-paragraph>
+            </div>
+          }
+          @if (user().joinDate) {
+            <div class="lv-user-profile-detail">
+              <lv-icon name="calendar" size="sm" />
+              <lv-paragraph size="sm" color="neutral">
+                Se unió el {{ user().joinDate }}
+              </lv-paragraph>
+            </div>
+          }
+        </div>
+      </lv-card>
+    }
+  </div>
+</div>

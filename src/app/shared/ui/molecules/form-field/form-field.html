@@ -1,1 +1,19 @@
-<p>form-field works!</p>
+<div class="lv-form-field">
+  @if (label()) {
+    <lv-label [text]="label()" [required]="required()" />
+  }
+
+  <div class="lv-form-field-control">
+    <ng-content />
+  </div>
+
+  @if (error()) {
+    <lv-paragraph size="sm" color="danger">
+      {{ error() }}
+    </lv-paragraph>
+  } @else if (hint()) {
+    <lv-paragraph size="sm" color="neutral" [muted]="true">
+      {{ hint() }}
+    </lv-paragraph>
+  }
+</div>

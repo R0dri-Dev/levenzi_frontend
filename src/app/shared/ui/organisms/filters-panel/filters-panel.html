@@ -1,18 +1,25 @@
-<lv-card>
-	<div class="space-y-4">
-		<ng-content select="[header]"></ng-content>
+<lv-card [shadow]="true">
+  <div class="lv-filters-panel lv-filters-panel-{{ size() }}">
+    @if (hasHeader()) {
+      <div class="lv-filters-panel-header">
+        <ng-content select="[header]"></ng-content>
+      </div>
+    }
 
-		<lv-page-filter
-			[variant]="variant()"
-			[layout]="layout()"
-			[spacing]="spacing()"
-			[fullWidth]="fullWidth()"
-		>
-			<ng-content select="[left]"></ng-content>
-			<ng-content select="[filters]"></ng-content>
-			<ng-content select="[right]"></ng-content>
-		</lv-page-filter>
+    <lv-page-filter
+      [appearance]="appearance()"
+      [size]="size()"
+      [fullWidth]="fullWidth()">
+      <ng-content select="[left]"></ng-content>
+      <ng-content select="[filters]"></ng-content>
+      <ng-content select="[right]"></ng-content>
+    </lv-page-filter>
 
-		<ng-content select="[footer]"></ng-content>
-	</div>
+    @if (hasFooter()) {
+      <lv-divider />
+      <div class="lv-filters-panel-footer">
+        <ng-content select="[footer]"></ng-content>
+      </div>
+    }
+  </div>
 </lv-card>

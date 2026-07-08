@@ -1,1 +1,73 @@
-<p>data-table works!</p>
+<div class="lv-data-table">
+  <!-- Header -->
+  <div class="lv-data-table-header">
+    <div class="lv-data-table-title">
+      @if (title()) {
+        <lv-heading level="3" color="neutral">
+          {{ title() }}
+        </lv-heading>
+      }
+      @if (description()) {
+        <lv-paragraph size="sm" color="neutral" [muted]="true">
+          {{ description() }}
+        </lv-paragraph>
+      }
+    </div>
+
+    @if (showActions()) {
+      <div class="lv-data-table-actions">
+        @if (showFilter()) {
+          <lv-button
+            variant="secondary"
+            size="sm"
+            (onClick)="toggleFilters()">
+            <lv-icon name="filter" size="sm" />
+            Filtrar
+          </lv-button>
+        }
+        <lv-button
+          variant="secondary"
+          size="sm"
+          (onClick)="handleRefresh()">
+          <lv-icon name="refresh" size="sm" />
+        </lv-button>
+        <lv-button
+          variant="secondary"
+          size="sm"
+          (onClick)="handleExport()">
+          <lv-icon name="download" size="sm" />
+          Exportar
+        </lv-button>
+        <lv-button
+          variant="primary"
+          size="sm"
+          (onClick)="handleAdd()">
+          <lv-icon name="plus" size="sm" />
+          Agregar
+        </lv-button>
+      </div>
+    }
+  </div>
+
+  <!-- Filters -->
+  @if (showFilter() && hasFilters()) {
+    <lv-data-filter>
+      <ng-content select="[filters]"></ng-content>
+    </lv-data-filter>
+  }
+
+  <!-- Table -->
+  <lv-table
+    [data]="data()"
+    [columns]="columns()"
+    [loading]="loading()"
+    [emptyMessage]="emptyMessage()"
+    [actions]="actions()"
+    [selectable]="selectable()"
+    [pagination]="pagination()"
+    [sort]="sort()"
+    (onRowClick)="onRowClick.emit($event)"
+    (onSort)="onSort.emit($event)"
+    (onPageChange)="onPageChange.emit($event)"
+    (onSelectionChange)="onSelectionChange.emit($event)" />
+</div>

@@ -1,39 +1,32 @@
-import { Component, computed, input, output } from '@angular/core';
-import {
-  LV_TEXTAREA_BASE,
-  LV_TEXTAREA_SIZES,
-  LV_TEXTAREA_VARIANTS,
-} from '../../../theme/textarea.theme';
-import type { TextareaVariant, TextareaSize } from '../../../types/textarea.types';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LvSize, LvColorVariant, LvAppearance } from '../../../types';
 
 @Component({
   selector: 'lv-textarea',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './textarea.html',
-  styleUrl: './textarea.css',
+  styleUrls: ['./textarea.css'],
 })
 export class LvTextareaComponent {
   readonly value = input<string>('');
   readonly placeholder = input<string>('');
   readonly disabled = input(false);
-
-  readonly variant = input<TextareaVariant>('primary');
-  readonly size = input<TextareaSize>('md');
+  readonly variant = input<LvColorVariant>('primary');
+  readonly appearance = input<LvAppearance>('outline');
+  readonly size = input<LvSize>('md');
+  readonly rows = input<number>(3);
+  readonly label = input<string>('');
+  readonly required = input(false);
+  readonly error = input<string>('');
+  readonly hint = input<string>('');
 
   readonly onValueChange = output<string>();
 
-  readonly classes = computed(() => {
-    const base = LV_TEXTAREA_BASE;
-    const variant = LV_TEXTAREA_VARIANTS[this.variant()];
-    const size = LV_TEXTAREA_SIZES[this.size()];
-    return [base, variant, size].filter(Boolean).join(' ');
-  });
-
-  handleInput(value: string): void {
+  handleInput(event: Event): void {
     if (this.disabled()) return;
+    const value = (event.target as HTMLTextAreaElement).value;
     this.onValueChange.emit(value);
   }
 }
-

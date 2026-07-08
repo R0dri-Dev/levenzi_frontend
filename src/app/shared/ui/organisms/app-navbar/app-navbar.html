@@ -1,1 +1,101 @@
-<p>app-navbar works!</p>
+<nav class="lv-app-navbar" role="navigation">
+  <div class="lv-app-navbar-container">
+    <!-- Brand -->
+    <lv-logo
+      [text]="brand()"
+      [link]="brandRoute()"
+      size="md"
+      color="primary" />
+
+    <!-- Desktop Links -->
+    <ul class="lv-app-navbar-links">
+      @for (link of links(); track $index) {
+        <li>
+          @if (link.route) {
+            <lv-link
+              [routerLink]="link.route"
+              color="neutral"
+              [underline]="false"
+              [class.lv-app-navbar-link-active]="isActive(link)">
+              @if (link.icon) {
+                <lv-icon [name]="link.icon" size="sm" />
+              }
+              {{ link.label }}
+            </lv-link>
+          } @else if (link.url) {
+            <lv-link
+              [href]="link.url"
+              [external]="true"
+              color="neutral"
+              [underline]="false">
+              @if (link.icon) {
+                <lv-icon [name]="link.icon" size="sm" />
+              }
+              {{ link.label }}
+            </lv-link>
+          }
+        </li>
+      }
+    </ul>
+
+    <!-- Right Side -->
+    <div class="lv-app-navbar-actions">
+      @if (showUserMenu() && user()) {
+        <lv-user-menu
+          [user]="user()!"
+          [items]="[
+            { label: 'Mi Perfil', icon: 'user', route: '/profile' },
+            { label: 'Configuración', icon: 'settings', route: '/settings' },
+            { divider: true },
+            { label: 'Cerrar Sesión', icon: 'close', danger: true, action: () => handleUserAction('logout') }
+          ]" />
+      }
+
+      <!-- Mobile Toggle -->
+      <lv-icon-button
+        icon="menu"
+        label="Menú"
+        variant="ghost"
+        size="md"
+        class="lv-app-navbar-mobile-toggle"
+        (onClick)="toggleMobile()" />
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  @if (mobileOpen()) {
+    <div class="lv-app-navbar-mobile">
+      <ul class="lv-app-navbar-mobile-links">
+        @for (link of links(); track $index) {
+          <li>
+            @if (link.route) {
+              <lv-link
+                [routerLink]="link.route"
+                color="neutral"
+                [underline]="false"
+                [class.lv-app-navbar-link-active]="isActive(link)"
+                (click)="closeMobile()">
+                @if (link.icon) {
+                  <lv-icon [name]="link.icon" size="sm" />
+                }
+                {{ link.label }}
+              </lv-link>
+            } @else if (link.url) {
+              <lv-link
+                [href]="link.url"
+                [external]="true"
+                color="neutral"
+                [underline]="false"
+                (click)="closeMobile()">
+                @if (link.icon) {
+                  <lv-icon [name]="link.icon" size="sm" />
+                }
+                {{ link.label }}
+              </lv-link>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</nav>

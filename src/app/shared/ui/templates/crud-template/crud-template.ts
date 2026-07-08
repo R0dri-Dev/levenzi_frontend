@@ -1,39 +1,23 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LvHeadingComponent } from '../../atoms/heading/heading';
+import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
+import { LvDividerComponent } from '../../atoms/divider/divider';
+import { LvSize, LvColorVariant } from '../../../types';
 
-import {
-  LV_CRUD_TEMPLATE_BASE,
-  LV_CRUD_TEMPLATE_VARIANTS,
-  LV_CRUD_TEMPLATE_SIZES,
-  LV_CRUD_TEMPLATE_TOOLBAR,
-  LV_CRUD_TEMPLATE_CONTENT,
-  LV_CRUD_TEMPLATE_ACTIONS,
-} from '../../../theme/crud-template.theme';
-import type { CrudTemplateVariant, CrudTemplateSize } from '../../../types/crud-template.types';
+export type CrudTemplateVariant = 'default' | 'bordered' | 'shadow';
 
 @Component({
   selector: 'lv-crud-template',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LvHeadingComponent, LvParagraphComponent],
   templateUrl: './crud-template.html',
-  styleUrl: './crud-template.css',
+  styleUrls: ['./crud-template.css'],
 })
 export class LvCrudTemplateComponent {
   readonly variant = input<CrudTemplateVariant>('default');
-  readonly size = input<CrudTemplateSize>('xl');
+  readonly size = input<LvSize>('xl');
   readonly title = input<string>('');
   readonly subtitle = input<string>('');
-
-  readonly classes = computed(() => {
-    const base = LV_CRUD_TEMPLATE_BASE;
-    const variant = LV_CRUD_TEMPLATE_VARIANTS[this.variant()];
-    const size = LV_CRUD_TEMPLATE_SIZES[this.size()];
-
-    return {
-      template: [base, variant, size].filter(Boolean).join(' '),
-      toolbar: LV_CRUD_TEMPLATE_TOOLBAR,
-      content: LV_CRUD_TEMPLATE_CONTENT,
-      actions: LV_CRUD_TEMPLATE_ACTIONS,
-    };
-  });
+  readonly color = input<LvColorVariant>('primary');
 }

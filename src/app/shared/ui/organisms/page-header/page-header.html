@@ -1,29 +1,35 @@
-<header [class]="classes().header">
-  <div [class]="classes().content">
-    <div [class]="getAlignmentClass()">
-      <!-- Breadcrumb -->
+<header class="lv-page-header lv-page-header-{{ align() }}">
+  <div class="lv-page-header-content">
+    <div class="lv-page-header-text">
       @if (breadcrumb().length > 0) {
-        <div [class]="classes().breadcrumb">
-          <lv-breadcrumb [items]="breadcrumb()" />
+        <div class="lv-page-header-breadcrumb">
+          <lv-breadcrumb [items]="breadcrumb()" [color]="color()" />
         </div>
       }
 
-      <!-- Title -->
-      <h1 [class]="classes().title">
+      <lv-heading
+        [level]="'1'"
+        [text]="title()"
+        [color]="color()"
+        [textAlign]="align()">
         @if (icon()) {
-          <lv-icon [name]="icon()!" size="lg" class="mr-2" />
+          <lv-icon [name]="icon()!" size="lg" />
         }
         {{ title() }}
-      </h1>
+      </lv-heading>
 
-      <!-- Subtitle -->
       @if (subtitle()) {
-        <p [class]="classes().subtitle">{{ subtitle() }}</p>
+        <lv-paragraph
+          size="lg"
+          color="neutral"
+          [muted]="true"
+          [align]="align()">
+          {{ subtitle() }}
+        </lv-paragraph>
       }
     </div>
 
-    <!-- Actions -->
-    <div [class]="classes().actions">
+    <div class="lv-page-header-actions">
       <ng-content></ng-content>
     </div>
   </div>

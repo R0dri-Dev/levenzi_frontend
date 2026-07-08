@@ -1,0 +1,95 @@
+@reference "../../../../../styles.css";
+.lv-page {
+  @apply w-full flex-1;
+}
+
+.lv-page-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
+}
+
+.lv-page-content {
+  @apply w-full;
+}
+
+.lv-page-full .lv-page-container {
+  @apply max-w-full px-0;
+}
+
+/* Variants */
+.lv-page-default {
+  @apply bg-transparent;
+}
+.lv-page-bordered {
+  @apply bg-white border border-secondary-200 rounded-lg;
+}
+.lv-page-bordered .lv-page-container {
+  @apply py-6;
+}
+.lv-page-shadow {
+  @apply bg-white rounded-lg shadow-md;
+}
+.lv-page-shadow .lv-page-container {
+  @apply py-6;
+}
+
+/* Sizes */
+.lv-page-xs .lv-page-container {
+  @apply max-w-xs;
+}
+.lv-page-sm .lv-page-container {
+  @apply max-w-sm;
+}
+.lv-page-md .lv-page-container {
+  @apply max-w-md;
+}
+.lv-page-lg .lv-page-container {
+  @apply max-w-lg;
+}
+.lv-page-xl .lv-page-container {
+  @apply max-w-xl;
+}
+.lv-page-2xl .lv-page-container {
+  @apply max-w-2xl;
+}
+.lv-page-3xl .lv-page-container {
+  @apply max-w-3xl;
+}
+.lv-page-4xl .lv-page-container {
+  @apply max-w-4xl;
+}
+.lv-page-5xl .lv-page-container {
+  @apply max-w-5xl;
+}
+.lv-page-6xl .lv-page-container {
+  @apply max-w-6xl;
+}
+.lv-page-7xl .lv-page-container {
+  @apply max-w-7xl;
+}
+
+.lv-page-xs .lv-page-container {
+  @apply py-3 px-2;
+}
+.lv-page-sm .lv-page-container {
+  @apply py-4 px-3;
+}
+.lv-page-md .lv-page-container {
+  @apply py-5 px-4;
+}
+.lv-page-lg .lv-page-container {
+  @apply py-6 px-5;
+}
+.lv-page-xl .lv-page-container {
+  @apply py-8 px-6;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-page-container {
+    @apply px-3 py-4;
+  }
+  .lv-page-bordered .lv-page-container,
+  .lv-page-shadow .lv-page-container {
+    @apply py-4;
+  }
+}

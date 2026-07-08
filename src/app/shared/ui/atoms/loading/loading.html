@@ -1,11 +1,11 @@
-<div [class]="classes">
+<div
+  class="lv-loading"
+  [class.lv-loading-fullscreen]="fullScreen()"
+  [class.lv-loading-overlay]="overlay()">
 
-<lv-spinner size="lg"/>
+  <lv-spinner [size]="size()" />
 
-<p class="text-sm text-gray-500">
-
-{{text()}}
-
-</p>
-
+  <p class="lv-loading-text">
+    {{ text() }}
+  </p>
 </div>

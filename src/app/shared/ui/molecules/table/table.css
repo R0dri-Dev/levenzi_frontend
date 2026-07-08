@@ -1,0 +1,144 @@
+@reference "../../../../../styles.css";
+.lv-table-wrapper {
+  @apply w-full overflow-x-auto bg-white rounded-lg border border-secondary-200;
+}
+
+.lv-table-loading {
+  @apply flex items-center justify-center py-12;
+}
+
+.lv-table-loading-text {
+  @apply ml-3;
+}
+
+.lv-table {
+  @apply w-full text-left border-collapse;
+}
+
+.lv-table-head {
+  @apply bg-secondary-50;
+}
+
+.lv-table-head-cell {
+  @apply px-4 py-3 text-xs font-medium uppercase tracking-wider;
+  color: var(--color-secondary-600);
+}
+
+.lv-table-head-cell-left {
+  @apply text-left;
+}
+.lv-table-head-cell-center {
+  @apply text-center;
+}
+.lv-table-head-cell-right {
+  @apply text-right;
+}
+
+.lv-table-head-content {
+  @apply flex items-center gap-1;
+}
+
+.lv-table-head-cell-center .lv-table-head-content {
+  @apply justify-center;
+}
+.lv-table-head-cell-right .lv-table-head-content {
+  @apply justify-end;
+}
+
+.lv-table-sort-icon {
+  @apply inline-flex;
+  color: var(--color-secondary-400);
+}
+
+.lv-table-sort-active {
+  color: var(--color-primary-600);
+}
+
+.lv-table-body {
+  @apply divide-y divide-secondary-200;
+}
+
+.lv-table-row {
+  @apply transition-colors duration-150;
+}
+
+.lv-table-row:hover {
+  @apply bg-secondary-50;
+}
+
+.lv-table-row-selected {
+  @apply bg-primary-50;
+}
+
+.lv-table-cell {
+  @apply px-4 py-3;
+}
+
+.lv-table-cell-left {
+  @apply text-left;
+}
+.lv-table-cell-center {
+  @apply text-center;
+}
+.lv-table-cell-right {
+  @apply text-right;
+}
+
+.lv-table-actions {
+  @apply flex items-center justify-center gap-1;
+}
+
+.lv-table-empty {
+  @apply px-4 py-12 text-center;
+}
+
+.lv-table-pagination {
+  @apply flex items-center justify-between px-4 py-3 border-t border-secondary-200;
+}
+
+.lv-table-pagination-buttons {
+  @apply flex items-center gap-1;
+}
+
+/* Sizes */
+.lv-table-xs .lv-table-head-cell {
+  @apply px-2 py-1.5 text-xs;
+}
+.lv-table-xs .lv-table-cell {
+  @apply px-2 py-1.5 text-xs;
+}
+
+.lv-table-sm .lv-table-head-cell {
+  @apply px-3 py-2 text-xs;
+}
+.lv-table-sm .lv-table-cell {
+  @apply px-3 py-2 text-sm;
+}
+
+.lv-table-md .lv-table-head-cell {
+  @apply px-4 py-3 text-xs;
+}
+.lv-table-md .lv-table-cell {
+  @apply px-4 py-3 text-sm;
+}
+
+.lv-table-lg .lv-table-head-cell {
+  @apply px-5 py-3.5 text-sm;
+}
+.lv-table-lg .lv-table-cell {
+  @apply px-5 py-3.5 text-base;
+}
+
+.lv-table-xl .lv-table-head-cell {
+  @apply px-6 py-4 text-sm;
+}
+.lv-table-xl .lv-table-cell {
+  @apply px-6 py-4 text-base;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-table-pagination {
+    @apply flex-col gap-2 items-center;
+  }
+}

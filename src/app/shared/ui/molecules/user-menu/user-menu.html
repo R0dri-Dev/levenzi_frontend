@@ -1,74 +1,77 @@
-<div [class]="classes().base" #dropdown>
-  <!-- Trigger -->
-  <button
-    type="button"
-    [class]="classes().trigger"
-    (click)="toggle()"
-    aria-expanded="isOpen()"
-    aria-haspopup="true"
-  >
+<div class="lv-user-menu" #dropdown>
+  <lv-button
+    variant="secondary"
+    appearance="ghost"
+    size="sm"
+    class="lv-user-menu-trigger"
+    (onClick)="toggle()"
+    [attr.aria-expanded]="isOpen()"
+    aria-haspopup="true">
+
     @if (showAvatar()) {
-      @if (user().avatar) {
-        <img
-          [src]="user().avatar"
-          [alt]="user().name"
-          [class]="classes().avatarImage"
-        />
-      } @else {
-        <div [class]="classes().avatar">
-          {{ getInitials() }}
-        </div>
-      }
+      <lv-avatar
+        [src]="user().avatar || ''"
+        [initials]="user().initials || ''"
+        [alt]="user().name"
+        size="sm" />
     }
 
     @if (showUserInfo()) {
-      <div [class]="classes().userInfo">
-        <span [class]="classes().userName">{{ user().name }}</span>
-        <span [class]="classes().userEmail">{{ user().email }}</span>
+      <div class="lv-user-menu-info">
+        <lv-paragraph size="sm" weight="semibold" color="neutral">
+          {{ user().name }}
+        </lv-paragraph>
+        <lv-paragraph size="xs" color="neutral" [muted]="true">
+          {{ user().email }}
+        </lv-paragraph>
       </div>
     }
 
-    <lv-icon name="chevron-down" size="sm" class="text-gray-400" />
-  </button>
+    <lv-icon name="chevron-down" size="sm" class="lv-user-menu-chevron" />
+  </lv-button>
 
-  <!-- Dropdown -->
   @if (isOpen()) {
-    <div [class]="classes().dropdown" role="menu">
+    <div class="lv-user-menu-dropdown" role="menu">
       @if (showUserInfo()) {
-        <div [class]="classes().header">
-          <div class="font-medium text-gray-900">{{ user().name }}</div>
-          <div class="text-xs text-gray-500">{{ user().email }}</div>
+        <div class="lv-user-menu-header">
+          <lv-paragraph size="sm" weight="semibold" color="neutral">
+            {{ user().name }}
+          </lv-paragraph>
+          <lv-paragraph size="xs" color="neutral" [muted]="true">
+            {{ user().email }}
+          </lv-paragraph>
         </div>
       }
 
       @for (item of items(); track $index) {
         @if (item.divider) {
-          <hr [class]="classes().divider" />
+          <lv-divider />
         } @else {
           @if (item.route) {
-            <a
+            <lv-link
               [routerLink]="item.route"
-              [class]="itemClass(item)"
-              role="menuitem"
-              (click)="close()"
-            >
+              [color]="item.danger ? 'danger' : 'neutral'"
+              class="lv-user-menu-item"
+              [class.lv-user-menu-item-danger]="item.danger"
+              (click)="close()">
               @if (item.icon) {
                 <lv-icon [name]="item.icon" size="sm" />
               }
               {{ item.label }}
-            </a>
+            </lv-link>
           } @else {
-            <button
-              type="button"
-              [class]="itemClass(item)"
-              role="menuitem"
-              (click)="handleItemClick(item)"
-            >
+            <lv-button
+              variant="secondary"
+              appearance="ghost"
+              size="sm"
+              class="lv-user-menu-item"
+              [class.lv-user-menu-item-danger]="item.danger"
+              (onClick)="handleItemClick(item)">
               @if (item.icon) {
                 <lv-icon [name]="item.icon" size="sm" />
               }
               {{ item.label }}
-            </button>
+            </lv-button>
           }
         }
       }

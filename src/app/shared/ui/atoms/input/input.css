@@ -1,0 +1,269 @@
+@reference "../../../../../styles.css";
+
+.lv-input-wrapper {
+  @apply w-full space-y-1.5;
+}
+
+/* Label */
+.lv-input-label {
+  @apply block text-sm font-medium;
+  color: var(--color-secondary-700);
+}
+.lv-input-required {
+  color: var(--color-danger-500);
+  @apply ml-0.5;
+}
+
+/* Contenedor = ÚNICA caja visual (borde, fondo, radio) */
+.lv-input-container {
+  @apply w-full flex items-center gap-2 transition-all duration-200;
+}
+
+/* El input interno nunca tiene borde/fondo/ring propio */
+.lv-input {
+  @apply w-full h-full bg-transparent outline-none appearance-none;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important; /* que el radio lo maneje solo el container */
+  @apply placeholder:text-secondary-400;
+  @apply disabled:cursor-not-allowed disabled:opacity-60;
+  @apply read-only:cursor-default;
+}
+.lv-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Ícono */
+.lv-input-icon {
+  @apply shrink-0 text-secondary-400 pointer-events-none transition-colors duration-200;
+}
+.lv-input-container:focus-within .lv-input-icon {
+  color: var(--color-primary-500);
+}
+
+/* ============ TAMAÑOS (ahora en el contenedor) ============ */
+.lv-input-xs {
+  @apply px-2 rounded text-xs;
+  height: var(--size-xs);
+}
+.lv-input-xs .lv-input-icon {
+  @apply w-3.5 h-3.5;
+}
+
+.lv-input-sm {
+  @apply px-3 rounded-md text-sm;
+  height: var(--size-sm);
+}
+.lv-input-sm .lv-input-icon {
+  @apply w-4 h-4;
+}
+
+.lv-input-md {
+  @apply px-4 rounded-lg text-sm;
+  height: var(--size-md);
+}
+.lv-input-md .lv-input-icon {
+  @apply w-5 h-5;
+}
+
+.lv-input-lg {
+  @apply px-5 rounded-lg text-base;
+  height: var(--size-lg);
+}
+.lv-input-lg .lv-input-icon {
+  @apply w-5 h-5;
+}
+
+.lv-input-xl {
+  @apply px-6 rounded-xl text-lg;
+  height: var(--size-xl);
+}
+.lv-input-xl .lv-input-icon {
+  @apply w-6 h-6;
+}
+
+/* ============ VARIANTE OUTLINE (estilo Flowbite claro) ============ */
+.lv-input-outline {
+  @apply border bg-white;
+  border-color: var(--color-secondary-300);
+}
+.lv-input-outline:focus-within {
+  @apply ring-1;
+  border-color: var(--color-primary-500);
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-input-outline.lv-input-secondary:focus-within {
+  border-color: var(--color-secondary-500);
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-input-outline.lv-input-success:focus-within {
+  border-color: var(--color-success-500);
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-input-outline.lv-input-danger:focus-within {
+  border-color: var(--color-danger-500);
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-input-outline.lv-input-warning:focus-within {
+  border-color: var(--color-warning-500);
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-input-outline.lv-input-info:focus-within {
+  border-color: var(--color-info-500);
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-input-outline.lv-input-neutral:focus-within {
+  border-color: var(--color-neutral-500);
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* ============ VARIANTE SOLID ============ */
+.lv-input-solid {
+  @apply border-0 bg-secondary-100;
+}
+.lv-input-solid:focus-within {
+  @apply ring-2;
+  background-color: var(--color-secondary-200);
+  --tw-ring-color: var(--color-secondary-400);
+}
+.lv-input-solid.lv-input-primary {
+  background-color: var(--color-primary-50);
+}
+.lv-input-solid.lv-input-primary:focus-within {
+  background-color: var(--color-primary-100);
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-input-solid.lv-input-success {
+  background-color: var(--color-success-50);
+}
+.lv-input-solid.lv-input-success:focus-within {
+  background-color: var(--color-success-100);
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-input-solid.lv-input-danger {
+  background-color: var(--color-danger-50);
+}
+.lv-input-solid.lv-input-danger:focus-within {
+  background-color: var(--color-danger-100);
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-input-solid.lv-input-warning {
+  background-color: var(--color-warning-50);
+}
+.lv-input-solid.lv-input-warning:focus-within {
+  background-color: var(--color-warning-100);
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-input-solid.lv-input-info {
+  background-color: var(--color-info-50);
+}
+.lv-input-solid.lv-input-info:focus-within {
+  background-color: var(--color-info-100);
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-input-solid.lv-input-neutral {
+  background-color: var(--color-neutral-100);
+}
+.lv-input-solid.lv-input-neutral:focus-within {
+  background-color: var(--color-neutral-200);
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* ============ VARIANTE GHOST ============ */
+.lv-input-ghost {
+  @apply border-0 bg-transparent;
+}
+.lv-input-ghost:focus-within {
+  @apply ring-2;
+  --tw-ring-color: var(--color-primary-500);
+}
+.lv-input-ghost.lv-input-secondary:focus-within {
+  --tw-ring-color: var(--color-secondary-500);
+}
+.lv-input-ghost.lv-input-success:focus-within {
+  --tw-ring-color: var(--color-success-500);
+}
+.lv-input-ghost.lv-input-danger:focus-within {
+  --tw-ring-color: var(--color-danger-500);
+}
+.lv-input-ghost.lv-input-warning:focus-within {
+  --tw-ring-color: var(--color-warning-500);
+}
+.lv-input-ghost.lv-input-info:focus-within {
+  --tw-ring-color: var(--color-info-500);
+}
+.lv-input-ghost.lv-input-neutral:focus-within {
+  --tw-ring-color: var(--color-neutral-500);
+}
+
+/* ============ VARIANTE LIGHT ============ */
+.lv-input-light {
+  @apply border-0 bg-secondary-50;
+}
+.lv-input-light:focus-within {
+  background-color: var(--color-secondary-100);
+}
+.lv-input-light.lv-input-primary {
+  background-color: var(--color-primary-50);
+}
+.lv-input-light.lv-input-primary:focus-within {
+  background-color: var(--color-primary-100);
+}
+.lv-input-light.lv-input-success {
+  background-color: var(--color-success-50);
+}
+.lv-input-light.lv-input-success:focus-within {
+  background-color: var(--color-success-100);
+}
+.lv-input-light.lv-input-danger {
+  background-color: var(--color-danger-50);
+}
+.lv-input-light.lv-input-danger:focus-within {
+  background-color: var(--color-danger-100);
+}
+.lv-input-light.lv-input-warning {
+  background-color: var(--color-warning-50);
+}
+.lv-input-light.lv-input-warning:focus-within {
+  background-color: var(--color-warning-100);
+}
+.lv-input-light.lv-input-info {
+  background-color: var(--color-info-50);
+}
+.lv-input-light.lv-input-info:focus-within {
+  background-color: var(--color-info-100);
+}
+.lv-input-light.lv-input-neutral {
+  background-color: var(--color-neutral-100);
+}
+
+/* ============ ESTADO ERROR ============ */
+.lv-input-container.lv-input-error {
+  border-color: var(--color-danger-500) !important;
+}
+.lv-input-container.lv-input-error:focus-within {
+  --tw-ring-color: var(--color-danger-500) !important;
+}
+.lv-input-container.lv-input-error .lv-input-icon {
+  color: var(--color-danger-500) !important;
+}
+
+/* Estados disabled/readonly ahora en el contenedor */
+.lv-input-container:has(.lv-input:disabled) {
+  @apply bg-secondary-50 cursor-not-allowed opacity-60;
+}
+.lv-input-container:has(.lv-input:read-only) {
+  @apply bg-secondary-50 cursor-default;
+}
+
+/* Error y hint */
+.lv-input-error {
+  @apply text-sm;
+  color: var(--color-danger-600);
+}
+.lv-input-hint {
+  @apply text-sm;
+  color: var(--color-secondary-500);
+}

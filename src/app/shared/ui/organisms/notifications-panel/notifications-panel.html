@@ -1,1 +1,92 @@
-<p>notifications-panel works!</p>
+<div class="lv-notifications-panel">
+  <lv-icon-button
+    icon="bell"
+    label="Notificaciones"
+    variant="ghost"
+    size="md"
+    (onClick)="toggle()">
+    @if (getUnreadCount() > 0) {
+      <span class="lv-notifications-badge">{{ getUnreadCount() }}</span>
+    }
+  </lv-icon-button>
+
+  @if (isOpen()) {
+    <div class="lv-notifications-dropdown">
+      <div class="lv-notifications-header">
+        <lv-heading level="5" color="neutral">
+          {{ title() }}
+        </lv-heading>
+        <div class="lv-notifications-header-actions">
+          @if (showMarkAll() && getUnreadCount() > 0) {
+            <lv-button
+              variant="secondary"
+              appearance="ghost"
+              size="sm"
+              (onClick)="handleMarkAllRead()">
+              Marcar todas como leídas
+            </lv-button>
+          }
+          <lv-icon-button
+            icon="x"
+            label="Cerrar"
+            variant="ghost"
+            size="sm"
+            (onClick)="close()" />
+        </div>
+      </div>
+
+      <lv-divider />
+
+      <div class="lv-notifications-list">
+        @if (loading()) {
+          <div class="lv-notifications-loading">
+            <lv-paragraph size="sm" color="neutral" [muted]="true">
+              Cargando...
+            </lv-paragraph>
+          </div>
+        } @else if (notifications().length === 0) {
+          <div class="lv-notifications-empty">
+            <lv-icon name="bell-off" size="lg" />
+            <lv-paragraph size="sm" color="neutral" [muted]="true">
+              {{ emptyMessage() }}
+            </lv-paragraph>
+          </div>
+        } @else {
+          @for (notification of notifications(); track notification.id) {
+            <div
+              class="lv-notification-item"
+              [class.lv-notification-item-unread]="!notification.read"
+              (click)="handleNotificationClick(notification)">
+              <div class="lv-notification-icon lv-notification-icon-{{ getNotificationVariant(notification) }}">
+                <lv-icon [name]="getNotificationIcon(notification)" size="sm" />
+              </div>
+              <div class="lv-notification-content">
+                <lv-paragraph size="sm" weight="medium" color="neutral">
+                  {{ notification.title }}
+                </lv-paragraph>
+                <lv-paragraph size="xs" color="neutral" [muted]="true">
+                  {{ notification.message }}
+                </lv-paragraph>
+                <lv-paragraph size="xs" color="neutral" [muted]="true">
+                  {{ notification.time }}
+                </lv-paragraph>
+              </div>
+              @if (!notification.read) {
+                <span class="lv-notification-dot"></span>
+              }
+            </div>
+          }
+        }
+      </div>
+
+      @if (notifications().length > 0) {
+        <lv-divider />
+        <div class="lv-notifications-footer">
+          <lv-link color="primary" [underline]="true" routerLink="/notifications">
+            Ver todas
+          </lv-link>
+        </div>
+      }
+    </div>
+  }
+</div>

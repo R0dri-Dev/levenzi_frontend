@@ -1,8 +1,8 @@
-<div [class]="classes().template">
-  <div [class]="classes().container">
+<div class="lv-page lv-page-{{ variant() }} lv-page-{{ size() }}">
+  <div class="lv-page-container" [class.lv-page-full]="fullWidth()">
     <ng-content select="[header]"></ng-content>
 
-    <div [class]="classes().content">
+    <div class="lv-page-content">
       <ng-content></ng-content>
     </div>
 

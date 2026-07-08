@@ -1,28 +1,20 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LinkVariant } from '../../../types/link.types';
-import { LV_LINK_BASE, LV_LINK_VARIANTS } from '../../../theme/link.theme';
-
+import { CommonModule } from '@angular/common';
+import { LvColorVariant } from '../../../types';
 
 @Component({
-selector:'lv-link',
-standalone:true,
-imports:[RouterLink],
-templateUrl:'./link.html'
+  selector: 'lv-link',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  templateUrl: './link.html',
+  styleUrls: ['./link.css'],
 })
-export class LvLinkComponent{
-
-readonly href=input('');
-
-readonly routerLink=input('');
-
-readonly external=input(false);
-
-readonly variant=input<LinkVariant>('primary');
-
-readonly classes=computed(()=>[
-LV_LINK_BASE,
-LV_LINK_VARIANTS[this.variant()]
-].join(' '));
-
+export class LvLinkComponent {
+  readonly href = input('');
+  readonly routerLink = input('');
+  readonly external = input(false);
+  readonly color = input<LvColorVariant>('primary');
+  readonly underline = input<boolean>(true);
+  readonly bold = input<boolean>(false);
 }

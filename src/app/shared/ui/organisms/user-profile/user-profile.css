@@ -1,0 +1,49 @@
+@reference "../../../../../styles.css";
+.lv-user-profile {
+  @apply flex flex-col gap-6 max-w-4xl mx-auto;
+}
+
+.lv-user-profile-header {
+  @apply flex flex-col sm:flex-row items-center sm:items-start gap-6 p-6;
+}
+
+.lv-user-profile-avatar {
+  @apply flex flex-col items-center gap-2 flex-shrink-0;
+}
+
+.lv-user-profile-info {
+  @apply flex-1 text-center sm:text-left min-w-0;
+}
+
+.lv-user-profile-actions {
+  @apply flex items-center gap-2 flex-shrink-0 flex-wrap justify-center sm:justify-start;
+}
+
+.lv-user-profile-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.lv-user-profile-details {
+  @apply flex flex-col gap-3;
+}
+
+.lv-user-profile-detail {
+  @apply flex items-center gap-2;
+}
+
+.lv-user-profile-detail lv-icon {
+  color: var(--color-secondary-400);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-user-profile-header {
+    @apply flex-col items-center text-center gap-4 p-4;
+  }
+  .lv-user-profile-actions {
+    @apply justify-center;
+  }
+  .lv-user-profile-grid {
+    @apply grid-cols-1;
+  }
+}

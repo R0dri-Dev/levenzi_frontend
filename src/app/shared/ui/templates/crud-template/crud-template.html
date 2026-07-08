@@ -1,29 +1,24 @@
-<div [class]="classes().template">
-  <!-- Toolbar -->
-  <div [class]="classes().toolbar">
-    <div>
+<div class="lv-crud lv-crud-{{ variant() }} lv-crud-{{ size() }}">
+  <div class="lv-crud-toolbar">
+    <div class="lv-crud-header">
       @if (title()) {
-        <h2 class="text-xl font-semibold text-gray-900 ">
-          {{ title() }}
-        </h2>
+        <lv-heading level="2" [text]="title()" [color]="color()" />
       }
       @if (subtitle()) {
-        <p class="text-sm text-gray-500 ">
+        <lv-paragraph size="sm" color="neutral" [muted]="true">
           {{ subtitle() }}
-        </p>
+        </lv-paragraph>
       }
     </div>
 
-    <div [class]="classes().actions">
+    <div class="lv-crud-actions">
       <ng-content select="[actions]"></ng-content>
     </div>
   </div>
 
-  <!-- Filter Bar -->
   <ng-content select="[filters]"></ng-content>
 
-  <!-- Content -->
-  <div [class]="classes().content">
+  <div class="lv-crud-content">
     <ng-content></ng-content>
   </div>
 </div>

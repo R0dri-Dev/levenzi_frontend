@@ -1,11 +1,13 @@
 <button
   [type]="type()"
-  [class]="classes()"
+  class="lv-button lv-button-{{ variant() }} lv-button-{{ size() }}"
+  [class.lv-button-full]="fullWidth()"
+  [class.lv-button-loading]="loading()"
   [disabled]="isDisabled()"
   [attr.aria-disabled]="isDisabled()"
   [attr.aria-busy]="loading()"
-  (click)="handleClick($event)"
->
+  (click)="handleClick($event)">
+
   @if (loading()) {
     <lv-icon name="spinner" size="sm" class="animate-spin" />
   }

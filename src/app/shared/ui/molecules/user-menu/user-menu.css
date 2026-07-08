@@ -1,0 +1,70 @@
+@reference "../../../../../styles.css";
+.lv-user-menu {
+  @apply relative inline-block;
+}
+
+.lv-user-menu-trigger {
+  @apply gap-2;
+}
+
+.lv-user-menu-info {
+  @apply text-left;
+}
+
+.lv-user-menu-chevron {
+  color: var(--color-secondary-400);
+  @apply transition-transform duration-200;
+}
+
+.lv-user-menu-trigger[aria-expanded='true'] .lv-user-menu-chevron {
+  @apply rotate-180;
+}
+
+.lv-user-menu-dropdown {
+  @apply absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-secondary-200;
+  @apply py-1 z-50 min-w-[200px];
+  animation: lv-user-menu-fade 0.15s ease-out;
+}
+
+.lv-user-menu-header {
+  @apply px-4 py-3 border-b border-secondary-200;
+}
+
+.lv-user-menu-item {
+  @apply flex items-center gap-2 px-4 py-2 text-sm w-full text-left transition-colors no-underline;
+  @apply hover:bg-secondary-100;
+
+  color: var(--color-secondary-700) !important;
+  justify-content: flex-start !important;
+}
+
+.lv-user-menu-item-danger {
+  color: var(--color-danger-600) !important;
+}
+.lv-user-menu-item-danger:hover {
+  background-color: var(--color-danger-50) !important;
+}
+
+@keyframes lv-user-menu-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-user-menu-trigger {
+    @apply px-2 py-1.5;
+  }
+  .lv-user-menu-info {
+    @apply hidden;
+  }
+  .lv-user-menu-dropdown {
+    @apply right-0 left-0 w-auto;
+  }
+}

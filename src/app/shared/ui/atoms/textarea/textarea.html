@@ -1,8 +1,30 @@
-<textarea
-  [value]="value()"
-  [placeholder]="placeholder()"
-  [disabled]="disabled()"
-  [class]="classes()"
-  (input)="handleInput($any($event.target).value)"
-></textarea>
+<div class="lv-textarea-wrapper">
+  @if (label()) {
+    <label class="lv-textarea-label">
+      {{ label() }}
+      @if (required()) {
+        <span class="lv-textarea-required">*</span>
+      }
+    </label>
+  }
 
+  <div class="lv-textarea-container lv-textarea-{{ appearance() }} lv-textarea-{{ variant() }} lv-textarea-{{ size() }}">
+    <textarea
+      [value]="value()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [rows]="rows()"
+      [attr.aria-invalid]="!!error()"
+      [attr.aria-describedby]="error() ? 'textarea-error' : hint() ? 'textarea-hint' : null"
+      class="lv-textarea"
+      (input)="handleInput($event)"
+    ></textarea>
+  </div>
+
+  @if (error()) {
+    <p id="textarea-error" class="lv-textarea-error">{{ error() }}</p>
+  } @else if (hint()) {
+    <p id="textarea-hint" class="lv-textarea-hint">{{ hint() }}</p>
+  }
+</div>

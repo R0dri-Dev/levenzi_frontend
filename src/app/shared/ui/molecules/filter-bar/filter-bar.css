@@ -1,0 +1,78 @@
+@reference "../../../../../styles.css";
+.lv-filter-bar {
+  @apply flex items-center gap-3 p-3 bg-white rounded-lg;
+}
+
+.lv-filter-bar-section {
+  @apply flex items-center gap-2 flex-wrap;
+}
+
+.lv-filter-bar-filters {
+  @apply flex-1;
+}
+
+.lv-filter-bar-actions {
+  @apply ml-auto;
+}
+
+/* Appearances */
+.lv-filter-bar-solid {
+  @apply bg-white;
+}
+.lv-filter-bar-outline {
+  @apply bg-white border border-secondary-200;
+}
+.lv-filter-bar-ghost {
+  @apply bg-transparent;
+}
+.lv-filter-bar-light {
+  @apply bg-secondary-50;
+}
+
+/* Sizes */
+.lv-filter-bar-xs {
+  @apply gap-1 p-1.5;
+}
+.lv-filter-bar-sm {
+  @apply gap-2 p-2;
+}
+.lv-filter-bar-md {
+  @apply gap-3 p-3;
+}
+.lv-filter-bar-lg {
+  @apply gap-4 p-4;
+}
+.lv-filter-bar-xl {
+  @apply gap-5 p-5;
+}
+
+.lv-filter-bar-xs .lv-filter-bar-section {
+  @apply gap-1;
+}
+.lv-filter-bar-sm .lv-filter-bar-section {
+  @apply gap-1.5;
+}
+.lv-filter-bar-md .lv-filter-bar-section {
+  @apply gap-2;
+}
+.lv-filter-bar-lg .lv-filter-bar-section {
+  @apply gap-2.5;
+}
+.lv-filter-bar-xl .lv-filter-bar-section {
+  @apply gap-3;
+}
+
+/* Full width */
+.lv-filter-bar-full {
+  @apply w-full;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-filter-bar {
+    @apply flex-col items-stretch;
+  }
+  .lv-filter-bar .lv-filter-bar-actions {
+    @apply ml-0;
+  }
+}

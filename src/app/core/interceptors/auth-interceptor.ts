@@ -1,15 +1,18 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 
-import { LV_API_BASE_URL } from '../../shared/constants/api';
 import { Token } from '../services/token';
 
+
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  if (!req.url.startsWith(LV_API_BASE_URL)) {
+  // Solo añadimos Authorization si el request realmente va al backend.
+  // (Trabajamos con URLs absolutas ya resueltas en Api.resolveUrl)
+  if (!req.url.includes('/api/')) {
     return next(req);
   }
 
   const token = inject(Token);
+
   const accessToken = token.accessToken();
 
   return next(

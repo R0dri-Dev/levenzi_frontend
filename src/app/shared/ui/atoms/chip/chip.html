@@ -1,20 +1,16 @@
 <div
-    [class]="classes()"
-    (click)="clicked.emit()">
+  class="lv-chip lv-chip-{{ variant() }} lv-chip-{{ size() }}"
+  [class.lv-chip-disabled]="disabled()"
+  (click)="handleClick($event)">
 
-    <span>{{label()}}</span>
+  <span class="lv-chip-label">{{ label() }}</span>
 
-    @if(removable()){
-
-        <button
-            type="button"
-            class="ml-1"
-            (click)="removed.emit();$event.stopPropagation()">
-
-            ✕
-
-        </button>
-
-    }
-
+  @if (removable()) {
+    <button
+      type="button"
+      class="lv-chip-remove"
+      (click)="handleRemove($event)">
+      ✕
+    </button>
+  }
 </div>

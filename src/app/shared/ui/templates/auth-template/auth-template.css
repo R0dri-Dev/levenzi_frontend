@@ -1,0 +1,103 @@
+@reference "../../../../../styles.css";
+/* ============================================================
+   SPLIT VARIANT
+   ============================================================ */
+.lv-auth-split {
+  @apply flex min-h-screen;
+}
+
+.lv-auth-split-left {
+  @apply hidden lg:flex lg:w-1/2 flex-col items-center justify-center p-12;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
+}
+
+.lv-auth-split-content {
+  @apply flex flex-col items-center gap-6 max-w-md;
+}
+
+.lv-auth-split-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.lv-auth-split-image {
+  @apply w-full rounded-lg overflow-hidden shadow-xl;
+}
+
+.lv-auth-split-image img {
+  @apply w-full h-auto object-cover;
+}
+
+.lv-auth-split-right {
+  @apply w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8;
+  @apply bg-secondary-50;
+}
+
+.lv-auth-split-card {
+  @apply w-full max-w-md;
+}
+
+.lv-auth-split-form {
+  @apply p-6 sm:p-8;
+}
+
+/* ============================================================
+   CENTERED VARIANT
+   ============================================================ */
+.lv-auth-centered {
+  @apply min-h-screen flex items-center justify-center p-4 sm:p-8;
+  @apply bg-secondary-50;
+}
+
+.lv-auth-centered-container {
+  @apply w-full max-w-md;
+}
+
+.lv-auth-centered-card {
+  @apply overflow-hidden;
+}
+
+.lv-auth-centered-content {
+  @apply p-6 sm:p-8 flex flex-col gap-6;
+}
+
+.lv-auth-centered-logo {
+  @apply flex justify-center;
+}
+
+.lv-auth-centered-header {
+  @apply flex flex-col gap-2;
+}
+
+/* ============================================================
+   SIZES
+   ============================================================ */
+.lv-auth-centered-xs .lv-auth-centered-container {
+  @apply max-w-xs;
+}
+.lv-auth-centered-sm .lv-auth-centered-container {
+  @apply max-w-sm;
+}
+.lv-auth-centered-md .lv-auth-centered-container {
+  @apply max-w-md;
+}
+.lv-auth-centered-lg .lv-auth-centered-container {
+  @apply max-w-lg;
+}
+.lv-auth-centered-xl .lv-auth-centered-container {
+  @apply max-w-xl;
+}
+.lv-auth-centered-2xl .lv-auth-centered-container {
+  @apply max-w-2xl;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  .lv-auth-centered-content {
+    @apply p-4;
+  }
+  .lv-auth-split-form {
+    @apply p-4;
+  }
+}

@@ -1,0 +1,84 @@
+@reference "../../../../../styles.css";
+.lv-navbar {
+  @apply w-full bg-white border-b border-secondary-200;
+}
+
+.lv-navbar-static {
+  @apply relative;
+}
+.lv-navbar-sticky {
+  @apply sticky top-0 z-50;
+}
+.lv-navbar-fixed {
+  @apply fixed top-0 left-0 z-50;
+}
+
+.lv-navbar {
+  @apply flex items-center justify-between px-4 h-16;
+}
+
+.lv-navbar-brand {
+  @apply flex items-center gap-2;
+}
+.lv-navbar-brand lv-link {
+  @apply flex items-center gap-2 no-underline;
+}
+
+.lv-navbar-desktop {
+  @apply hidden md:flex items-center gap-1;
+}
+
+.lv-navbar-item {
+  @apply flex items-center gap-1.5 px-3 py-2 rounded-md text-sm transition-colors no-underline;
+  color: var(--color-secondary-600);
+}
+.lv-navbar-item:hover {
+  color: var(--color-secondary-900);
+  @apply bg-secondary-100;
+}
+.lv-navbar-item-active {
+  color: var(--color-primary-600);
+  @apply bg-primary-50;
+}
+
+.lv-navbar-actions {
+  @apply flex items-center gap-2;
+}
+
+.lv-navbar-search {
+  @apply w-48;
+}
+
+.lv-navbar-mobile-toggle {
+  @apply md:hidden;
+}
+
+.lv-navbar-mobile {
+  @apply md:hidden border-t border-secondary-200 bg-white;
+  animation: lv-navbar-slide-down 0.2s ease-out;
+}
+
+.lv-navbar-mobile-items {
+  @apply flex flex-col p-2 gap-1;
+}
+.lv-navbar-mobile-items .lv-navbar-item {
+  @apply w-full justify-start;
+}
+
+@keyframes lv-navbar-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-navbar-search {
+    @apply w-32;
+  }
+}

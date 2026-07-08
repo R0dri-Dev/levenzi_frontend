@@ -1,0 +1,112 @@
+@reference "../../../../../styles.css";
+.lv-notifications-panel {
+  @apply relative inline-block;
+}
+
+.lv-notifications-badge {
+  @apply absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs font-medium flex items-center justify-center;
+  background-color: var(--color-danger-500);
+  color: white;
+}
+
+.lv-notifications-dropdown {
+  @apply absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-lg shadow-lg border border-secondary-200;
+  @apply z-50 max-h-[500px] flex flex-col;
+  animation: lv-notifications-fade 0.15s ease-out;
+}
+
+.lv-notifications-header {
+  @apply flex items-center justify-between px-4 py-3 flex-shrink-0;
+}
+
+.lv-notifications-header-actions {
+  @apply flex items-center gap-1;
+}
+
+.lv-notifications-list {
+  @apply flex-1 overflow-y-auto;
+}
+
+.lv-notifications-loading {
+  @apply flex items-center justify-center py-8;
+}
+
+.lv-notifications-empty {
+  @apply flex flex-col items-center justify-center py-8 gap-2;
+}
+
+.lv-notification-item {
+  @apply flex items-start gap-3 px-4 py-3 cursor-pointer transition-colors;
+  @apply hover:bg-secondary-50;
+}
+
+.lv-notification-item-unread {
+  @apply bg-primary-50;
+}
+.lv-notification-item-unread:hover {
+  @apply bg-primary-100;
+}
+
+.lv-notification-icon {
+  @apply flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5;
+}
+
+.lv-notification-icon-primary {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-600);
+}
+.lv-notification-icon-secondary {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-600);
+}
+.lv-notification-icon-success {
+  background-color: var(--color-success-100);
+  color: var(--color-success-600);
+}
+.lv-notification-icon-danger {
+  background-color: var(--color-danger-100);
+  color: var(--color-danger-600);
+}
+.lv-notification-icon-warning {
+  background-color: var(--color-warning-100);
+  color: var(--color-warning-600);
+}
+.lv-notification-icon-info {
+  background-color: var(--color-info-100);
+  color: var(--color-info-600);
+}
+.lv-notification-icon-neutral {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-600);
+}
+
+.lv-notification-content {
+  @apply flex-1 min-w-0;
+}
+
+.lv-notification-dot {
+  @apply flex-shrink-0 w-2 h-2 rounded-full mt-1.5;
+  background-color: var(--color-primary-500);
+}
+
+.lv-notifications-footer {
+  @apply flex items-center justify-center px-4 py-2 flex-shrink-0;
+}
+
+@keyframes lv-notifications-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-notifications-dropdown {
+    @apply right-0 left-0 w-auto mx-2;
+  }
+}

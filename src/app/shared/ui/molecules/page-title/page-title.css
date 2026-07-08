@@ -1,0 +1,8 @@
+@reference "../../../../../styles.css";
+.lv-page-title {
+  @apply flex items-start gap-3;
+}
+
+.lv-page-title-content {
+  @apply min-w-0;
+}

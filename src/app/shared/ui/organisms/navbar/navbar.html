@@ -1,45 +1,44 @@
-<nav [class]="classes().navbar" role="navigation">
-  <!-- Brand -->
-  <div [class]="classes().brand">
-    <a [routerLink]="brandRoute()" class="flex items-center gap-2 no-underline">
+<nav class="lv-navbar lv-navbar-{{ position() }}" role="navigation">
+  <div class="lv-navbar-brand">
+    <lv-link [routerLink]="brandRoute()" color="neutral" [underline]="false">
       @if (brandIcon()) {
         <lv-icon [name]="brandIcon()!" size="lg" />
       }
-      <lv-paragraph weight="semibold" color="gray">
+      <lv-paragraph weight="semibold" color="neutral">
         {{ brand() }}
       </lv-paragraph>
-    </a>
+    </lv-link>
   </div>
 
-  <!-- Desktop Menu -->
-  <div [class]="classes().desktopMenu">
+  <div class="lv-navbar-desktop">
     @for (item of items(); track $index) {
       @if (item.route) {
-        <a
+        <lv-link
           [routerLink]="item.route"
-          [class]="getItemClass(item)"
-          (click)="handleItemClick(item)"
-          class="no-underline"
-        >
+          color="neutral"
+          [underline]="false"
+          class="lv-navbar-item"
+          [class.lv-navbar-item-active]="isActive(item)"
+          (click)="handleItemClick(item)">
           @if (item.icon) {
             <lv-icon [name]="item.icon" size="sm" />
           }
-          <lv-paragraph size="sm" color="gray">
+          <lv-paragraph size="sm" color="neutral">
             {{ item.label }}
           </lv-paragraph>
-        </a>
+        </lv-link>
       } @else {
-        <!-- ✅ USAR LV-BUTTON en lugar de button nativo -->
         <lv-button
-          variant="ghost"
+          variant="secondary"
+          appearance="ghost"
           size="sm"
-          (onClick)="handleItemClick(item)"
-          [class]="getItemClass(item)"
-        >
+          class="lv-navbar-item"
+          [class.lv-navbar-item-active]="isActive(item)"
+          (onClick)="handleItemClick(item)">
           @if (item.icon) {
             <lv-icon [name]="item.icon" size="sm" />
           }
-          <lv-paragraph size="sm" color="gray">
+          <lv-paragraph size="sm" color="neutral">
             {{ item.label }}
           </lv-paragraph>
         </lv-button>
@@ -47,75 +46,69 @@
     }
   </div>
 
-  <!-- Actions -->
-  <div [class]="classes().actions">
-    <!-- Search -->
+  <div class="lv-navbar-actions">
     @if (showSearch()) {
       <lv-search-box
         placeholder="Buscar..."
         size="sm"
         (onSearch)="handleSearch($event)"
-        class="w-48"
-      />
+        class="lv-navbar-search" />
     }
 
-    <!-- User Menu -->
     @if (showUserMenu() && user()) {
       <lv-user-menu
         [user]="convertedUser()!"
         [items]="convertedUserMenuItems()"
         [showUserInfo]="false"
-        (onItemClick)="handleUserAction($event)"
-      />
+        (onItemClick)="handleUserAction($event)" />
     }
 
-    <!-- Content projection para acciones extra -->
     <ng-content select="[actions]"></ng-content>
 
-    <!-- Mobile Menu Button -->
     @if (showMobileMenu()) {
       <lv-icon-button
         [icon]="mobileOpen() ? 'close' : 'menu'"
         label="Menú"
         variant="ghost"
         size="md"
-        (onClick)="toggleMobileMenu()"
-      />
+        class="lv-navbar-mobile-toggle"
+        (onClick)="toggleMobileMenu()" />
     }
   </div>
 </nav>
 
-<!-- Mobile Menu Dropdown -->
 @if (mobileOpen() && showMobileMenu()) {
-  <div [class]="classes().mobileMenu">
-    <div class="flex flex-col gap-1 py-2">
+  <div class="lv-navbar-mobile">
+    <div class="lv-navbar-mobile-items">
       @for (item of items(); track $index) {
         @if (item.route) {
-          <a
+          <lv-link
             [routerLink]="item.route"
-            [class]="getItemClass(item)"
-            class="py-2 px-3 no-underline rounded-xl"
-            (click)="handleItemClick(item)"
-          >
+            color="neutral"
+            [underline]="false"
+            class="lv-navbar-item"
+            [class.lv-navbar-item-active]="isActive(item)"
+            (click)="handleItemClick(item)">
             @if (item.icon) {
               <lv-icon [name]="item.icon" size="sm" />
             }
-            <lv-paragraph size="sm" color="gray">
+            <lv-paragraph size="sm" color="neutral">
               {{ item.label }}
             </lv-paragraph>
-          </a>
+          </lv-link>
         } @else {
           <lv-button
-            variant="ghost"
+            variant="secondary"
+            appearance="ghost"
             size="sm"
-            (onClick)="handleItemClick(item)"
-            [class]="getItemClass(item)"
             [fullWidth]="true"
-          >
+            class="lv-navbar-item"
+            [class.lv-navbar-item-active]="isActive(item)"
+            (onClick)="handleItemClick(item)">
             @if (item.icon) {
               <lv-icon [name]="item.icon" size="sm" />
             }
-            <lv-paragraph size="sm" color="gray">
+            <lv-paragraph size="sm" color="neutral">
               {{ item.label }}
             </lv-paragraph>
           </lv-button>

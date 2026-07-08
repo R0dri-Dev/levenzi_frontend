@@ -1,0 +1,29 @@
+@reference "../../../../../styles.css";
+.lv-filters-panel {
+  @apply flex flex-col gap-4;
+}
+
+.lv-filters-panel-header {
+  @apply flex items-center justify-between flex-wrap gap-2;
+}
+
+.lv-filters-panel-footer {
+  @apply flex items-center justify-between flex-wrap gap-2 pt-2;
+}
+
+/* Sizes */
+.lv-filters-panel-xs {
+  @apply gap-2;
+}
+.lv-filters-panel-sm {
+  @apply gap-3;
+}
+.lv-filters-panel-md {
+  @apply gap-4;
+}
+.lv-filters-panel-lg {
+  @apply gap-5;
+}
+.lv-filters-panel-xl {
+  @apply gap-6;
+}

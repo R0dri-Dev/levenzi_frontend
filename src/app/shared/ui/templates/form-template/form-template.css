@@ -1,0 +1,100 @@
+@reference "../../../../../styles.css";
+.lv-form {
+  @apply w-full max-w-3xl mx-auto;
+}
+
+.lv-form-card {
+  @apply overflow-hidden;
+}
+
+.lv-form-header {
+  @apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4;
+}
+
+.lv-form-header-actions {
+  @apply flex items-center gap-2 flex-shrink-0;
+}
+
+.lv-form-body {
+  @apply flex flex-col gap-4 py-6;
+}
+
+.lv-form-footer {
+  @apply flex flex-col sm:flex-row items-center justify-between gap-4 pt-4;
+}
+
+/* Variants */
+.lv-form-card {
+  @apply p-6 sm:p-8;
+}
+.lv-form-card .lv-form-body {
+  @apply py-4;
+}
+.lv-form-card .lv-form-footer {
+  @apply pt-4 border-t border-secondary-200;
+}
+
+.lv-form-simple {
+  @apply p-6 bg-white rounded-lg;
+}
+.lv-form-simple .lv-form-body {
+  @apply py-4;
+}
+.lv-form-simple .lv-form-footer {
+  @apply pt-4 border-t border-secondary-200;
+}
+
+/* Sizes */
+.lv-form-xs {
+  @apply max-w-xs;
+}
+.lv-form-sm {
+  @apply max-w-sm;
+}
+.lv-form-md {
+  @apply max-w-md;
+}
+.lv-form-lg {
+  @apply max-w-lg;
+}
+.lv-form-xl {
+  @apply max-w-xl;
+}
+.lv-form-2xl {
+  @apply max-w-2xl;
+}
+.lv-form-3xl {
+  @apply max-w-3xl;
+}
+
+.lv-form-xs .lv-form-body {
+  @apply gap-2 py-3;
+}
+.lv-form-sm .lv-form-body {
+  @apply gap-3 py-4;
+}
+.lv-form-md .lv-form-body {
+  @apply gap-4 py-5;
+}
+.lv-form-lg .lv-form-body {
+  @apply gap-5 py-6;
+}
+.lv-form-xl .lv-form-body {
+  @apply gap-6 py-7;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-form-header {
+    @apply flex-col items-start;
+  }
+  .lv-form-footer {
+    @apply flex-col items-stretch;
+  }
+  .lv-form-card {
+    @apply p-4;
+  }
+  .lv-form-simple {
+    @apply p-4;
+  }
+}

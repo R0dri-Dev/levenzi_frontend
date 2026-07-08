@@ -1,8 +1,15 @@
-<input
-type="radio"
-[name]="name()"
-[value]="value()"
-[checked]="checked()"
-[disabled]="disabled()"
-[class]="classes()"
-(change)="changed.emit(value())">
+<label class="lv-radio lv-radio-{{ size() }} lv-radio-{{ color() }}">
+  <input
+    type="radio"
+    [name]="name()"
+    [value]="value()"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    class="lv-radio-input"
+    (change)="handleChange()"
+  />
+  <span class="lv-radio-custom"></span>
+  @if (label()) {
+    <span class="lv-radio-label">{{ label() }}</span>
+  }
+</label>

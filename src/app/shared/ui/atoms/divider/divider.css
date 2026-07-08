@@ -1,0 +1,33 @@
+@reference "../../../../../styles.css";
+/* divider.css - Estilos propios del componente */
+.lv-divider {
+  @apply border-0;
+  background-color: var(--color-secondary-200);
+}
+
+.lv-divider-horizontal {
+  @apply w-full;
+  height: 1px;
+}
+
+.lv-divider-vertical {
+  @apply h-full;
+  width: 1px;
+  min-height: 1.5rem;
+}
+
+/* With text */
+.lv-divider-with-text {
+  @apply flex items-center gap-4 w-full;
+}
+
+.lv-divider-line {
+  @apply flex-1;
+  height: 1px;
+  background-color: var(--color-secondary-200);
+}
+
+.lv-divider-text {
+  @apply text-sm whitespace-nowrap;
+  color: var(--color-secondary-500);
+}

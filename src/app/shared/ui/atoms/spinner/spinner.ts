@@ -1,31 +1,15 @@
-import { Component, computed, input } from '@angular/core';
-import { SpinnerColor, SpinnerSize } from '../../../types/spinner.types';
-import { LV_SPINNER_BASE, LV_SPINNER_COLORS, LV_SPINNER_SIZES } from '../../../theme/spinner.theme';
-
+import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LvSize, LvColorVariant } from '../../../types';
 
 @Component({
-
   selector: 'lv-spinner',
-
   standalone: true,
-
-  templateUrl: './spinner.html'
-
+  imports: [CommonModule],
+  templateUrl: './spinner.html',
+  styleUrls: ['./spinner.css'],
 })
 export class LvSpinnerComponent {
-
-  readonly size = input<SpinnerSize>('md');
-
-  readonly color = input<SpinnerColor>('primary');
-
-  readonly classes = computed(() => [
-
-    LV_SPINNER_BASE,
-
-    LV_SPINNER_SIZES[this.size()],
-
-    LV_SPINNER_COLORS[this.color()]
-
-  ].join(' '));
-
+  readonly size = input<LvSize>('md');
+  readonly color = input<LvColorVariant>('primary');
 }

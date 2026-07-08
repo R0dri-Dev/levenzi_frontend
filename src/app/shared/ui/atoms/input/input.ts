@@ -1,29 +1,33 @@
-// shared/ui/atoms/input/input.ts
-import { Component, computed, input, output, signal, effect } from '@angular/core';
+import { Component, input, output, signal, effect, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { LvIconComponent } from '../../icons/icon/icon';
-import {
-  LV_INPUT_BASE,
-  LV_INPUT_SIZES,
-  LV_INPUT_VARIANTS,
-  LV_INPUT_ICON,
-} from '../../../theme/input.theme';
-import type { InputVariant, InputSize, InputType } from '../../../types/input.types';
+import { LvSize, LvColorVariant, LvAppearance, LvInputType } from '../../../types';
 import type { IconKeys } from '../../../core/icons';
+
 
 @Component({
   selector: 'lv-input',
   standalone: true,
   imports: [CommonModule, LvIconComponent],
   templateUrl: './input.html',
+  styleUrls: ['./input.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => LvInputComponent),
+      multi: true,
+    },
+  ],
 })
-export class LvInputComponent {
+export class LvInputComponent implements ControlValueAccessor {
   // ============ INPUTS ============
-  readonly type = input<InputType>('text');
+  readonly type = input<LvInputType>('text');
   readonly value = input<string>('');
   readonly placeholder = input<string>('');
-  readonly variant = input<InputVariant>('primary');
-  readonly size = input<InputSize>('md');
+  readonly variant = input<LvColorVariant>('primary');
+  readonly appearance = input<LvAppearance>('outline');
+  readonly size = input<LvSize>('md');
   readonly disabled = input(false);
   readonly readonly = input(false);
   readonly required = input(false);
@@ -31,6 +35,9 @@ export class LvInputComponent {
   readonly maxlength = input<number | null>(null);
   readonly icon = input<IconKeys | null>(null);
   readonly iconPosition = input<'left' | 'right'>('left');
+  readonly label = input<string>('');
+  readonly error = input<string>('');
+  readonly hint = input<string>('');
 
   // ============ OUTPUTS ============
   readonly onValueChange = output<string>();
@@ -39,20 +46,12 @@ export class LvInputComponent {
 
   // ============ STATE ============
   internalValue = signal('');
+  isFocused = signal(false);
+  isTouched = signal(false);
 
-  // ============ COMPUTED ============
-  readonly classes = computed(() => {
-    const base = LV_INPUT_BASE;
-    const variant = LV_INPUT_VARIANTS[this.variant()] || LV_INPUT_VARIANTS['primary'];
-    const size = LV_INPUT_SIZES[this.size()] || LV_INPUT_SIZES['md'];
-    const hasIcon = this.icon() ? 'pl-10' : '';
-
-    return {
-      container: 'relative w-full',
-      input: [base, variant, size, hasIcon].filter(Boolean).join(' '),
-      icon: LV_INPUT_ICON,
-    };
-  });
+  // ============ CONTROL VALUE ACCESSOR ============
+  onChange: any = () => { };
+  onTouched: any = () => { };
 
   // ============ EFFECTS ============
   constructor() {
@@ -69,13 +68,34 @@ export class LvInputComponent {
     const value = (event.target as HTMLInputElement).value;
     this.internalValue.set(value);
     this.onValueChange.emit(value);
+    this.onChange(value);
   }
 
   onBlurEvent(): void {
+    this.isFocused.set(false);
+    this.isTouched.set(true);
     this.onBlur.emit();
+    this.onTouched();
   }
 
   onFocusEvent(): void {
+    this.isFocused.set(true);
     this.onFocus.emit();
+  }
+
+  writeValue(value: string): void {
+    this.internalValue.set(value || '');
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    // handled by disabled input
   }
 }

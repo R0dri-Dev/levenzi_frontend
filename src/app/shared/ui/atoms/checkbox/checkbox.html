@@ -1,1 +1,12 @@
-<p>checkbox works!</p>
+<label class="lv-checkbox lv-checkbox-{{ variant() }} lv-checkbox-{{ size() }}">
+  <input
+    type="checkbox"
+    class="lv-checkbox-input"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    (change)="handleChange($event)">
+  <span class="lv-checkbox-custom"></span>
+  <span class="lv-checkbox-label">
+    <ng-content />
+  </span>
+</label>

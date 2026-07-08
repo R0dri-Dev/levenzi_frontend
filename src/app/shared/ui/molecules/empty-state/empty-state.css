@@ -1,0 +1,42 @@
+@reference "../../../../../styles.css";
+/* empty-state.css - Solo estilos del contenedor */
+.lv-empty-state {
+  @apply flex flex-col items-center text-center;
+  @apply p-6;
+}
+
+/* Variantes */
+.lv-empty-state-default {
+  @apply gap-4;
+}
+
+.lv-empty-state-compact {
+  @apply gap-3 p-4;
+}
+
+.lv-empty-state-centered {
+  @apply gap-6 justify-center min-h-[300px];
+}
+
+/* Actions container */
+.lv-empty-state-actions {
+  @apply mt-2;
+}
+
+.lv-empty-state-compact .lv-empty-state-actions {
+  @apply mt-1;
+}
+
+.lv-empty-state-centered .lv-empty-state-actions {
+  @apply mt-4;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-empty-state {
+    @apply p-4;
+  }
+  .lv-empty-state-centered {
+    @apply min-h-[200px];
+  }
+}

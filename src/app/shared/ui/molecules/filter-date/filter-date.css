@@ -1,0 +1,44 @@
+@reference "../../../../../styles.css";
+.lv-filter-date {
+  @apply flex items-center gap-2 flex-wrap;
+}
+
+.lv-filter-date-label {
+  @apply text-sm font-medium;
+  color: var(--color-secondary-700);
+}
+
+.lv-filter-date-separator {
+  @apply text-sm text-secondary-400;
+}
+
+.lv-filter-date-presets {
+  @apply flex gap-1 ml-2;
+}
+
+/* Sizes */
+.lv-filter-date-xs {
+  @apply gap-1;
+}
+.lv-filter-date-sm {
+  @apply gap-1.5;
+}
+.lv-filter-date-md {
+  @apply gap-2;
+}
+.lv-filter-date-lg {
+  @apply gap-2.5;
+}
+.lv-filter-date-xl {
+  @apply gap-3;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-filter-date {
+    @apply flex-col items-stretch;
+  }
+  .lv-filter-date-presets {
+    @apply ml-0;
+  }
+}

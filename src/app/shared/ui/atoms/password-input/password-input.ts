@@ -1,44 +1,41 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import {
-  LV_PASSWORD_INPUT_BASE,
-  LV_PASSWORD_INPUT_SIZES,
-  LV_PASSWORD_INPUT_VARIANTS,
-} from '../../../theme/password-input.theme';
-import type { PasswordInputSize, PasswordInputVariant } from '../../../types/password-input.types';
+import { LvSize, LvColorVariant, LvAppearance } from '../../../types';
+import { LvIconComponent } from '../../icons/icon/icon';
 
 @Component({
   selector: 'lv-password-input',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LvIconComponent],
   templateUrl: './password-input.html',
-  styleUrl: './password-input.css',
+  styleUrls: ['./password-input.css'],
 })
 export class LvPasswordInputComponent {
-  readonly variant = input<PasswordInputVariant>('primary');
-  readonly size = input<PasswordInputSize>('md');
-
+  // Inputs
+  readonly variant = input<LvColorVariant>('primary');
+  readonly appearance = input<LvAppearance>('outline');
+  readonly size = input<LvSize>('md');
   readonly name = input<string>('');
-  readonly placeholder = input<string>('');
+  readonly placeholder = input<string>('Ingresa tu contraseña');
   readonly disabled = input(false);
-
   readonly value = input<string>('');
+  readonly label = input<string>('Contraseña');
+  readonly required = input(false);
+
+  // Outputs
   readonly onValueChange = output<string>();
 
-  readonly isShown = input(false);
+  // State
+  readonly isShown = signal(false);
 
-  readonly classes = computed(() => {
-    const base = LV_PASSWORD_INPUT_BASE;
-    const variant = LV_PASSWORD_INPUT_VARIANTS[this.variant()];
-    const size = LV_PASSWORD_INPUT_SIZES[this.size()];
+  // Methods
+  toggleVisibility(): void {
+    this.isShown.update(v => !v);
+  }
 
-    return [base, variant, size].filter(Boolean).join(' ');
-  });
-
-  handleInput(value: string): void {
+  handleInput(event: Event): void {
     if (this.disabled()) return;
+    const value = (event.target as HTMLInputElement).value;
     this.onValueChange.emit(value);
   }
 }
-

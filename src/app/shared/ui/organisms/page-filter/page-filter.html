@@ -1,12 +1,10 @@
-<div [class]="classes().container">
-	<lv-filter-bar
-		[variant]="variant()"
-		[layout]="layout()"
-		[spacing]="spacing()"
-		[fullWidth]="fullWidth()"
-	>
-		<ng-content select="[left]"></ng-content>
-		<ng-content select="[filters]"></ng-content>
-		<ng-content select="[right]"></ng-content>
-	</lv-filter-bar>
+<div class="lv-page-filter lv-page-filter-{{ size() }}">
+  <lv-filter-bar
+    [appearance]="appearance()"
+    [size]="size()"
+    [fullWidth]="fullWidth()">
+    <ng-content select="[left]"></ng-content>
+    <ng-content select="[filters]"></ng-content>
+    <ng-content select="[right]"></ng-content>
+  </lv-filter-bar>
 </div>

@@ -1,16 +1,14 @@
-<label [class]="classes().container">
-  <input
-    type="checkbox"
-    [class]="classes().checkbox"
+<div class="lv-remember-me lv-remember-me-{{ size() }}">
+  <lv-checkbox
     [checked]="internalChecked()"
-    (change)="toggle($event)"
     [disabled]="disabled()"
-    aria-label="Recordarme"
-  />
+    [size]="size()"
+    [variant]="color()"
+    (onChange)="toggle($event)" />
 
-  <span [class]="classes().label">
-    @if (label()) {
-      {{ label() }}
-    }
-  </span>
-</label>
+  <lv-label
+    [text]="label()"
+    [size]="size()"
+    [color]="color()"
+    [disabled]="disabled()" />
+</div>

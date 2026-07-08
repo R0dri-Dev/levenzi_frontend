@@ -1,0 +1,133 @@
+@reference "../../../../../styles.css";
+.lv-confirm-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: lv-confirm-fade-in 0.2s ease-out;
+}
+
+.lv-confirm-dialog {
+  @apply bg-white rounded-lg shadow-xl max-w-md w-full mx-4;
+  animation: lv-confirm-scale-in 0.2s ease-out;
+}
+
+.lv-confirm-content {
+  @apply p-6 flex flex-col items-center gap-4 text-center;
+}
+
+.lv-confirm-icon {
+  @apply w-14 h-14 rounded-full flex items-center justify-center;
+}
+
+.lv-confirm-icon-primary {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-600);
+}
+.lv-confirm-icon-secondary {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-600);
+}
+.lv-confirm-icon-success {
+  background-color: var(--color-success-100);
+  color: var(--color-success-600);
+}
+.lv-confirm-icon-danger {
+  background-color: var(--color-danger-100);
+  color: var(--color-danger-600);
+}
+.lv-confirm-icon-warning {
+  background-color: var(--color-warning-100);
+  color: var(--color-warning-600);
+}
+.lv-confirm-icon-info {
+  background-color: var(--color-info-100);
+  color: var(--color-info-600);
+}
+.lv-confirm-icon-neutral {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-600);
+}
+
+.lv-confirm-actions {
+  @apply flex items-center gap-3 w-full pt-2;
+}
+
+.lv-confirm-actions lv-button {
+  @apply flex-1;
+}
+
+/* Sizes */
+.lv-confirm-dialog-xs {
+  @apply max-w-xs;
+}
+.lv-confirm-dialog-sm {
+  @apply max-w-sm;
+}
+.lv-confirm-dialog-md {
+  @apply max-w-md;
+}
+.lv-confirm-dialog-lg {
+  @apply max-w-lg;
+}
+.lv-confirm-dialog-xl {
+  @apply max-w-xl;
+}
+.lv-confirm-dialog-2xl {
+  @apply max-w-2xl;
+}
+
+.lv-confirm-dialog-xs .lv-confirm-content {
+  @apply p-3 gap-2;
+}
+.lv-confirm-dialog-xs .lv-confirm-icon {
+  @apply w-10 h-10;
+}
+.lv-confirm-dialog-sm .lv-confirm-content {
+  @apply p-4 gap-3;
+}
+.lv-confirm-dialog-sm .lv-confirm-icon {
+  @apply w-12 h-12;
+}
+.lv-confirm-dialog-md .lv-confirm-content {
+  @apply p-6 gap-4;
+}
+.lv-confirm-dialog-md .lv-confirm-icon {
+  @apply w-14 h-14;
+}
+.lv-confirm-dialog-lg .lv-confirm-content {
+  @apply p-8 gap-5;
+}
+.lv-confirm-dialog-lg .lv-confirm-icon {
+  @apply w-16 h-16;
+}
+.lv-confirm-dialog-xl .lv-confirm-content {
+  @apply p-10 gap-6;
+}
+.lv-confirm-dialog-xl .lv-confirm-icon {
+  @apply w-20 h-20;
+}
+.lv-confirm-dialog-2xl .lv-confirm-content {
+  @apply p-12 gap-8;
+}
+.lv-confirm-dialog-2xl .lv-confirm-icon {
+  @apply w-24 h-24;
+}
+
+@keyframes lv-confirm-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lv-confirm-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

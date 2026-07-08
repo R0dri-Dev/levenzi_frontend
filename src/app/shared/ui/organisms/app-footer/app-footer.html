@@ -1,28 +1,29 @@
-<footer [class]="classes().footer" role="contentinfo">
-  <div [class]="classes().content">
-    <!-- Footer Sections -->
+<footer class="lv-app-footer" role="contentinfo">
+  <div class="lv-app-footer-content">
     @if (sections().length > 0) {
-      <div [class]="classes().grid">
+      <div class="lv-app-footer-grid">
         @for (section of sections(); track $index) {
-          <div>
-            <h5 [class]="classes().sectionTitle">{{ section.title }}</h5>
-            <ul class="space-y-2">
+          <div class="lv-app-footer-section">
+            <lv-heading level="5" color="neutral" weight="semibold">
+              {{ section.title }}
+            </lv-heading>
+            <ul class="lv-app-footer-links">
               @for (link of section.links; track $index) {
                 <li>
                   @if (link.route) {
-                    <a [routerLink]="link.route" [class]="classes().link">
+                    <lv-link [routerLink]="link.route" color="neutral" [underline]="true">
                       @if (link.icon) {
                         <lv-icon [name]="link.icon" size="sm" />
                       }
                       {{ link.label }}
-                    </a>
+                    </lv-link>
                   } @else if (link.url) {
-                    <a [href]="link.url" target="_blank" [class]="classes().link">
+                    <lv-link [href]="link.url" [external]="true" color="neutral" [underline]="true">
                       @if (link.icon) {
                         <lv-icon [name]="link.icon" size="sm" />
                       }
                       {{ link.label }}
-                    </a>
+                    </lv-link>
                   }
                 </li>
               }
@@ -32,22 +33,23 @@
       </div>
     }
 
-    <!-- Bottom -->
-    <div [class]="classes().bottom">
-      <span [class]="classes().copyright">{{ copyright() }}</span>
+    <lv-divider />
+
+    <div class="lv-app-footer-bottom">
+      <lv-paragraph size="sm" color="neutral" [muted]="true">
+        {{ copyright() }}
+      </lv-paragraph>
 
       @if (socialLinks().length > 0) {
-        <div [class]="classes().social">
+        <div class="lv-app-footer-social">
           @for (social of socialLinks(); track $index) {
-            <a [href]="social.url" target="_blank" rel="noopener noreferrer">
-              <lv-icon-button
-                [icon]="getSocialIcon(social.icon)"
-                label="Social link"
-                variant="ghost"
-                size="sm"
-                (onClick)="social.action?.()"
-              />
-            </a>
+            @if (social.url) {
+              <lv-link [href]="social.url" [external]="true" color="neutral" [underline]="false">
+                @if (social.icon) {
+                  <lv-icon [name]="social.icon" size="sm" />
+                }
+              </lv-link>
+            }
           }
         </div>
       }

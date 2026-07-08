@@ -1,15 +1,35 @@
-// src/app/shared/interfaces/table.interface.ts
-export type {
-  TableAlign,
-  SortDirection,
-  TableVariant,
-  TableSize,
-  TableAction,
-  TablePagination,
-  TableSort,
-  TableSelection,
-} from '../types/table.types';
+import { IconKeys } from '../core/icons';
+import { LvColorVariant, LvSize } from '../types';
 
-export type TableColumn<T = unknown> = import('../types/table.types').TableColumn<T>;
-export type TableRowData = import('../types/table.types').TableRowData;
-export type Table<T = unknown> = import('../types/table.types').Table<T>;
+export interface TableColumn<T = unknown> {
+  key: string;
+  label: string;
+  align?: 'left' | 'center' | 'right';
+  width?: string;
+  sortable?: boolean;
+  hidden?: boolean;
+  render?: (item: T) => unknown;
+  cellClass?: string;
+}
+
+export interface TableAction<T = unknown> {
+  label: string;
+  icon?: IconKeys;
+  action: (item: T) => void;
+  variant?: LvColorVariant;
+  size?: LvSize;
+  disabled?: (item: T) => boolean;
+  visible?: (item: T) => boolean;
+}
+
+export interface TablePagination {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages?: number;
+}
+
+export interface TableSort {
+  field: string;
+  direction: 'asc' | 'desc';
+}

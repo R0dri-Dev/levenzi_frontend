@@ -1,23 +1,19 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LV_CARD_THEME } from '../../../theme/card.theme';
+import { LvRadius } from '../../../types';
 
 @Component({
   selector: 'lv-card',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './card.html',
-  styleUrl: './card.css',
+  styleUrls: ['./card.css'],
 })
 export class LvCardComponent {
   readonly headerText = input<string | null>(null);
   readonly footerText = input<string | null>(null);
-
-  readonly classes = computed(() => LV_CARD_THEME.base);
-
-  readonly bodyClasses = computed(() => LV_CARD_THEME.body);
-  readonly headerClasses = computed(() => LV_CARD_THEME.header);
-  readonly footerClasses = computed(() => LV_CARD_THEME.footer);
+  readonly rounded = input<LvRadius>('lg');
+  readonly shadow = input<boolean>(true);
+  readonly hoverable = input<boolean>(false);
+  readonly bordered = input<boolean>(false);
 }
-

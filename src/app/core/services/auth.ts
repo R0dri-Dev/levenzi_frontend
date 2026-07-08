@@ -2,9 +2,9 @@ import { Injectable, computed, inject } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 
 import { LV_API_AUTH_LOGIN, LV_API_AUTH_LOGOUT } from '../../shared/constants/api';
-import type { LoginCredentials, LoginResponse, LogoutResponse } from '../../shared/types/auth.types';
 import { Api } from './api';
 import { Token } from './token';
+import { LoginCredentials, LoginResponse, LogoutResponse } from '../../shared/types/auth.types';
 
 @Injectable({
   providedIn: 'root',

@@ -1,0 +1,4 @@
+@reference "../../../../../styles.css";
+.lv-remember-me {
+  @apply inline-flex items-center gap-2 select-none;
+}

@@ -1,24 +1,19 @@
-@if(routerLink()){
-
-<a
-[class]="classes()"
-[routerLink]="routerLink()">
-
-<ng-content/>
-
-</a>
-
-}
-
-@else{
-
-<a
-[class]="classes()"
-[href]="href()"
-[target]="external() ? '_blank' : '_self'">
-
-<ng-content/>
-
-</a>
-
+@if (routerLink()) {
+  <a
+    class="lv-link lv-link-{{ color() }}"
+    [class.lv-link-underline]="underline()"
+    [class.lv-link-bold]="bold()"
+    [routerLink]="routerLink()">
+    <ng-content />
+  </a>
+} @else {
+  <a
+    class="lv-link lv-link-{{ color() }}"
+    [class.lv-link-underline]="underline()"
+    [class.lv-link-bold]="bold()"
+    [href]="href()"
+    [target]="external() ? '_blank' : '_self'"
+    [rel]="external() ? 'noopener noreferrer' : ''">
+    <ng-content />
+  </a>
 }

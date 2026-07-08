@@ -1,0 +1,159 @@
+@reference "../../../../../styles.css";
+/* tooltip.css - Estilos propios del componente */
+.lv-tooltip-wrapper {
+  @apply relative inline-block;
+}
+
+.lv-tooltip-trigger {
+  @apply inline-block;
+}
+
+.lv-tooltip {
+  @apply absolute z-50 px-3 py-1.5 text-sm rounded-md whitespace-nowrap;
+  @apply transition-opacity duration-200;
+  @apply shadow-lg;
+  animation: lv-tooltip-fade 0.2s ease-out;
+}
+
+/* Colores usando tokens */
+.lv-tooltip-primary {
+  background-color: var(--color-primary-700);
+  color: white;
+}
+.lv-tooltip-primary .lv-tooltip-arrow {
+  background-color: var(--color-primary-700);
+}
+
+.lv-tooltip-secondary {
+  background-color: var(--color-secondary-700);
+  color: white;
+}
+.lv-tooltip-secondary .lv-tooltip-arrow {
+  background-color: var(--color-secondary-700);
+}
+
+.lv-tooltip-success {
+  background-color: var(--color-success-700);
+  color: white;
+}
+.lv-tooltip-success .lv-tooltip-arrow {
+  background-color: var(--color-success-700);
+}
+
+.lv-tooltip-danger {
+  background-color: var(--color-danger-700);
+  color: white;
+}
+.lv-tooltip-danger .lv-tooltip-arrow {
+  background-color: var(--color-danger-700);
+}
+
+.lv-tooltip-warning {
+  background-color: var(--color-warning-700);
+  color: white;
+}
+.lv-tooltip-warning .lv-tooltip-arrow {
+  background-color: var(--color-warning-700);
+}
+
+.lv-tooltip-info {
+  background-color: var(--color-info-700);
+  color: white;
+}
+.lv-tooltip-info .lv-tooltip-arrow {
+  background-color: var(--color-info-700);
+}
+
+.lv-tooltip-neutral {
+  background-color: var(--color-neutral-800);
+  color: white;
+}
+.lv-tooltip-neutral .lv-tooltip-arrow {
+  background-color: var(--color-neutral-800);
+}
+
+/* Placements */
+.lv-tooltip-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.lv-tooltip-top .lv-tooltip-arrow {
+  @apply absolute top-full left-1/2 -translate-x-1/2;
+}
+
+.lv-tooltip-top-start {
+  bottom: calc(100% + 8px);
+  left: 0;
+}
+.lv-tooltip-top-start .lv-tooltip-arrow {
+  @apply absolute top-full left-3;
+}
+
+.lv-tooltip-top-end {
+  bottom: calc(100% + 8px);
+  right: 0;
+}
+.lv-tooltip-top-end .lv-tooltip-arrow {
+  @apply absolute top-full right-3;
+}
+
+.lv-tooltip-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.lv-tooltip-bottom .lv-tooltip-arrow {
+  @apply absolute bottom-full left-1/2 -translate-x-1/2;
+}
+
+.lv-tooltip-bottom-start {
+  top: calc(100% + 8px);
+  left: 0;
+}
+.lv-tooltip-bottom-start .lv-tooltip-arrow {
+  @apply absolute bottom-full left-3;
+}
+
+.lv-tooltip-bottom-end {
+  top: calc(100% + 8px);
+  right: 0;
+}
+.lv-tooltip-bottom-end .lv-tooltip-arrow {
+  @apply absolute bottom-full right-3;
+}
+
+.lv-tooltip-left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lv-tooltip-left .lv-tooltip-arrow {
+  @apply absolute left-full top-1/2 -translate-y-1/2;
+}
+
+.lv-tooltip-right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lv-tooltip-right .lv-tooltip-arrow {
+  @apply absolute right-full top-1/2 -translate-y-1/2;
+}
+
+/* Arrow base */
+.lv-tooltip-arrow {
+  @apply w-2 h-2 rotate-45;
+}
+
+/* Animación */
+@keyframes lv-tooltip-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

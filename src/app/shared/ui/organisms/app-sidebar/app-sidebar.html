@@ -1,64 +1,67 @@
-<aside [class]="classes().sidebar" role="navigation">
-  <!-- Toggle Button -->
+<aside
+  class="lv-app-sidebar lv-app-sidebar-{{ position() }} lv-app-sidebar-{{ size() }}"
+  [class.lv-app-sidebar-collapsed]="isCollapsedMode()"
+  role="navigation">
+
   @if (showToggle()) {
-    <div class="flex justify-end p-2">
+    <div class="lv-app-sidebar-toggle">
       <lv-icon-button
         [icon]="isCollapsed() ? 'chevron-right' : 'chevron-left'"
         label="Colapsar sidebar"
         variant="ghost"
         size="sm"
-        (onClick)="toggleSidebar()"
-      />
+        (onClick)="toggleSidebar()" />
     </div>
   }
 
-  <!-- Header -->
   @if (header()) {
-    <div [class]="classes().header">
-      {{ header() }}
+    <div class="lv-app-sidebar-header">
+      <lv-paragraph size="sm" weight="semibold" color="neutral">
+        {{ header() }}
+      </lv-paragraph>
     </div>
   }
 
-  <!-- Items -->
-  <nav class="flex flex-col gap-0.5 p-2">
+  <nav class="lv-app-sidebar-nav">
     @for (item of items(); track $index) {
       @if (item.divider) {
-        <hr [class]="classes().divider" />
+        <lv-divider />
       } @else {
         @if (item.route) {
-          <a
+          <lv-link
             [routerLink]="item.route"
-            [class]="itemClass(item)"
+            color="neutral"
+            [underline]="false"
+            class="lv-app-sidebar-item"
+            [class.lv-app-sidebar-item-active]="isActive(item)"
             (click)="handleItemClick(item)"
-            [attr.aria-current]="isActive(item) ? 'page' : null"
-          >
+            [attr.aria-current]="isActive(item) ? 'page' : null">
+
             @if (item.icon) {
-              <lv-icon [name]="item.icon" [class]="classes().icon" />
+              <lv-icon [name]="item.icon" class="lv-app-sidebar-icon" />
             }
 
             @if (!isCollapsedMode()) {
-              <span [class]="classes().label">{{ item.label }}</span>
-
+              <span class="lv-app-sidebar-label">{{ item.label }}</span>
               @if (item.badge) {
                 <lv-badge [variant]="item.badgeColor || 'primary'" size="sm">
                   {{ item.badge }}
                 </lv-badge>
               }
             }
-          </a>
+          </lv-link>
         } @else {
           <button
-            [class]="itemClass(item)"
-            (click)="handleItemClick(item)"
-            class="w-full text-left"
-          >
+            class="lv-app-sidebar-item"
+            [class.lv-app-sidebar-item-active]="isActive(item)"
+            (click)="handleItemClick(item)">
+
             @if (item.icon) {
-              <lv-icon [name]="item.icon" [class]="classes().icon" />
+              <lv-icon [name]="item.icon" class="lv-app-sidebar-icon" />
             }
 
             @if (!isCollapsedMode()) {
-              <span [class]="classes().label">{{ item.label }}</span>
-
+              <span class="lv-app-sidebar-label">{{ item.label }}</span>
               @if (item.badge) {
                 <lv-badge [variant]="item.badgeColor || 'primary'" size="sm">
                   {{ item.badge }}
@@ -71,10 +74,11 @@
     }
   </nav>
 
-  <!-- Footer -->
   @if (footer()) {
-    <div [class]="classes().footer" class="mt-auto">
-      {{ footer() }}
+    <div class="lv-app-sidebar-footer">
+      <lv-paragraph size="sm" color="neutral" [muted]="true">
+        {{ footer() }}
+      </lv-paragraph>
     </div>
   }
 </aside>

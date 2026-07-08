@@ -1,38 +1,36 @@
-@switch(level()){
-
-@case('1'){
-<h1 [class]="classes()">
-    <ng-content/>
-</h1>}
-
-@case('2'){
-<h2 [class]="classes()"><ng-content/></h2>
+@switch (level()) {
+  @case ('1') {
+    <h1 class="lv-heading lv-heading-1 lv-heading-{{ color() }} lv-heading-{{ weight() }} lv-heading-{{ align() }} lv-heading-text-{{ textAlign() }}">
+      @if (text()) { {{ text() }} } @else { <ng-content /> }
+    </h1>
+  }
+  @case ('2') {
+    <h2 class="lv-heading lv-heading-2 lv-heading-{{ color() }} lv-heading-{{ weight() }} lv-heading-{{ align() }} lv-heading-text-{{ textAlign() }}">
+      @if (text()) { {{ text() }} } @else { <ng-content /> }
+    </h2>
+  }
+  @case ('3') {
+    <h3 class="lv-heading lv-heading-3 lv-heading-{{ color() }} lv-heading-{{ weight() }} lv-heading-{{ align() }} lv-heading-text-{{ textAlign() }}">
+      @if (text()) { {{ text() }} } @else { <ng-content /> }
+    </h3>
+  }
+  @case ('4') {
+    <h4 class="lv-heading lv-heading-4 lv-heading-{{ color() }} lv-heading-{{ weight() }} lv-heading-{{ align() }} lv-heading-text-{{ textAlign() }}">
+      @if (text()) { {{ text() }} } @else { <ng-content /> }
+    </h4>
+  }
+  @case ('5') {
+    <h5 class="lv-heading lv-heading-5 lv-heading-{{ color() }} lv-heading-{{ weight() }} lv-heading-{{ align() }} lv-heading-text-{{ textAlign() }}">
+      @if (text()) { {{ text() }} } @else { <ng-content /> }
+    </h5>
+  }
+  @case ('6') {
+    <h6 class="lv-heading lv-heading-6 lv-heading-{{ color() }} lv-heading-{{ weight() }} lv-heading-{{ align() }} lv-heading-text-{{ textAlign() }}">
+      @if (text()) { {{ text() }} } @else { <ng-content /> }
+    </h6>
+  }
 }
 
-@case('3'){
-<h3 [class]="classes()"><ng-content/></h3>
-}
-
-@case('4'){
-<h4 [class]="classes()"><ng-content/></h4>
-}
-
-@case('5'){
-<h5 [class]="classes()"><ng-content/></h5>
-}
-
-@case('6'){
-<h6 [class]="classes()"><ng-content/></h6>
-}
-
-}
-
-@if(subtitle()){
-
-<p class="mt-2 text-gray-500">
-
-{{subtitle()}}
-
-</p>
-
+@if (subtitle()) {
+  <p class="lv-heading-subtitle">{{ subtitle() }}</p>
 }

@@ -1,0 +1,64 @@
+@reference "../../../../../styles.css";
+.lv-page-filter {
+  @apply flex items-center gap-3 flex-wrap;
+}
+
+.lv-page-filter-left {
+  @apply flex items-center gap-2;
+}
+
+.lv-page-filter-filters {
+  @apply flex items-center gap-2 flex-1 flex-wrap;
+}
+
+.lv-page-filter-right {
+  @apply flex items-center gap-2 ml-auto;
+}
+
+/* Appearances */
+.lv-page-filter-solid {
+  @apply bg-white;
+}
+.lv-page-filter-outline {
+  @apply bg-white border border-secondary-200 rounded-lg p-2;
+}
+.lv-page-filter-ghost {
+  @apply bg-transparent;
+}
+.lv-page-filter-light {
+  @apply bg-secondary-50 rounded-lg p-2;
+}
+
+/* Sizes */
+.lv-page-filter-xs {
+  @apply gap-1;
+}
+.lv-page-filter-sm {
+  @apply gap-1.5;
+}
+.lv-page-filter-md {
+  @apply gap-2;
+}
+.lv-page-filter-lg {
+  @apply gap-2.5;
+}
+.lv-page-filter-xl {
+  @apply gap-3;
+}
+
+.lv-page-filter-full {
+  @apply w-full;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-page-filter {
+    @apply flex-col items-stretch;
+  }
+  .lv-page-filter-right {
+    @apply ml-0;
+  }
+  .lv-page-filter-filters {
+    @apply flex-col;
+  }
+}

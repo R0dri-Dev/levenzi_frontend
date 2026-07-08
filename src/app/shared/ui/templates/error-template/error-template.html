@@ -1,46 +1,38 @@
-<div [class]="classes().template">
-  <div [class]="classes().container">
-    <!-- Icon -->
+<div class="lv-error lv-error-{{ size() }}">
+  <div class="lv-error-container">
     <lv-icon
       [name]="getErrorIcon()"
       size="xl"
-      [class]="classes().icon"
-    />
+      class="lv-error-icon lv-error-icon-{{ variant() }}" />
 
-    <!-- Code -->
     <lv-heading
-      [level]="'1'"
+      level="1"
       [text]="code()"
-      [align]="'center'"
-      [class]="classes().code"
-    />
+      [color]="getCodeColor()"
+      [textAlign]="align()"
+      class="lv-error-code" />
 
-    <!-- Title -->
     <lv-heading
-      [level]="'2'"
+      level="2"
       [text]="title()"
-      [align]="'center'"
-      [class]="classes().title"
-    />
+      color="neutral"
+      [textAlign]="align()" />
 
-    <!-- Message -->
     <lv-paragraph
       size="lg"
-      color="gray"
-      [align]="'center'"
-      [class]="classes().message"
-    >
+      color="neutral"
+      [align]="align()"
+      [muted]="true"
+      class="lv-error-message">
       {{ message() }}
     </lv-paragraph>
 
-    <!-- Actions -->
     @if (showHomeButton()) {
-      <div [class]="classes().actions">
+      <div class="lv-error-actions">
         <lv-button
           variant="primary"
           [routerLink]="homeRoute()"
-          (onClick)="handleAction()"
-        >
+          (onClick)="handleAction()">
           <lv-icon name="home" size="sm" />
           Ir al inicio
         </lv-button>

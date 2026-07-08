@@ -1,2 +1,42 @@
-<div role="alert" [class]="classes()">{{ message() }}</div>
+@if (visible()) {
+  <div
+    role="alert"
+    [class]="appearance() === 'solid' ? 'bg-{{status()}}-500 text-white' : 'bg-{{status()}}-50 text-{{status()}}-800'"
+    class="relative w-full p-4 flex items-start gap-3 rounded-{{rounded()}} border border-{{status()}}-200 transition-all duration-200">
 
+    @if (showIcon()) {
+      <div
+        class="flex-shrink-0 w-5 h-5 flex items-center justify-center font-bold text-sm"
+        [class]="appearance() === 'solid' ? 'text-white' : 'text-{{status()}}-600'">
+        @if (status() === 'loading') {
+          <span class="animate-spin">⟳</span>
+        } @else {
+          {{ icon() }}
+        }
+      </div>
+    }
+
+    <div [class]="containerClasses()">
+      @if (alertTitle()) {
+        <div class="text-sm font-semibold">
+          {{ alertTitle() }}
+        </div>
+      }
+      <div class="text-sm">
+        {{ message() }}
+      </div>
+      <ng-content></ng-content>
+    </div>
+
+    @if (dismissible()) {
+      <button
+        type="button"
+        (click)="close()"
+        class="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-lg font-light leading-none"
+        [class]="appearance() === 'solid' ? 'text-white/80 hover:text-white hover:bg-white/20' : 'text-{{status()}}-500 hover:text-{{status()}}-700 hover:bg-{{status()}}-100'"
+        aria-label="Cerrar alerta">
+        ✕
+      </button>
+    }
+  </div>
+}

@@ -1,11 +1,14 @@
-<div [class]="classes().container">
-	@if (icon()) {
-		<lv-icon [name]="icon()!" size="lg" [class]="classes().icon" />
-	}
+<div class="lv-page-title">
+  @if (icon()) {
+    <lv-icon [name]="icon()!" size="lg" color="neutral" />
+  }
 
-	<div [class]="classes().content">
-		<lv-heading [level]="level()" [subtitle]="subtitle()">
-			{{ title() }}
-		</lv-heading>
-	</div>
+  <div class="lv-page-title-content">
+    <lv-heading
+      [level]="level()"
+      [color]="color()"
+      [subtitle]="subtitle()">
+      {{ title() }}
+    </lv-heading>
+  </div>
 </div>

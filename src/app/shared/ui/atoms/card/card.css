@@ -1,0 +1,71 @@
+/* card.css - Estilos propios del componente */
+.lv-card {
+  background-color: white;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+/* Shadow */
+.lv-card {
+  box-shadow: var(--shadow-lv-card);
+}
+.lv-card-no-shadow {
+  box-shadow: none;
+}
+
+/* Hoverable */
+.lv-card-hoverable:hover {
+  box-shadow: var(--shadow-lv-card-hover);
+  transform: translateY(-2px);
+}
+
+/* Bordered */
+.lv-card-bordered {
+  border: 1px solid var(--color-secondary-200);
+}
+
+/* Radius */
+.lv-card-rounded-none {
+  border-radius: 0;
+}
+.lv-card-rounded-sm {
+  border-radius: var(--radius-sm);
+}
+.lv-card-rounded-md {
+  border-radius: var(--radius-md);
+}
+.lv-card-rounded-lg {
+  border-radius: var(--radius-lg);
+}
+.lv-card-rounded-xl {
+  border-radius: var(--radius-xl);
+}
+.lv-card-rounded-2xl {
+  border-radius: var(--radius-2xl);
+}
+.lv-card-rounded-full {
+  border-radius: var(--radius-full);
+}
+
+/* Header */
+.lv-card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-secondary-200);
+  font-weight: 600;
+  color: var(--color-secondary-900);
+}
+
+/* Body */
+.lv-card-body {
+  padding: 1.25rem;
+  color: var(--color-secondary-700);
+}
+
+/* Footer */
+.lv-card-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--color-secondary-200);
+  background-color: var(--color-secondary-50);
+  color: var(--color-secondary-600);
+  font-size: 0.875rem;
+}

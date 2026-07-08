@@ -1,12 +1,17 @@
-<section [class]="classes()">
+<section
+  class="lv-card"
+  [class.lv-card-hoverable]="hoverable()"
+  [class.lv-card-bordered]="bordered()"
+  [class.lv-card-no-shadow]="!shadow()"
+  [class]="'lv-card-rounded-' + rounded()">
+
   @if (headerText()) {
-    <div [class]="headerClasses()">{{ headerText() }}</div>
+    <div class="lv-card-header">{{ headerText() }}</div>
   }
 
-  <div [class]="bodyClasses()"><ng-content /></div>
+  <div class="lv-card-body"><ng-content /></div>
 
   @if (footerText()) {
-    <div [class]="footerClasses()">{{ footerText() }}</div>
+    <div class="lv-card-footer">{{ footerText() }}</div>
   }
 </section>
-

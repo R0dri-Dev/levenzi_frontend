@@ -1,21 +1,31 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, ContentChild, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LvCardComponent } from '../../atoms/card/card';
 import { LvPageFilterComponent } from '../page-filter/page-filter';
-import type { FilterBarVariant, FilterBarLayout, FilterBarSpacing } from '../../../types/filter-bar.types';
+import { LvDividerComponent } from '../../atoms/divider/divider';
+import { LvSize, LvAppearance } from '../../../types';
 
 @Component({
   selector: 'lv-filters-panel',
   standalone: true,
-  imports: [CommonModule, LvCardComponent, LvPageFilterComponent],
+  imports: [CommonModule, LvCardComponent, LvPageFilterComponent, LvDividerComponent],
   templateUrl: './filters-panel.html',
-  styleUrl: './filters-panel.css',
+  styleUrls: ['./filters-panel.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LvFiltersPanelComponent {
-  readonly variant = input<FilterBarVariant>('table');
-  readonly layout = input<FilterBarLayout>('wrap');
-  readonly spacing = input<FilterBarSpacing>('md');
+  readonly appearance = input<LvAppearance>('light');
+  readonly size = input<LvSize>('md');
   readonly fullWidth = input(true);
+
+  @ContentChild('header') headerContent: any;
+  @ContentChild('footer') footerContent: any;
+
+  hasHeader(): boolean {
+    return !!this.headerContent;
+  }
+
+  hasFooter(): boolean {
+    return !!this.footerContent;
+  }
 }

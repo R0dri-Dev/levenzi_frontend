@@ -1,61 +1,61 @@
-<div [class]="classes().template">
+<div class="lv-form lv-form-{{ variant() }} lv-form-{{ size() }}">
   @if (variant() === 'card') {
-    <!-- Con Card -->
-    <lv-card>
-      <!-- Header -->
+    <lv-card [shadow]="true" class="lv-form-card">
       @if (title()) {
-        <div [class]="classes().header">
+        <div class="lv-form-header">
           <div>
-            <lv-heading [level]="'2'" [text]="title()" />
+            <lv-heading [level]="'2'" [text]="title()" [color]="color()" [textAlign]="align()" />
             @if (subtitle()) {
-              <lv-paragraph size="md" color="gray">
+              <lv-paragraph size="md" color="neutral" [align]="align()" [muted]="true">
                 {{ subtitle() }}
               </lv-paragraph>
             }
           </div>
-          <ng-content select="[header-actions]"></ng-content>
+          <div class="lv-form-header-actions">
+            <ng-content select="[header-actions]"></ng-content>
+          </div>
         </div>
+        <lv-divider />
       }
 
-      <!-- Form -->
       <form (ngSubmit)="onSubmit.emit()">
-        <!-- Body -->
-        <div [class]="classes().body">
+        <div class="lv-form-body">
           <ng-content></ng-content>
         </div>
 
-        <!-- Footer -->
-        <div [class]="classes().footer">
+        <div class="lv-form-footer">
           <ng-content select="[footer-actions]"></ng-content>
         </div>
       </form>
     </lv-card>
   } @else {
-    @if (title()) {
-      <div [class]="classes().header">
-        <div>
-          <lv-heading [level]="'2'" [text]="title()" />
-          @if (subtitle()) {
-            <lv-paragraph size="md" color="gray">
-              {{ subtitle() }}
-            </lv-paragraph>
-          }
+    <div class="lv-form-simple">
+      @if (title()) {
+        <div class="lv-form-header">
+          <div>
+            <lv-heading [level]="'2'" [text]="title()" [color]="color()" [textAlign]="align()" />
+            @if (subtitle()) {
+              <lv-paragraph size="md" color="neutral" [align]="align()" [muted]="true">
+                {{ subtitle() }}
+              </lv-paragraph>
+            }
+          </div>
+          <div class="lv-form-header-actions">
+            <ng-content select="[header-actions]"></ng-content>
+          </div>
         </div>
-        <ng-content select="[header-actions]"></ng-content>
-      </div>
-    }
+        <lv-divider />
+      }
 
-    <!-- Form -->
-    <form (ngSubmit)="onSubmit.emit()">
-      <!-- Body -->
-      <div [class]="classes().body">
-        <ng-content></ng-content>
-      </div>
+      <form (ngSubmit)="onSubmit.emit()">
+        <div class="lv-form-body">
+          <ng-content></ng-content>
+        </div>
 
-      <!-- Footer -->
-      <div [class]="classes().footer">
-        <ng-content select="[footer-actions]"></ng-content>
-      </div>
-    </form>
+        <div class="lv-form-footer">
+          <ng-content select="[footer-actions]"></ng-content>
+        </div>
+      </form>
+    </div>
   }
 </div>

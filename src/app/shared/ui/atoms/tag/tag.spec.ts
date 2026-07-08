@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Tag } from './tag';
+import { LvTagComponent } from './tag';
 
-describe('Tag', () => {
-  let component: Tag;
-  let fixture: ComponentFixture<Tag>;
+describe('LvTagComponent', () => {
+  let component: LvTagComponent;
+  let fixture: ComponentFixture<LvTagComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Tag],
+      imports: [LvTagComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Tag);
+    fixture = TestBed.createComponent(LvTagComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

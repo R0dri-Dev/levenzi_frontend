@@ -26,8 +26,5 @@ describe('LvPasswordInputComponent', () => {
     expect(component.value()).toBe('');
   });
 
-  it('should compute classes', () => {
-    expect(component.classes()).toContain('rounded-xl');
-  });
 });
 

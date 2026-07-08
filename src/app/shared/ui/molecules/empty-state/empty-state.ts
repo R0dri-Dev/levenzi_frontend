@@ -1,30 +1,20 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LvButtonComponent } from '../../atoms/button/button';
-
-import {
-  LV_EMPTY_STATE_BASE,
-  LV_EMPTY_STATE_SIZES,
-  LV_EMPTY_STATE_VARIANTS,
-  LV_EMPTY_STATE_ICON,
-  LV_EMPTY_STATE_ICON_SIZES,
-  LV_EMPTY_STATE_TITLE,
-  LV_EMPTY_STATE_TITLE_SIZES,
-  LV_EMPTY_STATE_DESCRIPTION,
-  LV_EMPTY_STATE_DESCRIPTION_SIZES,
-  LV_EMPTY_STATE_ACTIONS,
-} from '../../../theme/empty-state.theme';
-import type { EmptyStateSize, EmptyStateVariant } from '../../../types/empty-state.types';
 import { LvIconComponent } from '../../icons/icon/icon';
+import { LvHeadingComponent } from '../../atoms/heading/heading';
+import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import type { IconKeys } from '../../../core/icons';
+
+export type EmptyStateSize = 'sm' | 'md' | 'lg';
+export type EmptyStateVariant = 'default' | 'compact' | 'centered';
 
 @Component({
   selector: 'lv-empty-state',
   standalone: true,
-  imports: [CommonModule, LvIconComponent, LvButtonComponent],
+  imports: [CommonModule, LvIconComponent, LvButtonComponent, LvHeadingComponent, LvParagraphComponent],
   templateUrl: './empty-state.html',
-  styleUrl: './empty-state.css',
+  styleUrls: ['./empty-state.css'],
 })
 export class LvEmptyStateComponent {
   readonly title = input.required<string>();
@@ -36,20 +26,6 @@ export class LvEmptyStateComponent {
   readonly actionIcon = input<IconKeys>();
 
   readonly onAction = output<void>();
-
-  readonly classes = computed(() => {
-    const base = LV_EMPTY_STATE_BASE;
-    const size = LV_EMPTY_STATE_SIZES[this.size()];
-    const variant = LV_EMPTY_STATE_VARIANTS[this.variant()];
-
-    return {
-      container: [base, size, variant].filter(Boolean).join(' '),
-      icon: [LV_EMPTY_STATE_ICON, LV_EMPTY_STATE_ICON_SIZES[this.size()]].filter(Boolean).join(' '),
-      title: [LV_EMPTY_STATE_TITLE, LV_EMPTY_STATE_TITLE_SIZES[this.size()]].filter(Boolean).join(' '),
-      description: [LV_EMPTY_STATE_DESCRIPTION, LV_EMPTY_STATE_DESCRIPTION_SIZES[this.size()]].filter(Boolean).join(' '),
-      actions: LV_EMPTY_STATE_ACTIONS,
-    };
-  });
 
   handleAction(): void {
     this.onAction.emit();

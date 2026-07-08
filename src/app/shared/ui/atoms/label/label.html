@@ -1,6 +1,9 @@
-<label [attr.for]="for()" class="lv-label">
+<label
+  [attr.for]="for()"
+  class="lv-label lv-label-{{ color() }} lv-label-{{ size() }}"
+  [class.lv-label-disabled]="disabled()">
   {{ text() }}
   @if (required()) {
-    <span class="text-red-500 ml-0.5">*</span>
+    <span class="lv-label-required">*</span>
   }
 </label>

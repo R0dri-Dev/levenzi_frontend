@@ -1,35 +1,32 @@
 @if (isOpen()) {
   <div
     #overlay
-    [class]="classes().overlay"
+    class="lv-drawer-overlay"
     (click)="handleOverlayClick($event)"
     role="dialog"
-    aria-modal="true"
-  >
+    aria-modal="true">
+
     <div
       #drawer
-      [class]="classes().drawer"
-      [class]="getTranslate()"
-    >
-      <!-- Header -->
-      <div [class]="classes().header">
-        <h3 [class]="classes().title">{{ title() }}</h3>
+      class="lv-drawer lv-drawer-{{ position() }} lv-drawer-{{ size() }} lv-drawer-{{ color() }}">
+
+      <div class="lv-drawer-header">
+        <lv-heading level="4" color="neutral">
+          {{ title() }}
+        </lv-heading>
         <lv-icon-button
           icon="x"
           label="Cerrar drawer"
           variant="ghost"
           size="sm"
-          (onClick)="handleCloseClick()"
-        />
+          (onClick)="handleCloseClick()" />
       </div>
 
-      <!-- Body -->
-      <div [class]="classes().body">
+      <div class="lv-drawer-body">
         <ng-content></ng-content>
       </div>
 
-      <!-- Footer -->
-      <div [class]="classes().footer">
+      <div class="lv-drawer-footer">
         <ng-content select="[footer]"></ng-content>
       </div>
     </div>

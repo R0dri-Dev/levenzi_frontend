@@ -1,0 +1,102 @@
+@reference "../../../../../styles.css";
+.lv-app-sidebar {
+  @apply h-full bg-white border-secondary-200 flex flex-col;
+  @apply transition-all duration-300 ease-in-out;
+  width: 240px;
+  min-height: 100vh;
+}
+
+.lv-app-sidebar-left {
+  @apply border-r;
+}
+
+.lv-app-sidebar-right {
+  @apply border-l;
+}
+
+.lv-app-sidebar-collapsed {
+  width: 64px;
+}
+
+.lv-app-sidebar-toggle {
+  @apply flex justify-end p-2;
+}
+
+.lv-app-sidebar-header {
+  @apply px-4 py-3 border-b border-secondary-200;
+}
+
+.lv-app-sidebar-nav {
+  @apply flex-1 flex flex-col gap-0.5 p-2 overflow-y-auto;
+}
+
+.lv-app-sidebar-item {
+  @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors;
+  @apply hover:bg-secondary-100;
+  color: var(--color-secondary-600);
+}
+
+.lv-app-sidebar-item-active {
+  color: var(--color-primary-600);
+  @apply bg-primary-50;
+}
+
+.lv-app-sidebar-icon {
+  @apply flex-shrink-0;
+}
+
+.lv-app-sidebar-label {
+  @apply flex-1 truncate;
+}
+
+.lv-app-sidebar-footer {
+  @apply px-4 py-3 border-t border-secondary-200 mt-auto;
+}
+
+/* Sizes */
+.lv-app-sidebar-sm {
+  width: 200px;
+}
+.lv-app-sidebar-sm.lv-app-sidebar-collapsed {
+  width: 56px;
+}
+.lv-app-sidebar-md {
+  width: 240px;
+}
+.lv-app-sidebar-md.lv-app-sidebar-collapsed {
+  width: 64px;
+}
+.lv-app-sidebar-lg {
+  width: 280px;
+}
+.lv-app-sidebar-lg.lv-app-sidebar-collapsed {
+  width: 72px;
+}
+
+.lv-app-sidebar-sm .lv-app-sidebar-item {
+  @apply px-2 py-1.5 text-xs;
+}
+.lv-app-sidebar-md .lv-app-sidebar-item {
+  @apply px-3 py-2 text-sm;
+}
+.lv-app-sidebar-lg .lv-app-sidebar-item {
+  @apply px-4 py-2.5 text-base;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lv-app-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 50;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  .lv-app-sidebar-left {
+    left: 0;
+    transform: translateX(0);
+  }
+  .lv-app-sidebar-collapsed.lv-app-sidebar-left {
+    transform: translateX(-100%);
+  }
+}

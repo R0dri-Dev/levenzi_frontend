@@ -1,22 +1,16 @@
-import { Component, computed, input } from '@angular/core';
-import { DividerOrientation } from '../../../types/divider.types';
-import { LV_DIVIDER_BASE, LV_DIVIDER_ORIENTATION } from '../../../theme/divider.theme';
+import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
+export type LvDividerOrientation = 'horizontal' | 'vertical';
 
 @Component({
   selector: 'lv-divider',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './divider.html',
+  styleUrls: ['./divider.css'],
 })
 export class LvDividerComponent {
-
-  readonly text=input('');
-
-  readonly orientation=input<DividerOrientation>('horizontal');
-
-  readonly classes=computed(()=>[
-    LV_DIVIDER_BASE,
-    LV_DIVIDER_ORIENTATION[this.orientation()]
-  ].join(' '));
-
+  readonly text = input('');
+  readonly orientation = input<LvDividerOrientation>('horizontal');
 }

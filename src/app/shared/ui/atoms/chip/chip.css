@@ -1,0 +1,127 @@
+@reference "../../../../../styles.css";
+/* chip.css - Estilos propios del componente */
+.lv-chip {
+  @apply inline-flex items-center gap-1.5 font-medium transition-colors;
+  @apply select-none;
+}
+
+.lv-chip:not(.lv-chip-disabled) {
+  @apply cursor-pointer hover:opacity-80;
+}
+
+/* Tamaños */
+.lv-chip-xs {
+  @apply px-2 py-0.5 text-xs rounded-full;
+  height: var(--size-xs);
+}
+.lv-chip-sm {
+  @apply px-2.5 py-0.5 text-xs rounded-full;
+  height: var(--size-sm);
+}
+.lv-chip-md {
+  @apply px-3 py-1 text-sm rounded-full;
+  height: var(--size-md);
+}
+.lv-chip-lg {
+  @apply px-3.5 py-1 text-sm rounded-full;
+  height: var(--size-lg);
+}
+.lv-chip-xl {
+  @apply px-4 py-1.5 text-base rounded-full;
+  height: var(--size-xl);
+}
+
+/* Variantes */
+.lv-chip-primary {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-700);
+}
+.lv-chip-primary .lv-chip-remove {
+  color: var(--color-primary-500);
+}
+.lv-chip-primary .lv-chip-remove:hover {
+  color: var(--color-primary-700);
+}
+
+.lv-chip-secondary {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-700);
+}
+.lv-chip-secondary .lv-chip-remove {
+  color: var(--color-secondary-500);
+}
+.lv-chip-secondary .lv-chip-remove:hover {
+  color: var(--color-secondary-700);
+}
+
+.lv-chip-success {
+  background-color: var(--color-success-100);
+  color: var(--color-success-700);
+}
+.lv-chip-success .lv-chip-remove {
+  color: var(--color-success-500);
+}
+.lv-chip-success .lv-chip-remove:hover {
+  color: var(--color-success-700);
+}
+
+.lv-chip-danger {
+  background-color: var(--color-danger-100);
+  color: var(--color-danger-700);
+}
+.lv-chip-danger .lv-chip-remove {
+  color: var(--color-danger-500);
+}
+.lv-chip-danger .lv-chip-remove:hover {
+  color: var(--color-danger-700);
+}
+
+.lv-chip-warning {
+  background-color: var(--color-warning-100);
+  color: var(--color-warning-700);
+}
+.lv-chip-warning .lv-chip-remove {
+  color: var(--color-warning-500);
+}
+.lv-chip-warning .lv-chip-remove:hover {
+  color: var(--color-warning-700);
+}
+
+.lv-chip-info {
+  background-color: var(--color-info-100);
+  color: var(--color-info-700);
+}
+.lv-chip-info .lv-chip-remove {
+  color: var(--color-info-500);
+}
+.lv-chip-info .lv-chip-remove:hover {
+  color: var(--color-info-700);
+}
+
+.lv-chip-neutral {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+}
+.lv-chip-neutral .lv-chip-remove {
+  color: var(--color-neutral-500);
+}
+.lv-chip-neutral .lv-chip-remove:hover {
+  color: var(--color-neutral-700);
+}
+
+/* Disabled */
+.lv-chip-disabled {
+  @apply opacity-60 pointer-events-none;
+}
+
+/* Label */
+.lv-chip-label {
+  @apply truncate;
+}
+
+/* Remove button */
+.lv-chip-remove {
+  @apply flex items-center justify-center rounded-full transition-colors;
+  @apply text-sm font-bold leading-none;
+  @apply w-4 h-4 hover:bg-black/10;
+}

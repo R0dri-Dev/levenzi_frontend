@@ -1,1 +1,21 @@
-<p>tooltip works!</p>
+<div class="lv-tooltip-wrapper">
+  <div
+    class="lv-tooltip-trigger"
+    (mouseenter)="show()"
+    (mouseleave)="hide()"
+    (focus)="show()"
+    (blur)="hide()">
+    <ng-content />
+  </div>
+
+  @if (isVisible()) {
+    <div
+      class="lv-tooltip lv-tooltip-{{ placement() }} lv-tooltip-{{ color() }}"
+      role="tooltip">
+      {{ content() }}
+      @if (showArrow()) {
+        <div class="lv-tooltip-arrow" data-popper-arrow></div>
+      }
+    </div>
+  }
+</div>

@@ -1,16 +1,16 @@
-<div [class]="classes()">
-  <!-- Left slot -->
-  <div class="flex items-center gap-2 flex-wrap">
+<div
+  class="lv-filter-bar lv-filter-bar-{{ appearance() }} lv-filter-bar-{{ size() }}"
+  [class.lv-filter-bar-full]="fullWidth()">
+
+  <div class="lv-filter-bar-section">
     <ng-content select="[left]"></ng-content>
   </div>
 
-  <!-- Center slot - filters -->
-  <div class="flex items-center gap-2 flex-wrap">
+  <div class="lv-filter-bar-section lv-filter-bar-filters">
     <ng-content select="[filters]"></ng-content>
   </div>
 
-  <!-- Right slot - actions -->
-  <div class="flex items-center gap-2 ml-auto">
+  <div class="lv-filter-bar-section lv-filter-bar-actions">
     <ng-content select="[right]"></ng-content>
   </div>
 </div>

@@ -1,28 +1,43 @@
 <div
-  [class]="classes().container"
+  class="lv-notification lv-notification-{{ variant() }} lv-notification-{{ size() }}"
   (click)="handleClick()"
-  role="alert"
->
-  <div [class]="classes().icon">
-    <lv-icon [name]="getIconName()" size="sm" />
+  role="alert">
+
+  <div class="lv-notification-icon">
+    <lv-icon name="info" size="sm" />
   </div>
 
-  <div class="flex-1 min-w-0">
-    <div class="flex items-center justify-between gap-2">
-      <h4 [class]="classes().title">{{ title() }}</h4>
+  <div class="lv-notification-content">
+    <div class="lv-notification-header">
+      <lv-heading
+        level="5"
+        [text]="title()"
+        color="neutral"
+        weight="semibold" />
+
       @if (closable()) {
-       <lv-icon-button
-        icon="x"
-        label="Dismiss notification"
-        size="sm"
-        variant="ghost"
-        (click)="dismiss()"
-      />
+        <lv-icon-button
+          icon="x"
+          label="Dismiss notification"
+          size="sm"
+          variant="ghost"
+          (onClick)="dismiss()" />
       }
     </div>
-    <p [class]="classes().message">{{ message() }}</p>
+
+    <lv-paragraph
+      size="sm"
+      color="neutral">
+      {{ message() }}
+    </lv-paragraph>
+
     @if (time()) {
-      <time [class]="classes().time">{{ time() }}</time>
+      <lv-paragraph
+        size="xs"
+        color="neutral"
+        [muted]="true">
+        {{ time() }}
+      </lv-paragraph>
     }
   </div>
 </div>

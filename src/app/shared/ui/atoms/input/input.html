@@ -1,33 +1,51 @@
-<!-- shared/ui/atoms/input/input.html -->
-<div class="relative">
-  @if (icon() && iconPosition() === 'left') {
-    <lv-icon
-      [name]="icon()!"
-      size="sm"
-      [class]="classes().icon"
-    />
+<div class="lv-input-wrapper">
+  @if (label()) {
+    <label class="lv-input-label">
+      {{ label() }}
+      @if (required()) {
+        <span class="lv-input-required">*</span>
+      }
+    </label>
   }
 
-  <input
-    [type]="type()"
-    [placeholder]="placeholder()"
-    [value]="internalValue()"
-    [disabled]="disabled()"
-    [readonly]="readonly()"
-    [required]="required()"
-    [attr.minlength]="minlength()"
-    [attr.maxlength]="maxlength()"
-    (input)="onInputChange($event)"
-    (blur)="onBlurEvent()"
-    (focus)="onFocusEvent()"
-    [class]="classes().input"
-  />
+  <div
+    class="lv-input-container
+      lv-input-{{ appearance() }}
+      lv-input-{{ variant() }}
+      lv-input-{{ size() }}
+      {{ icon() && iconPosition() === 'left' ? 'lv-input-icon-left' : '' }}
+      {{ icon() && iconPosition() === 'right' ? 'lv-input-icon-right' : '' }}
+      {{ error() ? 'lv-input-error' : '' }}"
+  >
+    @if (icon() && iconPosition() === 'left') {
+      <lv-icon [name]="icon()!" size="sm" class="lv-input-icon" />
+    }
 
-  @if (icon() && iconPosition() === 'right') {
-    <lv-icon
-      [name]="icon()!"
-      size="sm"
-      [class]="classes().icon + ' right-3 left-auto'"
+    <input
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [value]="internalValue()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [required]="required()"
+      [attr.minlength]="minlength()"
+      [attr.maxlength]="maxlength()"
+      [attr.aria-invalid]="!!error()"
+      [attr.aria-describedby]="error() ? 'input-error' : hint() ? 'input-hint' : null"
+      class="lv-input"
+      (input)="onInputChange($event)"
+      (blur)="onBlurEvent()"
+      (focus)="onFocusEvent()"
     />
+
+    @if (icon() && iconPosition() === 'right') {
+      <lv-icon [name]="icon()!" size="sm" class="lv-input-icon" />
+    }
+  </div>
+
+  @if (error()) {
+    <p id="input-error" class="lv-input-error">{{ error() }}</p>
+  } @else if (hint()) {
+    <p id="input-hint" class="lv-input-hint">{{ hint() }}</p>
   }
 </div>

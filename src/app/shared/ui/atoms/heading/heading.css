@@ -1,0 +1,105 @@
+@reference "../../../../../styles.css";
+/* heading.css - Estilos propios del componente */
+.lv-heading {
+  @apply font-bold tracking-tight;
+}
+
+/* Tamaños por nivel */
+.lv-heading-1 {
+  @apply text-4xl md:text-5xl lg:text-6xl;
+}
+.lv-heading-2 {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+.lv-heading-3 {
+  @apply text-2xl md:text-3xl lg:text-4xl;
+}
+.lv-heading-4 {
+  @apply text-xl md:text-2xl lg:text-3xl;
+}
+.lv-heading-5 {
+  @apply text-lg md:text-xl lg:text-2xl;
+}
+.lv-heading-6 {
+  @apply text-base md:text-lg lg:text-xl;
+}
+
+/* Pesos */
+.lv-heading-light {
+  @apply font-light;
+}
+.lv-heading-normal {
+  @apply font-normal;
+}
+.lv-heading-medium {
+  @apply font-medium;
+}
+.lv-heading-semibold {
+  @apply font-semibold;
+}
+.lv-heading-bold {
+  @apply font-bold;
+}
+
+/* Colores usando tokens */
+.lv-heading-primary {
+  color: var(--color-primary-700);
+}
+.lv-heading-secondary {
+  color: var(--color-secondary-700);
+}
+.lv-heading-success {
+  color: var(--color-success-700);
+}
+.lv-heading-danger {
+  color: var(--color-danger-700);
+}
+.lv-heading-warning {
+  color: var(--color-warning-700);
+}
+.lv-heading-info {
+  color: var(--color-info-700);
+}
+.lv-heading-neutral {
+  color: var(--color-neutral-800);
+}
+
+/* Alineación flex (justify-content) */
+.lv-heading-start {
+  @apply justify-start flex;
+}
+.lv-heading-center {
+  @apply justify-center flex;
+}
+.lv-heading-end {
+  @apply justify-end flex;
+}
+.lv-heading-between {
+  @apply justify-between flex;
+}
+.lv-heading-around {
+  @apply justify-around flex;
+}
+.lv-heading-evenly {
+  @apply justify-evenly flex;
+}
+
+/* Alineación de texto */
+.lv-heading-text-left {
+  @apply text-left;
+}
+.lv-heading-text-center {
+  @apply text-center;
+}
+.lv-heading-text-right {
+  @apply text-right;
+}
+.lv-heading-text-justify {
+  @apply text-justify;
+}
+
+/* Subtitle */
+.lv-heading-subtitle {
+  @apply mt-2 text-sm;
+  color: var(--color-secondary-500);
+}

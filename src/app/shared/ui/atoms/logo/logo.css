@@ -1,0 +1,114 @@
+@reference "../../../../../styles.css";
+/* logo.css - Estilos propios del componente */
+.lv-logo {
+  @apply inline-flex items-center gap-2 no-underline transition-colors duration-200;
+}
+
+.lv-logo-text {
+  @apply tracking-tight;
+}
+
+.lv-logo-bold .lv-logo-text {
+  @apply font-bold;
+}
+
+/* Tamaños usando tokens */
+.lv-logo-xs {
+  @apply text-sm;
+}
+.lv-logo-xs .lv-logo-text {
+  @apply text-sm;
+}
+.lv-logo-xs lv-icon {
+  @apply w-4 h-4;
+}
+
+.lv-logo-sm {
+  @apply text-base;
+}
+.lv-logo-sm .lv-logo-text {
+  @apply text-base;
+}
+.lv-logo-sm lv-icon {
+  @apply w-5 h-5;
+}
+
+.lv-logo-md {
+  @apply text-lg;
+}
+.lv-logo-md .lv-logo-text {
+  @apply text-lg;
+}
+.lv-logo-md lv-icon {
+  @apply w-6 h-6;
+}
+
+.lv-logo-lg {
+  @apply text-xl;
+}
+.lv-logo-lg .lv-logo-text {
+  @apply text-xl;
+}
+.lv-logo-lg lv-icon {
+  @apply w-7 h-7;
+}
+
+.lv-logo-xl {
+  @apply text-2xl;
+}
+.lv-logo-xl .lv-logo-text {
+  @apply text-2xl;
+}
+.lv-logo-xl lv-icon {
+  @apply w-8 h-8;
+}
+
+/* Colores usando tokens */
+.lv-logo-primary {
+  color: var(--color-primary-700);
+}
+.lv-logo-primary:hover {
+  color: var(--color-primary-900);
+}
+
+.lv-logo-secondary {
+  color: var(--color-secondary-700);
+}
+.lv-logo-secondary:hover {
+  color: var(--color-secondary-900);
+}
+
+.lv-logo-success {
+  color: var(--color-success-700);
+}
+.lv-logo-success:hover {
+  color: var(--color-success-900);
+}
+
+.lv-logo-danger {
+  color: var(--color-danger-700);
+}
+.lv-logo-danger:hover {
+  color: var(--color-danger-900);
+}
+
+.lv-logo-warning {
+  color: var(--color-warning-700);
+}
+.lv-logo-warning:hover {
+  color: var(--color-warning-900);
+}
+
+.lv-logo-info {
+  color: var(--color-info-700);
+}
+.lv-logo-info:hover {
+  color: var(--color-info-900);
+}
+
+.lv-logo-neutral {
+  color: var(--color-neutral-700);
+}
+.lv-logo-neutral:hover {
+  color: var(--color-neutral-900);
+}

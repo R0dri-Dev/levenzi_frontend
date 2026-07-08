@@ -1,1 +1,38 @@
-<p>pagination works!</p>
+<div class="lv-pagination lv-pagination-{{ size() }}">
+  @if (showTotal()) {
+    <div class="lv-pagination-total">
+      {{ startItem() }} - {{ endItem() }} de {{ total() }}
+    </div>
+  }
+
+  <div class="lv-pagination-controls">
+    <lv-button
+      size="sm"
+      variant="secondary"
+      [disabled]="page() === 1"
+      (onClick)="previous()">
+      <lv-icon name="chevron-left" size="sm" />
+    </lv-button>
+
+    @for (item of pages(); track $index) {
+      @if (item === '...') {
+        <span class="lv-pagination-ellipsis">…</span>
+      } @else {
+        <lv-button
+          size="sm"
+          [variant]="item === page() ? 'primary' : 'secondary'"
+          (onClick)="goToPage(+item)">
+          {{ item }}
+        </lv-button>
+      }
+    }
+
+    <lv-button
+      size="sm"
+      variant="secondary"
+      [disabled]="page() === totalPages()"
+      (onClick)="next()">
+      <lv-icon name="chevron-right" size="sm" />
+    </lv-button>
+  </div>
+</div>

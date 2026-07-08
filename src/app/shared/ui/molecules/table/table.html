@@ -1,49 +1,42 @@
-<div [class]="classes().wrapper">
-  <!-- Loading State -->
+<div class="lv-table-wrapper">
   @if (loading()) {
-    <div [class]="classes().loadingSpinner">
+    <div class="lv-table-loading">
       <lv-spinner size="md" />
-      <lv-paragraph size="sm" color="gray" class="ml-3">
+      <lv-paragraph size="sm" color="neutral" [muted]="true" class="lv-table-loading-text">
         Cargando...
       </lv-paragraph>
     </div>
   } @else {
-    <!-- Table -->
-    <table [class]="classes().table">
-      <!-- Header -->
-      <thead [class]="classes().head">
+    <table class="lv-table lv-table-{{ size() }}">
+      <thead class="lv-table-head">
         <tr>
-          <!-- Select All -->
           @if (selectable()) {
-            <th [class]="classes().headCell(selectColumn())">
+            <th class="lv-table-head-cell lv-table-head-cell-{{ size() }} lv-table-head-cell-center">
               <lv-checkbox
                 [checked]="selectAll()"
                 (onChange)="toggleSelectAll()"
                 [disabled]="data().length === 0"
-                aria-label="Seleccionar todos"
-              />
+                aria-label="Seleccionar todos" />
             </th>
           }
 
-          <!-- Columns -->
           @for (col of visibleColumns(); track col.key) {
             <th
-              [class]="classes().headCell(col)"
+              class="lv-table-head-cell lv-table-head-cell-{{ size() }} lv-table-head-cell-{{ col.align || 'left' }}"
               [style.width]="col.width || 'auto'"
               (click)="col.sortable ? toggleSort(col.key) : null"
-              [class.cursor-pointer]="col.sortable"
-            >
-              <div class="flex items-center gap-1">
-                <lv-paragraph size="sm" weight="semibold" color="gray">
+              [class.cursor-pointer]="col.sortable">
+              <div class="lv-table-head-content">
+                <lv-paragraph size="sm" weight="semibold" color="neutral">
                   {{ col.label }}
                 </lv-paragraph>
 
                 @if (col.sortable) {
-                  <span [class]="classes().sortIcon">
+                  <span class="lv-table-sort-icon">
                     @if (getSortDirection(col.key) === 'asc') {
-                      <lv-icon name="chevron-up" size="xs" [class]="classes().sortActive" />
+                      <lv-icon name="chevron-up" size="xs" class="lv-table-sort-active" />
                     } @else if (getSortDirection(col.key) === 'desc') {
-                      <lv-icon name="chevron-down" size="xs" [class]="classes().sortActive" />
+                      <lv-icon name="chevron-down" size="xs" class="lv-table-sort-active" />
                     } @else {
                       <lv-icon name="chevron-up-down" size="xs" />
                     }
@@ -53,10 +46,9 @@
             </th>
           }
 
-          <!-- Actions Header -->
           @if (hasActions()) {
-            <th [class]="classes().headCell(actionsColumn())">
-              <lv-paragraph size="sm" weight="semibold" color="gray">
+            <th class="lv-table-head-cell lv-table-head-cell-{{ size() }} lv-table-head-cell-center">
+              <lv-paragraph size="sm" weight="semibold" color="neutral">
                 Acciones
               </lv-paragraph>
             </th>
@@ -64,67 +56,57 @@
         </tr>
       </thead>
 
-      <!-- Body -->
-      <tbody [class]="classes().body">
+      <tbody class="lv-table-body">
         @if (data().length === 0) {
           <tr>
             <td
-              [colSpan]="visibleColumns().length + (selectable() ? 1 : 0) + (hasActions() ? 1 : 0)"
-              [class]="classes().empty"
-            >
+              [attr.colspan]="visibleColumns().length + (selectable() ? 1 : 0) + (hasActions() ? 1 : 0)"
+              class="lv-table-empty">
               <lv-empty-state
                 title="Sin datos"
                 [description]="emptyMessage()"
                 icon="inbox"
-                size="sm"
-              />
+                size="sm" />
             </td>
           </tr>
         } @else {
           @for (item of data(); track $index) {
             <tr
-              [class]="classes().row(item)"
-              (click)="handleRowClick(item)"
-              class="cursor-pointer"
-            >
-              <!-- Select Checkbox -->
+              class="lv-table-row"
+              [class.lv-table-row-selected]="isSelected(item)"
+              (click)="handleRowClick(item)">
+
               @if (selectable()) {
-                <td [class]="classes().cell(selectColumn())">
+                <td class="lv-table-cell lv-table-cell-{{ size() }} lv-table-cell-center">
                   <lv-checkbox
                     [checked]="isSelected(item)"
                     (onChange)="toggleSelection(item)"
                     (click)="$event.stopPropagation()"
-                    aria-label="Seleccionar fila"
-                  />
+                    aria-label="Seleccionar fila" />
                 </td>
               }
 
-              <!-- Data Cells -->
               @for (col of visibleColumns(); track col.key) {
                 <td
-                  [class]="classes().cell(col)"
-                  [class]="col.cellClass || ''"
-                >
-                  <lv-paragraph size="sm" color="gray">
+                  class="lv-table-cell lv-table-cell-{{ size() }} lv-table-cell-{{ col.align || 'left' }}"
+                  [class]="col.cellClass || ''">
+                  <lv-paragraph size="sm" color="neutral">
                     {{ getCellValue(item, col) }}
                   </lv-paragraph>
                 </td>
               }
 
-              <!-- Actions -->
               @if (hasActions()) {
-                <td [class]="classes().cell(actionsColumn())">
-                  <div class="flex items-center justify-center gap-1">
+                <td class="lv-table-cell lv-table-cell-{{ size() }} lv-table-cell-center">
+                  <div class="lv-table-actions">
                     @for (action of actions(); track $index) {
                       @if (isActionVisible(action, item)) {
                         <lv-icon-button
-                          [icon]="getActionIcon(action.icon)"
+                          [icon]="action.icon || 'more-horizontal'"
                           [label]="action.label"
-                          [variant]="action.variant || 'ghost'"
-                          [size]="action.size || 'sm'"
+                          size="sm"
                           [disabled]="isActionDisabled(action, item)"
-                          (onClick)="action.action(item); $event.stopPropagation()"
-                        />
+                          (onClick)="action.action(item); $event.stopPropagation()" />
                       }
                     }
                   </div>
@@ -136,31 +118,27 @@
       </tbody>
     </table>
 
-    <!-- Pagination -->
     @if (pagination() && data().length > 0) {
-      <div [class]="classes().paginationWrapper">
-        <div [class]="classes().paginationInfo">
-          <lv-paragraph size="sm" color="gray">
+      <div class="lv-table-pagination">
+        <div class="lv-table-pagination-info">
+          <lv-paragraph size="sm" color="neutral" [muted]="true">
             Mostrando {{ getStartItem() }} - {{ getEndItem() }} de {{ totalItems() }} registros
           </lv-paragraph>
         </div>
 
-        <div [class]="classes().paginationButtons">
+        <div class="lv-table-pagination-buttons">
           <lv-icon-button
             icon="chevron-left"
             label="Página anterior"
-            variant="ghost"
             size="sm"
             [disabled]="pagination()?.currentPage === 1"
-            (onClick)="handlePageChange((pagination()?.currentPage || 1) - 1)"
-          />
+            (onClick)="handlePageChange((pagination()?.currentPage || 1) - 1)" />
 
           @for (page of [].constructor(getTotalPages()); track $index) {
             <lv-button
-              [variant]="pagination()?.currentPage === $index + 1 ? 'primary' : 'ghost'"
+              [variant]="pagination()?.currentPage === $index + 1 ? 'primary' : 'secondary'"
               size="sm"
-              (onClick)="handlePageChange($index + 1)"
-            >
+              (onClick)="handlePageChange($index + 1)">
               {{ $index + 1 }}
             </lv-button>
           }
@@ -168,11 +146,9 @@
           <lv-icon-button
             icon="chevron-right"
             label="Página siguiente"
-            variant="ghost"
             size="sm"
             [disabled]="pagination()?.currentPage === getTotalPages()"
-            (onClick)="handlePageChange((pagination()?.currentPage || 1) + 1)"
-          />
+            (onClick)="handlePageChange((pagination()?.currentPage || 1) + 1)" />
         </div>
       </div>
     }

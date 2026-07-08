@@ -1,0 +1,39 @@
+@reference "../../../../../styles.css";
+.lv-breadcrumb {
+  @apply w-full;
+}
+
+.lv-breadcrumb-list {
+  @apply flex flex-wrap items-center gap-1.5;
+  @apply list-none m-0 p-0;
+}
+
+.lv-breadcrumb-item {
+  @apply flex items-center gap-1.5;
+}
+
+.lv-breadcrumb-active {
+  @apply inline-flex items-center gap-1.5 text-sm font-medium;
+  color: var(--color-secondary-700);
+}
+
+.lv-breadcrumb-separator {
+  @apply text-sm select-none;
+  color: var(--color-secondary-400);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .lv-breadcrumb-list {
+    @apply gap-1;
+  }
+  .lv-breadcrumb-item {
+    @apply gap-1;
+  }
+  .lv-breadcrumb-active {
+    @apply text-xs;
+  }
+  .lv-breadcrumb-separator {
+    @apply text-xs;
+  }
+}

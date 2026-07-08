@@ -1,25 +1,32 @@
-<div [class]="classes().card">
-  <div class="flex items-start justify-between">
-    <div class="space-y-1">
-      <p [class]="classes().title">{{ title() }}</p>
-      <p [class]="classes().value">{{ value() }}</p>
+<div class="lv-stat-card lv-stat-card-{{ size() }} lv-stat-card-{{ color() }}">
+  <div class="lv-stat-card-header">
+    <div class="lv-stat-card-content">
+      <lv-paragraph size="sm" color="neutral" [muted]="true">
+        {{ title() }}
+      </lv-paragraph>
+
+      <lv-heading level="4" color="neutral">
+        {{ value() }}
+      </lv-heading>
 
       @if (trend() && trendValue()) {
-        <span [class]="getTrendClass()">
-          <lv-icon [name]="getTrendIcon()" size="xs" />
+        <span class="lv-stat-card-trend lv-stat-card-trend-{{ trend() }}">
+          <lv-icon [name]="trend() === 'up' ? 'arrow-up' : trend() === 'down' ? 'arrow-down' : 'minus'" size="xs" />
           {{ trendValue() }}
         </span>
       }
     </div>
 
     @if (icon()) {
-      <div [class]="classes().icon">
+      <div class="lv-stat-card-icon lv-stat-card-icon-{{ color() }}">
         <lv-icon [name]="icon()!" size="lg" />
       </div>
     }
   </div>
 
   @if (description()) {
-    <p [class]="classes().description" class="mt-2">{{ description() }}</p>
+    <lv-paragraph size="sm" color="neutral" [muted]="true" class="lv-stat-card-description">
+      {{ description() }}
+    </lv-paragraph>
   }
 </div>

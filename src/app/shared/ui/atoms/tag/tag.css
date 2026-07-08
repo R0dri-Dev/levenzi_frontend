@@ -1,0 +1,90 @@
+@reference "../../../../../styles.css";
+/* tag.css - Estilos propios del componente */
+.lv-tag {
+  @apply inline-flex items-center font-medium transition-colors;
+}
+
+/* Tamaños */
+.lv-tag-sm {
+  @apply px-2 py-0.5 text-xs;
+}
+.lv-tag-md {
+  @apply px-2.5 py-0.5 text-sm;
+}
+.lv-tag-lg {
+  @apply px-3 py-1 text-base;
+}
+
+/* Colores (filled) */
+.lv-tag-primary {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-700);
+}
+.lv-tag-secondary {
+  background-color: var(--color-secondary-100);
+  color: var(--color-secondary-700);
+}
+.lv-tag-success {
+  background-color: var(--color-success-100);
+  color: var(--color-success-700);
+}
+.lv-tag-danger {
+  background-color: var(--color-danger-100);
+  color: var(--color-danger-700);
+}
+.lv-tag-warning {
+  background-color: var(--color-warning-100);
+  color: var(--color-warning-700);
+}
+.lv-tag-info {
+  background-color: var(--color-info-100);
+  color: var(--color-info-700);
+}
+.lv-tag-neutral {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+}
+
+/* Outline */
+.lv-tag-outline {
+  background-color: transparent !important;
+  border: 2px solid;
+}
+.lv-tag-outline.lv-tag-primary {
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-600);
+}
+.lv-tag-outline.lv-tag-secondary {
+  border-color: var(--color-secondary-500);
+  color: var(--color-secondary-600);
+}
+.lv-tag-outline.lv-tag-success {
+  border-color: var(--color-success-500);
+  color: var(--color-success-600);
+}
+.lv-tag-outline.lv-tag-danger {
+  border-color: var(--color-danger-500);
+  color: var(--color-danger-600);
+}
+.lv-tag-outline.lv-tag-warning {
+  border-color: var(--color-warning-500);
+  color: var(--color-warning-600);
+}
+.lv-tag-outline.lv-tag-info {
+  border-color: var(--color-info-500);
+  color: var(--color-info-600);
+}
+.lv-tag-outline.lv-tag-neutral {
+  border-color: var(--color-neutral-500);
+  color: var(--color-neutral-600);
+}
+
+/* Rounded */
+.lv-tag-rounded {
+  @apply rounded-full;
+}
+
+/* Border radius por defecto */
+.lv-tag:not(.lv-tag-rounded) {
+  @apply rounded;
+}

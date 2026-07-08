@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 
-import { LV_API_AUTH_LOGIN } from '../../shared/constants/api';
+
 import { LV_ROUTES } from '../../shared/constants/routes';
 import { Auth } from '../services/auth';
 
@@ -14,12 +14,13 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError(error => {
       if (error instanceof HttpErrorResponse) {
-        const isLoginRequest = req.url.includes(LV_API_AUTH_LOGIN);
+        const isLoginRequest = req.url.includes('/api/auth/login');
 
         if (!isLoginRequest && (error.status === 401 || error.status === 403)) {
           auth.clearSession();
           void router.navigateByUrl(LV_ROUTES.login);
         }
+
       }
 
       return throwError(() => error);

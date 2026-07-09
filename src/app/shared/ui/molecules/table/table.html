@@ -90,9 +90,17 @@
                 <td
                   class="lv-table-cell lv-table-cell-{{ size() }} lv-table-cell-{{ col.align || 'left' }}"
                   [class]="col.cellClass || ''">
-                  <lv-paragraph size="sm" color="neutral">
-                    {{ getCellValue(item, col) }}
-                  </lv-paragraph>
+                  <div class="lv-table-cell-content">
+                    @if (isBadgeContent(getCellValue(item, col))) {
+                      <lv-badge
+                        [text]="getBadgeText(getCellValue(item, col))"
+                        [variant]="getBadgeVariant(getCellValue(item, col))" />
+                    } @else {
+                      <lv-paragraph size="sm" color="neutral">
+                        {{ getCellValue(item, col) }}
+                      </lv-paragraph>
+                    }
+                  </div>
                 </td>
               }
 
@@ -101,12 +109,14 @@
                   <div class="lv-table-actions">
                     @for (action of actions(); track $index) {
                       @if (isActionVisible(action, item)) {
-                        <lv-icon-button
-                          [icon]="action.icon || 'more-horizontal'"
-                          [label]="action.label"
+                        <lv-button
+                          [variant]="action.variant || 'secondary'"
                           size="sm"
+                          [leftIcon]="action.icon"
                           [disabled]="isActionDisabled(action, item)"
-                          (onClick)="action.action(item); $event.stopPropagation()" />
+                          (onClick)="action.action(item); $event.stopPropagation()">
+                          {{ action.label }}
+                        </lv-button>
                       }
                     }
                   </div>

@@ -1,0 +1,14 @@
+<section class="permiso-detail">
+  <lv-section-header title="Detalle del permiso" subtitle="Consulta la información registrada para este permiso." color="primary" />
+
+  <lv-detail-list [items]="[
+    { label: 'Nombre', value: permiso()?.name },
+    { label: 'Guard', value: permiso()?.guard_name },
+    { label: 'Módulo', value: permiso()?.modulo_id ?? 'Sin módulo' },
+    { label: 'Creado', value: permiso()?.created_at ? (permiso()?.created_at | date: 'dd/MM/yyyy') : 'Sin fecha' }
+  ]" />
+
+  <div class="permiso-form-actions">
+    <lv-button type="button" variant="secondary" (onClick)="onClose()">Cerrar</lv-button>
+  </div>
+</section>

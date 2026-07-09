@@ -30,8 +30,9 @@ export class Api {
     }
 
     // Caso genérico: lo concatenamos al base.
+    // Importante: NO quites la parte '/api' si ya viene incluida.
     const normalized = url.startsWith('/') ? url : `/${url}`;
-    return `${this.apiBaseUrl}${normalized}`;
+    return `${this.apiBaseUrl}${normalized.replace(/^\/+/, '/')}`;
 
   }
 

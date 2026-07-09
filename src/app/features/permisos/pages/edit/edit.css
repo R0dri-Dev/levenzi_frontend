@@ -1,0 +1,31 @@
+@reference "../../../../../styles.css";
+
+.permiso-form {
+  @apply flex w-full flex-col gap-5;
+}
+
+.permiso-form-header {
+  @apply flex flex-col gap-1;
+}
+
+.permiso-form-header h3 {
+  @apply m-0 text-lg font-semibold text-secondary-900;
+}
+
+.permiso-form-header p {
+  @apply m-0 text-sm text-secondary-600;
+}
+
+.permiso-form-grid {
+  @apply grid gap-4 md:grid-cols-2;
+}
+
+.permiso-form-actions {
+  @apply flex flex-wrap items-center justify-end gap-3 pt-2;
+}
+
+@media (max-width: 768px) {
+  .permiso-form-grid {
+    @apply grid-cols-1;
+  }
+}

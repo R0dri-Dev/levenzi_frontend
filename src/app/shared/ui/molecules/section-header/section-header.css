@@ -1,0 +1,13 @@
+@reference "../../../../../styles.css";
+
+.lv-section-header {
+  @apply flex flex-col gap-1;
+}
+
+.lv-section-header-center {
+  @apply items-center text-center;
+}
+
+.lv-section-header-right {
+  @apply items-end text-right;
+}

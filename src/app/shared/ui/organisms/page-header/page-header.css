@@ -1,15 +1,15 @@
 @reference "../../../../../styles.css";
 .lv-page-header {
-  @apply w-full py-6 bg-white border-b border-secondary-200;
+  @apply w-full border-b border-secondary-200 bg-white py-4 sm:py-6;
 }
 
 .lv-page-header-content {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  @apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4;
+  @apply mx-auto flex max-w-7xl flex-col items-stretch gap-4 px-4 sm:px-6 lg:px-8;
+  @apply sm:flex-row sm:items-center sm:justify-between;
 }
 
 .lv-page-header-text {
-  @apply flex-1 min-w-0;
+  @apply min-w-0 flex-1;
 }
 
 .lv-page-header-breadcrumb {
@@ -17,7 +17,7 @@
 }
 
 .lv-page-header-actions {
-  @apply flex items-center gap-2 flex-shrink-0 flex-wrap;
+  @apply flex flex-wrap items-center gap-2 self-stretch sm:shrink-0 sm:self-auto;
 }
 
 /* Alignments */
@@ -54,18 +54,27 @@
   .lv-page-header {
     @apply py-4;
   }
+
   .lv-page-header-content {
-    @apply flex-col items-stretch;
+    @apply items-stretch gap-3;
   }
+
   .lv-page-header-actions {
-    @apply justify-start;
+    @apply w-full justify-start;
   }
+
+  .lv-page-header-actions > * {
+    @apply w-full sm:w-auto;
+  }
+
   .lv-page-header-center .lv-page-header-actions {
     @apply justify-center;
   }
+
   .lv-page-header-right .lv-page-header-content {
     @apply flex-col;
   }
+
   .lv-page-header-right .lv-page-header-actions {
     @apply mr-0;
   }

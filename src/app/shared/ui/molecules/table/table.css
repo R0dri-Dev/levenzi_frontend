@@ -1,6 +1,6 @@
 @reference "../../../../../styles.css";
 .lv-table-wrapper {
-  @apply w-full overflow-x-auto bg-white rounded-lg border border-secondary-200;
+  @apply w-full overflow-x-auto rounded-2xl border border-primary-200/70 bg-linear-to-b from-white via-primary-50/30 to-secondary-50 shadow-[0_10px_30px_rgba(124,58,237,0.10)];
 }
 
 .lv-table-loading {
@@ -12,88 +12,141 @@
 }
 
 .lv-table {
-  @apply w-full text-left border-collapse;
+  @apply w-full border-collapse text-center;
 }
 
 .lv-table-head {
-  @apply bg-secondary-50;
+  @apply bg-linear-to-r from-primary-600 via-primary-500 to-primary-700;
 }
 
 .lv-table-head-cell {
-  @apply px-4 py-3 text-xs font-medium uppercase tracking-wider;
-  color: var(--color-secondary-600);
+  @apply px-4 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .lv-table-head-cell-left {
-  @apply text-left;
+  text-align: left;
 }
 .lv-table-head-cell-center {
-  @apply text-center;
+  text-align: center;
 }
 .lv-table-head-cell-right {
-  @apply text-right;
+  text-align: right;
 }
 
 .lv-table-head-content {
-  @apply flex items-center gap-1;
+  @apply flex w-full items-center justify-center gap-1.5;
+  width: 100%;
 }
 
 .lv-table-head-cell-center .lv-table-head-content {
-  @apply justify-center;
+  justify-content: center;
+}
+.lv-table-head-cell-left .lv-table-head-content {
+  justify-content: flex-start;
 }
 .lv-table-head-cell-right .lv-table-head-content {
-  @apply justify-end;
+  justify-content: flex-end;
+}
+
+.lv-table-head-cell .lv-table-head-content lv-paragraph {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: center;
 }
 
 .lv-table-sort-icon {
-  @apply inline-flex;
-  color: var(--color-secondary-400);
+  @apply inline-flex text-primary-100;
 }
 
 .lv-table-sort-active {
-  color: var(--color-primary-600);
+  @apply text-white;
 }
 
 .lv-table-body {
-  @apply divide-y divide-secondary-200;
+  @apply divide-y divide-primary-100/70 bg-white;
 }
 
 .lv-table-row {
-  @apply transition-colors duration-150;
+  @apply transition-all duration-200;
 }
 
 .lv-table-row:hover {
-  @apply bg-secondary-50;
+  @apply bg-primary-50/80;
 }
 
 .lv-table-row-selected {
-  @apply bg-primary-50;
+  @apply bg-primary-100/70;
 }
 
 .lv-table-cell {
-  @apply px-4 py-3;
+  @apply px-4 py-3.5 text-sm align-middle text-secondary-700;
+  text-align: center;
 }
 
 .lv-table-cell-left {
-  @apply text-left;
+  text-align: left;
 }
 .lv-table-cell-center {
-  @apply text-center;
+  text-align: center;
 }
 .lv-table-cell-right {
-  @apply text-right;
+  text-align: right;
+}
+
+.lv-table-cell-content {
+  @apply flex w-full items-center;
+  justify-content: center;
+  min-height: 1.5rem;
+}
+
+.lv-table-cell-left .lv-table-cell-content {
+  justify-content: flex-start;
+}
+
+.lv-table-cell-center .lv-table-cell-content {
+  justify-content: center;
+}
+
+.lv-table-cell-right .lv-table-cell-content {
+  justify-content: flex-end;
+}
+
+.lv-table-cell-content lv-paragraph {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: inherit;
+}
+
+.lv-table-cell-content lv-badge {
+  display: inline-flex;
 }
 
 .lv-table-actions {
   @apply flex items-center justify-center gap-1;
 }
 
+.lv-table-body .lv-table-cell {
+  color: var(--color-secondary-700);
+}
+
+.lv-table-body .lv-table-row:nth-child(odd) {
+  background-color: rgba(245, 243, 255, 0.45);
+}
+
+.lv-table-body .lv-table-row:nth-child(even) {
+  background-color: white;
+}
+
 .lv-table-empty {
-  @apply px-4 py-12 text-center;
+  @apply bg-secondary-50/70 px-4 py-12 text-center;
 }
 
 .lv-table-pagination {
-  @apply flex items-center justify-between px-4 py-3 border-t border-secondary-200;
+  @apply flex items-center justify-between border-t border-primary-100 bg-linear-to-r from-secondary-50 to-primary-50/50 px-4 py-3;
 }
 
 .lv-table-pagination-buttons {

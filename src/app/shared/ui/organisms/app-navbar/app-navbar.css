@@ -1,7 +1,7 @@
 @reference "../../../../../styles.css";
 .lv-app-navbar {
-  @apply w-full bg-white border-b border-secondary-200;
-  @apply sticky top-0 z-50;
+  @apply w-full bg-white/95 border-b border-secondary-200 backdrop-blur supports-backdrop-filter:bg-white/80;
+  @apply sticky top-0 z-50 shadow-sm;
 }
 
 .lv-app-navbar-container {
@@ -18,7 +18,7 @@
 }
 
 .lv-app-navbar-links lv-link {
-  @apply px-3 py-2 rounded-md text-sm font-medium;
+  @apply px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200;
   color: var(--color-secondary-600);
 }
 
@@ -28,21 +28,24 @@
 }
 
 .lv-app-navbar-link-active {
-  color: var(--color-primary-600) !important;
+  color: var(--color-primary-700) !important;
   @apply bg-primary-50;
 }
 
 .lv-app-navbar-actions {
-  @apply flex items-center gap-2;
+  @apply flex items-center justify-end gap-2 sm:gap-3 shrink-0;
+}
+
+.lv-app-navbar-user-menu {
+  @apply flex items-center;
 }
 
 .lv-app-navbar-mobile-toggle {
-  @apply md:hidden;
+  @apply md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-secondary-200 bg-white/90 text-secondary-600 shadow-sm transition-all duration-200 hover:bg-secondary-50 hover:text-secondary-900;
 }
 
 .lv-app-navbar-mobile {
-  @apply md:hidden border-t border-secondary-200;
-  @apply bg-white;
+  @apply md:hidden border-t border-secondary-200 bg-white;
 }
 
 .lv-app-navbar-mobile-links {
@@ -54,7 +57,7 @@
 }
 
 .lv-app-navbar-mobile-links lv-link {
-  @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium w-full;
+  @apply flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium w-full transition-all duration-200;
   color: var(--color-secondary-600);
 }
 
@@ -63,7 +66,6 @@
   @apply bg-secondary-100;
 }
 
-/* Animation */
 .lv-app-navbar-mobile {
   animation: lv-navbar-slide-down 0.2s ease-out;
 }

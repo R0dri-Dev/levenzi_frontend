@@ -1,0 +1,9 @@
+@reference "../../../../../styles.css";
+
+.permiso-detail {
+  @apply flex flex-col gap-4;
+}
+
+.permiso-form-actions {
+  @apply flex flex-wrap items-center justify-end gap-3 pt-2;
+}

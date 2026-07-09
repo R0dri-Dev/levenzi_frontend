@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, effect, forwardRef, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { LvSize, LvColorVariant, LvAppearance } from '../../../types';
 import { Option } from '../../../interfaces/option.interface';
 
@@ -9,8 +10,15 @@ import { Option } from '../../../interfaces/option.interface';
   imports: [CommonModule],
   templateUrl: './select.html',
   styleUrls: ['./select.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => LvSelectComponent),
+      multi: true,
+    },
+  ],
 })
-export class LvSelectComponent {
+export class LvSelectComponent implements ControlValueAccessor {
   readonly options = input<Option[]>([]);
   readonly value = input<string | number>('');
   readonly disabled = input(false);
@@ -24,9 +32,41 @@ export class LvSelectComponent {
 
   readonly onValueChange = output<string | number>();
 
+  internalValue = signal<string | number>('');
+  onChange: (value: string | number) => void = () => { };
+  onTouched: () => void = () => { };
+
+  constructor() {
+    effect(() => {
+      const externalValue = this.value();
+      if (externalValue !== this.internalValue()) {
+        this.internalValue.set(externalValue);
+      }
+    });
+  }
+
   handleChange(raw: string): void {
     if (this.disabled()) return;
     const num = Number(raw);
-    this.onValueChange.emit(Number.isNaN(num) ? raw : num);
+    const value = Number.isNaN(num) ? raw : num;
+    this.internalValue.set(value);
+    this.onValueChange.emit(value);
+    this.onChange(value);
+  }
+
+  writeValue(value: string | number | null | undefined): void {
+    this.internalValue.set(value ?? '');
+  }
+
+  registerOnChange(fn: (value: string | number) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    // handled by disabled input
   }
 }

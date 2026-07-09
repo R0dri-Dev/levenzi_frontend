@@ -1,1 +1,147 @@
-<p>index works!</p>
+<div class="products-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Productos</h1>
+      <p>Gestiona el catálogo de productos del sistema.</p>
+    </div>
+
+    <button class="btn-primary">
+      + Nuevo Producto
+    </button>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat-card">
+      <span class="stat-title">Total</span>
+      <h2>{{ total() }}</h2>
+    </div>
+
+    <div class="stat-card success">
+      <span class="stat-title">Activos</span>
+      <h2>{{ productos().filter(p => p.activo).length }}</h2>
+    </div>
+
+    <div class="stat-card danger">
+      <span class="stat-title">Inactivos</span>
+      <h2>{{ productos().filter(p => !p.activo).length }}</h2>
+    </div>
+
+  </div>
+
+  <div class="toolbar">
+
+    <input
+      type="text"
+      placeholder="🔍 Buscar producto..."
+      class="search">
+
+  </div>
+
+  <div class="table-card">
+
+    @if (loading()) {
+
+      <div class="loading">
+
+        Cargando productos...
+
+      </div>
+
+    } @else {
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th class="actions">Acciones</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          @for(producto of productos(); track producto.id){
+
+            <tr>
+
+              <td>
+                <span class="code">
+                  {{ producto.codigo }}
+                </span>
+              </td>
+
+              <td>
+                <strong>{{ producto.nombre }}</strong>
+              </td>
+
+              <td class="description">
+
+                {{ producto.descripcion || '-' }}
+
+              </td>
+
+              <td>
+
+                <strong>S/. {{ producto.precio }}</strong>
+
+              </td>
+
+              <td>
+
+                @if(producto.activo){
+
+                  <span class="badge active">
+
+                    Activo
+
+                  </span>
+
+                } @else {
+
+                  <span class="badge inactive">
+
+                    Inactivo
+
+                  </span>
+
+                }
+
+              </td>
+
+              <td>
+
+                <div class="action-buttons">
+
+                  <button class="btn-icon edit">
+                    ✏️
+                  </button>
+
+                  <button class="btn-icon delete">
+                    🗑️
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    }
+
+  </div>
+
+</div>

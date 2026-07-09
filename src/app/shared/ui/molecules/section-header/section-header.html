@@ -1,0 +1,8 @@
+<div class="lv-section-header" [class]="'lv-section-header-' + align()">
+  <lv-heading [level]="'2'" [text]="title()" [color]="color()" [textAlign]="align()" />
+  @if (subtitle()) {
+    <lv-paragraph size="md" color="neutral" [align]="align()" [muted]="true">
+      {{ subtitle() }}
+    </lv-paragraph>
+  }
+</div>

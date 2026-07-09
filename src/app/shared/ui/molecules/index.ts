@@ -19,6 +19,8 @@ export * from './form-field/form-field';
 export * from './password-field/password-field';
 export * from './remember-me/remember-me';
 export * from './search-box/search-box';
+export * from './section-header/section-header';
+export * from './detail-list/detail-list';
 
 // Data Display
 export * from './stat-card/stat-card';

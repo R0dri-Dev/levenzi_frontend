@@ -28,10 +28,8 @@
         <lv-divider />
       } @else {
         @if (item.route) {
-          <lv-link
+          <a
             [routerLink]="item.route"
-            color="neutral"
-            [underline]="false"
             class="lv-app-sidebar-item"
             [class.lv-app-sidebar-item-active]="isActive(item)"
             (click)="handleItemClick(item)"
@@ -42,14 +40,16 @@
             }
 
             @if (!isCollapsedMode()) {
-              <span class="lv-app-sidebar-label">{{ item.label }}</span>
+              <span class="lv-app-sidebar-label">
+                {{ item.label }}
+              </span>
               @if (item.badge) {
-                <lv-badge [variant]="item.badgeColor || 'primary'" size="sm">
+                <lv-badge [variant]="item.badgeColor || 'primary'">
                   {{ item.badge }}
                 </lv-badge>
               }
             }
-          </lv-link>
+          </a>
         } @else {
           <button
             class="lv-app-sidebar-item"
@@ -63,7 +63,7 @@
             @if (!isCollapsedMode()) {
               <span class="lv-app-sidebar-label">{{ item.label }}</span>
               @if (item.badge) {
-                <lv-badge [variant]="item.badgeColor || 'primary'" size="sm">
+                <lv-badge [variant]="item.badgeColor || 'primary'">
                   {{ item.badge }}
                 </lv-badge>
               }
@@ -82,3 +82,4 @@
     </div>
   }
 </aside>
+

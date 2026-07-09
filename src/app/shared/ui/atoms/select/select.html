@@ -11,7 +11,7 @@
   <div class="lv-select-container lv-select-{{ appearance() }} lv-select-{{ variant() }} lv-select-{{ size() }}">
     <select
       [disabled]="disabled()"
-      [value]="value()"
+      [value]="internalValue()"
       [required]="required()"
       [attr.aria-invalid]="!!error()"
       class="lv-select"

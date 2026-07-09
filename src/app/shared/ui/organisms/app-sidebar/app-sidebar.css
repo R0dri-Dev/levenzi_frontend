@@ -1,9 +1,10 @@
 @reference "../../../../../styles.css";
 .lv-app-sidebar {
-  @apply h-full bg-white border-secondary-200 flex flex-col;
+  @apply h-full bg-white border-secondary-200 flex flex-col shadow-sm;
   @apply transition-all duration-300 ease-in-out;
   width: 240px;
   min-height: 100vh;
+  border-right: 1px solid var(--color-secondary-200);
 }
 
 .lv-app-sidebar-left {
@@ -15,7 +16,7 @@
 }
 
 .lv-app-sidebar-collapsed {
-  width: 64px;
+  width: 72px;
 }
 
 .lv-app-sidebar-toggle {
@@ -27,30 +28,43 @@
 }
 
 .lv-app-sidebar-nav {
-  @apply flex-1 flex flex-col gap-0.5 p-2 overflow-y-auto;
+  @apply flex-1 flex flex-col gap-1 p-2 overflow-y-auto;
 }
 
 .lv-app-sidebar-item {
-  @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors;
-  @apply hover:bg-secondary-100;
-  color: var(--color-secondary-600);
+  @apply flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 no-underline;
+  color: var(--color-secondary-700);
+  text-decoration: none;
 }
 
+.lv-app-sidebar-item:hover,
 .lv-app-sidebar-item-active {
-  color: var(--color-primary-600);
-  @apply bg-primary-50;
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  box-shadow: inset 3px 0 0 var(--color-primary-600);
+}
+
+.lv-app-sidebar-item:hover .lv-app-sidebar-label,
+.lv-app-sidebar-item:hover .lv-app-sidebar-icon,
+.lv-app-sidebar-item-active .lv-app-sidebar-label,
+.lv-app-sidebar-item-active .lv-app-sidebar-icon {
+  color: var(--color-primary-700);
 }
 
 .lv-app-sidebar-icon {
-  @apply flex-shrink-0;
+  @apply shrink-0;
+  color: var(--color-primary-600);
 }
 
 .lv-app-sidebar-label {
   @apply flex-1 truncate;
+  color: inherit;
 }
 
 .lv-app-sidebar-footer {
-  @apply px-4 py-3 border-t border-secondary-200 mt-auto;
+  @apply px-4 py-3 border-t border-secondary-200 mt-auto text-sm;
+  color: var(--color-secondary-500);
+  background: linear-gradient(180deg, rgba(245, 243, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 /* Sizes */

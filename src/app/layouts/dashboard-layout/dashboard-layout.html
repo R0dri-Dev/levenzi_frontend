@@ -1,15 +1,22 @@
-<div class="min-h-screen bg-slate-50">
-	<header class="border-b border-slate-200 bg-white/90 backdrop-blur">
-		<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-			<div>
-				<p class="text-xs font-semibold uppercase tracking-[0.3em] text-blue-600">Levenzi</p>
-				<h1 class="text-lg font-semibold text-slate-900">Panel principal</h1>
-			</div>
-			<span class="text-sm text-slate-500">Sesión protegida</span>
-		</div>
-	</header>
+<lv-dashboard-template layout="both" variant="default">
+  <div header>
+    <lv-app-navbar
+      [links]="navLinks()"
+      [user]="navUser()"
+      (onUserAction)="handleNavbarAction($event)"
+      (onMenuToggle)="onNavbarMenuToggle()" />
+  </div>
 
-	<main class="mx-auto max-w-7xl px-6 py-8">
-		<router-outlet />
-	</main>
-</div>
+  <div sidebar>
+    <lv-app-sidebar
+      [items]="sidebarItems()"
+      header="Grobdi"
+      footer="© Grobdi"
+      size="md"
+      [showToggle]="false"
+      position="left" />
+  </div>
+
+  <router-outlet />
+</lv-dashboard-template>
+

@@ -1,8 +1,7 @@
 @reference "../../../../../styles.css";
-/* link.css - Estilos propios del componente */
 .lv-link {
-  @apply inline-flex items-center gap-1 transition-colors duration-200;
-  @apply cursor-pointer;
+  @apply inline-flex items-center gap-1 transition-all duration-200 cursor-pointer rounded-md;
+  text-decoration: none;
 }
 
 .lv-link-underline {
@@ -17,7 +16,6 @@
   @apply font-semibold;
 }
 
-/* Colores usando tokens */
 .lv-link-primary {
   color: var(--color-primary-600);
 }
@@ -25,7 +23,7 @@
   color: var(--color-primary-800);
 }
 .lv-link-primary:focus-visible {
-  @apply outline-none ring-2 ring-primary-500 ring-offset-2 rounded-sm;
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2 rounded-md;
 }
 
 .lv-link-secondary {
@@ -35,7 +33,7 @@
   color: var(--color-secondary-800);
 }
 .lv-link-secondary:focus-visible {
-  @apply outline-none ring-2 ring-secondary-500 ring-offset-2 rounded-sm;
+  @apply outline-none ring-2 ring-secondary-500 ring-offset-2 rounded-md;
 }
 
 .lv-link-success {
@@ -45,7 +43,7 @@
   color: var(--color-success-800);
 }
 .lv-link-success:focus-visible {
-  @apply outline-none ring-2 ring-success-500 ring-offset-2 rounded-sm;
+  @apply outline-none ring-2 ring-success-500 ring-offset-2 rounded-md;
 }
 
 .lv-link-danger {
@@ -55,7 +53,7 @@
   color: var(--color-danger-800);
 }
 .lv-link-danger:focus-visible {
-  @apply outline-none ring-2 ring-danger-500 ring-offset-2 rounded-sm;
+  @apply outline-none ring-2 ring-danger-500 ring-offset-2 rounded-md;
 }
 
 .lv-link-warning {
@@ -65,7 +63,7 @@
   color: var(--color-warning-800);
 }
 .lv-link-warning:focus-visible {
-  @apply outline-none ring-2 ring-warning-500 ring-offset-2 rounded-sm;
+  @apply outline-none ring-2 ring-warning-500 ring-offset-2 rounded-md;
 }
 
 .lv-link-info {
@@ -75,7 +73,7 @@
   color: var(--color-info-800);
 }
 .lv-link-info:focus-visible {
-  @apply outline-none ring-2 ring-info-500 ring-offset-2 rounded-sm;
+  @apply outline-none ring-2 ring-info-500 ring-offset-2 rounded-md;
 }
 
 .lv-link-neutral {
@@ -85,10 +83,9 @@
   color: var(--color-neutral-800);
 }
 .lv-link-neutral:focus-visible {
-  @apply outline-none ring-2 ring-neutral-500 ring-offset-2 rounded-sm;
+  @apply outline-none ring-2 ring-neutral-500 ring-offset-2 rounded-md;
 }
 
-/* Estado visited */
 .lv-link:visited {
-  opacity: 0.85;
+  opacity: 0.95;
 }

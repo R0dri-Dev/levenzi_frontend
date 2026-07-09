@@ -24,11 +24,19 @@ export class Token {
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-    // ✅ Solo leer sesión si estamos en el navegador
     if (this.isBrowser) {
       this.session.set(this.readSession());
     }
+
+    if (this.isBrowser && typeof window !== 'undefined') {
+      window.addEventListener('storage', (event: StorageEvent) => {
+        if (event.key === LV_STORAGE_AUTH_SESSION) {
+          this.session.set(this.readSession());
+        }
+      });
+    }
   }
+
 
   set(response: LoginResponse): void {
     if (!this.isBrowser) return;

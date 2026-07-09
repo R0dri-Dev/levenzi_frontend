@@ -8,8 +8,14 @@ import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import { LvSpinnerComponent } from '../../atoms/spinner/spinner';
 import { LvEmptyStateComponent } from '../empty-state/empty-state';
-import { LvSize } from '../../../types';
+import { LvColorVariant, LvSize } from '../../../types';
 import type { TableColumn, TableAction, TablePagination, TableSort } from '../../../interfaces/table.interface';
+
+interface TableBadgeContent {
+  type: 'badge';
+  text: string;
+  variant?: LvColorVariant;
+}
 
 @Component({
   selector: 'lv-table',
@@ -71,6 +77,18 @@ export class LvTableComponent<T = unknown> {
   getCellValue(item: T, column: TableColumn<T>): unknown {
     const value = (item as any)[column.key];
     return column.render ? column.render(item) : value;
+  }
+
+  isBadgeContent(value: unknown): value is TableBadgeContent {
+    return typeof value === 'object' && value !== null && 'type' in value && (value as { type?: unknown }).type === 'badge';
+  }
+
+  getBadgeText(value: unknown): string {
+    return this.isBadgeContent(value) ? value.text : '';
+  }
+
+  getBadgeVariant(value: unknown): LvColorVariant {
+    return this.isBadgeContent(value) && value.variant ? value.variant : 'primary';
   }
 
   getSortDirection(field: string): 'asc' | 'desc' | null {

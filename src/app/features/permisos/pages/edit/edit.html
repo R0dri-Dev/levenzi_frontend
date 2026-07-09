@@ -1,0 +1,25 @@
+<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="permiso-form-header">
+    <h3>Editar permiso</h3>
+    <p>Actualiza los datos del permiso seleccionado.</p>
+  </div>
+
+  <div class="permiso-form-grid">
+    <lv-form-field label="Nombre" [required]="true">
+      <lv-input formControlName="name" placeholder="Ej. ver usuarios" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Guard" [required]="true">
+      <lv-input formControlName="guard_name" [disabled]="true" placeholder="api" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Módulo" [required]="false">
+      <lv-select formControlName="modulo_id" placeholder="Selecciona un módulo" [options]="modulos()" />
+    </lv-form-field>
+  </div>
+
+  <div class="permiso-form-actions">
+    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
+    <lv-button type="submit">Actualizar</lv-button>
+  </div>
+</form>

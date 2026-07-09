@@ -4,23 +4,27 @@
 }
 
 .lv-dashboard-sidebar {
-  @apply flex-shrink-0;
+  @apply sticky top-0 h-screen shrink-0;
 }
 
 .lv-dashboard-main {
-  @apply flex-1 flex flex-col min-w-0;
+  @apply flex-1 flex flex-col min-w-0 overflow-x-hidden;
 }
 
 .lv-dashboard-header {
-  @apply flex-shrink-0;
+  @apply sticky top-0 z-20 shrink-0;
 }
 
 .lv-dashboard-content {
-  @apply flex-1 p-4 sm:p-6;
+  @apply flex-1 px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-0 lg:py-0;
+}
+
+.lv-dashboard-content-shell {
+  @apply w-full max-h-full mx-auto;
 }
 
 .lv-dashboard-footer {
-  @apply flex-shrink-0;
+  @apply shrink-0;
 }
 
 /* Variants */
@@ -55,7 +59,7 @@
   @apply flex-1;
 }
 .lv-dashboard-both .lv-dashboard-sidebar {
-  @apply flex-shrink-0;
+  @apply shrink-0;
 }
 .lv-dashboard-both .lv-dashboard-main {
   @apply flex-1;

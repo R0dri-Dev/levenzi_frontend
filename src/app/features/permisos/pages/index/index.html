@@ -1,1 +1,52 @@
-<p>index works!</p>
+<div class="permissions-page">
+  @if (activeView() === 'list') {
+    <lv-page-header
+      title="Permisos"
+      subtitle="Gestiona los accesos del sistema desde una vista centralizada."
+      color="primary"
+      [breadcrumb]="breadcrumb()"
+    >
+      <div class="permissions-header-actions">
+        <lv-search-box
+          placeholder="Buscar permiso..."
+          [value]="searchTerm()"
+          (onSearch)="onSearch($event)"
+          (onClear)="clearSearch()"
+        />
+
+        <lv-button (onClick)="openCreateForm()">Nuevo permiso</lv-button>
+      </div>
+    </lv-page-header>
+
+    <div class="permissions-content">
+      <lv-data-table
+        [data]="filteredPermisos()"
+        [columns]="columns"
+        [loading]="loading()"
+        [actions]="tableActions"
+        emptyMessage="No hay permisos para mostrar con este filtro."
+      />
+    </div>
+  } @else if (activeView() === 'detail' && selectedPermiso()) {
+    <lv-page-header
+      title="Detalle del permiso"
+      subtitle="Consulta la información registrada para este permiso."
+      color="primary"
+      [breadcrumb]="breadcrumb()"
+    >
+      <lv-button variant="secondary" (onClick)="closeForm()">Volver al listado</lv-button>
+    </lv-page-header>
+
+    <section class="permissions-card">
+      <app-detail [permiso]="selectedPermiso()" (close)="closeForm()" />
+    </section>
+  }
+</div>
+
+<lv-modal [isOpen]="activeView() === 'create'" title="Crear permiso" size="lg" (onClose)="closeForm()">
+  <app-create (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>
+
+<lv-modal [isOpen]="activeView() === 'edit' && !!selectedPermiso()" title="Editar permiso" size="lg" (onClose)="closeForm()">
+  <app-edit [permiso]="selectedPermiso()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>

@@ -1,10 +1,10 @@
 @reference "../../../../../styles.css";
 .lv-crud {
-  @apply w-full;
+  @apply w-full rounded-2xl border border-secondary-200 bg-white p-4 shadow-[0_10px_30px_rgba(15,23,42,0.06)] sm:p-5;
 }
 
 .lv-crud-toolbar {
-  @apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6;
+  @apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5 border-b border-secondary-200 pb-4;
 }
 
 .lv-crud-header {
@@ -12,22 +12,22 @@
 }
 
 .lv-crud-actions {
-  @apply flex items-center gap-2 flex-wrap flex-shrink-0;
+  @apply flex items-center gap-2 flex-wrap shrink-0;
 }
 
 .lv-crud-content {
-  @apply w-full;
+  @apply w-full rounded-xl bg-secondary-50/70 p-2 sm:p-3;
 }
 
 /* Variants */
 .lv-crud-default {
-  @apply bg-transparent;
+  @apply bg-white;
 }
 .lv-crud-bordered {
-  @apply bg-white border border-secondary-200 rounded-lg p-6;
+  @apply border border-secondary-200 rounded-2xl p-6;
 }
 .lv-crud-shadow {
-  @apply bg-white rounded-lg shadow-md p-6;
+  @apply rounded-2xl shadow-[0_12px_35px_rgba(15,23,42,0.08)] p-6;
 }
 
 /* Sizes */

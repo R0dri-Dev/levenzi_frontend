@@ -1,14 +1,15 @@
 @reference "../../../../../styles.css";
 .lv-user-menu {
-  @apply relative inline-block;
+  @apply relative inline-flex items-center;
 }
 
 .lv-user-menu-trigger {
-  @apply gap-2;
+  @apply inline-flex h-10 items-center gap-2 rounded-full border border-secondary-200 bg-white/90 px-3 py-2 shadow-sm transition-all duration-200;
+  @apply hover:border-secondary-300 hover:bg-secondary-50;
 }
 
 .lv-user-menu-info {
-  @apply text-left;
+  @apply min-w-0 text-left;
 }
 
 .lv-user-menu-chevron {
@@ -21,7 +22,7 @@
 }
 
 .lv-user-menu-dropdown {
-  @apply absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-secondary-200;
+  @apply absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-lg border border-secondary-200;
   @apply py-1 z-50 min-w-[200px];
   animation: lv-user-menu-fade 0.15s ease-out;
 }

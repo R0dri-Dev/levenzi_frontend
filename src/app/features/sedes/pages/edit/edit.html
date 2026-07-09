@@ -1,0 +1,37 @@
+<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="permiso-form-header">
+    <h3>Editar sede</h3>
+    <p>Actualiza los datos de la sede seleccionada.</p>
+  </div>
+
+  <div class="permiso-form-grid">
+    <lv-form-field label="Compañía ID" [required]="true">
+      <lv-input formControlName="compania_id" placeholder="Ej. 1" type="number" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Nombre" [required]="true">
+      <lv-input formControlName="nombre" placeholder="Ej. Sede Central" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Código" [required]="true">
+      <lv-input formControlName="codigo" placeholder="Ej. S01" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Dirección" [required]="true">
+      <lv-input formControlName="direccion" placeholder="Ej. Av. Principal 123" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Teléfono" [required]="false">
+      <lv-input formControlName="telefono" placeholder="987654321" />
+    </lv-form-field>
+
+    <lv-form-field label="Correo" [required]="false">
+      <lv-input formControlName="email" placeholder="sede@empresa.com" type="email" />
+    </lv-form-field>
+  </div>
+
+  <div class="permiso-form-actions">
+    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
+    <lv-button type="submit">Actualizar</lv-button>
+  </div>
+</form>

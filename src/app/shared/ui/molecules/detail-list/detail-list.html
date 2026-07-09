@@ -1,0 +1,8 @@
+<div class="lv-detail-list">
+  @for (item of items(); track item.label) {
+    <div class="lv-detail-list-item">
+      <span class="lv-detail-list-label">{{ item.label }}</span>
+      <strong class="lv-detail-list-value">{{ item.value ?? 'Sin dato' }}</strong>
+    </div>
+  }
+</div>

@@ -1,7 +1,11 @@
 @reference "../../../../../styles.css";
 .lv-button {
-  @apply inline-flex items-center justify-center gap-2 font-medium transition-colors;
+  @apply inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 shadow-sm;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.lv-button:hover {
+  @apply shadow-md -translate-y-0.5;
 }
 
 /* Tamaños usando tokens */
@@ -26,7 +30,7 @@
 }
 
 .lv-button-xl {
-  @apply px-6 py-3 text-lg rounded-lg;
+  @apply px-6 py-3 text-lg rounded-xl;
   height: var(--size-xl);
 }
 

@@ -1,0 +1,17 @@
+@reference "../../../../../styles.css";
+
+.lv-detail-list {
+  @apply grid gap-3 md:grid-cols-2;
+}
+
+.lv-detail-list-item {
+  @apply flex flex-col gap-1 rounded-2xl border border-secondary-200 bg-secondary-50/80 p-4;
+}
+
+.lv-detail-list-label {
+  @apply text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-secondary-500;
+}
+
+.lv-detail-list-value {
+  @apply text-sm font-semibold text-secondary-900;
+}

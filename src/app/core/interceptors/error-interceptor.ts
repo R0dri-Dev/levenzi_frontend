@@ -16,7 +16,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error instanceof HttpErrorResponse) {
         const isLoginRequest = req.url.includes('/api/auth/login');
 
-        if (!isLoginRequest && (error.status === 401 || error.status === 403)) {
+        // Evita cerrar sesión por errores intermedios (p.ej. OPTIONS/CORS)
+        if (!isLoginRequest && error.status !== 204 && (error.status === 401 || error.status === 403) && req.method !== 'OPTIONS') {
+
+
           auth.clearSession();
           void router.navigateByUrl(LV_ROUTES.login);
         }

@@ -39,8 +39,9 @@ export class Login {
         next: () => {
           void this.router.navigateByUrl(LV_ROUTES.dashboard);
         },
-        error: () => {
-          this.error.set('No fue posible iniciar sesión. Verifica tus credenciales.');
+        error: (err) => {
+          const msg = err?.error?.message || err?.error?.error || err?.message || 'Error de servidor.';
+          this.error.set(`No fue posible iniciar sesión. ${msg}`);
         },
       });
   }

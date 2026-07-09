@@ -42,6 +42,7 @@
     <div class="lv-app-navbar-actions">
       @if (showUserMenu() && user()) {
         <lv-user-menu
+          class="lv-app-navbar-user-menu"
           [user]="user()!"
           [items]="[
             { label: 'Mi Perfil', icon: 'user', route: '/profile' },

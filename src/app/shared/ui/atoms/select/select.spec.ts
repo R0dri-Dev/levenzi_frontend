@@ -20,5 +20,13 @@ describe('LvSelectComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should reflect an external value in the select element', () => {
+    component.writeValue(2);
+    fixture.detectChanges();
+
+    const select = fixture.nativeElement.querySelector('select') as HTMLSelectElement;
+    expect(select.value).toBe('2');
+  });
 });
 

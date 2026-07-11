@@ -1,0 +1,15 @@
+<lv-page-header
+  title="Crear doctor"
+  subtitle="Registra un nuevo doctor en el sistema."
+>
+  <div class="permissions-header-actions" actions></div>
+</lv-page-header>
+
+<lv-dynamic-form
+  [formGroup]="form"
+  [fields]="fields()"
+  [loading]="false"
+  (onSubmit)="onSubmit()"
+  (onCancel)="onCancel()"
+></lv-dynamic-form>
+

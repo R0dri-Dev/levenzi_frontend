@@ -2,13 +2,14 @@ import { Component, effect, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvInputComponent } from '../../../../shared/ui/atoms/input/input';
+import { LvSelectComponent } from '../../../../shared/ui/atoms/select/select';
 import { LvFormFieldComponent } from '../../../../shared/ui/molecules/form-field/form-field';
 import { Sede } from '../../../../core/models/sede.model';
 
 @Component({
     selector: 'app-edit-sede',
     standalone: true,
-    imports: [ReactiveFormsModule, LvInputComponent, LvButtonComponent, LvFormFieldComponent],
+    imports: [ReactiveFormsModule, LvInputComponent, LvSelectComponent, LvButtonComponent, LvFormFieldComponent],
     templateUrl: './edit.html',
     styleUrl: './edit.css',
 })
@@ -33,14 +34,16 @@ export class EditSede {
         effect(() => {
             const sede = this.sede();
             if (sede) {
-                this.form.patchValue({
-                    compania_id: sede.compania_id ?? '',
-                    nombre: sede.nombre ?? '',
-                    codigo: sede.codigo ?? '',
-                    direccion: sede.direccion ?? '',
-                    telefono: sede.telefono ?? '',
-                    email: sede.email ?? '',
-                    activo: !!sede.activo,
+                queueMicrotask(() => {
+                    this.form.patchValue({
+                        compania_id: sede.compania_id ?? '',
+                        nombre: sede.nombre ?? '',
+                        codigo: sede.codigo ?? '',
+                        direccion: sede.direccion ?? '',
+                        telefono: sede.telefono ?? '',
+                        email: sede.email ?? '',
+                        activo: !!sede.activo,
+                    }, { emitEvent: false });
                 });
             }
         });

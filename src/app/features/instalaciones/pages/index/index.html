@@ -1,1 +1,43 @@
-<p>index works!</p>
+<div class="users-page">
+  @if (activeView() === 'list') {
+    <lv-page-header
+      title="Instalaciones"
+      subtitle="Gestiona las instalaciones del sistema desde una vista centralizada."
+      color="primary"
+      [breadcrumb]="breadcrumb()"
+    >
+      <div class="permissions-header-actions">
+        <lv-search-box
+          placeholder="Buscar instalación..."
+          [value]="searchTerm()"
+          (onSearch)="onSearch($event)"
+          (onClear)="clearSearch()"
+        />
+
+        <lv-button (onClick)="openCreateForm()">Nueva instalación</lv-button>
+      </div>
+    </lv-page-header>
+
+    <div class="permissions-content">
+      <lv-data-table
+        [data]="filteredInstalaciones()"
+        [columns]="columns"
+        [loading]="loading()"
+        [actions]="tableActions"
+        emptyMessage="No hay instalaciones para mostrar con este filtro."
+      />
+    </div>
+  }
+</div>
+
+<lv-modal [isOpen]="activeView() === 'create'" title="Crear instalación" size="lg" (onClose)="closeForm()">
+  <app-create-instalacion (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>
+
+<lv-modal [isOpen]="activeView() === 'edit' && !!selectedInstalacion()" title="Editar instalación" size="lg" (onClose)="closeForm()">
+  <app-edit-instalacion [instalacion]="selectedInstalacion()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>
+
+<lv-modal [isOpen]="activeView() === 'detail' && !!selectedInstalacion()" title="Detalle de la instalación" size="lg" (onClose)="closeForm()">
+  <app-detail-instalacion [instalacion]="selectedInstalacion()" (close)="closeForm()" />
+</lv-modal>

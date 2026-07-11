@@ -1,53 +1,30 @@
 <div class="users-page">
-  @if (activeView() === 'list') {
-    <lv-page-header
-      title="Compañías"
-      subtitle="Gestiona las compañías del sistema desde una vista centralizada."
-      color="primary"
-      [breadcrumb]="breadcrumb()"
-    >
-      <div class="permissions-header-actions">
-        <lv-search-box
-          placeholder="Buscar compañía..."
-          [value]="searchTerm()"
-          (onSearch)="onSearch($event)"
-          (onClear)="clearSearch()"
-        />
-
-        <lv-button (onClick)="openCreateForm()">Nueva compañía</lv-button>
-      </div>
-    </lv-page-header>
-
-    <div class="permissions-content">
-      <lv-data-table
-        [data]="filteredCompanias()"
-        [columns]="columns"
-        [loading]="loading()"
-        [actions]="tableActions"
-        emptyMessage="No hay compañías para mostrar con este filtro."
+  <lv-page-header
+    title="Compañías"
+    subtitle="Gestiona las compañías del sistema desde una vista centralizada."
+    color="primary"
+    [breadcrumb]="breadcrumb()"
+  >
+    <div class="permissions-header-actions">
+      <lv-search-box
+        placeholder="Buscar compañía..."
+        [value]="searchTerm()"
+        (onSearch)="onSearch($event)"
+        (onClear)="clearSearch()"
       />
+
+      <lv-button (onClick)="openCreateForm()">Nueva compañía</lv-button>
     </div>
-  } @else if (activeView() === 'detail' && selectedCompania()) {
-    <lv-page-header
-      title="Detalle de la compañía"
-      subtitle="Consulta la información registrada de esta compañía."
-      color="primary"
-      [breadcrumb]="breadcrumb()"
-    >
-      <lv-button variant="secondary" (onClick)="closeForm()">Volver al listado</lv-button>
-    </lv-page-header>
+  </lv-page-header>
 
-    <section class="permissions-card">
-      <app-detail-compania [compania]="selectedCompania()" (close)="closeForm()" />
-    </section>
-  }
+  <div class="permissions-content">
+    <lv-data-table
+      [data]="filteredCompanias()"
+      [columns]="columns"
+      [loading]="loading()"
+      [actions]="tableActions"
+      emptyMessage="No hay compañías para mostrar con este filtro."
+    />
+  </div>
 </div>
-
-<lv-modal [isOpen]="activeView() === 'create'" title="Crear compañía" size="lg" (onClose)="closeForm()">
-  <app-create-compania (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-
-<lv-modal [isOpen]="activeView() === 'edit' && !!selectedCompania()" title="Editar compañía" size="lg" (onClose)="closeForm()">
-  <app-edit-compania [compania]="selectedCompania()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
 

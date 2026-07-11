@@ -1,0 +1,21 @@
+<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="permiso-form-header">
+    <h3>Editar rol</h3>
+    <p>Actualiza los datos del rol seleccionado.</p>
+  </div>
+
+  <div class="permiso-form-grid">
+    <lv-form-field label="Nombre" [required]="true">
+      <lv-input formControlName="name" placeholder="Ej. admin" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Guard" [required]="false">
+      <lv-input formControlName="guard_name" placeholder="Ej. api" />
+    </lv-form-field>
+  </div>
+
+  <div class="permiso-form-actions">
+    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
+    <lv-button type="submit">Actualizar</lv-button>
+  </div>
+</form>

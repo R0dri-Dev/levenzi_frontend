@@ -18,4 +18,16 @@ export class ProductoService {
     );
   }
 
+  create(payload: Partial<Producto>): Observable<Producto> {
+    return this.api.post<Producto>('/api/productos', payload);
+  }
+
+  update(id: number, payload: Partial<Producto>): Observable<Producto> {
+    return this.api.put<Producto>(`/api/productos/${id}`, payload);
+  }
+
+  delete(id: number): Observable<{ success: boolean }> {
+    return this.api.delete<{ success: boolean }>(`/api/productos/${id}`);
+  }
+
 }

@@ -1,0 +1,47 @@
+<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="permiso-form-header">
+    <h3>Editar cliente</h3>
+    <p>Actualiza los datos del cliente seleccionado.</p>
+  </div>
+
+  <div class="permiso-form-grid">
+    <lv-form-field label="Nombre" [required]="true">
+      <lv-input formControlName="nombre" placeholder="Ej. Juan Pérez" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Sede" [required]="true">
+      <lv-select formControlName="sede_id" placeholder="Selecciona una sede" [options]="[
+        { label: 'Sede Central', value: 1 },
+        { label: 'Sede Norte', value: 2 }
+      ]" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Distrito" [required]="true">
+      <lv-select formControlName="distrito_id" placeholder="Selecciona un distrito" [options]="[
+        { label: 'Lima', value: 1 },
+        { label: 'Arequipa', value: 2 }
+      ]" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Documento" [required]="false">
+      <lv-input formControlName="documento_numero" placeholder="Ej. 78451236" />
+    </lv-form-field>
+
+    <lv-form-field label="Dirección" [required]="true">
+      <lv-input formControlName="direccion" placeholder="Ej. Av. Principal 123" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Teléfono" [required]="false">
+      <lv-input formControlName="telefono" placeholder="987654321" />
+    </lv-form-field>
+
+    <lv-form-field label="Correo" [required]="false">
+      <lv-input formControlName="email" placeholder="cliente@mail.com" />
+    </lv-form-field>
+  </div>
+
+  <div class="permiso-form-actions">
+    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
+    <lv-button type="submit">Actualizar</lv-button>
+  </div>
+</form>

@@ -1,33 +1,29 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Compania } from '../../../../core/models/compania.model';
 import { CompaniaService } from '../../../../core/services/compania/compania.service';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
-import { LvModalComponent } from '../../../../shared/ui/organisms/modal/modal';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
-import { CreateCompania } from '../create/create';
-import { EditCompania } from '../edit/edit';
-import { DetailCompania } from '../detail/detail';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvModalComponent, LvSearchBoxComponent, CreateCompania, EditCompania, DetailCompania],
+  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvSearchBoxComponent],
   templateUrl: './index.html',
   styleUrl: './index.css',
 })
 export class Index {
+  private readonly router = inject(Router);
   private readonly service = inject(CompaniaService);
 
   readonly companias = signal<Compania[]>([]);
   readonly total = signal(0);
   readonly loading = signal(true);
   readonly searchTerm = signal('');
-  readonly activeView = signal<'list' | 'create' | 'edit' | 'detail'>('list');
-  readonly selectedCompania = signal<Compania | null>(null);
 
   readonly columns: TableColumn<Compania>[] = [
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
@@ -76,50 +72,15 @@ export class Index {
   }
 
   openCreateForm(): void {
-    this.selectedCompania.set(null);
-    this.activeView.set('create');
+    void this.router.navigateByUrl('/companias/create');
   }
 
   verDetalle(compania: Compania): void {
-    this.selectedCompania.set(compania);
-    this.activeView.set('detail');
+    void this.router.navigateByUrl(`/companias/${compania.id}`);
   }
 
   editarCompania(compania: Compania): void {
-    this.selectedCompania.set(compania);
-    this.activeView.set('edit');
-  }
-
-  closeForm(): void {
-    this.selectedCompania.set(null);
-    this.activeView.set('list');
-  }
-
-  handleCreateSubmit(payload: Partial<Compania>): void {
-    this.service.create(payload).subscribe({
-      next: (created) => {
-        this.companias.update((items) => [created, ...items]);
-        this.total.set(this.total() + 1);
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
-  }
-
-  handleEditSubmit(payload: Partial<Compania>): void {
-    const compania = this.selectedCompania();
-    if (!compania?.id) {
-      this.closeForm();
-      return;
-    }
-
-    this.service.update(compania.id, payload).subscribe({
-      next: (updated) => {
-        this.companias.update((items) => items.map((item) => (item.id === compania.id ? { ...item, ...updated } : item)));
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
+    void this.router.navigateByUrl(`/companias/${compania.id}/edit`);
   }
 
   eliminarCompania(compania: Compania): void {

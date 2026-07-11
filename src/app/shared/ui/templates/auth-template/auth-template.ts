@@ -4,8 +4,6 @@ import { LvHeadingComponent } from '../../atoms/heading/heading';
 import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import { LvLogoComponent } from '../../atoms/logo/logo';
 import { LvCardComponent } from '../../atoms/card/card';
-import { LvIconComponent } from '../../icons/icon/icon';
-import { LvDividerComponent } from '../../atoms/divider/divider';
 import { LvSize, LvColorVariant, LvTextAlign } from '../../../types';
 
 export type AuthTemplateVariant = 'centered' | 'split';
@@ -19,8 +17,6 @@ export type AuthTemplateVariant = 'centered' | 'split';
     LvParagraphComponent,
     LvLogoComponent,
     LvCardComponent,
-    LvIconComponent,
-    LvDividerComponent,
   ],
   templateUrl: './auth-template.html',
   styleUrls: ['./auth-template.css'],

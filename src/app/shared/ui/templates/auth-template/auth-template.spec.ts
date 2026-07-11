@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthTemplate } from './auth-template';
+import { LvAuthTemplateComponent } from './auth-template';
 
-describe('AuthTemplate', () => {
-  let component: AuthTemplate;
-  let fixture: ComponentFixture<AuthTemplate>;
+describe('LvAuthTemplateComponent', () => {
+  let component: LvAuthTemplateComponent;
+  let fixture: ComponentFixture<LvAuthTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthTemplate],
+      imports: [LvAuthTemplateComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AuthTemplate);
+    fixture = TestBed.createComponent(LvAuthTemplateComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

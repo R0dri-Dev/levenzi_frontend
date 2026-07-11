@@ -1,0 +1,25 @@
+<div class="companias-page">
+  <lv-page-header
+    title="Detalle de la compañía"
+    subtitle="Consulta la información registrada de esta compañía."
+    color="primary"
+    [breadcrumb]="breadcrumb()"
+  >
+    <lv-button variant="secondary" (onClick)="onCancel()">Volver al listado</lv-button>
+  </lv-page-header>
+
+  <section class="companias-detail-section">
+    @if (loading()) {
+      <p>Cargando compañía...</p>
+    } @else if (compania()) {
+      <lv-detail-list
+        [items]="[
+          { label: 'Nombre', value: compania()?.nombre },
+          { label: 'RUC', value: compania()?.ruc },
+          { label: 'Dirección', value: compania()?.direccion },
+          { label: 'Activo', value: compania()?.activo ? 'Sí' : 'No' }
+
+        ]" />
+    }
+  </section>
+</div>

@@ -1,0 +1,17 @@
+<lv-page-header
+  title="Editar doctor"
+  subtitle="Actualiza los datos del doctor seleccionado."
+>
+  <div class="permissions-header-actions" actions></div>
+</lv-page-header>
+
+<lv-dynamic-form
+  [formGroup]="form"
+  [fields]="fields()"
+  [loading]="false"
+  (onSubmit)="onSubmit()"
+  (onCancel)="onCancel()"
+  [submitLabel]="'Actualizar'"
+  [cancelLabel]="'Cancelar'"
+></lv-dynamic-form>
+

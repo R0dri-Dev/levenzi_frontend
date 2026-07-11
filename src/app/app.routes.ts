@@ -62,8 +62,26 @@ export const routes: Routes = [
       },
       {
         path: 'companias',
-        loadComponent: () => import('./features/companias/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/companias/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/companias/pages/create-page/create-page').then((m) => m.CreateCompaniaPage),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/companias/pages/edit-page/edit-page').then((m) => m.EditCompaniaPage),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/companias/pages/detail-page/detail-page').then((m) => m.DetailCompaniaPage),
+          },
+        ],
       },
       {
         path: 'company',

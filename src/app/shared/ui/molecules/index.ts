@@ -21,6 +21,7 @@ export * from './remember-me/remember-me';
 export * from './search-box/search-box';
 export * from './section-header/section-header';
 export * from './detail-list/detail-list';
+export * from './button-group/button-group';
 
 // Data Display
 export * from './stat-card/stat-card';

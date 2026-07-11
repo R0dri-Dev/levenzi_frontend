@@ -1,1 +1,43 @@
-<p>index works!</p>
+<div class="users-page">
+  @if (activeView() === 'list') {
+    <lv-page-header
+      title="Roles"
+      subtitle="Gestiona los roles del sistema desde una vista centralizada."
+      color="primary"
+      [breadcrumb]="breadcrumb()"
+    >
+      <div class="permissions-header-actions">
+        <lv-search-box
+          placeholder="Buscar rol..."
+          [value]="searchTerm()"
+          (onSearch)="onSearch($event)"
+          (onClear)="clearSearch()"
+        />
+
+        <lv-button (onClick)="openCreateForm()">Nuevo rol</lv-button>
+      </div>
+    </lv-page-header>
+
+    <div class="permissions-content">
+      <lv-data-table
+        [data]="filteredRoles()"
+        [columns]="columns"
+        [loading]="loading()"
+        [actions]="tableActions"
+        emptyMessage="No hay roles para mostrar con este filtro."
+      />
+    </div>
+  }
+</div>
+
+<lv-modal [isOpen]="activeView() === 'create'" title="Crear rol" size="lg" (onClose)="closeForm()">
+  <app-create-role (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>
+
+<lv-modal [isOpen]="activeView() === 'edit' && !!selectedRole()" title="Editar rol" size="lg" (onClose)="closeForm()">
+  <app-edit-role [role]="selectedRole()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>
+
+<lv-modal [isOpen]="activeView() === 'detail' && !!selectedRole()" title="Detalle del rol" size="lg" (onClose)="closeForm()">
+  <app-detail-role [role]="selectedRole()" (close)="closeForm()" />
+</lv-modal>

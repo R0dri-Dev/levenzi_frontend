@@ -26,7 +26,6 @@ import { LvColorVariant } from '../../../types';
     LvIconButtonComponent,
     LvLinkComponent,
     LvDividerComponent,
-    LvBadgeComponent,
   ],
   templateUrl: './notifications-panel.html',
   styleUrls: ['./notifications-panel.css'],

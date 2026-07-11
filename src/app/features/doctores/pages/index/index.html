@@ -1,1 +1,45 @@
-<p>index works!</p>
+<div class="users-page">
+
+  @if (activeView() === 'list') {
+    <lv-page-header
+      title="Doctores"
+      subtitle="Gestiona los doctores del sistema desde una vista centralizada."
+      color="primary"
+      [breadcrumb]="breadcrumb()"
+    >
+      <div class="permissions-header-actions">
+        <lv-search-box
+          placeholder="Buscar doctor..."
+          [value]="searchTerm()"
+          (onSearch)="onSearch($event)"
+          (onClear)="clearSearch()"
+        />
+
+        <lv-button (onClick)="openCreateForm()">Nuevo doctor</lv-button>
+      </div>
+    </lv-page-header>
+
+    <div class="permissions-content">
+      <lv-data-table
+        [data]="filteredDoctores()"
+        [columns]="columns"
+        [loading]="loading()"
+        [actions]="tableActions"
+        emptyMessage="No hay doctores para mostrar con este filtro."
+      />
+    </div>
+  }
+</div>
+
+@if (activeView() === 'create') {
+  <app-create-doctor (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
+}
+
+@if (activeView() === 'edit' && !!selectedDoctor()) {
+  <app-edit-doctor [doctor]="selectedDoctor()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
+}
+
+@if (activeView() === 'detail' && !!selectedDoctor()) {
+  <app-detail-doctor [doctor]="selectedDoctor()" (close)="closeForm()" />
+}
+

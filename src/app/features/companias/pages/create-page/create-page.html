@@ -1,0 +1,38 @@
+<div class="companias-page">
+  <lv-page-header
+    title="Crear compañía"
+    subtitle="Agrega una nueva compañía al sistema."
+    color="primary"
+    [breadcrumb]="breadcrumb()"
+  >
+    <lv-button variant="secondary" (onClick)="onCancel()">Volver al listado</lv-button>
+  </lv-page-header>
+
+  <section class="companias-form-section">
+    <form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="permiso-form-grid">
+        <lv-form-field label="Nombre" [required]="true">
+          <lv-input formControlName="nombre" placeholder="Ej. Compañía ABC" [required]="true" />
+        </lv-form-field>
+
+        <lv-form-field label="RUC" [required]="true">
+          <lv-input formControlName="ruc" placeholder="Ej. 20123456789" [required]="true" />
+        </lv-form-field>
+
+        <lv-form-field label="Dirección" [required]="true">
+          <lv-input formControlName="direccion" placeholder="Ej. Av. Siempre Viva 742" [required]="true" />
+        </lv-form-field>
+
+        <lv-form-field label="Activo" [required]="false">
+          <lv-input formControlName="activo" placeholder="true / false" />
+        </lv-form-field>
+      </div>
+
+      <div class="permiso-form-actions">
+        <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
+        <lv-button type="submit">Guardar</lv-button>
+      </div>
+    </form>
+  </section>
+</div>
+

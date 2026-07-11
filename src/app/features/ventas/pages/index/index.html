@@ -1,1 +1,33 @@
-<p>index works!</p>
+<div class="users-page">
+  @if (activeView() === 'list') {
+    <lv-page-header
+      title="Ventas"
+      subtitle="Consulta las ventas registradas desde una vista centralizada."
+      color="primary"
+      [breadcrumb]="breadcrumb()"
+    >
+      <div class="permissions-header-actions">
+        <lv-search-box
+          placeholder="Buscar venta..."
+          [value]="searchTerm()"
+          (onSearch)="onSearch($event)"
+          (onClear)="clearSearch()"
+        />
+      </div>
+    </lv-page-header>
+
+    <div class="permissions-content">
+      <lv-data-table
+        [data]="filteredVentas()"
+        [columns]="columns"
+        [loading]="loading()"
+        [actions]="tableActions"
+        emptyMessage="No hay ventas para mostrar con este filtro."
+      />
+    </div>
+  }
+</div>
+
+<lv-modal [isOpen]="activeView() === 'detail' && !!selectedVenta()" title="Detalle de la venta" size="lg" (onClose)="closeForm()">
+  <app-detail-venta [venta]="selectedVenta()" (close)="closeForm()" />
+</lv-modal>

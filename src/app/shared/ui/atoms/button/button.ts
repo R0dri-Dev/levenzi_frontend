@@ -30,6 +30,13 @@ export class LvButtonComponent {
 
   handleClick(event: Event): void {
     if (this.isDisabled()) return;
+
+    const nativeButton = event.currentTarget as HTMLButtonElement | null;
+    if (this.type() === 'submit' && nativeButton?.form) {
+      event.preventDefault();
+      nativeButton.form.requestSubmit();
+    }
+
     this.onClick.emit(event);
   }
 }

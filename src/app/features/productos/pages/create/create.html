@@ -1,0 +1,36 @@
+<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="permiso-form-header">
+    <h3>Crear producto</h3>
+    <p>Registra un nuevo producto en el sistema.</p>
+  </div>
+
+  <div class="permiso-form-grid">
+    <lv-form-field label="Nombre" [required]="true">
+      <lv-input formControlName="nombre" placeholder="Ej. Producto A" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Marca" [required]="true">
+      <lv-select formControlName="marca_id" placeholder="Selecciona una marca" [options]="[
+        { label: 'Marca A', value: 1 },
+        { label: 'Marca B', value: 2 }
+      ]" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Código" [required]="false">
+      <lv-input formControlName="codigo" placeholder="Ej. PRD-001" />
+    </lv-form-field>
+
+    <lv-form-field label="Precio" [required]="true">
+      <lv-input formControlName="precio" placeholder="Ej. 19.90" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Descripción" [required]="false">
+      <lv-input formControlName="descripcion" placeholder="Ej. Producto destacado" />
+    </lv-form-field>
+  </div>
+
+  <div class="permiso-form-actions">
+    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
+    <lv-button type="submit">Guardar</lv-button>
+  </div>
+</form>

@@ -31,12 +31,14 @@ export class EditUser {
         effect(() => {
             const usuario = this.usuario();
             if (usuario) {
-                this.form.patchValue({
-                    name: usuario.name ?? '',
-                    email: usuario.email ?? '',
-                    password: '',
-                    telefono: usuario.telefono ?? '',
-                    activo: !!usuario.activo,
+                queueMicrotask(() => {
+                    this.form.patchValue({
+                        name: usuario.name ?? '',
+                        email: usuario.email ?? '',
+                        password: '',
+                        telefono: usuario.telefono ?? '',
+                        activo: !!usuario.activo,
+                    }, { emitEvent: false });
                 });
             }
         });

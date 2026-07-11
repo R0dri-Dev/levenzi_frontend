@@ -160,6 +160,16 @@ export class LvTableComponent<T = unknown> {
     this.onRowClick.emit(item);
   }
 
+  handleActionClick(action: TableAction<T>, item: T, event?: Event): void {
+    if (this.isActionDisabled(action, item)) {
+      return;
+    }
+
+    event?.preventDefault();
+    event?.stopPropagation();
+    action.action(item);
+  }
+
   handlePageChange(page: number): void {
     if (this.pagination()) {
       this.onPageChange.emit(page);

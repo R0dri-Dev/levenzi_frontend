@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageTemplate } from './page-template';
+import { LvPageTemplateComponent } from './page-template';
 
-describe('PageTemplate', () => {
-  let component: PageTemplate;
-  let fixture: ComponentFixture<PageTemplate>;
+describe('LvPageTemplateComponent', () => {
+  let component: LvPageTemplateComponent;
+  let fixture: ComponentFixture<LvPageTemplateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageTemplate],
+      imports: [LvPageTemplateComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PageTemplate);
+    fixture = TestBed.createComponent(LvPageTemplateComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

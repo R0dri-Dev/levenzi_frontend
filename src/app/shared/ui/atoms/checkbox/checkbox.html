@@ -2,8 +2,8 @@
   <input
     type="checkbox"
     class="lv-checkbox-input"
-    [checked]="checked()"
-    [disabled]="disabled()"
+    [checked]="internalChecked()"
+    [disabled]="internalDisabled()"
     (change)="handleChange($event)">
   <span class="lv-checkbox-custom"></span>
   <span class="lv-checkbox-label">

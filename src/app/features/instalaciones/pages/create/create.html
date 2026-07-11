@@ -1,0 +1,28 @@
+<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="permiso-form-header">
+    <h3>Crear instalación</h3>
+    <p>Registra una nueva instalación en el sistema.</p>
+  </div>
+
+  <div class="permiso-form-grid">
+    <lv-form-field label="Nombre" [required]="true">
+      <lv-input formControlName="nombre" placeholder="Ej. Instalación A" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Sede" [required]="true">
+      <lv-select formControlName="sede_id" placeholder="Selecciona una sede" [options]="[
+        { label: 'Sede Central', value: 1 },
+        { label: 'Sede Norte', value: 2 }
+      ]" [required]="true" />
+    </lv-form-field>
+
+    <lv-form-field label="Tipo" [required]="false">
+      <lv-input formControlName="tipo" placeholder="Ej. Interna" />
+    </lv-form-field>
+  </div>
+
+  <div class="permiso-form-actions">
+    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
+    <lv-button type="submit">Guardar</lv-button>
+  </div>
+</form>

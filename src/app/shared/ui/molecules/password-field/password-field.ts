@@ -20,11 +20,9 @@ export type PasswordFieldStrength = 'weak' | 'medium' | 'strong' | 'very-strong'
     FormsModule,
     LvIconComponent,
     LvLabelComponent,
-    LvIconButtonComponent,
     LvFormErrorComponent,
     LvInputComponent,
     LvParagraphComponent,
-    LvButtonComponent
   ],
   templateUrl: './password-field.html',
   styleUrls: ['./password-field.css'],

@@ -2,13 +2,14 @@ import { Component, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvInputComponent } from '../../../../shared/ui/atoms/input/input';
+import { LvSelectComponent } from '../../../../shared/ui/atoms/select/select';
 import { LvFormFieldComponent } from '../../../../shared/ui/molecules/form-field/form-field';
 import { Sede } from '../../../../core/models/sede.model';
 
 @Component({
     selector: 'app-create-sede',
     standalone: true,
-    imports: [ReactiveFormsModule, LvInputComponent, LvButtonComponent, LvFormFieldComponent],
+    imports: [ReactiveFormsModule, LvInputComponent, LvSelectComponent, LvButtonComponent, LvFormFieldComponent],
     templateUrl: './create.html',
     styleUrl: './create.css',
 })

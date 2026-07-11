@@ -1,147 +1,43 @@
-<div class="products-page">
+<div class="users-page">
+  @if (activeView() === 'list') {
+    <lv-page-header
+      title="Productos"
+      subtitle="Gestiona el catálogo de productos del sistema desde una vista centralizada."
+      color="primary"
+      [breadcrumb]="breadcrumb()"
+    >
+      <div class="permissions-header-actions">
+        <lv-search-box
+          placeholder="Buscar producto..."
+          [value]="searchTerm()"
+          (onSearch)="onSearch($event)"
+          (onClear)="clearSearch()"
+        />
 
-  <div class="page-header">
-    <div>
-      <h1>Productos</h1>
-      <p>Gestiona el catálogo de productos del sistema.</p>
-    </div>
-
-    <button class="btn-primary">
-      + Nuevo Producto
-    </button>
-  </div>
-
-  <div class="stats">
-
-    <div class="stat-card">
-      <span class="stat-title">Total</span>
-      <h2>{{ total() }}</h2>
-    </div>
-
-    <div class="stat-card success">
-      <span class="stat-title">Activos</span>
-      <h2>{{ productos().filter(p => p.activo).length }}</h2>
-    </div>
-
-    <div class="stat-card danger">
-      <span class="stat-title">Inactivos</span>
-      <h2>{{ productos().filter(p => !p.activo).length }}</h2>
-    </div>
-
-  </div>
-
-  <div class="toolbar">
-
-    <input
-      type="text"
-      placeholder="🔍 Buscar producto..."
-      class="search">
-
-  </div>
-
-  <div class="table-card">
-
-    @if (loading()) {
-
-      <div class="loading">
-
-        Cargando productos...
-
+        <lv-button (onClick)="openCreateForm()">Nuevo producto</lv-button>
       </div>
+    </lv-page-header>
 
-    } @else {
-
-      <table>
-
-        <thead>
-
-          <tr>
-            <th>Código</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Estado</th>
-            <th class="actions">Acciones</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          @for(producto of productos(); track producto.id){
-
-            <tr>
-
-              <td>
-                <span class="code">
-                  {{ producto.codigo }}
-                </span>
-              </td>
-
-              <td>
-                <strong>{{ producto.nombre }}</strong>
-              </td>
-
-              <td class="description">
-
-                {{ producto.descripcion || '-' }}
-
-              </td>
-
-              <td>
-
-                <strong>S/. {{ producto.precio }}</strong>
-
-              </td>
-
-              <td>
-
-                @if(producto.activo){
-
-                  <span class="badge active">
-
-                    Activo
-
-                  </span>
-
-                } @else {
-
-                  <span class="badge inactive">
-
-                    Inactivo
-
-                  </span>
-
-                }
-
-              </td>
-
-              <td>
-
-                <div class="action-buttons">
-
-                  <button class="btn-icon edit">
-                    ✏️
-                  </button>
-
-                  <button class="btn-icon delete">
-                    🗑️
-                  </button>
-
-                </div>
-
-              </td>
-
-            </tr>
-
-          }
-
-        </tbody>
-
-      </table>
-
-    }
-
-  </div>
-
+    <div class="permissions-content">
+      <lv-data-table
+        [data]="filteredProductos()"
+        [columns]="columns"
+        [loading]="loading()"
+        [actions]="tableActions"
+        emptyMessage="No hay productos para mostrar con este filtro."
+      />
+    </div>
+  }
 </div>
+
+<lv-modal [isOpen]="activeView() === 'create'" title="Crear producto" size="lg" (onClose)="closeForm()">
+  <app-create-producto (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>
+
+<lv-modal [isOpen]="activeView() === 'edit' && !!selectedProducto()" title="Editar producto" size="lg" (onClose)="closeForm()">
+  <app-edit-producto [producto]="selectedProducto()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
+</lv-modal>
+
+<lv-modal [isOpen]="activeView() === 'detail' && !!selectedProducto()" title="Detalle del producto" size="lg" (onClose)="closeForm()">
+  <app-detail-producto [producto]="selectedProducto()" (close)="closeForm()" />
+</lv-modal>

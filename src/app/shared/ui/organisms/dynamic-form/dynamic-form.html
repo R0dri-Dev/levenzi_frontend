@@ -1,0 +1,67 @@
+<form
+  class="lv-dynamic-form"
+  [formGroup]="formGroup()"
+  (ngSubmit)="onSubmit.emit()"
+>
+  <div
+    class="lv-dynamic-form-grid"
+    [style.gridTemplateColumns]="'repeat(' + columns() + ', minmax(0, 1fr))'"
+  >
+    @for (field of fields(); track field.key) {
+        <lv-form-field
+          [label]="field.label"
+          [required]="!!field.required"
+          [error]="errorFor(field.key)"
+          [hint]="field.hint ?? ''"
+        >
+          @switch (field.type) {
+            @case ('checkbox') {
+              <lv-checkbox
+                [formControlName]="field.key">
+              </lv-checkbox>
+            }
+            @case ('select') {
+              <lv-select
+                [formControlName]="field.key"
+                [options]="field.options ?? []"
+                [placeholder]="field.placeholder ?? ''"
+                [required]="!!field.required">
+              </lv-select>
+            }
+            @default {
+              <lv-input
+                [formControlName]="field.key"
+                [type]="field.type"
+                [placeholder]="field.placeholder ?? ''"
+                [required]="!!field.required">
+              </lv-input>
+            }
+          }
+        </lv-form-field>
+    }
+  </div>
+  <div class="lv-dynamic-form-footer-bar">
+    <lv-button-group
+      orientation="row"
+      [actions]="[
+        {
+          key:'cancel',
+          label:cancelLabel(),
+          variant:'secondary',
+          type:'button',
+          disabled:loading()
+        },
+        {
+          key:'submit',
+          label:submitLabel(),
+          variant:'primary',
+          type:'submit',
+          disabled:loading(),
+          loading:loading()
+        }
+      ]"
+      (onAction)="handleFooterAction($event)"
+    />
+  </div>
+
+</form>

@@ -16,7 +16,7 @@
 }
 
 .lv-dashboard-content {
-  @apply flex-1 px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-0 lg:py-0;
+  @apply flex-1 px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-4 lg:py-1;
 }
 
 .lv-dashboard-content-shell {

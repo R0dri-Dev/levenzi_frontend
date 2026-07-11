@@ -1,6 +1,6 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { LvBadgeComponent } from '../../atoms/badge/badge';
 import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 import { LvIconComponent } from '../../icons/icon/icon';
@@ -28,6 +28,8 @@ export type AppSidebarPosition = 'left' | 'right';
   styleUrls: ['./app-sidebar.css'],
 })
 export class LvAppSidebarComponent {
+  private readonly router = inject(Router);
+
   readonly position = input<AppSidebarPosition>('left');
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   readonly compact = input(false);
@@ -40,13 +42,36 @@ export class LvAppSidebarComponent {
   readonly onToggle = output<void>();
 
   protected isCollapsed = signal(false);
+  protected readonly currentUrl = signal(this.router.url);
+
+  constructor() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl.set(this.router.url);
+      }
+    });
+  }
 
   handleItemClick(item: AppSidebarItem): void {
     this.onItemClick.emit(item);
   }
 
   isActive(item: AppSidebarItem): boolean {
-    return item.active || false;
+    const currentUrl = this.currentUrl();
+    const itemRoute = item.route;
+
+    if (!itemRoute) {
+      return Boolean(item.active);
+    }
+
+    const normalizedCurrent = currentUrl.replace(/\?.*$/, '').replace(/\/$/, '');
+    const normalizedRoute = itemRoute.replace(/\?.*$/, '').replace(/\/$/, '');
+
+    if (!normalizedRoute) {
+      return false;
+    }
+
+    return normalizedCurrent === normalizedRoute || normalizedCurrent.startsWith(`${normalizedRoute}/`);
   }
 
   toggleSidebar(): void {

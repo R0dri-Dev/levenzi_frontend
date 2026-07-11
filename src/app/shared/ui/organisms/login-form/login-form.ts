@@ -24,7 +24,6 @@ import { LoginFormData } from '../../../interfaces/login.interface';
     LvButtonComponent,
     LvHeadingComponent,
     LvParagraphComponent,
-    LvIconComponent,
     LvPasswordFieldComponent,
     LvRememberMeComponent,
     LvFormErrorComponent,

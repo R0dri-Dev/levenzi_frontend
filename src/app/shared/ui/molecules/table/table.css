@@ -13,6 +13,7 @@
 
 .lv-table {
   @apply w-full border-collapse text-center;
+  table-layout: auto;
 }
 
 .lv-table-head {
@@ -23,6 +24,7 @@
   @apply px-4 py-3.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white;
   text-align: center;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .lv-table-head-cell-left {
@@ -54,7 +56,7 @@
   display: block;
   width: 100%;
   margin: 0;
-  text-align: center;
+  text-align: inherit;
 }
 
 .lv-table-sort-icon {
@@ -84,6 +86,7 @@
 .lv-table-cell {
   @apply px-4 py-3.5 text-sm align-middle text-secondary-700;
   text-align: center;
+  white-space: nowrap;
 }
 
 .lv-table-cell-left {

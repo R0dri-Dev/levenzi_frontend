@@ -1,9 +1,0 @@
-.detail-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.detail-actions {
-  display: flex;
-  justify-content: flex-end;
-}

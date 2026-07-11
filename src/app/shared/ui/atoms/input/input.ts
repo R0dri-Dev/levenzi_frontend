@@ -1,10 +1,9 @@
-import { Component, input, output, signal, effect, forwardRef } from '@angular/core';
+import { Component, input, output, signal, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { LvIconComponent } from '../../icons/icon/icon';
 import { LvSize, LvColorVariant, LvAppearance, LvInputType } from '../../../types';
 import type { IconKeys } from '../../../core/icons';
-
 
 @Component({
   selector: 'lv-input',
@@ -21,9 +20,8 @@ import type { IconKeys } from '../../../core/icons';
   ],
 })
 export class LvInputComponent implements ControlValueAccessor {
-  // ============ INPUTS ============
+  // ============ INPUTS (presentación, NO controlan el valor) ============
   readonly type = input<LvInputType>('text');
-  readonly value = input<string>('');
   readonly placeholder = input<string>('');
   readonly variant = input<LvColorVariant>('primary');
   readonly appearance = input<LvAppearance>('outline');
@@ -48,20 +46,11 @@ export class LvInputComponent implements ControlValueAccessor {
   internalValue = signal('');
   isFocused = signal(false);
   isTouched = signal(false);
+  internalDisabled = signal(false);
 
   // ============ CONTROL VALUE ACCESSOR ============
   onChange: any = () => { };
   onTouched: any = () => { };
-
-  // ============ EFFECTS ============
-  constructor() {
-    effect(() => {
-      const externalValue = this.value();
-      if (externalValue !== this.internalValue()) {
-        this.internalValue.set(externalValue);
-      }
-    });
-  }
 
   // ============ METHODS ============
   onInputChange(event: Event): void {
@@ -80,11 +69,10 @@ export class LvInputComponent implements ControlValueAccessor {
 
   onFocusEvent(): void {
     this.isFocused.set(true);
-    this.onFocus.emit();
   }
 
   writeValue(value: string): void {
-    this.internalValue.set(value || '');
+    this.internalValue.set(value ?? '');
   }
 
   registerOnChange(fn: any): void {
@@ -96,6 +84,6 @@ export class LvInputComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    // handled by disabled input
+    this.internalDisabled.set(isDisabled);
   }
 }

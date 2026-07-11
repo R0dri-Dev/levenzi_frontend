@@ -5,8 +5,6 @@ import { Token } from '../services/token';
 
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // Solo añadimos Authorization si el request realmente va al backend.
-  // (Trabajamos con URLs absolutas ya resueltas en Api.resolveUrl)
   if (!req.url.includes('/api/')) {
     return next(req);
   }

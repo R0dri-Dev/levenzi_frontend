@@ -15,7 +15,6 @@
       <lv-input
         type="email"
         placeholder="Correo electrónico"
-        [value]="formData().email"
         (onValueChange)="updateEmail($event)"
         icon="mail"
         [required]="true"
@@ -23,7 +22,7 @@
 
       <lv-password-field
         placeholder="Contraseña"
-        [value]="formData().password"
+
         (onValueChange)="updatePassword($event)"
         [required]="true"
         [size]="'lg'" />

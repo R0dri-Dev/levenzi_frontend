@@ -1,5 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LvHeadingComponent } from '../../atoms/heading/heading';
 import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import { LvCardComponent } from '../../atoms/card/card';
@@ -13,6 +14,7 @@ export type FormTemplateVariant = 'card' | 'simple';
   standalone: true,
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     LvHeadingComponent,
     LvParagraphComponent,
     LvCardComponent,
@@ -30,6 +32,7 @@ export class LvFormTemplateComponent {
   readonly footerText = input<string>('');
   readonly color = input<LvColorVariant>('primary');
   readonly align = input<LvTextAlign>('left');
+  readonly formGroup = input.required<FormGroup>();
 
   readonly onSubmit = output<void>();
 }

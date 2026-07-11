@@ -9,7 +9,7 @@
 }
 
 .lv-checkbox-custom {
-  @apply flex-shrink-0 rounded transition-colors;
+  @apply shrink-0 rounded transition-colors;
   @apply border-2 border-secondary-300;
 }
 

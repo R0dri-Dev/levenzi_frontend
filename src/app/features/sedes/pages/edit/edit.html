@@ -5,8 +5,11 @@
   </div>
 
   <div class="permiso-form-grid">
-    <lv-form-field label="Compañía ID" [required]="true">
-      <lv-input formControlName="compania_id" placeholder="Ej. 1" type="number" [required]="true" />
+    <lv-form-field label="Compañía" [required]="true">
+      <lv-select formControlName="compania_id" placeholder="Selecciona una compañía" [options]="[
+        { label: 'Compañía Principal', value: 1 },
+        { label: 'Compañía Secundaria', value: 2 }
+      ]" [required]="true" />
     </lv-form-field>
 
     <lv-form-field label="Nombre" [required]="true">

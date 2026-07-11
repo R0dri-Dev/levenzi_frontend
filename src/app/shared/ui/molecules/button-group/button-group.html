@@ -1,0 +1,17 @@
+<div
+  class="lv-button-group"
+  [ngClass]="orientation() === 'col' ? 'lv-flex-col' : 'lv-flex-row'"
+>
+  @for (action of actions(); track (action.key ?? action.label)) {
+    <lv-button
+      [type]="action.type ?? 'button'"
+      [variant]="action.variant ?? 'secondary'"
+      [disabled]="action.disabled ?? false"
+      [loading]="action.loading ?? false"
+      (onClick)="handleClick(action)"
+    >
+      {{ action.label }}
+    </lv-button>
+  }
+</div>
+

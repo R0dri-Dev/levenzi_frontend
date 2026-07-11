@@ -1,3 +1,4 @@
+@reference "../../../../../styles.css";
 /* card.css - Estilos propios del componente */
 .lv-card {
   background-color: white;
@@ -57,7 +58,7 @@
 
 /* Body */
 .lv-card-body {
-  padding: 1.25rem;
+  @apply p-6;
   color: var(--color-secondary-700);
 }
 

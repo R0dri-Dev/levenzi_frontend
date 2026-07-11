@@ -1,0 +1,24 @@
+
+    <lv-page-header
+      title="Editar compañía"
+      subtitle="Actualiza los datos de la compañía seleccionada."
+      [breadcrumb]="breadcrumb()">
+
+      <lv-button
+        variant="secondary"
+        (onClick)="onCancel()">
+        Volver
+      </lv-button>
+
+    </lv-page-header>
+
+
+    <lv-dynamic-form
+      [formGroup]="form"
+      [fields]="fields()"
+      [loading]="loading()"
+      (onSubmit)="onSubmit()"
+      (onCancel)="onCancel()">
+    </lv-dynamic-form>
+
+

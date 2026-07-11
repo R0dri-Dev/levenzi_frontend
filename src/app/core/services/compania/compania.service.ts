@@ -19,6 +19,10 @@ export class CompaniaService {
     return this.api.post<Compania>('/api/companias', payload);
   }
 
+  get(id: number): Observable<Compania> {
+    return this.api.get<Compania>(`/api/companias/${id}`);
+  }
+
   update(id: number, payload: Partial<Compania>): Observable<Compania> {
     return this.api.put<Compania>(`/api/companias/${id}`, payload);
   }

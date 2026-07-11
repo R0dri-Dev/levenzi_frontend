@@ -36,10 +36,12 @@ export class Edit {
     effect(() => {
       const permiso = this.permiso();
       if (permiso) {
-        this.form.patchValue({
-          name: permiso.name ?? '',
-          guard_name: permiso.guard_name ?? 'api',
-          modulo_id: permiso.modulo_id ?? null,
+        queueMicrotask(() => {
+          this.form.patchValue({
+            name: permiso.name ?? '',
+            guard_name: permiso.guard_name ?? 'api',
+            modulo_id: permiso.modulo_id ?? null,
+          }, { emitEvent: false });
         });
       }
     });

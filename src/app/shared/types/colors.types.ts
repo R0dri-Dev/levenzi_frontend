@@ -12,7 +12,8 @@ export type LvColorVariant =
   | 'warning'
   | 'info'
   | 'tertiary'
-  | 'neutral';
+  | 'neutral'
+  | 'white';
 
 export interface LvColorClasses {
   bg: string;
@@ -78,7 +79,7 @@ export const LV_COLOR_MAP: Record<LvColorVariant, LvColorClasses> = {
     ring: 'focus:ring-danger-500',
   },
   warning: {
-    bg: 'bg-warning-500',  
+    bg: 'bg-warning-500',
     bgHover: 'hover:bg-warning-600',
     bgActive: 'active:bg-warning-700',
     bgLight: 'bg-warning-50',
@@ -125,6 +126,19 @@ export const LV_COLOR_MAP: Record<LvColorVariant, LvColorClasses> = {
     borderHover: 'hover:border-neutral-700',
     ring: 'focus:ring-neutral-500',
   },
+
+  white: {
+    bg: 'bg-white',
+    bgHover: 'hover:bg-neutral-50',
+    bgActive: 'active:bg-neutral-100',
+    bgLight: 'bg-white/10',
+    bgLightHover: 'hover:bg-white/20',
+    text: 'text-white',
+    textOnBg: 'text-neutral-900',
+    border: 'border-white',
+    borderHover: 'hover:border-neutral-100',
+    ring: 'focus:ring-white',
+  },
 };
 
 export const LV_COLOR_VARIANTS: LvColorVariant[] = [
@@ -136,4 +150,5 @@ export const LV_COLOR_VARIANTS: LvColorVariant[] = [
   'info',
   'tertiary',
   'neutral',
+  'white',
 ];

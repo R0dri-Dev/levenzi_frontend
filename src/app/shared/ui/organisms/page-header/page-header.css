@@ -1,26 +1,32 @@
 @reference "../../../../../styles.css";
+
 .lv-page-header {
   @apply w-full border-b border-secondary-200 bg-white py-4 sm:py-6;
 }
 
+/* En celular: título arriba, botones abajo (columna).
+   Desde tablet (sm): título a la izquierda, botones a la derecha (fila). */
 .lv-page-header-content {
-  @apply mx-auto flex max-w-7xl flex-col items-stretch gap-4 px-4 sm:px-6 lg:px-8;
-  @apply sm:flex-row sm:items-center sm:justify-between;
+  @apply mx-auto flex max-w-7xl flex-col gap-3 px-4;
+  @apply sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 lg:px-8;
 }
 
 .lv-page-header-text {
   @apply min-w-0 flex-1;
 }
 
-.lv-page-header-breadcrumb {
-  @apply mb-2;
-}
-
+/* En celular: buscador y botón se apilan y ocupan todo el ancho.
+   Desde tablet: van uno al lado del otro con su ancho natural. */
 .lv-page-header-actions {
-  @apply flex flex-wrap items-center gap-2 self-stretch sm:shrink-0 sm:self-auto;
+  @apply flex w-full flex-col gap-2;
+  @apply sm:w-auto sm:flex-row sm:flex-wrap sm:items-center;
 }
 
-/* Alignments */
+.lv-page-header-actions > * {
+  @apply w-full sm:w-auto;
+}
+
+/* Alineaciones */
 .lv-page-header-left .lv-page-header-text {
   @apply text-left;
 }
@@ -29,7 +35,7 @@
 }
 
 .lv-page-header-center .lv-page-header-content {
-  @apply flex-col items-center text-center;
+  @apply items-center text-center;
 }
 .lv-page-header-center .lv-page-header-actions {
   @apply justify-center;
@@ -39,7 +45,7 @@
   @apply text-right;
 }
 .lv-page-header-right .lv-page-header-content {
-  @apply flex-col sm:flex-row-reverse;
+  @apply sm:flex-row-reverse;
 }
 .lv-page-header-right .lv-page-header-actions {
   @apply sm:mr-auto;
@@ -47,35 +53,4 @@
 
 .lv-page-header-justify .lv-page-header-text {
   @apply text-justify;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .lv-page-header {
-    @apply py-4;
-  }
-
-  .lv-page-header-content {
-    @apply items-stretch gap-3;
-  }
-
-  .lv-page-header-actions {
-    @apply w-full justify-start;
-  }
-
-  .lv-page-header-actions > * {
-    @apply w-full sm:w-auto;
-  }
-
-  .lv-page-header-center .lv-page-header-actions {
-    @apply justify-center;
-  }
-
-  .lv-page-header-right .lv-page-header-content {
-    @apply flex-col;
-  }
-
-  .lv-page-header-right .lv-page-header-actions {
-    @apply mr-0;
-  }
 }

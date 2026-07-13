@@ -1,10 +1,11 @@
 @reference "../../../../../styles.css";
+
 .lv-dashboard {
   @apply flex min-h-screen w-full bg-secondary-50;
 }
 
 .lv-dashboard-sidebar {
-  @apply sticky top-0 h-screen shrink-0;
+  @apply sticky top-0 h-screen shrink-0 z-40;
 }
 
 .lv-dashboard-main {
@@ -39,42 +40,22 @@
 }
 
 /* Layouts */
-.lv-dashboard-sidebar {
-  @apply flex-row;
-}
-.lv-dashboard-top-nav {
-  @apply flex-col;
-}
-.lv-dashboard-both {
-  @apply flex-row;
-}
-
-.lv-dashboard-sidebar .lv-dashboard-main {
-  @apply flex-1;
-}
-.lv-dashboard-top-nav .lv-dashboard-sidebar {
+.lv-dashboard-layout-top-nav .lv-dashboard-sidebar {
   @apply hidden;
 }
-.lv-dashboard-top-nav .lv-dashboard-main {
-  @apply flex-1;
-}
-.lv-dashboard-both .lv-dashboard-sidebar {
-  @apply shrink-0;
-}
-.lv-dashboard-both .lv-dashboard-main {
-  @apply flex-1;
+
+/* Overlay oscuro detrás del drawer en mobile */
+.lv-dashboard-overlay {
+  @apply fixed inset-0 z-30 bg-black/40 md:hidden;
 }
 
-/* Responsive */
+/* Sidebar como drawer en mobile, fijo/normal desde md */
 @media (max-width: 768px) {
   .lv-dashboard-sidebar {
-    @apply fixed inset-y-0 left-0 z-40 transform -translate-x-full transition-transform duration-300;
+    @apply fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transition-transform duration-300;
   }
   .lv-dashboard-sidebar-open .lv-dashboard-sidebar {
-    @apply translate-x-0;
-  }
-  .lv-dashboard-sidebar-open .lv-dashboard-main {
-    @apply ml-0;
+    @apply translate-x-0 shadow-2xl;
   }
 }
 

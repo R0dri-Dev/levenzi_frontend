@@ -3,20 +3,15 @@
   subtitle="Gestiona las marcas del sistema desde una vista centralizada."
   color="primary"
   [breadcrumb]="breadcrumb()"
+  [showSearch]="true"
+  searchPlaceholder="Buscar marca..."
+  [searchValue]="searchTerm()"
+  (searchChange)="onSearch($event)"
+  (searchClear)="clearSearch()"
 >
-  <div class="permissions-header-actions">
-    <lv-search-box
-      placeholder="Buscar marca..."
-      [value]="searchTerm()"
-      (onSearch)="onSearch($event)"
-      (onClear)="clearSearch()"
-    />
-
-    <lv-button (onClick)="openCreateForm()">Nueva marca</lv-button>
-  </div>
+  <lv-button (onClick)="openCreateForm()">Nueva marca</lv-button>
 </lv-page-header>
 
-<div class="permissions-content">
   <lv-data-table
     [data]="filteredMarcas()"
     [columns]="columns"
@@ -24,5 +19,3 @@
     [actions]="tableActions"
     emptyMessage="No hay marcas para mostrar con este filtro."
   />
-</div>
-

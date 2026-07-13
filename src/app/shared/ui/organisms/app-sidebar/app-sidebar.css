@@ -1,4 +1,5 @@
 @reference "../../../../../styles.css";
+
 .lv-app-sidebar {
   @apply h-full bg-white border-secondary-200 flex flex-col shadow-sm;
   @apply transition-all duration-300 ease-in-out;
@@ -20,11 +21,26 @@
 }
 
 .lv-app-sidebar-toggle {
-  @apply flex justify-end p-2;
+  @apply hidden md:flex justify-end p-2;
 }
 
 .lv-app-sidebar-header {
-  @apply px-4 py-3 border-b border-secondary-200;
+  @apply px-4 py-3 border-b border-secondary-200 flex items-center justify-center;
+}
+
+.lv-app-sidebar-collapsed .lv-app-sidebar-header {
+  @apply px-2;
+}
+
+.lv-app-sidebar-logo {
+  @apply max-w-full transition-all duration-300;
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
+.lv-app-sidebar-collapsed .lv-app-sidebar-logo {
+  width: 32px;
 }
 
 .lv-app-sidebar-nav {
@@ -35,6 +51,10 @@
   @apply flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 no-underline;
   color: var(--color-secondary-700);
   text-decoration: none;
+}
+
+.lv-app-sidebar-collapsed .lv-app-sidebar-item {
+  @apply justify-center px-0;
 }
 
 .lv-app-sidebar-item:hover,
@@ -51,9 +71,18 @@
   color: var(--color-primary-700);
 }
 
+.lv-app-sidebar-icon-wrap {
+  @apply relative inline-flex shrink-0;
+}
+
 .lv-app-sidebar-icon {
   @apply shrink-0;
   color: var(--color-primary-600);
+}
+
+.lv-app-sidebar-badge-dot {
+  @apply absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full;
+  background: var(--color-danger-500);
 }
 
 .lv-app-sidebar-label {
@@ -65,6 +94,10 @@
   @apply px-4 py-3 border-t border-secondary-200 mt-auto text-sm;
   color: var(--color-secondary-500);
   background: linear-gradient(180deg, rgba(245, 243, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.lv-app-sidebar-collapsed .lv-app-sidebar-footer {
+  @apply hidden;
 }
 
 /* Sizes */
@@ -97,32 +130,16 @@
   @apply px-4 py-2.5 text-base;
 }
 
-/* Responsive */
+.lv-app-sidebar-sm.lv-app-sidebar-collapsed .lv-app-sidebar-item,
+.lv-app-sidebar-md.lv-app-sidebar-collapsed .lv-app-sidebar-item,
+.lv-app-sidebar-lg.lv-app-sidebar-collapsed .lv-app-sidebar-item {
+  @apply px-0 justify-center;
+}
+
+/* Responsive: el drawer mobile lo maneja el dashboard-template padre,
+   aquí solo agregamos la sombra para que se vea bien dentro del drawer */
 @media (max-width: 768px) {
   .lv-app-sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    z-index: 50;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
-  .lv-app-sidebar-left {
-    left: 0;
-    transform: translateX(0);
-  }
-  .lv-app-sidebar-collapsed.lv-app-sidebar-left {
-    transform: translateX(-100%);
-  }
-}
-
-.lv-app-sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lv-app-sidebar-logo {
-  width: 180px;
-  height: auto;
-  object-fit: contain;
 }

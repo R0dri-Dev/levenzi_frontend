@@ -14,6 +14,7 @@ import { LvSize, LvColorVariant } from '../../../types';
 export class LvButtonComponent {
   // Inputs
   readonly variant = input<LvColorVariant>('primary');
+  readonly appearance = input<'solid' | 'ghost' | 'outline'>('solid');
   readonly size = input<LvSize>('md');
   readonly loading = input(false);
   readonly disabled = input(false);

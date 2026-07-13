@@ -1,4 +1,11 @@
-<div class="lv-dashboard lv-dashboard-{{ variant() }} lv-dashboard-{{ layout() }}">
+<div
+  class="lv-dashboard lv-dashboard-{{ variant() }} lv-dashboard-layout-{{ layout() }}"
+  [class.lv-dashboard-sidebar-open]="mobileSidebarOpen()">
+
+  @if (hasSidebar() && mobileSidebarOpen()) {
+    <div class="lv-dashboard-overlay" (click)="closeSidebar()"></div>
+  }
+
   @if (hasSidebar()) {
     <aside class="lv-dashboard-sidebar">
       <ng-content select="[sidebar]"></ng-content>

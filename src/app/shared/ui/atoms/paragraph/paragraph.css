@@ -61,6 +61,11 @@
   color: var(--color-neutral-700);
 }
 
+/* Blanco/inverso - para usar sobre fondos oscuros o de color (headers, banners) */
+.lv-paragraph-white {
+  color: #ffffff;
+}
+
 /* Alineación */
 .lv-paragraph-left {
   @apply text-left;

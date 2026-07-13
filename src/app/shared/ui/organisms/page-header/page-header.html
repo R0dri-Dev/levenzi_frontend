@@ -24,6 +24,15 @@
     </div>
 
     <div class="lv-page-header-actions">
+      @if (showSearch()) {
+        <lv-search-box
+          [placeholder]="searchPlaceholder()"
+          [value]="searchValue()"
+          (onSearch)="onSearch($event)"
+          (onClear)="onClear()"
+        />
+      }
+
       <ng-content></ng-content>
     </div>
   </div>

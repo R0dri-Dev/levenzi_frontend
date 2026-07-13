@@ -1,22 +1,21 @@
-<lv-dashboard-template layout="both" variant="default">
+<lv-dashboard-template #dashboardTemplate layout="both" variant="default">
   <div header>
     <lv-app-navbar
       [links]="navLinks()"
       [user]="navUser()"
       (onUserAction)="handleNavbarAction($event)"
-      (onMenuToggle)="onNavbarMenuToggle()" />
+      (onMenuToggle)="dashboardTemplate.toggleSidebar()" />
   </div>
 
   <div sidebar>
-   <lv-app-sidebar
-  [items]="sidebarItems()"
-  header="Levenzi"
-  logo="/logo/levenzi.png"
-  footer="© Grobdi"
-  size="md"
-  [showToggle]="false"
-  position="left" />
+    <lv-app-sidebar
+      [items]="sidebarItems()"
+      header="Levenzi"
+      logo="/logo/levenzi.png"
+      footer="© Grobdi"
+      size="md"
+      [showToggle]="false"
+      position="left" />
   </div>
   <router-outlet />
 </lv-dashboard-template>
-

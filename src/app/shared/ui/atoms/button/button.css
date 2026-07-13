@@ -119,3 +119,61 @@
 .lv-button-loading {
   @apply cursor-wait;
 }
+
+/* Appearance: ghost → transparente, texto del color, hover suave */
+.lv-button-appearance-ghost {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.lv-button-appearance-ghost.lv-button-primary {
+  color: var(--color-primary-700);
+}
+.lv-button-appearance-ghost.lv-button-primary:hover {
+  background-color: var(--color-primary-50) !important;
+}
+
+.lv-button-appearance-ghost.lv-button-secondary {
+  color: var(--color-secondary-700);
+}
+.lv-button-appearance-ghost.lv-button-secondary:hover {
+  background-color: var(--color-secondary-50) !important;
+}
+
+.lv-button-appearance-ghost.lv-button-neutral {
+  color: var(--color-neutral-700);
+}
+.lv-button-appearance-ghost.lv-button-neutral:hover {
+  background-color: var(--color-neutral-100) !important;
+}
+
+.lv-button-appearance-ghost.lv-button-danger {
+  color: var(--color-danger-600);
+}
+.lv-button-appearance-ghost.lv-button-danger:hover {
+  background-color: var(--color-danger-50) !important;
+}
+
+.lv-button-appearance-ghost:hover {
+  @apply shadow-none translate-y-0;
+}
+
+/* Appearance: outline → borde de color, fondo blanco */
+.lv-button-appearance-outline {
+  background-color: white !important;
+  box-shadow: none !important;
+}
+.lv-button-appearance-outline.lv-button-primary {
+  color: var(--color-primary-700);
+  border: 1px solid var(--color-primary-300);
+}
+.lv-button-appearance-outline.lv-button-primary:hover {
+  background-color: var(--color-primary-50) !important;
+}
+
+.lv-button-appearance-outline.lv-button-secondary {
+  color: var(--color-secondary-700);
+  border: 1px solid var(--color-secondary-300);
+}
+.lv-button-appearance-outline.lv-button-secondary:hover {
+  background-color: var(--color-secondary-50) !important;
+}

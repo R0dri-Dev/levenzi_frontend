@@ -1,13 +1,13 @@
-<div class="lv-user-menu" #dropdown>
-  <lv-button
-    variant="secondary"
-    appearance="ghost"
-    size="sm"
-    class="lv-user-menu-trigger"
-    (onClick)="toggle()"
-    [attr.aria-expanded]="isOpen()"
-    aria-haspopup="true">
+<lv-button
+  variant="secondary"
+  appearance="ghost"
+  size="sm"
+  class="lv-user-menu-trigger"
+  (onClick)="toggle()"
+  [attr.aria-expanded]="isOpen()"
+  aria-haspopup="true">
 
+  <div class="lv-user-menu-trigger-content">
     @if (showAvatar()) {
       <lv-avatar
         [src]="user().avatar || ''"
@@ -28,53 +28,5 @@
     }
 
     <lv-icon name="chevron-down" size="sm" class="lv-user-menu-chevron" />
-  </lv-button>
-
-  @if (isOpen()) {
-    <div class="lv-user-menu-dropdown" role="menu">
-      @if (showUserInfo()) {
-        <div class="lv-user-menu-header">
-          <lv-paragraph size="sm" weight="semibold" color="neutral">
-            {{ user().name }}
-          </lv-paragraph>
-          <lv-paragraph size="xs" color="neutral" [muted]="true">
-            {{ user().email }}
-          </lv-paragraph>
-        </div>
-      }
-
-      @for (item of items(); track $index) {
-        @if (item.divider) {
-          <lv-divider />
-        } @else {
-          @if (item.route) {
-            <lv-link
-              [routerLink]="item.route"
-              [color]="item.danger ? 'danger' : 'neutral'"
-              class="lv-user-menu-item"
-              [class.lv-user-menu-item-danger]="item.danger"
-              (click)="close()">
-              @if (item.icon) {
-                <lv-icon [name]="item.icon" size="sm" />
-              }
-              {{ item.label }}
-            </lv-link>
-          } @else {
-            <lv-button
-              variant="secondary"
-              appearance="ghost"
-              size="sm"
-              class="lv-user-menu-item"
-              [class.lv-user-menu-item-danger]="item.danger"
-              (onClick)="handleItemClick(item)">
-              @if (item.icon) {
-                <lv-icon [name]="item.icon" size="sm" />
-              }
-              {{ item.label }}
-            </lv-button>
-          }
-        }
-      }
-    </div>
-  }
-</div>
+  </div>
+</lv-button>

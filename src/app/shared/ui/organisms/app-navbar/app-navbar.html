@@ -41,17 +41,17 @@
 
     <!-- Right Side -->
     <div class="lv-app-navbar-actions">
-      @if (showUserMenu() && user()) {
-        <lv-user-menu
-          class="lv-app-navbar-user-menu"
-          [user]="user()!"
-          [items]="[
-            { label: 'Mi Perfil', icon: 'user', route: '/profile' },
-            { label: 'Configuración', icon: 'settings', route: '/settings' },
-            { divider: true },
-            { label: 'Cerrar Sesión', icon: 'close', danger: true, action: () => handleUserAction('logout') }
-          ]" />
-      }
+   @if (showUserMenu() && user()) {
+  <lv-profile-dropdown
+    class="lv-app-navbar-user-menu"
+    [user]="user()!"
+    [items]="[
+      { label: 'Mi Perfil', icon: 'user', route: '/profile' },
+      { label: 'Configuración', icon: 'settings', route: '/settings' },
+      { divider: true },
+      { label: 'Cerrar Sesión', icon: 'close', danger: true, action: () => handleUserAction('logout') }
+    ]" />
+}
 
       <!-- Mobile Toggle -->
       <lv-icon-button

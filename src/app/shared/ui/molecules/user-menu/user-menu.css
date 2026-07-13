@@ -1,20 +1,26 @@
 @reference "../../../../../styles.css";
+
 .lv-user-menu {
   @apply relative inline-flex items-center;
 }
 
 .lv-user-menu-trigger {
-  @apply inline-flex h-10 items-center gap-2 rounded-full border border-secondary-200 bg-white/90 px-3 py-2 shadow-sm transition-all duration-200;
-  @apply hover:border-secondary-300 hover:bg-secondary-50;
+  @apply h-auto rounded-full border border-secondary-200 bg-white px-2 py-1.5 shadow-sm transition-all duration-200;
+  @apply hover:border-primary-300 hover:bg-primary-50 hover:shadow-md;
+}
+
+/* Este div fuerza la fila sin importar cómo maneje lv-button su contenido */
+.lv-user-menu-trigger-content {
+  @apply flex flex-nowrap items-center gap-2 whitespace-nowrap;
 }
 
 .lv-user-menu-info {
-  @apply min-w-0 text-left;
+  @apply hidden min-w-0 text-left sm:block;
 }
 
 .lv-user-menu-chevron {
-  color: var(--color-secondary-400);
-  @apply transition-transform duration-200;
+  color: var(--color-primary-400);
+  @apply shrink-0 transition-transform duration-200;
 }
 
 .lv-user-menu-trigger[aria-expanded='true'] .lv-user-menu-chevron {
@@ -22,20 +28,20 @@
 }
 
 .lv-user-menu-dropdown {
-  @apply absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-lg border border-secondary-200;
-  @apply py-1 z-50 min-w-[200px];
+  @apply absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-xl border border-secondary-200;
+  @apply py-1 z-50;
   animation: lv-user-menu-fade 0.15s ease-out;
 }
 
 .lv-user-menu-header {
-  @apply px-4 py-3 border-b border-secondary-200;
+  @apply px-4 py-3 border-b border-secondary-100 bg-primary-50/40 rounded-t-xl;
 }
 
 .lv-user-menu-item {
-  @apply flex items-center gap-2 px-4 py-2 text-sm w-full text-left transition-colors no-underline;
-  @apply hover:bg-secondary-100;
+  @apply flex items-center gap-2 px-4 py-2.5 text-sm w-full text-left transition-colors no-underline;
+  @apply hover:bg-primary-50;
 
-  color: var(--color-secondary-700) !important;
+  color: var(--color-primary-700) !important;
   justify-content: flex-start !important;
 }
 
@@ -62,10 +68,7 @@
   .lv-user-menu-trigger {
     @apply px-2 py-1.5;
   }
-  .lv-user-menu-info {
-    @apply hidden;
-  }
   .lv-user-menu-dropdown {
-    @apply right-0 left-0 w-auto;
+    @apply right-0 left-auto w-72;
   }
 }

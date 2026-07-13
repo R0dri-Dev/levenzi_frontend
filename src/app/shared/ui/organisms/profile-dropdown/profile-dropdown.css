@@ -1,20 +1,23 @@
 @reference "../../../../../styles.css";
+
 .lv-profile-dropdown {
   @apply relative inline-block;
 }
 
 .lv-profile-trigger {
-  @apply gap-2;
-  @apply px-2 py-1.5 rounded-lg transition-colors;
+  @apply inline-flex h-9 items-center gap-1.5 rounded-full border border-secondary-300 bg-white px-4 text-sm font-semibold;
+  @apply text-primary-700 shadow-sm transition-all duration-200;
+  @apply hover:border-secondary-400 hover:bg-secondary-50;
+  @apply focus:outline-none focus:ring-2 focus:ring-secondary-400 focus:ring-offset-2;
 }
 
-.lv-profile-info {
-  @apply text-left;
+.lv-profile-trigger-name {
+  @apply whitespace-nowrap;
 }
 
 .lv-profile-chevron {
-  color: var(--color-secondary-400);
-  @apply transition-transform duration-200;
+  color: var(--color-secondary-500);
+  @apply shrink-0 transition-transform duration-200;
 }
 
 .lv-profile-trigger[aria-expanded='true'] .lv-profile-chevron {
@@ -22,24 +25,22 @@
 }
 
 .lv-profile-dropdown-menu {
-  @apply absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-secondary-200;
+  @apply absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-secondary-200;
   @apply py-1 z-50;
   animation: lv-profile-fade 0.15s ease-out;
 }
 
 .lv-profile-header {
-  @apply flex items-center gap-3 px-4 py-3 border-b border-secondary-200;
-}
-
-.lv-profile-header-info {
-  @apply flex-1 min-w-0;
+  @apply px-4 py-3 border-b border-secondary-100;
 }
 
 .lv-profile-menu-item {
-  @apply flex items-center gap-2 px-4 py-2 text-sm w-full transition-colors no-underline;
-  @apply hover:bg-secondary-100;
-  color: var(--color-secondary-700);
+  @apply flex items-center gap-2 px-4 py-2.5 text-sm w-full transition-colors no-underline;
+  color: var(--color-primary-700) !important;
   justify-content: flex-start !important;
+}
+.lv-profile-menu-item:hover {
+  background-color: var(--color-secondary-50) !important;
 }
 
 .lv-profile-menu-item-danger {
@@ -62,10 +63,10 @@
 
 /* Responsive */
 @media (max-width: 640px) {
-  .lv-profile-info {
+  .lv-profile-trigger-name {
     @apply hidden;
   }
   .lv-profile-dropdown-menu {
-    @apply right-0 left-0 w-auto mx-2;
+    @apply right-0 left-auto w-72;
   }
 }

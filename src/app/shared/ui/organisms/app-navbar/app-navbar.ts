@@ -19,6 +19,7 @@ import {
 
 import { LvIconComponent } from '../../icons/icon/icon';
 import { BreadcrumbService } from '../../../../core/services/breadcrumb-service';
+import { LvProfileDropdownComponent } from "../profile-dropdown/profile-dropdown";
 
 @Component({
   selector: 'lv-app-navbar',
@@ -31,7 +32,8 @@ import { BreadcrumbService } from '../../../../core/services/breadcrumb-service'
     LvLinkComponent,
     LvIconComponent,
     LvBreadcrumbComponent,
-  ],
+    LvProfileDropdownComponent
+],
   templateUrl: './app-navbar.html',
   styleUrls: ['./app-navbar.css'],
 })

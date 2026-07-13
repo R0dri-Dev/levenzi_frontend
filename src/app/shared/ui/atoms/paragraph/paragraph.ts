@@ -14,7 +14,7 @@ export class LvParagraphComponent {
   readonly size = input<LvSize>('md');
   readonly weight = input<LvWeight>('normal');
   readonly color = input<LvColorVariant>('neutral');
-  readonly align = input<LvTextAlign>('left');
+  readonly align = input<LvTextAlign>('center');
   readonly truncate = input(false);
   readonly muted = input(false);
 }

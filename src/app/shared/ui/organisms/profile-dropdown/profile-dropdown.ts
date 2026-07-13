@@ -17,12 +17,10 @@ import type { ProfileMenuItem, ProfileUser } from '../../../interfaces/profile.i
     CommonModule,
     RouterModule,
     LvIconComponent,
-    LvAvatarComponent,
     LvParagraphComponent,
     LvLinkComponent,
     LvButtonComponent,
     LvDividerComponent,
-    LvIconButtonComponent,
   ],
   templateUrl: './profile-dropdown.html',
   styleUrls: ['./profile-dropdown.css'],
@@ -55,6 +53,8 @@ export class LvProfileDropdownComponent {
   }
 
   handleItemClick(item: ProfileMenuItem): void {
+    if (item.divider) return;
+
     if (item.action) {
       item.action();
     }

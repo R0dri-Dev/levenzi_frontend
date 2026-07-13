@@ -1,50 +1,28 @@
 <div class="lv-profile-dropdown" #dropdown>
-  <lv-button
-    variant="secondary"
-    appearance="ghost"
-    size="sm"
+  <button
+    type="button"
     class="lv-profile-trigger"
-    (onClick)="toggle()"
+    (click)="toggle()"
     aria-haspopup="true"
     [attr.aria-expanded]="isOpen()">
 
-    <lv-avatar
-      [src]="user().avatar || ''"
-      [initials]="getInitials()"
-      [alt]="user().name"
-      size="sm" />
-
     @if (showUserInfo()) {
-      <div class="lv-profile-info">
-        <lv-paragraph size="sm" weight="semibold" color="neutral">
-          {{ user().name }}
-        </lv-paragraph>
-        <lv-paragraph size="xs" color="neutral" [muted]="true">
-          {{ user().email }}
-        </lv-paragraph>
-      </div>
+      <span class="lv-profile-trigger-name">{{ user().name }}</span>
     }
 
     <lv-icon name="chevron-down" size="sm" class="lv-profile-chevron" />
-  </lv-button>
+  </button>
 
   @if (isOpen()) {
     <div class="lv-profile-dropdown-menu" role="menu">
       @if (showUserInfo()) {
         <div class="lv-profile-header">
-          <lv-avatar
-            [src]="user().avatar || ''"
-            [initials]="getInitials()"
-            [alt]="user().name"
-            size="md" />
-          <div class="lv-profile-header-info">
-            <lv-paragraph size="sm" weight="semibold" color="neutral">
-              {{ user().name }}
-            </lv-paragraph>
-            <lv-paragraph size="xs" color="neutral" [muted]="true">
-              {{ user().email }}
-            </lv-paragraph>
-          </div>
+          <lv-paragraph size="sm" weight="semibold" color="neutral">
+            {{ user().name }}
+          </lv-paragraph>
+          <lv-paragraph size="xs" color="neutral" [muted]="true">
+            {{ user().email }}
+          </lv-paragraph>
         </div>
       }
 

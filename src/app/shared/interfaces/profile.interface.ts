@@ -1,13 +1,15 @@
 import { IconKeys } from '../core/icons';
 
-export interface ProfileMenuItem {
-  label: string;
-  icon?: IconKeys;
-  route?: string;
-  action?: () => void;
-  divider?: boolean;
-  danger?: boolean;
-}
+export type ProfileMenuItem =
+  | { divider: true }
+  | {
+      divider?: false;
+      label: string;
+      icon?: IconKeys;
+      route?: string;
+      action?: () => void;
+      danger?: boolean;
+    };
 
 export interface ProfileUser {
   name: string;

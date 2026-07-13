@@ -1,5 +1,6 @@
 /* ============================================================
    LEVENZI DESIGN SYSTEM — TAILWIND v4 THEME
+   Paleta alineada al logo (navy + dorado/beige), tonos claros
    ============================================================ */
 
 @theme {
@@ -21,94 +22,94 @@
   --shadow-lv-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
 
   /* ============================================================
-     COLOR TOKENS - PALETA LEVENZI v2 (VIVA Y VARIADA)
+     COLOR TOKENS - PALETA LEVENZI v3 (LOGO: NAVY + DORADO)
      ============================================================ */
 
-  /* PRIMARY - Violeta/Índigo (antes azul) */
-  --color-primary-50: #f5f3ff;
-  --color-primary-100: #ede9fe;
-  --color-primary-200: #ddd6fe;
-  --color-primary-300: #c4b5fd;
-  --color-primary-400: #a78bfa;
-  --color-primary-500: #8b5cf6;
-  --color-primary-600: #7c3aed;
-  --color-primary-700: #6d28d9;
-  --color-primary-800: #5b21b6;
-  --color-primary-900: #4c1d95;
+  /* PRIMARY - Azul marino del wordmark, aclarado */
+  --color-primary-50: #eef1fb;
+  --color-primary-100: #dde3f6;
+  --color-primary-200: #bcc7ec;
+  --color-primary-300: #96a6dc;
+  --color-primary-400: #748ac8;
+  --color-primary-500: #5b6fb8;
+  --color-primary-600: #425390;
+  --color-primary-700: #33406f;
+  --color-primary-800: #283355;
+  --color-primary-900: #1e2740;
 
-  /* SUCCESS - Verde esmeralda fresco */
-  --color-success-50: #ecfdf5;
-  --color-success-100: #d1fae5;
-  --color-success-200: #a7f3d0;
-  --color-success-300: #6ee7b7;
-  --color-success-400: #34d399;
-  --color-success-500: #10b981;
-  --color-success-600: #059669;
-  --color-success-700: #047857;
-  --color-success-800: #065f46;
-  --color-success-900: #064e3b;
+  /* SECONDARY - Dorado/beige del ícono romboidal */
+  --color-secondary-50: #fdfaf3;
+  --color-secondary-100: #faf1de;
+  --color-secondary-200: #f3e0b6;
+  --color-secondary-300: #eaca87;
+  --color-secondary-400: #dbb076;
+  --color-secondary-500: #c9a96b;
+  --color-secondary-600: #b0894a;
+  --color-secondary-700: #8f6e3a;
+  --color-secondary-800: #6f562e;
+  --color-secondary-900: #574424;
 
-  /* DANGER - Rose/Coral (antes rojo puro) */
-  --color-danger-50: #fff1f2;
-  --color-danger-100: #ffe4e6;
-  --color-danger-200: #fecdd3;
-  --color-danger-300: #fda4af;
+  /* SUCCESS - Verde esmeralda claro */
+  --color-success-50: #f0fdf7;
+  --color-success-100: #dbfaeb;
+  --color-success-200: #b8f3d8;
+  --color-success-300: #82e8bc;
+  --color-success-400: #3ecf8e;
+  --color-success-500: #22b37a;
+  --color-success-600: #189263;
+  --color-success-700: #15764f;
+  --color-success-800: #135e40;
+  --color-success-900: #104d35;
+
+  /* DANGER - Rose/coral suavizado */
+  --color-danger-50: #fff2f3;
+  --color-danger-100: #ffe0e3;
+  --color-danger-200: #ffc6cc;
+  --color-danger-300: #ff9fab;
   --color-danger-400: #fb7185;
-  --color-danger-500: #f43f5e;
-  --color-danger-600: #e11d48;
-  --color-danger-700: #be123c;
-  --color-danger-800: #9f1239;
-  --color-danger-900: #881337;
+  --color-danger-500: #ef4b64;
+  --color-danger-600: #d63354;
+  --color-danger-700: #b32546;
+  --color-danger-800: #94213e;
+  --color-danger-900: #7c1f39;
 
-  /* WARNING - Ámbar cálido */
-  --color-warning-50: #fffbeb;
-  --color-warning-100: #fef3c7;
-  --color-warning-200: #fde68a;
-  --color-warning-300: #fcd34d;
+  /* WARNING - Ámbar cálido claro */
+  --color-warning-50: #fffaeb;
+  --color-warning-100: #fef0c7;
+  --color-warning-200: #fde08a;
+  --color-warning-300: #fbca4d;
   --color-warning-400: #fbbf24;
-  --color-warning-500: #f59e0b;
-  --color-warning-600: #d97706;
-  --color-warning-700: #b45309;
-  --color-warning-800: #92400e;
-  --color-warning-900: #78350f;
+  --color-warning-500: #f0a11a;
+  --color-warning-600: #c9820f;
+  --color-warning-700: #a3670e;
+  --color-warning-800: #855313;
+  --color-warning-900: #6f4514;
 
-  /* INFO - Cyan/Teal (antes celeste, chocaba con primary) */
-  --color-info-50: #ecfeff;
-  --color-info-100: #cffafe;
-  --color-info-200: #a5f3fc;
-  --color-info-300: #67e8f9;
-  --color-info-400: #22d3ee;
-  --color-info-500: #06b6d4;
-  --color-info-600: #0891b2;
-  --color-info-700: #0e7490;
-  --color-info-800: #155e75;
-  --color-info-900: #164e63;
+  /* INFO - Cyan/teal claro */
+  --color-info-50: #f0fdfe;
+  --color-info-100: #d7f8fc;
+  --color-info-200: #b3f0f8;
+  --color-info-300: #7fe3f0;
+  --color-info-400: #38d4e8;
+  --color-info-500: #1cb6cc;
+  --color-info-600: #1596a8;
+  --color-info-700: #147a89;
+  --color-info-800: #16636f;
+  --color-info-900: #17525d;
 
-  /* TERTIARY - Naranja (nuevo, para más variedad en charts/badges) */
-  --color-tertiary-50: #fff7ed;
-  --color-tertiary-100: #ffedd5;
-  --color-tertiary-200: #fed7aa;
-  --color-tertiary-300: #fdba74;
-  --color-tertiary-400: #fb923c;
-  --color-tertiary-500: #f97316;
-  --color-tertiary-600: #ea580c;
-  --color-tertiary-700: #c2410c;
-  --color-tertiary-800: #9a3412;
-  --color-tertiary-900: #7c2d12;
+  /* TERTIARY - Coral/durazno suave */
+  --color-tertiary-50: #fff6ee;
+  --color-tertiary-100: #ffe9d6;
+  --color-tertiary-200: #ffcfac;
+  --color-tertiary-300: #ffab72;
+  --color-tertiary-400: #ff9d6b;
+  --color-tertiary-500: #f47f42;
+  --color-tertiary-600: #d6642b;
+  --color-tertiary-700: #b34f22;
+  --color-tertiary-800: #8f401f;
+  --color-tertiary-900: #75361e;
 
-  /* SECONDARY - Stone, gris cálido (antes gris frío) */
-  --color-secondary-50: #fafaf9;
-  --color-secondary-100: #f5f5f4;
-  --color-secondary-200: #e7e5e4;
-  --color-secondary-300: #d6d3d1;
-  --color-secondary-400: #a8a29e;
-  --color-secondary-500: #78716c;
-  --color-secondary-600: #57534e;
-  --color-secondary-700: #44403c;
-  --color-secondary-800: #292524;
-  --color-secondary-900: #1c1917;
-
-  /* NEUTRAL - Slate (sin cambios, es de UI/chrome, no de marca) */
+  /* NEUTRAL - Slate claro (UI/chrome, sin cambios) */
   --color-neutral-50: #f8fafc;
   --color-neutral-100: #f1f5f9;
   --color-neutral-200: #e2e8f0;
@@ -215,3 +216,4 @@
     background-position: 200% 0;
   }
 }
+table

@@ -15,70 +15,71 @@
   }
 
   @if (header() || logo()) {
-  <div class="lv-app-sidebar-header">
-
-    @if (logo()) {
-      <img
-        class="lv-app-sidebar-logo"
-        [src]="logo()"
-        [alt]="header() || 'Logo'" />
-    } @else {
-      <lv-paragraph size="sm" weight="semibold" color="neutral">
-        {{ header() }}
-      </lv-paragraph>
-    }
-
-  </div>
-}
+    <div class="lv-app-sidebar-header">
+      @if (logo()) {
+        <img
+          class="lv-app-sidebar-logo"
+          [src]="logo()"
+          [alt]="header() || 'Logo'" />
+      } @else {
+        <lv-paragraph size="sm" weight="semibold" color="neutral">
+          {{ header() }}
+        </lv-paragraph>
+      }
+    </div>
+  }
 
   <nav class="lv-app-sidebar-nav">
     @for (item of items(); track $index) {
       @if (item.divider) {
         <lv-divider />
+      } @else if (item.route) {
+<a
+          [routerLink]="item.route"
+          class="lv-app-sidebar-item"
+          [class.lv-app-sidebar-item-active]="isActive(item)"
+          [attr.title]="isCollapsedMode() ? item.label : null"
+          (click)="handleItemClick(item)"
+          [attr.aria-current]="isActive(item) ? 'page' : null"
+        >
+          @if (item.icon) {
+            <span class="lv-app-sidebar-icon-wrap">
+              <lv-icon [name]="item.icon" class="lv-app-sidebar-icon" />
+              @if (isCollapsedMode() && item.badge) {
+                <span class="lv-app-sidebar-badge-dot"></span>
+              }
+            </span>
+          }
+          @if (!isCollapsedMode()) {
+            <span class="lv-app-sidebar-label">{{ item.label }}</span>
+            @if (item.badge) {
+              <lv-badge [variant]="item.badgeColor || 'primary'">{{ item.badge }}</lv-badge>
+            }
+          }
+        </a>
       } @else {
-        @if (item.route) {
-          <a
-            [routerLink]="item.route"
-            class="lv-app-sidebar-item"
-            [class.lv-app-sidebar-item-active]="isActive(item)"
-            (click)="handleItemClick(item)"
-            [attr.aria-current]="isActive(item) ? 'page' : null">
-
-            @if (item.icon) {
+        <button
+          type="button"
+          class="lv-app-sidebar-item"
+          [class.lv-app-sidebar-item-active]="isActive(item)"
+          [attr.title]="isCollapsedMode() ? item.label : null"
+          (click)="handleItemClick(item)"
+        >
+          @if (item.icon) {
+            <span class="lv-app-sidebar-icon-wrap">
               <lv-icon [name]="item.icon" class="lv-app-sidebar-icon" />
-            }
-
-            @if (!isCollapsedMode()) {
-              <span class="lv-app-sidebar-label">
-                {{ item.label }}
-              </span>
-              @if (item.badge) {
-                <lv-badge [variant]="item.badgeColor || 'primary'">
-                  {{ item.badge }}
-                </lv-badge>
+              @if (isCollapsedMode() && item.badge) {
+                <span class="lv-app-sidebar-badge-dot"></span>
               }
+            </span>
+          }
+          @if (!isCollapsedMode()) {
+            <span class="lv-app-sidebar-label">{{ item.label }}</span>
+            @if (item.badge) {
+              <lv-badge [variant]="item.badgeColor || 'primary'">{{ item.badge }}</lv-badge>
             }
-          </a>
-        } @else {
-          <button
-            class="lv-app-sidebar-item"
-            [class.lv-app-sidebar-item-active]="isActive(item)"
-            (click)="handleItemClick(item)">
-
-            @if (item.icon) {
-              <lv-icon [name]="item.icon" class="lv-app-sidebar-icon" />
-            }
-
-            @if (!isCollapsedMode()) {
-              <span class="lv-app-sidebar-label">{{ item.label }}</span>
-              @if (item.badge) {
-                <lv-badge [variant]="item.badgeColor || 'primary'">
-                  {{ item.badge }}
-                </lv-badge>
-              }
-            }
-          </button>
-        }
+          }
+        </button>
       }
     }
   </nav>
@@ -91,4 +92,3 @@
     </div>
   }
 </aside>
-

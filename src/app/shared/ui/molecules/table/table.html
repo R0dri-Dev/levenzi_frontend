@@ -22,12 +22,12 @@
 
           @for (col of visibleColumns(); track col.key) {
             <th
-              class="lv-table-head-cell lv-table-head-cell-{{ size() }} lv-table-head-cell-{{ col.align || 'left' }}"
+              class="lv-table-head-cell lv-table-head-cell-{{ size() }} lv-table-head-cell-{{ col.align || 'center' }}"
               [style.width]="col.width || 'auto'"
               (click)="col.sortable ? toggleSort(col.key) : null"
               [class.cursor-pointer]="col.sortable">
               <div class="lv-table-head-content">
-                <lv-paragraph size="sm" weight="semibold" color="neutral">
+                <lv-paragraph size="sm" weight="semibold" color="white">
                   {{ col.label }}
                 </lv-paragraph>
 
@@ -48,9 +48,11 @@
 
           @if (hasActions()) {
             <th class="lv-table-head-cell lv-table-head-cell-{{ size() }} lv-table-head-cell-center">
-              <lv-paragraph size="sm" weight="semibold" color="neutral">
-                Acciones
-              </lv-paragraph>
+              <div class="lv-table-head-content">
+                <lv-paragraph size="sm" weight="semibold" color="white">
+                  Acciones
+                </lv-paragraph>
+              </div>
             </th>
           }
         </tr>
@@ -88,7 +90,7 @@
 
               @for (col of visibleColumns(); track col.key) {
                 <td
-                  class="lv-table-cell lv-table-cell-{{ size() }} lv-table-cell-{{ col.align || 'left' }}"
+                  class="lv-table-cell lv-table-cell-{{ size() }} lv-table-cell-{{ col.align || 'center' }}"
                   [class]="col.cellClass || ''">
                   <div class="lv-table-cell-content">
                     @if (isBadgeContent(getCellValue(item, col))) {

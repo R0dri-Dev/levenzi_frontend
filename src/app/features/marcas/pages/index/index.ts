@@ -1,33 +1,29 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Marca } from '../../../../core/models/marca.model';
 import { MarcaService } from '../../../../core/services/marcas/marca.service';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
-import { LvModalComponent } from '../../../../shared/ui/organisms/modal/modal';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
-import { CreateMarca } from '../create/create';
-import { EditMarca } from '../edit/edit';
-import { DetailMarca } from '../detail/detail';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvModalComponent, LvSearchBoxComponent, CreateMarca, EditMarca, DetailMarca],
+  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvSearchBoxComponent],
   templateUrl: './index.html',
   styleUrl: './index.css',
 })
 export class Index {
   private readonly service = inject(MarcaService);
+  private readonly router = inject(Router);
 
   readonly marcas = signal<Marca[]>([]);
   readonly total = signal(0);
   readonly loading = signal(true);
   readonly searchTerm = signal('');
-  readonly activeView = signal<'list' | 'create' | 'edit' | 'detail'>('list');
-  readonly selectedMarca = signal<Marca | null>(null);
 
   readonly columns: TableColumn<Marca>[] = [
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
@@ -47,7 +43,14 @@ export class Index {
     const term = this.searchTerm().trim().toLowerCase();
     if (!term) return this.marcas();
 
-    return this.marcas().filter((marca) => [marca.nombre, marca.codigo ?? '', marca.descripcion ?? '', marca.activo ? 'activo' : 'inactivo'].some((field) => field.toLowerCase().includes(term)));
+    return this.marcas().filter((marca) =>
+      [
+        marca.nombre,
+        marca.codigo ?? '',
+        marca.descripcion ?? '',
+        marca.activo ? 'activo' : 'inactivo',
+      ].some((field) => field.toLowerCase().includes(term))
+    );
   });
 
   constructor() {
@@ -77,50 +80,15 @@ export class Index {
   }
 
   openCreateForm(): void {
-    this.selectedMarca.set(null);
-    this.activeView.set('create');
+    this.router.navigate(['/marcas/create']);
   }
 
   verDetalle(marca: Marca): void {
-    this.selectedMarca.set(marca);
-    this.activeView.set('detail');
+    this.router.navigate(['/marcas', marca.id]);
   }
 
   editarMarca(marca: Marca): void {
-    this.selectedMarca.set(marca);
-    this.activeView.set('edit');
-  }
-
-  closeForm(): void {
-    this.selectedMarca.set(null);
-    this.activeView.set('list');
-  }
-
-  handleCreateSubmit(payload: Partial<Marca>): void {
-    this.service.create(payload).subscribe({
-      next: (created) => {
-        this.marcas.update((items) => [created, ...items]);
-        this.total.set(this.total() + 1);
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
-  }
-
-  handleEditSubmit(payload: Partial<Marca>): void {
-    const marca = this.selectedMarca();
-    if (!marca?.id) {
-      this.closeForm();
-      return;
-    }
-
-    this.service.update(marca.id, payload).subscribe({
-      next: (updated) => {
-        this.marcas.update((items) => items.map((item) => (item.id === marca.id ? { ...item, ...updated } : item)));
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
+    this.router.navigate(['/marcas', marca.id, 'edit']);
   }
 
   eliminarMarca(marca: Marca): void {
@@ -132,3 +100,4 @@ export class Index {
     });
   }
 }
+

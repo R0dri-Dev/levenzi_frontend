@@ -15,10 +15,12 @@
       [required]="required()"
       [attr.aria-invalid]="!!error()"
       class="lv-select"
-      (change)="handleChange(($any($event.target)).value)">
+      (change)="handleChange(($any($event.target)).value)"
+      (input)="handleChange(($any($event.target)).value)"
+      (blur)="onTouched()">
 
       @if (placeholder()) {
-        <option value="" disabled>{{ placeholder() }}</option>
+        <option value="" hidden>{{ placeholder() }}</option>
       }
 
       @for (opt of options(); track opt.value) {
@@ -28,7 +30,6 @@
       }
     </select>
 
-    <!-- Flecha personalizada -->
     <span class="lv-select-arrow">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

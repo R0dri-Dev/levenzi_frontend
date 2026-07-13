@@ -1,43 +1,29 @@
-<div class="users-page">
-  @if (activeView() === 'list') {
-    <lv-page-header
-      title="Clientes"
-      subtitle="Gestiona los clientes del sistema desde una vista centralizada."
-      color="primary"
-      [breadcrumb]="breadcrumb()"
-    >
-      <div class="permissions-header-actions">
-        <lv-search-box
-          placeholder="Buscar cliente..."
-          [value]="searchTerm()"
-          (onSearch)="onSearch($event)"
-          (onClear)="clearSearch()"
-        />
+<lv-page-header
+  title="Clientes"
+  subtitle="Gestiona los clientes del sistema desde una vista centralizada."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+>
+  <div class="permissions-header-actions">
+    <lv-search-box
+      placeholder="Buscar cliente..."
+      [value]="searchTerm()"
+      (onSearch)="onSearch($event)"
+      (onClear)="clearSearch()"
+    />
 
-        <lv-button (onClick)="openCreateForm()">Nuevo cliente</lv-button>
-      </div>
-    </lv-page-header>
+    <lv-button (onClick)="openCreateForm()">Nuevo cliente</lv-button>
+  </div>
+</lv-page-header>
 
-    <div class="permissions-content">
-      <lv-data-table
-        [data]="filteredClientes()"
-        [columns]="columns"
-        [loading]="loading()"
-        [actions]="tableActions"
-        emptyMessage="No hay clientes para mostrar con este filtro."
-      />
-    </div>
-  }
+<div class="permissions-content">
+  <lv-data-table
+    [data]="filteredClientes()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay clientes para mostrar con este filtro."
+  />
 </div>
 
-<lv-modal [isOpen]="activeView() === 'create'" title="Crear cliente" size="lg" (onClose)="closeForm()">
-  <app-create-cliente (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
 
-<lv-modal [isOpen]="activeView() === 'edit' && !!selectedCliente()" title="Editar cliente" size="lg" (onClose)="closeForm()">
-  <app-edit-cliente [cliente]="selectedCliente()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-
-<lv-modal [isOpen]="activeView() === 'detail' && !!selectedCliente()" title="Detalle del cliente" size="lg" (onClose)="closeForm()">
-  <app-detail-cliente [cliente]="selectedCliente()" (close)="closeForm()" />
-</lv-modal>

@@ -15,6 +15,10 @@ export class MarcaService {
     return this.api.get<PaginatedResponse<Marca>>(`/api/marcas?page=${page}`);
   }
 
+  show(id: number): Observable<Marca> {
+    return this.api.get<Marca>(`/api/marcas/${id}`);
+  }
+
   create(payload: Partial<Marca>): Observable<Marca> {
     return this.api.post<Marca>('/api/marcas', payload);
   }

@@ -26,7 +26,6 @@ export class DetailSede {
             { label: 'Código', value: sede.codigo },
             { label: 'Dirección', value: sede.direccion },
             { label: 'Teléfono', value: sede.telefono || 'Sin teléfono' },
-            { label: 'Correo', value: sede.email || 'Sin correo' },
             { label: 'Estado', value: sede.activo ? 'Activo' : 'Inactivo' },
         ];
     }

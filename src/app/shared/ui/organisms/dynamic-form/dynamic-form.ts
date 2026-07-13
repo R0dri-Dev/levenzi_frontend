@@ -1,7 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { LvFormTemplateComponent } from '../../templates/form-template/form-template';
 import { LvInputComponent } from '../../atoms/input/input';
 import { LvCheckboxComponent } from '../../atoms/checkbox/checkbox';
 import { LvSelectComponent } from '../../atoms/select/select';

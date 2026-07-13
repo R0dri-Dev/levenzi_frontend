@@ -4,30 +4,29 @@ import { User } from '../../../../core/models/user.model';
 import { UserService } from '../../../../core/services/Usuarios/user.service';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
-import { LvModalComponent } from '../../../../shared/ui/organisms/modal/modal';
+
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
-import { CreateUser } from '../create/create';
-import { EditUser } from '../edit/edit';
 import { DetailUser } from '../detail/detail';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvModalComponent, LvSearchBoxComponent, CreateUser, EditUser, DetailUser],
+  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvSearchBoxComponent, DetailUser],
+
   templateUrl: './index.html',
   styleUrl: './index.css',
 })
 export class Index {
   private readonly service = inject(UserService);
+  private readonly router = inject(Router);
 
   readonly users = signal<User[]>([]);
   readonly total = signal(0);
   readonly loading = signal(true);
   readonly searchTerm = signal('');
-  readonly activeView = signal<'list' | 'create' | 'edit' | 'detail'>('list');
-  readonly selectedUser = signal<User | null>(null);
 
   readonly columns: TableColumn<User>[] = [
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
@@ -76,50 +75,14 @@ export class Index {
   }
 
   openCreateForm(): void {
-    this.selectedUser.set(null);
-    this.activeView.set('create');
+    this.router.navigate(['/usuarios/create']);
   }
-
   verDetalle(usuario: User): void {
-    this.selectedUser.set(usuario);
-    this.activeView.set('detail');
+    this.router.navigate(['/usuarios', usuario.id]);
   }
 
   editarUsuario(usuario: User): void {
-    this.selectedUser.set(usuario);
-    this.activeView.set('edit');
-  }
-
-  closeForm(): void {
-    this.selectedUser.set(null);
-    this.activeView.set('list');
-  }
-
-  handleCreateSubmit(payload: Partial<User>): void {
-    this.service.create(payload).subscribe({
-      next: (created) => {
-        this.users.update((items) => [created, ...items]);
-        this.total.set(this.total() + 1);
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
-  }
-
-  handleEditSubmit(payload: Partial<User>): void {
-    const usuario = this.selectedUser();
-    if (!usuario?.id) {
-      this.closeForm();
-      return;
-    }
-
-    this.service.update(usuario.id, payload).subscribe({
-      next: (updated) => {
-        this.users.update((items) => items.map((item) => (item.id === usuario.id ? { ...item, ...updated } : item)));
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
+    this.router.navigate(['/usuarios', usuario.id, 'edit']);
   }
 
   eliminarUsuario(usuario: User): void {

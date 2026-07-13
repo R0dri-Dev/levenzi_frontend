@@ -14,6 +14,9 @@ export class SedeService {
   list(page = 1): Observable<PaginatedResponse<Sede>> {
     return this.api.get<PaginatedResponse<Sede>>(`/api/sedes?page=${page}`);
   }
+  show(id: number): Observable<Sede> {
+    return this.api.get<Sede>(`/api/sedes/${id}`);
+  }
 
   create(payload: Partial<Sede>): Observable<Sede> {
     return this.api.post<Sede>('/api/sedes', payload);

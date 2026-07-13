@@ -4,6 +4,8 @@ export interface Producto {
 
   marca_id: number;
 
+  instalacion_id: number;
+
   codigo: string;
 
   nombre: string;

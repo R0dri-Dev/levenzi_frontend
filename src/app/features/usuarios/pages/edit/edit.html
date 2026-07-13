@@ -1,29 +1,21 @@
-<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="permiso-form-header">
-    <h3>Editar usuario</h3>
-    <p>Actualiza los datos del usuario seleccionado.</p>
-  </div>
+<lv-page-header
+  title="Editar usuario"
+  subtitle="Actualiza los datos del usuario seleccionado."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button variant="secondary" (onClick)="onCancel()">Volver</lv-button>
+</lv-page-header>
 
-  <div class="permiso-form-grid">
-    <lv-form-field label="Nombre" [required]="true">
-      <lv-input formControlName="name" placeholder="Ej. Juan Pérez" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Correo" [required]="true">
-      <lv-input formControlName="email" placeholder="correo@empresa.com" type="email" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Nueva contraseña" [required]="false">
-      <lv-input formControlName="password" placeholder="Dejar vacío para no cambiar" type="password" />
-    </lv-form-field>
-
-    <lv-form-field label="Teléfono" [required]="false">
-      <lv-input formControlName="telefono" placeholder="987654321" />
-    </lv-form-field>
-  </div>
-
-  <div class="permiso-form-actions">
-    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
-    <lv-button type="submit">Actualizar</lv-button>
-  </div>
-</form>
+@if (loading()) {
+  <p>Cargando usuario...</p>
+} @else {
+  <lv-dynamic-form
+    [formGroup]="form"
+    [fields]="fields"
+    [loading]="loading()"
+    (onSubmit)="onSubmit()"
+    (onCancel)="onCancel()"
+    submitLabel="Actualizar"
+    cancelLabel="Cancelar"
+  />
+}

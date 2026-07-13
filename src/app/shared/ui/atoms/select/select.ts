@@ -1,4 +1,4 @@
-import { Component, effect, forwardRef, input, output, signal } from '@angular/core';
+import { Component, effect, forwardRef, input, output, signal, untracked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { LvSize, LvColorVariant, LvAppearance } from '../../../types';
@@ -33,32 +33,57 @@ export class LvSelectComponent implements ControlValueAccessor {
   readonly onValueChange = output<string | number>();
 
   internalValue = signal<string | number>('');
-  onChange: (value: string | number) => void = () => { };
+  onChange: (value: any) => void = () => { };
   onTouched: () => void = () => { };
 
-  constructor() {
-    effect(() => {
-      const externalValue = this.value();
+  private markAsNullIfPlaceholder(raw: string): string | number | null {
+    if (raw === '') return '';
+    const num = Number(raw);
+    return Number.isNaN(num) ? raw : num;
+  }
+
+ constructor() {
+  effect(() => {
+    const externalValue = this.value();
+    untracked(() => {
       if (externalValue !== this.internalValue()) {
         this.internalValue.set(externalValue);
       }
     });
-  }
+  });
+
+  effect(() => {
+    this.options();
+    untracked(() => {
+      this.internalValue.set(this.internalValue());
+    });
+  });
+}
 
   handleChange(raw: string): void {
+    console.log('[LvSelect] handleChange DISPARADO. raw =', raw);
     if (this.disabled()) return;
-    const num = Number(raw);
-    const value = Number.isNaN(num) ? raw : num;
-    this.internalValue.set(value);
-    this.onValueChange.emit(value);
-    this.onChange(value);
+
+    if (raw === '') {
+      const v = '';
+      this.internalValue.set(v);
+      this.onValueChange.emit(v);
+      this.onChange(v);
+      return;
+    }
+
+    const normalized = this.markAsNullIfPlaceholder(raw);
+    const normalizedForSelect = normalized ?? '';
+    this.internalValue.set(normalizedForSelect);
+    this.onValueChange.emit(normalizedForSelect);
+    this.onChange(normalizedForSelect);
   }
 
   writeValue(value: string | number | null | undefined): void {
-    this.internalValue.set(value ?? '');
+    this.internalValue.set((value ?? '').toString());
   }
 
-  registerOnChange(fn: (value: string | number) => void): void {
+  registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
 

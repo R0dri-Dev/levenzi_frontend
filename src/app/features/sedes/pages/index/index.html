@@ -1,5 +1,4 @@
 <div class="users-page">
-  @if (activeView() === 'list') {
     <lv-page-header
       title="Sedes"
       subtitle="Gestiona las sedes del sistema desde una vista centralizada."
@@ -27,27 +26,4 @@
         emptyMessage="No hay sedes para mostrar con este filtro."
       />
     </div>
-  } @else if (activeView() === 'detail' && selectedSede()) {
-    <lv-page-header
-      title="Detalle de la sede"
-      subtitle="Consulta la información registrada de esta sede."
-      color="primary"
-      [breadcrumb]="breadcrumb()"
-    >
-      <lv-button variant="secondary" (onClick)="closeForm()">Volver al listado</lv-button>
-    </lv-page-header>
-
-    <section class="permissions-card">
-      <app-detail-sede [sede]="selectedSede()" (close)="closeForm()" />
-    </section>
-  }
 </div>
-
-<lv-modal [isOpen]="activeView() === 'create'" title="Crear sede" size="lg" (onClose)="closeForm()">
-  <app-create-sede (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-
-<lv-modal [isOpen]="activeView() === 'edit' && !!selectedSede()" title="Editar sede" size="lg" (onClose)="closeForm()">
-  <app-edit-sede [sede]="selectedSede()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-

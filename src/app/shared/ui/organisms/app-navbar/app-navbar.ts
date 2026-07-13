@@ -1,10 +1,24 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import type { NavbarLink, NavbarUser } from '../../../interfaces/app-navbar.interface';
-import { LvIconButtonComponent, LvLinkComponent, LvLogoComponent } from "../../atoms";
-import { LvUserMenuComponent } from "../../molecules";
-import { LvIconComponent } from "../../icons/icon/icon";
+
+import type {
+  NavbarLink,
+  NavbarUser,
+} from '../../../interfaces/app-navbar.interface';
+
+import {
+  LvIconButtonComponent,
+  LvLinkComponent,
+} from '../../atoms';
+
+import {
+  LvUserMenuComponent,
+  LvBreadcrumbComponent,
+} from '../../molecules';
+
+import { LvIconComponent } from '../../icons/icon/icon';
+import { BreadcrumbService } from '../../../../core/services/breadcrumb-service';
 
 @Component({
   selector: 'lv-app-navbar',
@@ -16,14 +30,12 @@ import { LvIconComponent } from "../../icons/icon/icon";
     LvUserMenuComponent,
     LvLinkComponent,
     LvIconComponent,
-    LvLogoComponent
+    LvBreadcrumbComponent,
   ],
   templateUrl: './app-navbar.html',
   styleUrls: ['./app-navbar.css'],
 })
 export class LvAppNavbarComponent {
-  readonly brand = input<string>('Levenzi');
-  readonly brandRoute = input<string>('/');
   readonly links = input<NavbarLink[]>([]);
   readonly user = input<NavbarUser | null>(null);
   readonly showUserMenu = input(true);
@@ -31,7 +43,11 @@ export class LvAppNavbarComponent {
   readonly onMenuToggle = output<void>();
   readonly onUserAction = output<string>();
 
-  mobileOpen = signal(false);
+  readonly mobileOpen = signal(false);
+
+  private readonly breadcrumbService = inject(BreadcrumbService);
+
+  readonly breadcrumbs = this.breadcrumbService.items;
 
   toggleMobile(): void {
     this.mobileOpen.update(v => !v);
@@ -43,7 +59,7 @@ export class LvAppNavbarComponent {
   }
 
   isActive(link: NavbarLink): boolean {
-    return link.active || false;
+    return !!link.active;
   }
 
   handleUserAction(action: string): void {

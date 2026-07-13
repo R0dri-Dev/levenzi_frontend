@@ -3,30 +3,26 @@ import { Sede } from '../../../../core/models/sede.model';
 import { SedeService } from '../../../../core/services/sede/sede.service';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
-import { LvModalComponent } from '../../../../shared/ui/organisms/modal/modal';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
-import { CreateSede } from '../create/create';
-import { EditSede } from '../edit/edit';
-import { DetailSede } from '../detail/detail';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvModalComponent, LvSearchBoxComponent, CreateSede, EditSede, DetailSede],
+  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvSearchBoxComponent,],
   templateUrl: './index.html',
   styleUrl: './index.css',
 })
 export class Index {
   private readonly service = inject(SedeService);
+  private readonly router = inject(Router);
 
   readonly sedes = signal<Sede[]>([]);
   readonly total = signal(0);
   readonly loading = signal(true);
   readonly searchTerm = signal('');
-  readonly activeView = signal<'list' | 'create' | 'edit' | 'detail'>('list');
-  readonly selectedSede = signal<Sede | null>(null);
 
   readonly columns: TableColumn<Sede>[] = [
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
@@ -67,33 +63,16 @@ export class Index {
   onSearch(value: string): void { this.searchTerm.set(value); }
   clearSearch(): void { this.searchTerm.set(''); }
 
-  openCreateForm(): void { this.selectedSede.set(null); this.activeView.set('create'); }
-  verDetalle(sede: Sede): void { this.selectedSede.set(sede); this.activeView.set('detail'); }
-  editarSede(sede: Sede): void { this.selectedSede.set(sede); this.activeView.set('edit'); }
-  closeForm(): void { this.selectedSede.set(null); this.activeView.set('list'); }
-
-  handleCreateSubmit(payload: Partial<Sede>): void {
-    this.service.create(payload).subscribe({
-      next: (created) => {
-        this.sedes.update((items) => [created, ...items]);
-        this.total.set(this.total() + 1);
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
+  openCreateForm(): void {
+    this.router.navigate(['/sedes/create']);
   }
 
-  handleEditSubmit(payload: Partial<Sede>): void {
-    const sede = this.selectedSede();
-    if (!sede?.id) { this.closeForm(); return; }
+  verDetalle(sede: Sede): void {
+    this.router.navigate(['/sedes', sede.id]);
+  }
 
-    this.service.update(sede.id, payload).subscribe({
-      next: (updated) => {
-        this.sedes.update((items) => items.map((item) => (item.id === sede.id ? { ...item, ...updated } : item)));
-        this.closeForm();
-      },
-      error: () => this.closeForm(),
-    });
+  editarSede(sede: Sede): void {
+    this.router.navigate(['/sedes', sede.id, 'edit']);
   }
 
   eliminarSede(sede: Sede): void {

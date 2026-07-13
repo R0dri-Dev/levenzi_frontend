@@ -114,3 +114,15 @@
     transform: translateX(-100%);
   }
 }
+
+.lv-app-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lv-app-sidebar-logo {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+}

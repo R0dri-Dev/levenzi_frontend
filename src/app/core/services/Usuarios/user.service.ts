@@ -15,6 +15,10 @@ export class UserService {
     return this.api.get<PaginatedResponse<User>>(`/api/usuarios?page=${page}`);
   }
 
+  get(id: number): Observable<User> {
+    return this.api.get<User>(`/api/usuarios/${id}`);
+  }
+
   create(payload: Partial<User>): Observable<User> {
     return this.api.post<User>('/api/usuarios', payload);
   }

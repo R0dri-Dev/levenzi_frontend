@@ -1,12 +1,13 @@
 <nav class="lv-app-navbar" role="navigation">
   <div class="lv-app-navbar-container">
     <!-- Brand -->
-    <lv-logo
-      [text]="brand()"
-      [link]="brandRoute()"
-      size="md"
-      color="primary" />
-
+ <div class="lv-app-navbar-breadcrumb">
+  @if (breadcrumbs().length) {
+    <lv-breadcrumb
+      [items]="breadcrumbs()"
+      color="neutral" />
+  }
+</div>
     <!-- Desktop Links -->
     <ul class="lv-app-navbar-links">
       @for (link of links(); track $index) {

@@ -1,33 +1,48 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Producto } from '../../../../core/models/producto.model';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDetailListComponent } from '../../../../shared/ui/molecules/detail-list/detail-list';
-import { LvSectionHeaderComponent } from '../../../../shared/ui/molecules/section-header/section-header';
+import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
+import { InstalacionService } from '../../../../core/services/instalaciones/instalacion.service';
+import type { BreadcrumbItem } from '../../../../shared/interfaces/breadcrumb.interface';
+
 
 @Component({
-    selector: 'app-detail-producto',
-    standalone: true,
-    imports: [LvButtonComponent, LvDetailListComponent, LvSectionHeaderComponent],
-    templateUrl: './detail.html',
-    styleUrl: './detail.css',
+  selector: 'app-detail-producto',
+  standalone: true,
+  imports: [LvButtonComponent, LvDetailListComponent, LvPageHeaderComponent],
+  templateUrl: './detail.html',
+  styleUrl: './detail.css',
 })
 export class DetailProducto {
-    readonly producto = input<Producto | null>(null);
-    readonly close = output<void>();
+  private readonly router = new Router();
 
-    get items() {
-        const producto = this.producto();
-        if (!producto) return [];
+  readonly producto = input<Producto | null>(null);
 
-        return [
-            { label: 'ID', value: producto.id },
-            { label: 'Nombre', value: producto.nombre },
-            { label: 'Marca', value: producto.marca_id },
-            { label: 'Código', value: producto.codigo || 'Sin código' },
-            { label: 'Precio', value: producto.precio },
-            { label: 'Descripción', value: producto.descripcion || 'Sin descripción' },
-            { label: 'Estado', value: producto.activo ? 'Activo' : 'Inactivo' },
-        ];
-    }
+  readonly breadcrumb = signal<BreadcrumbItem[]>([
+    { label: 'Inicio', path: '/' },
+    { label: 'Productos' },
+  ]);
+
+  get items() {
+    const producto = this.producto();
+    if (!producto) return [];
+
+    return [
+      { label: 'ID', value: producto.id },
+      { label: 'Nombre', value: producto.nombre },
+      { label: 'Marca', value: producto.marca_id },
+      { label: 'Código', value: producto.codigo || 'Sin código' },
+      { label: 'Precio', value: producto.precio },
+      { label: 'Descripción', value: producto.descripcion || 'Sin descripción' },
+      { label: 'Estado', value: producto.activo ? 'Activo' : 'Inactivo' },
+    ];
+  }
+
+  onCancel(): void {
+    void this.router.navigate(['/productos']);
+  }
 }
+

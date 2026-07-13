@@ -1,12 +1,6 @@
 <header class="lv-page-header lv-page-header-{{ align() }}">
   <div class="lv-page-header-content">
     <div class="lv-page-header-text">
-      @if (breadcrumb().length > 0) {
-        <div class="lv-page-header-breadcrumb">
-          <lv-breadcrumb [items]="breadcrumb()" [color]="color()" />
-        </div>
-      }
-
       <lv-heading
         [level]="'1'"
         [text]="title()"

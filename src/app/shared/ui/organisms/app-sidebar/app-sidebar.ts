@@ -20,7 +20,6 @@ export type AppSidebarPosition = 'left' | 'right';
     LvIconComponent,
     LvBadgeComponent,
     LvIconButtonComponent,
-    LvLinkComponent,
     LvDividerComponent,
     LvParagraphComponent
   ],
@@ -37,6 +36,7 @@ export class LvAppSidebarComponent {
   readonly header = input<string>('');
   readonly footer = input<string>('');
   readonly showToggle = input(false);
+  readonly logo = input<string>('');
 
   readonly onItemClick = output<AppSidebarItem>();
   readonly onToggle = output<void>();

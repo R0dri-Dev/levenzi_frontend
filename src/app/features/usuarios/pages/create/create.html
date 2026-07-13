@@ -1,29 +1,17 @@
-<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="permiso-form-header">
-    <h3>Crear usuario</h3>
-    <p>Registra un nuevo usuario para el sistema.</p>
-  </div>
+<lv-page-header
+  title="Crear usuario"
+  subtitle="Registra un nuevo usuario para el sistema."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button variant="secondary" (onClick)="onCancel()">Volver</lv-button>
+</lv-page-header>
 
-  <div class="permiso-form-grid">
-    <lv-form-field label="Nombre" [required]="true">
-      <lv-input formControlName="name" placeholder="Ej. Juan Pérez" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Correo" [required]="true">
-      <lv-input formControlName="email" placeholder="correo@empresa.com" type="email" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Contraseña" [required]="true">
-      <lv-input formControlName="password" placeholder="Mínimo 6 caracteres" type="password" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Teléfono" [required]="false">
-      <lv-input formControlName="telefono" placeholder="987654321" />
-    </lv-form-field>
-  </div>
-
-  <div class="permiso-form-actions">
-    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
-    <lv-button type="submit">Guardar</lv-button>
-  </div>
-</form>
+<lv-dynamic-form
+  [formGroup]="form"
+  [fields]="fields"
+  [loading]="loading()"
+  (onSubmit)="onSubmit()"
+  (onCancel)="onCancel()"
+  submitLabel="Guardar"
+  cancelLabel="Cancelar"
+/>

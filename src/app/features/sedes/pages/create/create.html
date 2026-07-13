@@ -1,40 +1,18 @@
-<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="permiso-form-header">
-    <h3>Crear sede</h3>
-    <p>Registra una nueva sede para la compañía.</p>
-  </div>
+<lv-page-header
+  title="Nueva sede"
+  subtitle="Registra una nueva sede."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button variant="secondary" (onClick)="onCancel()">
+    Volver
+  </lv-button>
+</lv-page-header>
 
-  <div class="permiso-form-grid">
-    <lv-form-field label="Compañía" [required]="true">
-      <lv-select formControlName="compania_id" placeholder="Selecciona una compañía" [options]="[
-        { label: 'Compañía Principal', value: 1 },
-        { label: 'Compañía Secundaria', value: 2 }
-      ]" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Nombre" [required]="true">
-      <lv-input formControlName="nombre" placeholder="Ej. Sede Central" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Código" [required]="true">
-      <lv-input formControlName="codigo" placeholder="Ej. S01" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Dirección" [required]="true">
-      <lv-input formControlName="direccion" placeholder="Ej. Av. Principal 123" [required]="true" />
-    </lv-form-field>
-
-    <lv-form-field label="Teléfono" [required]="false">
-      <lv-input formControlName="telefono" placeholder="987654321" />
-    </lv-form-field>
-
-    <lv-form-field label="Correo" [required]="false">
-      <lv-input formControlName="email" placeholder="sede@empresa.com" type="email" />
-    </lv-form-field>
-  </div>
-
-  <div class="permiso-form-actions">
-    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
-    <lv-button type="submit">Guardar</lv-button>
-  </div>
-</form>
+<lv-dynamic-form
+  [formGroup]="form"
+  [fields]="fields()"
+  (onSubmit)="onSubmit()"
+  (onCancel)="onCancel()"
+  submitLabel="Guardar"
+  cancelLabel="Cancelar"
+/>

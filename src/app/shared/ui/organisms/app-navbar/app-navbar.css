@@ -70,6 +70,23 @@
   animation: lv-navbar-slide-down 0.2s ease-out;
 }
 
+.lv-app-navbar-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lv-app-navbar-breadcrumb {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.lv-app-navbar-links {
+  margin-left: auto;
+}
+
 @keyframes lv-navbar-slide-down {
   from {
     opacity: 0;

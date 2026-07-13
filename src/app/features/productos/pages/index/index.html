@@ -1,43 +1,28 @@
-<div class="users-page">
-  @if (activeView() === 'list') {
-    <lv-page-header
-      title="Productos"
-      subtitle="Gestiona el catálogo de productos del sistema desde una vista centralizada."
-      color="primary"
-      [breadcrumb]="breadcrumb()"
-    >
-      <div class="permissions-header-actions">
-        <lv-search-box
-          placeholder="Buscar producto..."
-          [value]="searchTerm()"
-          (onSearch)="onSearch($event)"
-          (onClear)="clearSearch()"
-        />
+<lv-page-header
+  title="Productos"
+  subtitle="Gestiona el catálogo de productos del sistema desde una vista centralizada."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+>
+  <div class="permissions-header-actions">
+    <lv-search-box
+      placeholder="Buscar producto..."
+      [value]="searchTerm()"
+      (onSearch)="onSearch($event)"
+      (onClear)="clearSearch()"
+    />
 
-        <lv-button (onClick)="openCreateForm()">Nuevo producto</lv-button>
-      </div>
-    </lv-page-header>
+    <lv-button (onClick)="openCreateForm()">Nuevo producto</lv-button>
+  </div>
+</lv-page-header>
 
-    <div class="permissions-content">
-      <lv-data-table
-        [data]="filteredProductos()"
-        [columns]="columns"
-        [loading]="loading()"
-        [actions]="tableActions"
-        emptyMessage="No hay productos para mostrar con este filtro."
-      />
-    </div>
-  }
+<div class="permissions-content">
+  <lv-data-table
+    [data]="filteredProductos()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay productos para mostrar con este filtro."
+  />
 </div>
 
-<lv-modal [isOpen]="activeView() === 'create'" title="Crear producto" size="lg" (onClose)="closeForm()">
-  <app-create-producto (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-
-<lv-modal [isOpen]="activeView() === 'edit' && !!selectedProducto()" title="Editar producto" size="lg" (onClose)="closeForm()">
-  <app-edit-producto [producto]="selectedProducto()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-
-<lv-modal [isOpen]="activeView() === 'detail' && !!selectedProducto()" title="Detalle del producto" size="lg" (onClose)="closeForm()">
-  <app-detail-producto [producto]="selectedProducto()" (close)="closeForm()" />
-</lv-modal>

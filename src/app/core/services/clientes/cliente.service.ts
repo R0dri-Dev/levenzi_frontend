@@ -26,4 +26,9 @@ export class ClienteService {
   delete(id: number): Observable<{ success: boolean }> {
     return this.api.delete<{ success: boolean }>(`/api/clientes/${id}`);
   }
+
+  show(id: number): Observable<Cliente> {
+    return this.api.get<Cliente>(`/api/clientes/${id}`);
+  }
 }
+

@@ -50,16 +50,58 @@ export const routes: Routes = [
         pathMatch: 'full',
         redirectTo: 'dashboard',
       },
-      {
-        path: 'usuarios',
-        loadComponent: () => import('./features/usuarios/pages/index/index').then((m) => m.Index),
-        canActivate: [authGuard],
-      },
+
       {
         path: 'sedes',
-        loadComponent: () => import('./features/sedes/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () =>
+              import('./features/sedes/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () =>
+              import('./features/sedes/pages/create/create').then((m) => m.CreateSede),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () =>
+              import('./features/sedes/pages/edit/edit').then((m) => m.EditSede),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./features/sedes/pages/detail/detail').then((m) => m.DetailSede),
+          },
+        ],
       },
+      {
+        path: 'usuarios',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/usuarios/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/usuarios/pages/create/create').then((m) => m.CreateUser),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/usuarios/pages/edit/edit').then((m) => m.EditUser),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/usuarios/pages/detail/detail').then((m) => m.DetailUser),
+          },
+        ],
+      },
+
       {
         path: 'companias',
         canActivate: [authGuard],
@@ -90,9 +132,28 @@ export const routes: Routes = [
       },
       {
         path: 'clientes',
-        loadComponent: () => import('./features/clientes/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/clientes/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/clientes/pages/create/create').then((m) => m.CreateCliente),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/clientes/pages/edit/edit').then((m) => m.EditCliente),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/clientes/pages/detail/detail').then((m) => m.DetailCliente),
+          },
+        ],
       },
+
       {
         path: 'doctores',
         loadComponent: () => import('./features/doctores/pages/index/index').then((m) => m.Index),
@@ -100,19 +161,76 @@ export const routes: Routes = [
       },
       {
         path: 'marcas',
-        loadComponent: () => import('./features/marcas/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/marcas/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/marcas/pages/create/create').then((m) => m.CreateMarca),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/marcas/pages/edit/edit').then((m) => m.EditMarca),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/marcas/pages/detail/detail').then((m) => m.DetailMarca),
+          },
+        ],
       },
+
       {
         path: 'instalaciones',
-        loadComponent: () => import('./features/instalaciones/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/instalaciones/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/instalaciones/pages/create/create').then((m) => m.CreateInstalacion),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/instalaciones/pages/edit/edit').then((m) => m.EditInstalacion),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/instalaciones/pages/detail/detail').then((m) => m.DetailInstalacion),
+          },
+        ],
       },
+
       {
         path: 'productos',
-        loadComponent: () => import('./features/productos/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/productos/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/productos/pages/create/create').then((m) => m.CreateProducto),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/productos/pages/edit/edit').then((m) => m.EditProducto),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/productos/pages/detail/detail').then((m) => m.DetailProducto),
+          },
+        ],
       },
+
       {
         path: 'ventas',
         loadComponent: () => import('./features/ventas/pages/index/index').then((m) => m.Index),

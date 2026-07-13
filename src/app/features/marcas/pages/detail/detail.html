@@ -1,9 +1,21 @@
-<div class="detail-card">
-  <lv-section-header title="Detalle de la marca" subtitle="Consulta la información del registro seleccionado." />
+<lv-page-header
+  title="Detalle de la marca"
+  subtitle="Consulta la información del registro seleccionado."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button
+    variant="secondary"
+    (onClick)="onCancel()"
+  >
+    Volver
+  </lv-button>
+</lv-page-header>
 
-  <lv-detail-list [items]="items" />
+@if (loading()) {
+  <p>Cargando marca...</p>
+} @else {
+  <lv-detail-list [items]="items()" />
+}
 
-  <div class="detail-actions">
-    <lv-button variant="secondary" (onClick)="close.emit()">Volver</lv-button>
-  </div>
-</div>
+
+

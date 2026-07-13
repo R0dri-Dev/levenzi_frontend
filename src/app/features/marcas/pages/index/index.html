@@ -1,43 +1,28 @@
-<div class="users-page">
-  @if (activeView() === 'list') {
-    <lv-page-header
-      title="Marcas"
-      subtitle="Gestiona las marcas del sistema desde una vista centralizada."
-      color="primary"
-      [breadcrumb]="breadcrumb()"
-    >
-      <div class="permissions-header-actions">
-        <lv-search-box
-          placeholder="Buscar marca..."
-          [value]="searchTerm()"
-          (onSearch)="onSearch($event)"
-          (onClear)="clearSearch()"
-        />
+<lv-page-header
+  title="Marcas"
+  subtitle="Gestiona las marcas del sistema desde una vista centralizada."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+>
+  <div class="permissions-header-actions">
+    <lv-search-box
+      placeholder="Buscar marca..."
+      [value]="searchTerm()"
+      (onSearch)="onSearch($event)"
+      (onClear)="clearSearch()"
+    />
 
-        <lv-button (onClick)="openCreateForm()">Nueva marca</lv-button>
-      </div>
-    </lv-page-header>
+    <lv-button (onClick)="openCreateForm()">Nueva marca</lv-button>
+  </div>
+</lv-page-header>
 
-    <div class="permissions-content">
-      <lv-data-table
-        [data]="filteredMarcas()"
-        [columns]="columns"
-        [loading]="loading()"
-        [actions]="tableActions"
-        emptyMessage="No hay marcas para mostrar con este filtro."
-      />
-    </div>
-  }
+<div class="permissions-content">
+  <lv-data-table
+    [data]="filteredMarcas()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay marcas para mostrar con este filtro."
+  />
 </div>
 
-<lv-modal [isOpen]="activeView() === 'create'" title="Crear marca" size="lg" (onClose)="closeForm()">
-  <app-create-marca (submit)="handleCreateSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-
-<lv-modal [isOpen]="activeView() === 'edit' && !!selectedMarca()" title="Editar marca" size="lg" (onClose)="closeForm()">
-  <app-edit-marca [marca]="selectedMarca()" (submit)="handleEditSubmit($event)" (cancel)="closeForm()" />
-</lv-modal>
-
-<lv-modal [isOpen]="activeView() === 'detail' && !!selectedMarca()" title="Detalle de la marca" size="lg" (onClose)="closeForm()">
-  <app-detail-marca [marca]="selectedMarca()" (close)="closeForm()" />
-</lv-modal>

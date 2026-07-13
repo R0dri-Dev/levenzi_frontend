@@ -1,9 +1,17 @@
-<div class="detail-card">
-  <lv-section-header title="Detalle del producto" subtitle="Consulta la información del registro seleccionado." />
+<lv-page-header
+  title="Detalle del producto"
+  subtitle="Consulta la información del registro seleccionado."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button
+    variant="secondary"
+    (onClick)="onCancel()"
+  >
+    Volver
+  </lv-button>
+</lv-page-header>
 
+<div class="permissions-content">
   <lv-detail-list [items]="items" />
-
-  <div class="detail-actions">
-    <lv-button variant="secondary" (onClick)="close.emit()">Volver</lv-button>
-  </div>
 </div>
+

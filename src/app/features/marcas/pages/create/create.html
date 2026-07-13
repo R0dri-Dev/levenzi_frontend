@@ -1,25 +1,23 @@
-<form class="permiso-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="permiso-form-header">
-    <h3>Crear marca</h3>
-    <p>Registra una nueva marca en el sistema.</p>
-  </div>
+<lv-page-header
+  title="Nuevo marca"
+  subtitle="Registra una nueva marca en el sistema."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button
+    variant="secondary"
+    (onClick)="onCancel()"
+  >
+    Volver
+  </lv-button>
+</lv-page-header>
 
-  <div class="permiso-form-grid">
-    <lv-form-field label="Nombre" [required]="true">
-      <lv-input formControlName="nombre" placeholder="Ej. Marca X" [required]="true" />
-    </lv-form-field>
+<lv-dynamic-form
+  [formGroup]="form"
+  [fields]="fields()"
+  [loading]="loading()"
+  (onSubmit)="onSubmit()"
+  (onCancel)="onCancel()"
+  submitLabel="Guardar"
+  cancelLabel="Cancelar"
+/>
 
-    <lv-form-field label="Código" [required]="false">
-      <lv-input formControlName="codigo" placeholder="Ej. MX01" />
-    </lv-form-field>
-
-    <lv-form-field label="Descripción" [required]="false">
-      <lv-input formControlName="descripcion" placeholder="Ej. Marca líder del mercado" />
-    </lv-form-field>
-  </div>
-
-  <div class="permiso-form-actions">
-    <lv-button type="button" variant="secondary" (onClick)="onCancel()">Cancelar</lv-button>
-    <lv-button type="submit">Guardar</lv-button>
-  </div>
-</form>

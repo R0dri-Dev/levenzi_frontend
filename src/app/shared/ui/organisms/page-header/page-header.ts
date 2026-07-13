@@ -6,6 +6,8 @@ import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import { LvIconComponent } from '../../icons/icon/icon';
 import type { BreadcrumbItem } from '../../../interfaces/breadcrumb.interface';
 import { LvColorVariant, LvTextAlign } from '../../../types';
+import { effect, inject } from '@angular/core';
+import { BreadcrumbService } from '../../../../core/services/breadcrumb-service';
 
 @Component({
   selector: 'lv-page-header',
@@ -21,4 +23,10 @@ export class LvPageHeaderComponent {
   readonly icon = input<string>();
   readonly color = input<LvColorVariant>('primary');
   readonly breadcrumb = input<BreadcrumbItem[]>([]);
+  private readonly breadcrumbService = inject(BreadcrumbService);
+  constructor() {
+    effect(() => {
+      this.breadcrumbService.set(this.breadcrumb());
+    });
+  }
 }

@@ -14,13 +14,22 @@
     </div>
   }
 
-  @if (header()) {
-    <div class="lv-app-sidebar-header">
+  @if (header() || logo()) {
+  <div class="lv-app-sidebar-header">
+
+    @if (logo()) {
+      <img
+        class="lv-app-sidebar-logo"
+        [src]="logo()"
+        [alt]="header() || 'Logo'" />
+    } @else {
       <lv-paragraph size="sm" weight="semibold" color="neutral">
         {{ header() }}
       </lv-paragraph>
-    </div>
-  }
+    }
+
+  </div>
+}
 
   <nav class="lv-app-sidebar-nav">
     @for (item of items(); track $index) {

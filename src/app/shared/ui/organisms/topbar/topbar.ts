@@ -18,7 +18,7 @@ import { LvProfileDropdownComponent } from "../profile-dropdown/profile-dropdown
     LvSearchBoxComponent,
     LvNotificationsPanelComponent,
     LvProfileDropdownComponent
-],
+  ],
   templateUrl: './topbar.html',
   styleUrls: ['./topbar.css'],
 })

@@ -1,20 +1,13 @@
-<div class="users-page">
     <lv-page-header
       title="Sedes"
       subtitle="Gestiona las sedes del sistema desde una vista centralizada."
       color="primary"
       [breadcrumb]="breadcrumb()"
+      [showSearch]="true"
+      searchPlaceholder="Buscar sede..."
+      [searchValue]="searchTerm()"
     >
-      <div class="permissions-header-actions">
-        <lv-search-box
-          placeholder="Buscar sede..."
-          [value]="searchTerm()"
-          (onSearch)="onSearch($event)"
-          (onClear)="clearSearch()"
-        />
-
         <lv-button (onClick)="openCreateForm()">Nueva sede</lv-button>
-      </div>
     </lv-page-header>
 
     <div class="permissions-content">
@@ -26,4 +19,3 @@
         emptyMessage="No hay sedes para mostrar con este filtro."
       />
     </div>
-</div>

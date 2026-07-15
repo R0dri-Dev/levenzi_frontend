@@ -1,1 +1,23 @@
-<p>index works!</p>
+<lv-page-header
+  title="Módulos"
+  subtitle="Gestiona los módulos del sistema desde una vista centralizada."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+  [showSearch]="true"
+  searchPlaceholder="Buscar módulo..."
+  [searchValue]="searchTerm()"
+>
+    <lv-button (onClick)="openCreateForm()">Nuevo módulo</lv-button>
+</lv-page-header>
+
+<div class="permissions-content">
+  <lv-data-table
+    [data]="modulos()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay módulos para mostrar con este filtro."
+  />
+</div>
+
+

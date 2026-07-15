@@ -1,0 +1,23 @@
+<lv-page-header
+  title="Nuevo módulo"
+  subtitle="Registra un nuevo módulo en el sistema."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button
+    variant="secondary"
+    (onClick)="onCancel()"
+  >
+    Volver
+  </lv-button>
+</lv-page-header>
+
+<lv-dynamic-form
+  [formGroup]="form"
+  [fields]="fields()"
+  [loading]="loading()"
+  (onSubmit)="onSubmit()"
+  (onCancel)="onCancel()"
+  submitLabel="Guardar"
+  cancelLabel="Cancelar"
+/>
+

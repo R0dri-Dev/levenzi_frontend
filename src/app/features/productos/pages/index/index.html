@@ -3,17 +3,11 @@
   subtitle="Gestiona el catálogo de productos del sistema desde una vista centralizada."
   color="primary"
   [breadcrumb]="breadcrumb()"
+  [showSearch]="true"
+  searchPlaceholder="Buscar producto..."
+  [searchValue]="searchTerm()"
 >
-  <div class="permissions-header-actions">
-    <lv-search-box
-      placeholder="Buscar producto..."
-      [value]="searchTerm()"
-      (onSearch)="onSearch($event)"
-      (onClear)="clearSearch()"
-    />
-
     <lv-button (onClick)="openCreateForm()">Nuevo producto</lv-button>
-  </div>
 </lv-page-header>
 
 <div class="permissions-content">

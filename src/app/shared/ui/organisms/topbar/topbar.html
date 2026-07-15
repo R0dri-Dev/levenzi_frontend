@@ -52,8 +52,7 @@
       @if (showProfile() && user()) {
         <lv-profile-dropdown
           [user]="user()!"
-          [showUserInfo]="false"
-          (onItemClick)="handleProfileAction($event.label)" />
+          [showUserInfo]="false" />
       }
     </div>
   </div>

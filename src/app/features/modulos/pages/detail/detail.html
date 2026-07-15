@@ -1,0 +1,19 @@
+<lv-page-header
+  title="Detalle del módulo"
+  subtitle="Consulta la información del registro seleccionado."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button
+    variant="secondary"
+    (onClick)="onCancel()"
+  >
+    Volver
+  </lv-button>
+</lv-page-header>
+
+@if (loading()) {
+  <p>Cargando módulo...</p>
+} @else {
+  <lv-detail-list [items]="items()" />
+}
+

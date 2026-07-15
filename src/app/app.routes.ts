@@ -236,6 +236,35 @@ export const routes: Routes = [
         loadComponent: () => import('./features/ventas/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
       },
+
+      {
+        path: 'modulos',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () =>
+              import('./features/modulos/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () =>
+              import('./features/modulos/pages/create/create').then((m) => m.CreateModulo),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () =>
+              import('./features/modulos/pages/edit/edit').then((m) => m.EditModulo),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./features/modulos/pages/detail/detail').then((m) => m.DetailModulo),
+          },
+        ],
+      },
+
       {
         path: 'roles',
         loadComponent: () => import('./features/roles/pages/index/index').then((m) => m.Index),
@@ -246,6 +275,7 @@ export const routes: Routes = [
         loadComponent: () => import('./features/permisos/pages/index/index').then((m) => m.Index),
         canActivate: [authGuard],
       },
+
     ],
   },
   {

@@ -1,0 +1,27 @@
+<lv-page-header
+  title="Editar módulo"
+  subtitle="Actualiza los datos del módulo seleccionado."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button
+    variant="secondary"
+    (onClick)="onCancel()"
+  >
+    Volver
+  </lv-button>
+</lv-page-header>
+
+@if (loading()) {
+  <p>Cargando módulo...</p>
+} @else {
+  <lv-dynamic-form
+    [formGroup]="form"
+    [fields]="fields()"
+    [loading]="loading()"
+    (onSubmit)="onSubmit()"
+    (onCancel)="onCancel()"
+    submitLabel="Actualizar"
+    cancelLabel="Cancelar"
+  />
+}
+

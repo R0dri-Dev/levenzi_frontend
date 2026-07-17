@@ -8,33 +8,62 @@
     </label>
   }
 
-  <div class="lv-select-container lv-select-{{ appearance() }} lv-select-{{ variant() }} lv-select-{{ size() }}">
-    <select
+  <div
+    class="lv-select-container lv-select-{{ appearance() }} lv-select-{{ variant() }} lv-select-{{ size() }}"
+    [class.lv-select-error]="!!error()"
+    [class.lv-select-disabled]="disabled()"
+    [class.lv-select-open]="isOpen()"
+  >
+    <button
+      #trigger
+      type="button"
+      class="lv-select-trigger"
       [disabled]="disabled()"
-      [value]="internalValue()"
-      [required]="required()"
       [attr.aria-invalid]="!!error()"
-      class="lv-select"
-      (change)="handleChange(($any($event.target)).value)"
-      (input)="handleChange(($any($event.target)).value)"
-      (blur)="onTouched()">
+      [attr.aria-expanded]="isOpen()"
+      (click)="toggle()"
+      (blur)="handleBlur()"
+    >
+      <span class="lv-select-trigger-text" [class.lv-select-placeholder]="!selectedOption()">
+        @if (selectedOption()?.flag) {
+          <span class="fi fi-{{ selectedOption()!.flag }} lv-select-flag"></span>
+        }
+        {{ selectedOption()?.label ?? placeholder() }}
+      </span>
 
-      @if (placeholder()) {
-        <option value="" hidden>{{ placeholder() }}</option>
-      }
+      <span class="lv-select-arrow" [class.lv-select-arrow-open]="isOpen()">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </span>
+    </button>
 
-      @for (opt of options(); track opt.value) {
-        <option [value]="opt.value" [disabled]="opt.disabled">
-          {{ opt.label }}
-        </option>
-      }
-    </select>
+    @if (isOpen()) {
+      <ul
+        class="lv-select-panel"
+        [class.lv-select-panel-up]="openUpward()"
+        role="listbox"
+      >
+        @for (opt of options(); track opt.value) {
+          <li
+            class="lv-select-option"
+            [class.lv-select-option-selected]="compareValue(opt.value)"
+            [class.lv-select-option-disabled]="opt.disabled"
+            role="option"
+            (click)="selectOption(opt)"
+          >
+            @if (opt.flag) {
+              <span class="fi fi-{{ opt.flag }} lv-select-flag"></span>
+            }
+            {{ opt.label }}
+          </li>
+        }
 
-    <span class="lv-select-arrow">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </span>
+        @if (!options().length) {
+          <li class="lv-select-option lv-select-option-empty">Sin opciones</li>
+        }
+      </ul>
+    }
   </div>
 
   @if (error()) {

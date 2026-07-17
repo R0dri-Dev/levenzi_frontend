@@ -3,14 +3,22 @@
   subtitle="Consulta la información del registro seleccionado."
   [breadcrumb]="breadcrumb()"
 >
-  <lv-button
-    variant="secondary"
-    (onClick)="onBack()"
-  >
-    Volver
-  </lv-button>
+  <lv-button variant="secondary" (onClick)="onBack()">Volver</lv-button>
 </lv-page-header>
 
-<lv-detail-list [items]="items()" />
-
-
+@if (loading()) {
+  <div class="lv-detail-loading">
+    <lv-spinner size="md" />
+  </div>
+} @else if (cliente(); as cliente) {
+  <lv-detail-page
+    [nombre]="cliente.nombre"
+    [estadoLabel]="cliente.activo ? 'Activo' : 'Inactivo'"
+    [estadoVariant]="cliente.activo ? 'success' : 'danger'"
+    [telefono]="telefonoCompleto()"
+    [flagIso]="banderaIso()"
+    listTitle="Información general"
+    listDescription="Datos de contacto y ubicación del cliente."
+    [items]="items()"
+  />
+}

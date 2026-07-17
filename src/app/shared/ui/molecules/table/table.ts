@@ -9,7 +9,7 @@ import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import { LvSpinnerComponent } from '../../atoms/spinner/spinner';
 import { LvEmptyStateComponent } from '../empty-state/empty-state';
 import { LvColorVariant, LvSize } from '../../../types';
-import type { TableColumn, TableAction, TablePagination, TableSort } from '../../../interfaces/table.interface';
+import type { TableColumn, TableAction, TablePagination, TableSort, TableFlagContent } from '../../../interfaces/table.interface';
 
 interface TableBadgeContent {
   type: 'badge';
@@ -89,6 +89,18 @@ export class LvTableComponent<T = unknown> {
 
   getBadgeVariant(value: unknown): LvColorVariant {
     return this.isBadgeContent(value) && value.variant ? value.variant : 'primary';
+  }
+
+  isFlagContent(value: unknown): value is TableFlagContent {
+    return typeof value === 'object' && value !== null && 'type' in value && (value as { type?: unknown }).type === 'flag';
+  }
+
+  getFlagIso(value: unknown): string {
+    return this.isFlagContent(value) ? value.iso2 : '';
+  }
+
+  getFlagText(value: unknown): string {
+    return this.isFlagContent(value) ? value.text : '';
   }
 
   getSortDirection(field: string): 'asc' | 'desc' | null {

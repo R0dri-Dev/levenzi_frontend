@@ -1,6 +1,12 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+export interface DetailItem {
+  label: string;
+  value: any;
+  flag?: string; // iso2 en minúsculas, opcional
+}
+
 @Component({
   selector: 'lv-detail-list',
   standalone: true,
@@ -9,6 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./detail-list.css'],
 })
 export class LvDetailListComponent {
-  readonly items = input<Array<{ label: string; value: any }>>([]);
+  readonly title = input<string>('');
+  readonly description = input<string>('');
+  readonly items = input<DetailItem[]>([]);
 }
-

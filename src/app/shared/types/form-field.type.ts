@@ -1,9 +1,6 @@
 import { LvInputType } from "./input.types";
-
-export interface LvFieldOption {
-  label: string;
-  value: string | number;
-}
+import { Option } from "../interfaces/option.interface";
+import { Pais } from "../../core/models/pais.model";
 
 export interface LvFormFieldConfig {
   key: string;
@@ -13,9 +10,16 @@ export interface LvFormFieldConfig {
   required?: boolean;
   hint?: string;
   icon?: string;
-  options?: LvFieldOption[];
+  options?: Option[];
   colSpan?: 1 | 2;
   row?: number;
   col?: number;
-}
 
+  // Solo aplica cuando type === 'document'
+  numeroKey?: string;
+  numeroLabel?: string;
+  numeroPlaceholder?: string;
+  paisesData?: Pais[];
+  lookup?: boolean;
+
+}

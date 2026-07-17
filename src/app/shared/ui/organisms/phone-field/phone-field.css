@@ -1,0 +1,10 @@
+@reference "../../../../../styles.css";
+
+.lv-phone-field {
+  @apply space-y-1.5;
+}
+
+.lv-phone-field-hint {
+  @apply text-xs;
+  color: var(--color-secondary-500);
+}

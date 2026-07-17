@@ -1,0 +1,43 @@
+<div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-4">
+  <div class="lv-document-field-col">
+    <lv-label [text]="tipoLabel()" [required]="required()" />
+    <lv-select
+      [options]="tipoOptions()"
+      placeholder="Seleccione tipo"
+      [formControl]="tipoControl()"
+    />
+  </div>
+
+  <div class="lv-document-field-col">
+    <lv-label [text]="numeroLabel()" />
+    <div class="flex gap-2 items-start">
+      <div class="relative flex-1">
+        <lv-input
+          [placeholder]="numeroPlaceholder()"
+          [formControl]="numeroControl()"
+        />
+        @if (loading()) {
+          <span
+            class="absolute right-3 top-1/2 -translate-y-1/2 size-4 rounded-full
+                   border-2 border-primary-300 border-t-primary-600 animate-spin"
+          ></span>
+        }
+      </div>
+
+      @if (enableLookup()) {
+        <lv-button
+          type="button"
+          variant="secondary"
+          [disabled]="!puedeBuscar()"
+          (onClick)="buscar()"
+        >
+          Buscar
+        </lv-button>
+      }
+    </div>
+
+    @if (errorMsg()) {
+      <p class="mt-1 text-xs text-danger-600">{{ errorMsg() }}</p>
+    }
+  </div>
+</div>

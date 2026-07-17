@@ -1,0 +1,46 @@
+@reference "../../../../../styles.css";
+
+.lv-detail-loading {
+  @apply flex items-center justify-center py-16;
+}
+
+.lv-detail-profile-card {
+  @apply flex items-center gap-5 rounded-2xl border border-secondary-200 bg-white p-6 mb-4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.lv-detail-avatar {
+  @apply flex items-center justify-center shrink-0 rounded-full font-bold text-lg;
+  width: 4rem;
+  height: 4rem;
+  color: var(--color-primary-700);
+  background-color: var(--color-primary-100);
+}
+
+.lv-detail-profile-info {
+  @apply flex flex-col gap-2 min-w-0;
+}
+
+.lv-detail-profile-heading {
+  @apply flex items-center gap-3 flex-wrap;
+}
+
+.lv-detail-profile-name {
+  @apply text-xl font-bold m-0;
+  color: var(--color-secondary-900);
+}
+
+.lv-detail-profile-contact {
+  @apply flex items-center gap-4 flex-wrap;
+}
+
+.lv-detail-profile-contact-item {
+  @apply flex items-center gap-2 text-sm font-medium;
+  color: var(--color-secondary-600);
+}
+
+.lv-detail-profile-flag {
+  @apply inline-block rounded-[2px] shrink-0;
+  width: 1.2em;
+  height: 0.9em;
+}

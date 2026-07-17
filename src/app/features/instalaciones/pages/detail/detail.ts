@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Instalacion } from '../../../../core/models/instalacion.model';
 import { InstalacionService } from '../../../../core/services/instalaciones/instalacion.service';
 
-import type { LvFieldOption } from '../../../../shared/types/form-field.type';
 
 
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
@@ -16,6 +15,7 @@ import { SedeService } from '../../../../core/services/sede/sede.service';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { Option } from '../../../../shared/interfaces/option.interface';
 
 @Component({
   selector: 'app-detail-instalacion',
@@ -41,7 +41,7 @@ export class DetailInstalacion {
 
   readonly loading = signal(true);
 
-  private readonly sedeOptions = signal<LvFieldOption[]>([]);
+  private readonly sedeOptions = signal<Option[]>([]);
 
   readonly id = computed(() => {
     const raw = this.route.snapshot.paramMap.get('id');

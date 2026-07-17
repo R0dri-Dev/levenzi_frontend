@@ -1,0 +1,28 @@
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+  <lv-select
+    label="Departamento"
+    placeholder="Seleccione un departamento"
+    [options]="departamentoOptions"
+    [value]="departamentoValue()"
+    [disabled]="disabled()"
+    (onValueChange)="onDepartamentoChange($event)"
+  />
+
+  <lv-select
+    label="Provincia"
+    placeholder="Seleccione una provincia"
+    [options]="provinciaOptions"
+    [value]="provinciaValue()"
+    [disabled]="disabled() || !departamentoValue()"
+    (onValueChange)="onProvinciaChange($event)"
+  />
+
+  <lv-select
+    label="Distrito"
+    placeholder="Seleccione un distrito"
+    [options]="distritoOptions"
+    [value]="distritoValue()"
+    [disabled]="disabled() || !provinciaValue()"
+    (onValueChange)="onDistritoChange($event)"
+  />
+</div>

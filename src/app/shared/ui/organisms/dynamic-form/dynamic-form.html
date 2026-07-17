@@ -8,6 +8,36 @@
     [style.gridTemplateColumns]="'repeat(' + columns() + ', minmax(0, 1fr))'"
   >
     @for (field of fields(); track field.key) {
+      @if (field.type === 'location') {
+        <div style="grid-column: 1 / -1;">
+          <lv-location-select [formControlName]="field.key" />
+        </div>
+      }@else if (field.type === 'document') {
+  <div style="grid-column: 1 / -1;">
+    <lv-document-field
+      [tipoControl]="asFormControl(field.key)"
+      [numeroControl]="asFormControl(field.numeroKey!)"
+      [tipoOptions]="field.options ?? []"
+      [tipoLabel]="field.label"
+      [numeroLabel]="field.numeroLabel ?? 'Número de documento'"
+      [numeroPlaceholder]="field.numeroPlaceholder ?? ''"
+      [required]="!!field.required"
+      [enableLookup]="!!field.lookup"
+      (resolved)="handleDocumentResolved(field.key, $event)"
+    />
+  </div>
+} @else if (field.type === 'phone') {
+        <div style="grid-column: 1 / -1;">
+         <lv-phone-field
+          [paisControl]="asFormControl(field.key)"
+          [numeroControl]="asFormControl(field.numeroKey!)"
+          [paises]="field.paisesData ?? []"
+          [label]="field.label"
+          [numeroPlaceholder]="field.numeroPlaceholder ?? ''"
+          [required]="!!field.required"
+        />
+        </div>
+      } @else {
         <lv-form-field
           [label]="field.label"
           [required]="!!field.required"
@@ -16,52 +46,37 @@
         >
           @switch (field.type) {
             @case ('checkbox') {
-              <lv-checkbox
-                [formControlName]="field.key">
-              </lv-checkbox>
+              <lv-checkbox [formControlName]="field.key" />
             }
             @case ('select') {
               <lv-select
                 [formControlName]="field.key"
                 [options]="field.options ?? []"
                 [placeholder]="field.placeholder ?? ''"
-                [required]="!!field.required">
-              </lv-select>
+                [required]="!!field.required"
+              />
             }
             @default {
               <lv-input
                 [formControlName]="field.key"
                 [type]="field.type"
                 [placeholder]="field.placeholder ?? ''"
-                [required]="!!field.required">
-              </lv-input>
+                [required]="!!field.required"
+              />
             }
           }
         </lv-form-field>
+      }
     }
   </div>
   <div class="lv-dynamic-form-footer-bar">
     <lv-button-group
       orientation="row"
       [actions]="[
-        {
-          key:'cancel',
-          label:cancelLabel(),
-          variant:'secondary',
-          type:'button',
-          disabled:loading()
-        },
-        {
-          key:'submit',
-          label:submitLabel(),
-          variant:'primary',
-          type:'submit',
-          disabled:loading(),
-          loading:loading()
-        }
+        { key:'cancel', label:cancelLabel(), variant:'secondary', type:'button', disabled:loading() },
+        { key:'submit', label:submitLabel(), variant:'primary', type:'submit', disabled:loading(), loading:loading() }
       ]"
       (onAction)="handleFooterAction($event)"
     />
   </div>
-
 </form>

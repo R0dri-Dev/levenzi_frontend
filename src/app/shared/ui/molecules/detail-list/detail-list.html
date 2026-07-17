@@ -1,8 +1,26 @@
-<div class="lv-detail-list">
-  @for (item of items(); track item.label) {
-    <div class="lv-detail-list-item">
-      <span class="lv-detail-list-label">{{ item.label }}</span>
-      <strong class="lv-detail-list-value">{{ item.value ?? 'Sin dato' }}</strong>
+<div class="lv-detail-list-card">
+  @if (title() || description()) {
+    <div class="lv-detail-list-header">
+      @if (title()) {
+        <h3 class="lv-detail-list-title">{{ title() }}</h3>
+      }
+      @if (description()) {
+        <p class="lv-detail-list-description">{{ description() }}</p>
+      }
     </div>
   }
+
+  <div class="lv-detail-list">
+    @for (item of items(); track item.label) {
+      <div class="lv-detail-list-item">
+        <span class="lv-detail-list-label">{{ item.label }}</span>
+        <strong class="lv-detail-list-value">
+          @if (item.flag) {
+            <span class="fi fi-{{ item.flag }} lv-detail-list-flag"></span>
+          }
+          {{ item.value ?? 'Sin dato' }}
+        </strong>
+      </div>
+    }
+  </div>
 </div>

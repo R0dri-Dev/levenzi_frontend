@@ -198,3 +198,12 @@
     @apply flex-col gap-2 items-center;
   }
 }
+
+.lv-table-flag-content {
+  @apply inline-flex items-center gap-2;
+}
+.lv-table-flag {
+  @apply inline-block rounded-[2px] shrink-0;
+  width: 1.2em;
+  height: 0.9em;
+}

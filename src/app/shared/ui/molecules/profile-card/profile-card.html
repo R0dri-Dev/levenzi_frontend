@@ -1,0 +1,23 @@
+<div class="lv-profile-card">
+  <div class="lv-profile-avatar">{{ iniciales() }}</div>
+
+  <div class="lv-profile-info">
+    <div class="lv-profile-heading">
+      <h2 class="lv-profile-name">{{ nombre() }}</h2>
+      @if (estadoLabel()) {
+        <lv-badge [text]="estadoLabel()" [variant]="estadoVariant()" />
+      }
+    </div>
+
+    @if (telefono()) {
+      <div class="lv-profile-contact">
+        <span class="lv-profile-contact-item">
+          @if (flagIso()) {
+            <span class="fi fi-{{ flagIso() }} lv-profile-flag"></span>
+          }
+          {{ telefono() }}
+        </span>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,5 @@
+@reference "../../../../../styles.css";
+
+.lv-detail-page {
+  @apply flex flex-col gap-4;
+}

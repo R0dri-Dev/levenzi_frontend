@@ -6,13 +6,12 @@ import { ClienteService } from '../../../../core/services/clientes/cliente.servi
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
-import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvSearchBoxComponent],
+  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent],
   templateUrl: './index.html',
   styleUrl: './index.css',
 })
@@ -29,8 +28,19 @@ export class Index {
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
     { key: 'nombre', label: 'Nombre', sortable: true, render: (item) => item.nombre },
     { key: 'documento_numero', label: 'Documento', sortable: true, render: (item) => item.documento_numero ?? '-' },
-    { key: 'telefono', label: 'Teléfono', sortable: true, render: (item) => item.telefono ?? '-' },
-    { key: 'activo', label: 'Estado', sortable: true, render: (item) => (item.activo ? 'Activo' : 'Inactivo') },
+    {
+      key: 'telefono',
+      label: 'Teléfono',
+      sortable: true,
+      render: (item) =>
+        item.pais?.codigo_iso2 && item.telefono
+          ? {
+            type: 'flag',
+            iso2: item.pais.codigo_iso2.toLowerCase(),
+            text: item.telefono,
+          }
+          : (item.telefono ?? '-'),
+    }, { key: 'activo', label: 'Estado', sortable: true, render: (item) => (item.activo ? 'Activo' : 'Inactivo') },
   ];
 
   readonly tableActions: TableAction<Cliente>[] = [

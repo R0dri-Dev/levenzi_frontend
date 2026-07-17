@@ -1,0 +1,23 @@
+<div class="lv-phone-field">
+  @if (label()) {
+    <lv-label [text]="label()" [required]="required()" />
+  }
+
+  <div class="grid grid-cols-[9.5rem_1fr] gap-2">
+    <lv-select
+      [options]="paisOptions()"
+      placeholder="País"
+      [formControl]="paisControl()"
+    />
+
+    <lv-input
+      [placeholder]="numeroPlaceholder()"
+      [maxlength]="maxLength()"
+      [formControl]="numeroControl()"
+    />
+  </div>
+
+  @if (hint()) {
+    <p class="lv-phone-field-hint">{{ hint() }}</p>
+  }
+</div>

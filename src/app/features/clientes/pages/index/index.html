@@ -4,16 +4,7 @@
   color="primary"
   [breadcrumb]="breadcrumb()"
 >
-  <div class="permissions-header-actions">
-    <lv-search-box
-      placeholder="Buscar cliente..."
-      [value]="searchTerm()"
-      (onSearch)="onSearch($event)"
-      (onClear)="clearSearch()"
-    />
-
     <lv-button (onClick)="openCreateForm()">Nuevo cliente</lv-button>
-  </div>
 </lv-page-header>
 
 <div class="permissions-content">

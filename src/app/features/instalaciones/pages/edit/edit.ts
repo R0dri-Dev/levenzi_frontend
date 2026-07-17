@@ -6,13 +6,14 @@ import { Instalacion } from '../../../../core/models/instalacion.model';
 import { InstalacionService } from '../../../../core/services/instalaciones/instalacion.service';
 import { SedeService } from '../../../../core/services/sede/sede.service';
 
-import type { LvFieldOption, LvFormFieldConfig } from '../../../../shared/types/form-field.type';
+import type { LvFormFieldConfig } from '../../../../shared/types/form-field.type';
 
 import { LvDynamicFormComponent } from '../../../../shared/ui/organisms/dynamic-form/dynamic-form';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import { LvButtonComponent } from "../../../../shared/ui/atoms";
+import { Option } from '../../../../shared/interfaces/option.interface';
 
 @Component({
   selector: 'app-edit-instalacion',
@@ -38,7 +39,7 @@ export class EditInstalacion {
 
   readonly loading = signal(true);
 
-  private readonly sedeOptions = signal<LvFieldOption[]>([]);
+  private readonly sedeOptions = signal<Option[]>([]);
 
   readonly form = this.fb.nonNullable.group({
     nombre: ['', Validators.required],

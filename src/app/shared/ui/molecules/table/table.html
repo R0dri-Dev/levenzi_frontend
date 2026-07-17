@@ -97,6 +97,17 @@
                       <lv-badge
                         [text]="getBadgeText(getCellValue(item, col))"
                         [variant]="getBadgeVariant(getCellValue(item, col))" />
+                    } @else if (isFlagContent(getCellValue(item, col))) {
+                      <span class="lv-table-flag-content">
+                        @if (getFlagIso(getCellValue(item, col))) {
+                          <span class="fi fi-{{ getFlagIso(getCellValue(item, col)) }} lv-table-flag"></span>
+                        }
+                        @if (getFlagText(getCellValue(item, col))) {
+                          <lv-paragraph size="sm" color="neutral">
+                            {{ getFlagText(getCellValue(item, col)) }}
+                          </lv-paragraph>
+                        }
+                      </span>
                     } @else {
                       <lv-paragraph size="sm" color="neutral">
                         {{ getCellValue(item, col) }}

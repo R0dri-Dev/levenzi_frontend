@@ -9,5 +9,9 @@ export type LvInputType =
   | 'date'
   | 'time'
   | 'checkbox'
-  | 'select';
+  | 'select'
+  | 'location'
+  | 'document'
+  | 'document-lookup'
+  | 'phone';
 

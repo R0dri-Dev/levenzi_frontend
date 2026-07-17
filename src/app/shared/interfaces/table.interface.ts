@@ -33,3 +33,9 @@ export interface TableSort {
   field: string;
   direction: 'asc' | 'desc';
 }
+
+export interface TableFlagContent {
+  type: 'flag';
+  iso2: string;   // ej: 'pe', 'bo'
+  text: string;   // ej: '+51 987654321'
+}

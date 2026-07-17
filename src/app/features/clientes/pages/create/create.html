@@ -3,12 +3,7 @@
   subtitle="Registra un nuevo cliente en el sistema."
   [breadcrumb]="breadcrumb()"
 >
-  <lv-button
-    variant="secondary"
-    (onClick)="onCancel()"
-  >
-    Volver
-  </lv-button>
+  <lv-button variant="secondary" (onClick)="onCancel()">Volver</lv-button>
 </lv-page-header>
 
 <lv-dynamic-form
@@ -17,9 +12,7 @@
   [loading]="loading()"
   (onSubmit)="onSubmit()"
   (onCancel)="onCancel()"
+  (documentResolved)="onDocumentoResuelto($event)"
   submitLabel="Guardar"
   cancelLabel="Cancelar"
 />
-
-
-

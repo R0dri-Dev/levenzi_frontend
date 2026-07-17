@@ -1,4 +1,17 @@
-import { Component, effect, forwardRef, input, output, signal, untracked } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  computed,
+  effect,
+  forwardRef,
+  inject,
+  input,
+  output,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { LvSize, LvColorVariant, LvAppearance } from '../../../types';
@@ -19,6 +32,8 @@ import { Option } from '../../../interfaces/option.interface';
   ],
 })
 export class LvSelectComponent implements ControlValueAccessor {
+  private readonly host = inject(ElementRef<HTMLElement>);
+
   readonly options = input<Option[]>([]);
   readonly value = input<string | number>('');
   readonly disabled = input(false);
@@ -32,9 +47,18 @@ export class LvSelectComponent implements ControlValueAccessor {
 
   readonly onValueChange = output<string | number>();
 
+  readonly triggerRef = viewChild<ElementRef<HTMLButtonElement>>('trigger');
+
   internalValue = signal<string | number>('');
-  onChange: (value: any) => void = () => { };
-  onTouched: () => void = () => { };
+  isOpen = signal(false);
+  openUpward = signal(false);
+
+  onChange: (value: any) => void = () => {};
+  onTouched: () => void = () => {};
+
+  readonly selectedOption = computed(() =>
+    this.options().find((opt) => String(opt.value) === String(this.internalValue()))
+  );
 
   private markAsNullIfPlaceholder(raw: string): string | number | null {
     if (raw === '') return '';
@@ -42,41 +66,68 @@ export class LvSelectComponent implements ControlValueAccessor {
     return Number.isNaN(num) ? raw : num;
   }
 
- constructor() {
-  effect(() => {
-    const externalValue = this.value();
-    untracked(() => {
-      if (externalValue !== this.internalValue()) {
-        this.internalValue.set(externalValue);
-      }
+  constructor() {
+    effect(() => {
+      const externalValue = this.value();
+      untracked(() => {
+        if (externalValue !== this.internalValue()) {
+          this.internalValue.set(externalValue);
+        }
+      });
     });
-  });
+  }
 
-  effect(() => {
-    this.options();
-    untracked(() => {
-      this.internalValue.set(this.internalValue());
-    });
-  });
-}
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (this.isOpen() && !this.host.nativeElement.contains(event.target as Node)) {
+      this.close();
+    }
+  }
 
-  handleChange(raw: string): void {
-    console.log('[LvSelect] handleChange DISPARADO. raw =', raw);
+  toggle(): void {
     if (this.disabled()) return;
 
-    if (raw === '') {
-      const v = '';
-      this.internalValue.set(v);
-      this.onValueChange.emit(v);
-      this.onChange(v);
-      return;
+    if (!this.isOpen()) {
+      this.calculateDirection();
     }
+    this.isOpen.update((v) => !v);
+  }
 
-    const normalized = this.markAsNullIfPlaceholder(raw);
-    const normalizedForSelect = normalized ?? '';
-    this.internalValue.set(normalizedForSelect);
-    this.onValueChange.emit(normalizedForSelect);
-    this.onChange(normalizedForSelect);
+  close(): void {
+    this.isOpen.set(false);
+    this.onTouched();
+  }
+
+  private calculateDirection(): void {
+    const trigger = this.triggerRef()?.nativeElement;
+    if (!trigger) return;
+
+    const rect = trigger.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    const estimatedPanelHeight = Math.min(this.options().length * 40, 240);
+
+    this.openUpward.set(spaceBelow < estimatedPanelHeight && spaceAbove > spaceBelow);
+  }
+
+  selectOption(opt: Option): void {
+    if (opt.disabled) return;
+
+    const normalized = this.markAsNullIfPlaceholder(String(opt.value)) ?? '';
+    this.internalValue.set(normalized);
+    this.onValueChange.emit(normalized);
+    this.onChange(normalized);
+    this.close();
+  }
+
+  compareValue(optValue: string | number): boolean {
+    return String(optValue) === String(this.internalValue());
+  }
+
+  handleBlur(): void {
+    if (!this.isOpen()) {
+      this.onTouched();
+    }
   }
 
   writeValue(value: string | number | null | undefined): void {

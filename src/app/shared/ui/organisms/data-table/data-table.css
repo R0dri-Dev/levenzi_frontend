@@ -1,6 +1,7 @@
 @reference "../../../../../styles.css";
 .lv-data-table {
   @apply flex flex-col gap-4 w-full;
+  margin-top: 1rem;
 }
 
 .lv-data-table-header {

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '../../../../core/models/cliente.model';
 import { ClienteService } from '../../../../core/services/clientes/cliente.service';
 import { SedeService } from '../../../../core/services/sede/sede.service';
+import { TipoDocumentoService } from '../../../../core/services/tipo-documento/tipo-documento.service';
 import { LvDynamicFormComponent } from '../../../../shared/ui/organisms/dynamic-form/dynamic-form';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
@@ -24,6 +25,7 @@ export class EditCliente {
 
   private readonly service = inject(ClienteService);
   private readonly sedeService = inject(SedeService);
+  private readonly tipoDocumentoService = inject(TipoDocumentoService);
 
   readonly loading = signal(true);
 
@@ -34,6 +36,7 @@ export class EditCliente {
   ]);
 
   readonly sedesOptions = signal<{ label: string; value: string }[]>([]);
+  readonly tiposDocumentoOptions = signal<{ label: string; value: string }[]>([]);
 
   private readonly clienteId = computed(() => {
     const id = this.route.snapshot.paramMap.get('id');
@@ -43,9 +46,9 @@ export class EditCliente {
   readonly form = this.fb.nonNullable.group({
     sede_id: ['', Validators.required],
     distrito_id: ['', Validators.required],
-    nombre: ['', [Validators.required, Validators.minLength(2)]],
-    documento_tipo: [''],
+    tipo_documento_id: [''],
     documento_numero: [''],
+    nombre: ['', [Validators.required, Validators.minLength(2)]],
     direccion: ['', [Validators.required]],
     telefono: [''],
     email: ['', [Validators.email]],
@@ -63,10 +66,9 @@ export class EditCliente {
     },
     {
       key: 'distrito_id',
-      label: 'Distrito',
-      type: 'number',
+      label: 'Ubicación',
+      type: 'location',
       required: true,
-      placeholder: 'Ingrese el distrito',
     },
     {
       key: 'nombre',
@@ -76,18 +78,15 @@ export class EditCliente {
       placeholder: 'Ej. Juan Pérez',
     },
     {
-      key: 'documento_tipo',
-      label: 'Documento tipo',
-      type: 'text',
+      key: 'tipo_documento_id',
+      numeroKey: 'documento_numero',
+      label: 'Tipo de documento',
+      numeroLabel: 'Número de documento',
+      type: 'document',
       required: false,
-      placeholder: 'Ej. DNI',
-    },
-    {
-      key: 'documento_numero',
-      label: 'Documento número',
-      type: 'text',
-      required: false,
-      placeholder: 'Ej. 78451236',
+      placeholder: 'Seleccione tipo',
+      numeroPlaceholder: 'Ej. 78451236',
+      options: this.tiposDocumentoOptions(),
     },
     {
       key: 'direccion',
@@ -124,6 +123,17 @@ export class EditCliente {
       },
     });
 
+    this.tipoDocumentoService.list().subscribe({
+      next: (tipos) => {
+        this.tiposDocumentoOptions.set(
+          tipos.map((tipo) => ({
+            label: `${tipo.nombre} (${tipo.codigo})`,
+            value: String(tipo.id),
+          }))
+        );
+      },
+    });
+
     const id = this.clienteId();
     if (!id) {
       this.router.navigate(['/clientes']);
@@ -135,9 +145,9 @@ export class EditCliente {
         this.form.patchValue({
           sede_id: String(cliente.sede_id ?? ''),
           distrito_id: String(cliente.distrito_id ?? ''),
-          nombre: cliente.nombre ?? '',
-          documento_tipo: cliente.documento_tipo ?? '',
+          tipo_documento_id: cliente.tipo_documento_id ? String(cliente.tipo_documento_id) : '',
           documento_numero: cliente.documento_numero ?? '',
+          nombre: cliente.nombre ?? '',
           direccion: cliente.direccion ?? '',
           telefono: cliente.telefono ?? '',
           email: cliente.email ?? '',
@@ -174,6 +184,7 @@ export class EditCliente {
       ...value,
       sede_id: Number(value.sede_id),
       distrito_id: Number(value.distrito_id),
+      tipo_documento_id: value.tipo_documento_id ? Number(value.tipo_documento_id) : null,
       activo: value.activo ?? true,
     };
 
@@ -185,5 +196,3 @@ export class EditCliente {
     });
   }
 }
-
-

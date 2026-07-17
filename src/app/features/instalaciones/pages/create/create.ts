@@ -6,11 +6,12 @@ import { Instalacion } from '../../../../core/models/instalacion.model';
 import { InstalacionService } from '../../../../core/services/instalaciones/instalacion.service';
 import { SedeService } from '../../../../core/services/sede/sede.service';
 
-import type { LvFieldOption, LvFormFieldConfig } from '../../../../shared/types/form-field.type';
+import type { LvFormFieldConfig } from '../../../../shared/types/form-field.type';
 
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDynamicFormComponent } from '../../../../shared/ui/organisms/dynamic-form/dynamic-form';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
+import { Option } from '../../../../shared/interfaces/option.interface';
 
 @Component({
   selector: 'app-create-instalacion',
@@ -33,7 +34,7 @@ export class CreateInstalacion {
 
   readonly loading = signal(false);
 
-  private readonly sedeOptions = signal<LvFieldOption[]>([]);
+  private readonly sedeOptions = signal<Option[]>([]);
 
   readonly form = this.fb.nonNullable.group({
     nombre: ['', [Validators.required, Validators.minLength(2)]],

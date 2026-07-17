@@ -1,11 +1,34 @@
 @reference "../../../../../styles.css";
 
+.lv-detail-list-card {
+  @apply flex flex-col gap-4 rounded-2xl border border-secondary-200 bg-white p-6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.lv-detail-list-header {
+  @apply flex flex-col gap-1 border-b border-secondary-100 pb-4;
+}
+
+.lv-detail-list-title {
+  @apply text-lg font-bold m-0;
+  color: var(--color-secondary-900);
+}
+
+.lv-detail-list-description {
+  @apply text-sm m-0;
+  color: var(--color-secondary-500);
+}
+
 .lv-detail-list {
   @apply grid gap-3 md:grid-cols-2;
 }
 
 .lv-detail-list-item {
-  @apply flex flex-col gap-1 rounded-2xl border border-secondary-200 bg-secondary-50/80 p-4;
+  @apply flex flex-col gap-1 rounded-xl border border-secondary-100 bg-secondary-50/60 p-4 transition-colors duration-150;
+}
+
+.lv-detail-list-item:hover {
+  @apply border-primary-200 bg-primary-50/40;
 }
 
 .lv-detail-list-label {
@@ -13,5 +36,11 @@
 }
 
 .lv-detail-list-value {
-  @apply text-sm font-semibold text-secondary-900;
+  @apply flex items-center gap-2 text-sm font-semibold text-secondary-900;
+}
+
+.lv-detail-list-flag {
+  @apply inline-block rounded-[2px] shrink-0;
+  width: 1.2em;
+  height: 0.9em;
 }

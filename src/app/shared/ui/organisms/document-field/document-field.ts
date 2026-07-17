@@ -1,7 +1,8 @@
 import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { finalize } from 'rxjs';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { finalize, switchMap, startWith } from 'rxjs';
 
 import { LvLabelComponent } from '../../atoms/label/label';
 import { LvSelectComponent } from '../../atoms/select/select';
@@ -10,14 +11,15 @@ import { LvButtonComponent } from '../../atoms/button/button';
 import { Option } from '../../../interfaces/option.interface';
 import { DecolectaService } from '../../../../core/services/documentos/decolecta.service';
 import { ConsultaDni, ConsultaRuc } from '../../../../core/models/consulta-documento.model';
+import { formatNombreDni, formatRazonSocialRuc } from '../../../../core/utils/documento-format.util';
 
 export interface LvDocumentoOption extends Option {
   codigo?: 'DNI' | 'RUC' | string;
 }
 
 export type LvDocumentLookupResult =
-  | { tipo: 'DNI'; data: ConsultaDni }
-  | { tipo: 'RUC'; data: ConsultaRuc };
+  | { tipo: 'DNI'; data: ConsultaDni; nombreSugerido: string }
+  | { tipo: 'RUC'; data: ConsultaRuc; nombreSugerido: string; direccionSugerida?: string };
 
 @Component({
   selector: 'lv-document-field',
@@ -52,9 +54,22 @@ export class LvDocumentFieldComponent {
   readonly loading = signal(false);
   readonly errorMsg = signal<string | null>(null);
 
-  readonly tipoActual = computed(() => {
-    const id = this.tipoControl()?.value;
+  private readonly tipoValue = toSignal(
+    toObservable(this.tipoControl).pipe(
+      switchMap((control) => control.valueChanges.pipe(startWith(control.value)))
+    ),
+    { initialValue: '' as string }
+  );
 
+  private readonly numeroValue = toSignal(
+    toObservable(this.numeroControl).pipe(
+      switchMap((control) => control.valueChanges.pipe(startWith(control.value)))
+    ),
+    { initialValue: '' as string }
+  );
+
+  readonly tipoActual = computed(() => {
+    const id = this.tipoValue();
     const idStr = id == null ? '' : String(id);
     return this.tipoOptions().find((o) => String(o.value) === idStr) ?? null;
   });
@@ -67,20 +82,13 @@ export class LvDocumentFieldComponent {
   });
 
   readonly puedeBuscar = computed(() => {
-    if (!this.enableLookup()) {
-      console.log('[document-field] lookup deshabilitado');
-      return false;
-    }
+    if (!this.enableLookup()) return false;
 
-    const numero = this.numeroControl()?.value ?? '';
-    const tipoVal = this.tipoControl()?.value;
+    const numero = this.numeroValue() ?? '';
     const largo = this.largoEsperado();
-    const tipo = this.tipoActual();
-    console.log('[document-field] tipoControl:', tipoVal, 'tipoActual:', tipo, 'largo esperado:', largo, 'numero:', numero, 'len:', numero.length);
 
     return !!largo && numero.length === largo && !this.loading();
   });
-
 
   buscar(): void {
     const tipo = this.tipoActual();
@@ -99,11 +107,26 @@ export class LvDocumentFieldComponent {
     if (tipo.codigo === 'DNI') {
       this.decolecta.consultarDni(numero)
         .pipe(finalize(() => this.loading.set(false)))
-        .subscribe({ next: (data) => this.resolved.emit({ tipo: 'DNI', data }), error: onError });
+        .subscribe({
+          next: (data) => this.resolved.emit({
+            tipo: 'DNI',
+            data,
+            nombreSugerido: formatNombreDni(data),
+          }),
+          error: onError,
+        });
     } else if (tipo.codigo === 'RUC') {
       this.decolecta.consultarRuc(numero)
         .pipe(finalize(() => this.loading.set(false)))
-        .subscribe({ next: (data) => this.resolved.emit({ tipo: 'RUC', data }), error: onError });
+        .subscribe({
+          next: (data) => this.resolved.emit({
+            tipo: 'RUC',
+            data,
+            nombreSugerido: formatRazonSocialRuc(data),
+            direccionSugerida: data.direccion,
+          }),
+          error: onError,
+        });
     } else {
       this.loading.set(false);
     }

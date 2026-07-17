@@ -6,10 +6,13 @@ import { Cliente } from '../../../../core/models/cliente.model';
 import { ClienteService } from '../../../../core/services/clientes/cliente.service';
 import { SedeService } from '../../../../core/services/sede/sede.service';
 import { TipoDocumentoService } from '../../../../core/services/tipo-documento/tipo-documento.service';
+import { PaisService } from '../../../../core/services/pais/pais.service';
+import { Pais } from '../../../../core/models/pais.model';
 import { LvDynamicFormComponent } from '../../../../shared/ui/organisms/dynamic-form/dynamic-form';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvFormFieldConfig } from '../../../../shared/types/form-field.type';
+import { LvDocumentLookupResult, LvDocumentoOption } from '../../../../shared/ui/organisms/document-field/document-field';
 
 @Component({
   selector: 'app-edit-cliente',
@@ -26,6 +29,7 @@ export class EditCliente {
   private readonly service = inject(ClienteService);
   private readonly sedeService = inject(SedeService);
   private readonly tipoDocumentoService = inject(TipoDocumentoService);
+  private readonly paisService = inject(PaisService);
 
   readonly loading = signal(true);
 
@@ -36,7 +40,8 @@ export class EditCliente {
   ]);
 
   readonly sedesOptions = signal<{ label: string; value: string }[]>([]);
-  readonly tiposDocumentoOptions = signal<{ label: string; value: string }[]>([]);
+  readonly tiposDocumentoOptions = signal<LvDocumentoOption[]>([]);
+  readonly paises = signal<Pais[]>([]);
 
   private readonly clienteId = computed(() => {
     const id = this.route.snapshot.paramMap.get('id');
@@ -51,6 +56,7 @@ export class EditCliente {
     nombre: ['', [Validators.required, Validators.minLength(2)]],
     direccion: ['', [Validators.required]],
     telefono: [''],
+    pais_id: [''],
     email: ['', [Validators.email]],
     activo: [true],
   });
@@ -87,6 +93,7 @@ export class EditCliente {
       placeholder: 'Seleccione tipo',
       numeroPlaceholder: 'Ej. 78451236',
       options: this.tiposDocumentoOptions(),
+      lookup: true,
     },
     {
       key: 'direccion',
@@ -96,11 +103,13 @@ export class EditCliente {
       placeholder: 'Ej. Av. Principal 123',
     },
     {
-      key: 'telefono',
+      key: 'pais_id',
+      numeroKey: 'telefono',
       label: 'Teléfono',
-      type: 'text',
+      type: 'phone',
       required: false,
-      placeholder: '987654321',
+      numeroPlaceholder: 'Ej. 987654321',
+      paisesData: this.paises(),
     },
     {
       key: 'email',
@@ -129,9 +138,14 @@ export class EditCliente {
           tipos.map((tipo) => ({
             label: `${tipo.nombre} (${tipo.codigo})`,
             value: String(tipo.id),
+            codigo: tipo.codigo,
           }))
         );
       },
+    });
+
+    this.paisService.list().subscribe({
+      next: (data) => this.paises.set(data),
     });
 
     const id = this.clienteId();
@@ -150,6 +164,7 @@ export class EditCliente {
           nombre: cliente.nombre ?? '',
           direccion: cliente.direccion ?? '',
           telefono: cliente.telefono ?? '',
+          pais_id: cliente.pais_id ? String(cliente.pais_id) : '',
           email: cliente.email ?? '',
           activo: !!cliente.activo,
         });
@@ -164,6 +179,15 @@ export class EditCliente {
 
   onCancel(): void {
     this.router.navigate(['/clientes']);
+  }
+
+  onDocumentoResuelto({ result }: { key: string; result: LvDocumentLookupResult }): void {
+    this.form.patchValue({
+      nombre: result.nombreSugerido,
+      ...(result.tipo === 'RUC' && result.direccionSugerida
+        ? { direccion: result.direccionSugerida }
+        : {}),
+    });
   }
 
   onSubmit(): void {
@@ -185,6 +209,7 @@ export class EditCliente {
       sede_id: Number(value.sede_id),
       distrito_id: Number(value.distrito_id),
       tipo_documento_id: value.tipo_documento_id ? Number(value.tipo_documento_id) : null,
+      pais_id: value.pais_id ? Number(value.pais_id) : null,
       activo: value.activo ?? true,
     };
 

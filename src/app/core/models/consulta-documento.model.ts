@@ -1,13 +1,13 @@
 export interface ConsultaDni {
-  numero_documento: string;
-  nombres: string;
-  apellido_paterno: string;
-  apellido_materno: string;
-  nombre_completo?: string;
+  document_number: string;
+  first_name: string;
+  first_last_name: string;
+  second_last_name: string;
+  full_name: string;
 }
 
 export interface ConsultaRuc {
-  numero_documento: string;
+  document_number: string;
   razon_social: string;
   direccion?: string;
   estado?: string;

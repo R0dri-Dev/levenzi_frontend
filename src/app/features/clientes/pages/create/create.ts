@@ -57,49 +57,13 @@ export class CreateCliente {
     activo: [true],
   });
 
-
-  onDocumentoBlur(): void {
-    const tipo = this.form.get('documento_tipo')?.value;
-    const numero = this.form.get('documento_numero')?.value;
-
-    if (!numero) return;
-
-    if (tipo === 'DNI' && numero.length === 8) {
-      this.decolecta.consultarDni(numero).subscribe({
-        next: (data) => {
-          this.form.patchValue({
-            nombre: data.nombre_completo ?? `${data.nombres} ${data.apellido_paterno} ${data.apellido_materno}`,
-          });
-        },
-        error: () => this.form.get('nombre')?.reset(),
-      });
-    }
-
-    if (tipo === 'RUC' && numero.length === 11) {
-      this.decolecta.consultarRuc(numero).subscribe({
-        next: (data) => {
-          this.form.patchValue({
-            nombre: data.razon_social,
-            direccion: data.direccion ?? this.form.get('direccion')?.value,
-          });
-        },
-        error: () => this.form.get('nombre')?.reset(),
-      });
-    }
-  }
-
   onDocumentoResuelto({ result }: { key: string; result: LvDocumentLookupResult }): void {
-    if (result.tipo === 'DNI') {
-      this.form.patchValue({
-        nombre: result.data.nombre_completo
-          ?? `${result.data.nombres} ${result.data.apellido_paterno} ${result.data.apellido_materno}`,
-      });
-    } else {
-      this.form.patchValue({
-        nombre: result.data.razon_social,
-        direccion: result.data.direccion ?? this.form.get('direccion')?.value,
-      });
-    }
+    this.form.patchValue({
+      nombre: result.nombreSugerido,
+      ...(result.tipo === 'RUC' && result.direccionSugerida
+        ? { direccion: result.direccionSugerida }
+        : {}),
+    });
   }
   readonly fields = computed<LvFormFieldConfig[]>(() => [
     {

@@ -1,0 +1,29 @@
+@reference "../../../../../styles.css";
+
+.lv-conversion-field {
+  @apply flex items-start gap-3;
+}
+
+.lv-conversion-field-disabled {
+  opacity: 0.7;
+}
+
+.lv-conversion-field-side {
+  @apply flex-1 min-w-0;
+}
+
+.lv-conversion-field-arrow {
+  @apply flex items-center justify-center shrink-0;
+  color: var(--color-primary-600);
+  margin-top: 34px;
+}
+
+@media (max-width: 640px) {
+  .lv-conversion-field {
+    @apply flex-col;
+  }
+  .lv-conversion-field-arrow {
+    @apply rotate-90;
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,21 @@
+<lv-page-header
+  title="Unidades de medida"
+  subtitle="Gestiona las unidades de medida y sus factores de equivalencia."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+  [showSearch]="true"
+  searchPlaceholder="Buscar unidad..."
+  [searchValue]="searchTerm()"
+>
+  <lv-button (onClick)="openCreateForm()">Nueva unidad</lv-button>
+</lv-page-header>
+
+<div class="permissions-content">
+  <lv-data-table
+    [data]="filteredUnidades()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay unidades de medida para mostrar con este filtro."
+  />
+</div>

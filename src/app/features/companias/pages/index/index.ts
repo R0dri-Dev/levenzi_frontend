@@ -8,6 +8,7 @@ import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
+import { LvYesNoPipe } from '../../../../shared/pipes';
 
 @Component({
   selector: 'app-index',
@@ -19,6 +20,7 @@ import type { TableAction, TableColumn } from '../../../../shared/interfaces/tab
 export class Index {
   private readonly router = inject(Router);
   private readonly service = inject(CompaniaService);
+  private readonly yesNoPipe = new LvYesNoPipe();
 
   readonly companias = signal<Compania[]>([]);
   readonly total = signal(0);
@@ -29,8 +31,8 @@ export class Index {
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
     { key: 'nombre', label: 'Nombre', sortable: true, render: (item) => item.nombre },
     { key: 'ruc', label: 'RUC', sortable: true, render: (item) => item.ruc },
-    { key: 'activo', label: 'Estado', sortable: true, render: (item) => (item.activo ? 'Activo' : 'Inactivo') },
-  ];
+    { key: 'activo', render: (item) => this.yesNoPipe.transform(item.activo, 'Activo', 'Inactivo'), label: 'Estado', sortable: true },
+  ]
 
   readonly tableActions: TableAction<Compania>[] = [
     { label: 'Ver detalle', action: (item) => this.verDetalle(item), variant: 'secondary' },

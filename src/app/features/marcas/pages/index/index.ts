@@ -6,19 +6,21 @@ import { MarcaService } from '../../../../core/services/marcas/marca.service';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
-import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
+import { LvYesNoPipe, LvEmptyPipe } from '../../../../shared/pipes';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent, LvSearchBoxComponent],
+  imports: [LvPageHeaderComponent, LvButtonComponent, LvDataTableComponent],
   templateUrl: './index.html',
   styleUrl: './index.css',
 })
 export class Index {
   private readonly service = inject(MarcaService);
   private readonly router = inject(Router);
+  private readonly yesNoPipe = new LvYesNoPipe();
+  private readonly emptyPipe = new LvEmptyPipe();
 
   readonly marcas = signal<Marca[]>([]);
   readonly total = signal(0);
@@ -28,9 +30,9 @@ export class Index {
   readonly columns: TableColumn<Marca>[] = [
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
     { key: 'nombre', label: 'Nombre', sortable: true, render: (item) => item.nombre },
-    { key: 'codigo', label: 'Código', sortable: true, render: (item) => item.codigo ?? '-' },
-    { key: 'descripcion', label: 'Descripción', sortable: true, render: (item) => item.descripcion ?? '-' },
-    { key: 'activo', label: 'Estado', sortable: true, render: (item) => (item.activo ? 'Activo' : 'Inactivo') },
+    { key: 'codigo', render: (item) => this.emptyPipe.transform(item.codigo) as string, label: 'Código', sortable: true },
+    { key: 'descripcion', render: (item) => this.emptyPipe.transform(item.descripcion) as string, label: 'Descripción', sortable: true },
+    { key: 'activo', render: (item) => this.yesNoPipe.transform(item.activo, 'Activo', 'Inactivo'), label: 'Estado', sortable: true },
   ];
 
   readonly tableActions: TableAction<Marca>[] = [

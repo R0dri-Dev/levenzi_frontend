@@ -11,6 +11,7 @@ import { LvButtonGroupComponent } from '../../molecules';
 import { LvLocationSelectComponent } from '../../organisms/location-select/location-select';
 import { LvDocumentFieldComponent, LvDocumentLookupResult } from '../../organisms/document-field/document-field';
 import { LvPhoneFieldComponent } from '../../organisms/phone-field/phone-field';
+import { LvConversionFieldComponent } from '../conversion-field/conversion-field';
 
 @Component({
   selector: 'lv-dynamic-form',
@@ -26,6 +27,7 @@ import { LvPhoneFieldComponent } from '../../organisms/phone-field/phone-field';
     LvLocationSelectComponent,
     LvDocumentFieldComponent,
     LvPhoneFieldComponent,
+    LvConversionFieldComponent,
   ],
   templateUrl: './dynamic-form.html',
   styleUrls: ['./dynamic-form.css'],

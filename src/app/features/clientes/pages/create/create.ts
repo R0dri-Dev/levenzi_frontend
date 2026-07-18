@@ -67,6 +67,17 @@ export class CreateCliente {
   }
   readonly fields = computed<LvFormFieldConfig[]>(() => [
     {
+      key: 'tipo_documento_id',
+      numeroKey: 'documento_numero',
+      label: 'Tipo de documento',
+      numeroLabel: 'Número de documento',
+      type: 'document',
+      required: false,
+      numeroPlaceholder: 'Ej. 78451236',
+      options: this.tiposDocumentoOptions(),
+      lookup: true,
+    },
+    {
       key: 'sede_id',
       label: 'Sede',
       type: 'select',
@@ -86,17 +97,6 @@ export class CreateCliente {
       label: 'Ubicación',
       type: 'location',
       required: true,
-    },
-    {
-      key: 'tipo_documento_id',
-      numeroKey: 'documento_numero',
-      label: 'Tipo de documento',
-      numeroLabel: 'Número de documento',
-      type: 'document',
-      required: false,
-      numeroPlaceholder: 'Ej. 78451236',
-      options: this.tiposDocumentoOptions(),
-      lookup: true,
     },
     {
       key: 'direccion',

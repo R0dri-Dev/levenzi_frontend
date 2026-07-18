@@ -1,0 +1,21 @@
+<lv-page-header
+  title="Familias"
+  subtitle="Gestiona las familias y subfamilias de productos del sistema."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+  [showSearch]="true"
+  searchPlaceholder="Buscar familia..."
+  [searchValue]="searchTerm()"
+>
+  <lv-button (onClick)="openCreateForm()">Nueva familia</lv-button>
+</lv-page-header>
+
+<div class="permissions-content">
+  <lv-data-table
+    [data]="filteredFamilias()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay familias para mostrar con este filtro."
+  />
+</div>

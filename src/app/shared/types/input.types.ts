@@ -13,5 +13,6 @@ export type LvInputType =
   | 'location'
   | 'document'
   | 'document-lookup'
-  | 'phone';
+  | 'phone'
+  | 'conversion';
 

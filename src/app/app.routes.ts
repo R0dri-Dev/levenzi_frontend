@@ -276,6 +276,101 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
 
+      {
+        path: 'familias',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/familias/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/familias/pages/create/create').then((m) => m.CreateFamilia),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/familias/pages/edit/edit').then((m) => m.EditFamilia),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/familias/pages/detail/detail').then((m) => m.DetailFamilia),
+          },
+        ],
+      },
+
+      {
+        path: 'unidades-medida',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/unidades-medida/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/unidades-medida/pages/create/create').then((m) => m.CreateUnidadMedida),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/unidades-medida/pages/edit/edit').then((m) => m.EditUnidadMedida),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/unidades-medida/pages/detail/detail').then((m) => m.DetailUnidadMedida),
+          },
+        ],
+      },
+
+      {
+        path: 'tipos-unidad-medida',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/tipos-unidad-medida/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/tipos-unidad-medida/pages/create/create').then((m) => m.CreateTipoUnidadMedida),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/tipos-unidad-medida/pages/edit/edit').then((m) => m.EditTipoUnidadMedida),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/tipos-unidad-medida/pages/detail/detail').then((m) => m.DetailTipoUnidadMedida),
+          },
+        ],
+      },
+
+      {
+        path: 'producto-conversiones',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/producto-conversiones/pages/index/index').then((m) => m.Index),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/producto-conversiones/pages/create/create').then((m) => m.CreateProductoConversion),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () => import('./features/producto-conversiones/pages/edit/edit').then((m) => m.EditProductoConversion),
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/producto-conversiones/pages/detail/detail').then((m) => m.DetailProductoConversion),
+          },
+        ],
+      },
     ],
   },
   {

@@ -7,6 +7,7 @@ import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
+import { LvDecimalPipe, LvEmptyPipe, LvYesNoPipe } from '../../../../shared/pipes';
 
 @Component({
   selector: 'app-index',
@@ -18,7 +19,9 @@ import type { TableAction, TableColumn } from '../../../../shared/interfaces/tab
 export class Index {
   private readonly service = inject(ClienteService);
   private readonly router = inject(Router);
-
+  private readonly yesNoPipe = new LvYesNoPipe();
+  private readonly emptyPipe = new LvEmptyPipe();
+  private readonly decimalPipe = new LvDecimalPipe();
   readonly clientes = signal<Cliente[]>([]);
   readonly total = signal(0);
   readonly loading = signal(true);
@@ -27,7 +30,7 @@ export class Index {
   readonly columns: TableColumn<Cliente>[] = [
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
     { key: 'nombre', label: 'Nombre', sortable: true, render: (item) => item.nombre },
-    { key: 'documento_numero', label: 'Documento', sortable: true, render: (item) => item.documento_numero ?? '-' },
+    { key: 'documento_numero', label: 'Documento', sortable: true, render: (item) => this.emptyPipe.transform(item.documento_numero) },
     {
       key: 'telefono',
       label: 'Teléfono',
@@ -40,7 +43,7 @@ export class Index {
             text: item.telefono,
           }
           : (item.telefono ?? '-'),
-    }, { key: 'activo', label: 'Estado', sortable: true, render: (item) => (item.activo ? 'Activo' : 'Inactivo') },
+    }, { key: 'activo', label: 'Estado', sortable: true, render: (item) => this.yesNoPipe.transform(item.activo, 'Activo', 'Inactivo') },
   ];
 
   readonly tableActions: TableAction<Cliente>[] = [

@@ -11,6 +11,8 @@ import type { TableAction, TableColumn } from '../../../../shared/interfaces/tab
 import { CreateDoctor } from '../create/create';
 import { EditDoctor } from '../edit/edit';
 import { DetailDoctor } from '../detail/detail';
+import { LvYesNoPipe, LvEmptyPipe } from '../../../../shared/pipes';
+
 
 @Component({
   selector: 'app-index',
@@ -22,6 +24,8 @@ import { DetailDoctor } from '../detail/detail';
 })
 export class Index {
   private readonly service = inject(DoctorService);
+  private readonly yesNoPipe = new LvYesNoPipe();
+  private readonly emptyPipe = new LvEmptyPipe();
 
   readonly doctores = signal<Doctor[]>([]);
   readonly total = signal(0);
@@ -33,11 +37,25 @@ export class Index {
   readonly columns: TableColumn<Doctor>[] = [
     { key: 'id', label: 'ID', width: '88px', sortable: true, render: (item) => `#${item.id}` },
     { key: 'nombre', label: 'Nombre', sortable: true, render: (item) => item.nombre },
-    { key: 'especialidad', label: 'Especialidad', sortable: true, render: (item) => item.especialidad ?? '-' },
-    { key: 'telefono', label: 'Teléfono', sortable: true, render: (item) => item.telefono ?? '-' },
-    { key: 'activo', label: 'Estado', sortable: true, render: (item) => (item.activo ? 'Activo' : 'Inactivo') },
+    {
+      key: 'especialidad',
+      label: 'Especialidad',
+      sortable: true,
+      render: (item) => this.emptyPipe.transform(item.especialidad) as string,
+    },
+    {
+      key: 'telefono',
+      label: 'Teléfono',
+      sortable: true,
+      render: (item) => this.emptyPipe.transform(item.telefono) as string,
+    },
+    {
+      key: 'activo',
+      label: 'Estado',
+      sortable: true,
+      render: (item) => this.yesNoPipe.transform(item.activo, 'Activo', 'Inactivo'),
+    },
   ];
-
   readonly tableActions: TableAction<Doctor>[] = [
     { label: 'Ver detalle', action: (item) => this.verDetalle(item), variant: 'secondary' },
     { label: 'Editar', action: (item) => this.editarDoctor(item), variant: 'primary' },

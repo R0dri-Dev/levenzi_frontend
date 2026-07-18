@@ -1,0 +1,17 @@
+<lv-page-header
+  title="Editar unidad de medida"
+  subtitle="Actualiza los datos de la unidad seleccionada."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button variant="secondary" (onClick)="onCancel()">Volver</lv-button>
+</lv-page-header>
+
+<lv-dynamic-form
+  [formGroup]="form"
+  [fields]="fields()"
+  [loading]="loading()"
+  (onSubmit)="onSubmit()"
+  (onCancel)="onCancel()"
+  submitLabel="Actualizar"
+  cancelLabel="Cancelar"
+/>

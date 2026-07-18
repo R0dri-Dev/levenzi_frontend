@@ -1,10 +1,15 @@
 @reference "../../../../../styles.css";
 
+:host {
+  display: block;
+  height: 100%;
+}
+
 .lv-app-sidebar {
   @apply h-full bg-white border-secondary-200 flex flex-col shadow-sm;
   @apply transition-all duration-300 ease-in-out;
   width: 240px;
-  min-height: 100vh;
+  height: 100%;              /* antes: min-height: 100vh; */
   border-right: 1px solid var(--color-secondary-200);
 }
 
@@ -26,6 +31,8 @@
 
 .lv-app-sidebar-header {
   @apply px-4 py-3 border-b border-secondary-200 flex items-center justify-center;
+  position: relative;
+  z-index: 1;
 }
 
 .lv-app-sidebar-collapsed .lv-app-sidebar-header {
@@ -45,6 +52,34 @@
 
 .lv-app-sidebar-nav {
   @apply flex-1 flex flex-col gap-1 p-2 overflow-y-auto;
+  position: relative;
+  scroll-behavior: smooth;
+  min-height: 0;    
+
+  /* Oculta la barra de scroll pero mantiene el scroll funcional */
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE / Edge legacy */
+
+  /* Fade superior e inferior con mask, para que se note que hay más contenido
+     sin usar overlays que tapen los clicks */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 24px,
+    black calc(100% - 24px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 24px,
+    black calc(100% - 24px),
+    transparent 100%
+  );
+}
+
+.lv-app-sidebar-nav::-webkit-scrollbar {
+  display: none;              /* Chrome, Brave, Safari, Edge Chromium */
 }
 
 .lv-app-sidebar-item {
@@ -94,6 +129,8 @@
   @apply px-4 py-3 border-t border-secondary-200 mt-auto text-sm;
   color: var(--color-secondary-500);
   background: linear-gradient(180deg, rgba(245, 243, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+  position: relative;
+  z-index: 1;
 }
 
 .lv-app-sidebar-collapsed .lv-app-sidebar-footer {

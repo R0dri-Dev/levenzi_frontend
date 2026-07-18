@@ -21,5 +21,10 @@ export interface LvFormFieldConfig {
   numeroPlaceholder?: string;
   paisesData?: Pais[];
   lookup?: boolean;
+  
+  // Solo aplica cuando type === 'conversion'
+  baseLabel?: string;    // ej. "1 Kilogramo (kg)"
+  unitSymbol?: string;   // símbolo de la unidad que se está creando, ej. "g"
+  disabled?: boolean;   
 
 }

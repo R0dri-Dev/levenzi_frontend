@@ -26,7 +26,10 @@ import {
   Inbox,
   Mail,
   MoreHorizontal,
-  LoaderCircle
+  LoaderCircle,
+  TriangleAlert,
+  Info,
+  CircleX
 } from 'lucide-angular';
 
 export const LV_ICONS = {
@@ -64,9 +67,11 @@ export const LV_ICONS = {
   mail: Mail,
   moreHorizontal: MoreHorizontal,
   'more-horizontal': MoreHorizontal,
-  spinner: LoaderCircle
+  spinner: LoaderCircle,
+  warning: TriangleAlert,
+  info: Info,
+  errorCircle: CircleX
 } as const;
 
 export type IconKeys = keyof typeof LV_ICONS;
 export type IconComponent = typeof LV_ICONS[IconKeys];
-

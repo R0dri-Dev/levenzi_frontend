@@ -1,0 +1,21 @@
+<lv-page-header
+  title="Conversiones de producto"
+  subtitle="Gestiona las equivalencias entre unidades de medida para cada producto."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+  [showSearch]="true"
+  searchPlaceholder="Buscar conversión..."
+  [searchValue]="searchTerm()"
+>
+  <lv-button (onClick)="openCreateForm()">Nueva conversión</lv-button>
+</lv-page-header>
+
+<div class="permissions-content">
+  <lv-data-table
+    [data]="filteredConversiones()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay conversiones para mostrar con este filtro."
+  />
+</div>

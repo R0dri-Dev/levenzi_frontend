@@ -18,6 +18,10 @@ export class ProductoService {
     );
   }
 
+  getById(id: number): Observable<Producto> {
+    return this.api.get<Producto>(`/api/productos/${id}`);
+  }
+
   create(payload: Partial<Producto>): Observable<Producto> {
     return this.api.post<Producto>('/api/productos', payload);
   }

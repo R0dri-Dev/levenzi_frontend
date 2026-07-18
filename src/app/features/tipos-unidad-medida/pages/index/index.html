@@ -1,0 +1,21 @@
+<lv-page-header
+  title="Tipos de unidad de medida"
+  subtitle="Gestiona las categorías de medida del sistema (peso, volumen, longitud, etc.)."
+  color="primary"
+  [breadcrumb]="breadcrumb()"
+  [showSearch]="true"
+  searchPlaceholder="Buscar tipo..."
+  [searchValue]="searchTerm()"
+>
+  <lv-button (onClick)="openCreateForm()">Nuevo tipo</lv-button>
+</lv-page-header>
+
+<div class="permissions-content">
+  <lv-data-table
+    [data]="filteredTipos()"
+    [columns]="columns"
+    [loading]="loading()"
+    [actions]="tableActions"
+    emptyMessage="No hay tipos de unidad de medida para mostrar con este filtro."
+  />
+</div>

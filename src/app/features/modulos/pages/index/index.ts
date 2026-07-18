@@ -5,7 +5,6 @@ import { Modulo } from '../../../../core/models/modulo.model';
 import { ModuloService } from '../../../../core/services/modulos/modulo.service';
 import { LvDataTableComponent } from '../../../../shared/ui/organisms/data-table/data-table';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
-import { LvSearchBoxComponent } from '../../../../shared/ui/molecules/search-box/search-box';
 import { LvButtonComponent } from '../../../../shared/ui/atoms/button/button';
 
 import type { TableAction, TableColumn } from '../../../../shared/interfaces/table.interface';
@@ -15,7 +14,7 @@ import type { BreadcrumbItem } from '../../../../shared/interfaces/breadcrumb.in
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [LvPageHeaderComponent, LvDataTableComponent, LvSearchBoxComponent, LvButtonComponent],
+  imports: [LvPageHeaderComponent, LvDataTableComponent, LvButtonComponent],
   templateUrl: './index.html',
   styleUrl: './index.css',
 })

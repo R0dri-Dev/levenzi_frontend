@@ -1,0 +1,15 @@
+<div class="lv-conversion-field" [class.lv-conversion-field-disabled]="disabled()">
+  <div class="lv-conversion-field-side">
+    <lv-input [formControl]="baseControl" label="Unidad base" appearance="outline" variant="neutral" [readonly]="true"
+      [disabled]="true" />
+  </div>
+
+  <div class="lv-conversion-field-arrow">
+    <lv-icon name="arrowRight" size="sm" />
+  </div>
+
+  <div class="lv-conversion-field-side">
+    <lv-input [formControl]="valueControl()" [label]="label()" type="number" placeholder="0.00" [required]="required()"
+      [disabled]="disabled()" [hint]="unitSymbol() ? ('Valor expresado en ' + unitSymbol()) : ''" />
+  </div>
+</div>

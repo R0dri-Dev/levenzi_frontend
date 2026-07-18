@@ -1,15 +1,19 @@
+// features/dashboard-layout/dashboard-layout.ts
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
 import { Token } from '../../core/services/token';
 import type { NavbarLink, NavbarUser } from '../../shared/interfaces/app-navbar.interface';
 import type { AppSidebarItem } from '../../shared/interfaces/app-sidebar.interface';
+import type { Toast } from '../../shared/interfaces/toast.interface';
 import { LvAppNavbarComponent } from '../../shared/ui/organisms/app-navbar/app-navbar';
 import { LvAppSidebarComponent } from '../../shared/ui/organisms/app-sidebar/app-sidebar';
+import { LvToastContainerComponent } from '../../shared/ui/organisms/toast-container/toast-container';
 import { LvDashboardTemplateComponent } from '../../shared/ui/templates/dashboard-template/dashboard-template';
 import { LV_ROUTES } from '../../shared/constants/routes';
 import { Auth } from '../../core/services/auth';
 import { Menu } from '../../core/services/menu';
+import { ToastService } from '../../core/services/toast';
 
 export function normalizeSidebarMenuItems(rawItems: Array<Record<string, unknown>> | null | undefined, dashboardRoute: string): AppSidebarItem[] {
   const routeMap: Record<string, string> = {
@@ -95,11 +99,16 @@ export function normalizeSidebarMenuItems(rawItems: Array<Record<string, unknown
   return normalized.length ? normalized : [{ label: 'Dashboard', route: dashboardRoute, icon: 'home' as AppSidebarItem['icon'], active: false }];
 }
 
-
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
-  imports: [RouterOutlet, LvAppNavbarComponent, LvAppSidebarComponent, LvDashboardTemplateComponent],
+  imports: [
+    RouterOutlet,
+    LvAppNavbarComponent,
+    LvAppSidebarComponent,
+    LvDashboardTemplateComponent,
+    LvToastContainerComponent,
+  ],
   templateUrl: './dashboard-layout.html',
   styleUrl: './dashboard-layout.css',
 })
@@ -107,6 +116,9 @@ export class DashboardLayout {
   private readonly token = inject(Token);
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
+  private readonly menu = inject(Menu);
+
+  readonly toastService = inject(ToastService);
 
   readonly navLinks = computed<NavbarLink[]>(() => [
     { label: 'Dashboard', route: LV_ROUTES.dashboard, icon: 'home' as any, active: false },
@@ -123,8 +135,6 @@ export class DashboardLayout {
   ]);
 
   readonly sidebarItems = computed(() => this._sidebarItems());
-
-  private readonly menu = inject(Menu);
 
   private readonly _menuLoaded = signal(false);
 
@@ -167,5 +177,12 @@ export class DashboardLayout {
   onNavbarMenuToggle(): void {
     // Si más adelante quieres sincronizar el sidebar con el menú móvil, aquí va.
   }
-}
 
+  handleToastClose(id: string | number): void {
+    this.toastService.close(id);
+  }
+
+  handleToastAction(toast: Toast): void {
+    // opcional: lógica extra al hacer click en la acción del toast
+  }
+}

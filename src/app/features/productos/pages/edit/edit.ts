@@ -4,14 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Producto } from '../../../../core/models/producto.model';
 import { ProductoService } from '../../../../core/services/productos/producto.service';
-import { MarcaService } from '../../../../core/services/marcas/marca.service';
+import { FamiliaService } from '../../../../core/services/familias/familia.service';
 
 import { LvDynamicFormComponent } from '../../../../shared/ui/organisms/dynamic-form/dynamic-form';
 import { LvPageHeaderComponent } from '../../../../shared/ui/organisms/page-header/page-header';
-import { InstalacionService } from '../../../../core/services/instalaciones/instalacion.service';
-
 import type { LvFormFieldConfig } from '../../../../shared/types/form-field.type';
-import { LvButtonComponent } from "../../../../shared/ui/atoms";
+import { LvButtonComponent } from '../../../../shared/ui/atoms';
 
 @Component({
   selector: 'app-edit-producto',
@@ -25,8 +23,7 @@ export class EditProducto {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly service = inject(ProductoService);
-  private readonly marcaService = inject(MarcaService);
-  private readonly instalacionService = inject(InstalacionService);
+  private readonly familiaService = inject(FamiliaService);
 
   readonly breadcrumb = signal([
     { label: 'Inicio', route: '/' },
@@ -42,12 +39,10 @@ export class EditProducto {
     return parsed;
   });
 
-  readonly marcaOptions = signal<{ label: string; value: string }[]>([]);
-  readonly instalacionOptions = signal<{ label: string; value: string }[]>([]);
+  readonly familiaOptions = signal<{ label: string; value: string }[]>([]);
 
   readonly form = this.fb.nonNullable.group({
-    marca_id: ['', Validators.required],
-    instalacion_id: ['', Validators.required],
+    familia_id: [''],
     codigo: [''],
     nombre: ['', [Validators.required, Validators.minLength(2)]],
     descripcion: [''],
@@ -64,12 +59,12 @@ export class EditProducto {
       placeholder: 'Ej. Producto A',
     },
     {
-      key: 'marca_id',
-      label: 'Marca',
+      key: 'familia_id',
+      label: 'Familia',
       type: 'select',
-      required: true,
-      placeholder: 'Selecciona una marca',
-      options: this.marcaOptions(),
+      required: false,
+      placeholder: 'Selecciona una familia',
+      options: this.familiaOptions(),
     },
     {
       key: 'codigo',
@@ -77,14 +72,6 @@ export class EditProducto {
       type: 'text',
       required: false,
       placeholder: 'Ej. PRD-001',
-    },
-    {
-      key: 'instalacion_id',
-      label: 'Instalación',
-      type: 'select',
-      required: true,
-      placeholder: 'Selecciona una instalación',
-      options: this.instalacionOptions(),
     },
     {
       key: 'precio',
@@ -103,35 +90,21 @@ export class EditProducto {
   ]);
 
   constructor() {
-    this.loadMarcas();
+    this.loadFamilias();
     this.loadProducto();
-    this.loadInstalacion();
   }
 
-  private loadMarcas(): void {
-    this.marcaService.list().subscribe({
+  private loadFamilias(): void {
+    this.familiaService.list().subscribe({
       next: (response) => {
-        this.marcaOptions.set(
-          response.data.map((m) => ({
-            label: m.nombre,
-            value: String(m.id),
-          }))
+        this.familiaOptions.set(
+          response.data.map((f) => ({
+            label: f.nombre,
+            value: String(f.id),
+          })),
         );
       },
     });
-  }
-
-  private loadInstalacion(): void {
-    this.instalacionService.list().subscribe({
-      next: (response) => {
-        this.instalacionOptions.set(
-          response.data.map((i) => ({
-            label: i.nombre,
-            value: String(i.id),
-          }))
-        );
-      }
-    })
   }
 
   private loadProducto(): void {
@@ -139,20 +112,16 @@ export class EditProducto {
     if (!Number.isFinite(id) || id <= 0) return;
 
     this.loading.set(true);
-    this.service.list(1).subscribe({
-      next: (response) => {
-        const found = response.data.find((p) => p.id === id) ?? null;
-        if (found) {
-          this.form.patchValue({
-            marca_id: String(found.marca_id ?? ''),
-            instalacion_id: String(found.instalacion_id ?? ''),
-            codigo: found.codigo ?? '',
-            nombre: found.nombre ?? '',
-            descripcion: found.descripcion ?? '',
-            precio: String(found.precio ?? ''),
-            activo: !!found.activo,
-          });
-        }
+    this.service.getById(id).subscribe({
+      next: (found) => {
+        this.form.patchValue({
+          familia_id: found.familia_id ? String(found.familia_id) : '',
+          codigo: found.codigo ?? '',
+          nombre: found.nombre ?? '',
+          descripcion: found.descripcion ?? '',
+          precio: String(found.precio ?? ''),
+          activo: !!found.activo,
+        });
         this.loading.set(false);
       },
       error: () => this.loading.set(false),
@@ -177,8 +146,7 @@ export class EditProducto {
 
     const payload: Partial<Producto> = {
       ...value,
-      marca_id: Number(value.marca_id),
-      instalacion_id: Number(value.instalacion_id),
+      familia_id: value.familia_id ? Number(value.familia_id) : undefined,
       precio: String(Number(value.precio)),
       codigo: value.codigo || undefined,
       descripcion: value.descripcion || undefined,
@@ -197,4 +165,3 @@ export class EditProducto {
     });
   }
 }
-

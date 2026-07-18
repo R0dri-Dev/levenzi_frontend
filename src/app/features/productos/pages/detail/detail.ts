@@ -33,14 +33,13 @@ export class DetailProducto {
     return [
       { label: 'ID', value: producto.id },
       { label: 'Nombre', value: producto.nombre },
-      { label: 'Marca', value: producto.marca_id },
+      { label: 'Familia', value: producto.familia_id ?? 'Sin familia' },
       { label: 'Código', value: producto.codigo || 'Sin código' },
       { label: 'Precio', value: producto.precio },
       { label: 'Descripción', value: producto.descripcion || 'Sin descripción' },
       { label: 'Estado', value: producto.activo ? 'Activo' : 'Inactivo' },
     ];
   }
-
   onCancel(): void {
     void this.router.navigate(['/productos']);
   }

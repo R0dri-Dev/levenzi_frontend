@@ -1,0 +1,11 @@
+<lv-page-header
+  title="Detalle de la familia"
+  subtitle="Consulta la información del registro seleccionado."
+  [breadcrumb]="breadcrumb()"
+>
+  <lv-button variant="secondary" (onClick)="onCancel()">Volver</lv-button>
+</lv-page-header>
+
+<div class="permissions-content">
+  <lv-detail-list [items]="items" />
+</div>

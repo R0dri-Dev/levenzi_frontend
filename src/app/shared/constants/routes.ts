@@ -20,7 +20,12 @@ export const LV_ROUTES = {
   permisos: '/permisos',
   modulos: '/modulos',
 
+  // Nuevos módulos
+  familias: '/familias',
+  unidadesMedida: '/unidades-medida',
+  tiposUnidadMedida: '/tipos-unidad-medida',
+  productoConversiones: '/producto-conversiones',
+
   // Fallback
   notFound: '/404',
 } as const;
-

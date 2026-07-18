@@ -1,21 +1,16 @@
+<!-- features/dashboard-layout/dashboard-layout.html -->
+<lv-toast-container [toasts]="toastService.toasts()" position="top-right" (onToastClose)="handleToastClose($event)"
+  (onToastAction)="handleToastAction($event)" />
+
 <lv-dashboard-template #dashboardTemplate layout="both" variant="default">
   <div header>
-    <lv-app-navbar
-      [links]="navLinks()"
-      [user]="navUser()"
-      (onUserAction)="handleNavbarAction($event)"
+    <lv-app-navbar [links]="navLinks()" [user]="navUser()" (onUserAction)="handleNavbarAction($event)"
       (onMenuToggle)="dashboardTemplate.toggleSidebar()" />
   </div>
 
-  <div sidebar>
-    <lv-app-sidebar
-      [items]="sidebarItems()"
-      header="Levenzi"
-      logo="/logo/levenzi.png"
-      footer="© Grobdi"
-      size="md"
-      [showToggle]="false"
-      position="left" />
+  <div sidebar class="h-full">
+    <lv-app-sidebar [items]="sidebarItems()" header="Levenzi" logo="/logo/levenzi.png" footer="© Grobdi" size="md"
+      [showToggle]="false" position="left" />
   </div>
   <router-outlet />
 </lv-dashboard-template>

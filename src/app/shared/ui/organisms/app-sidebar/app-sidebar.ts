@@ -4,7 +4,6 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { LvBadgeComponent } from '../../atoms/badge/badge';
 import { LvIconButtonComponent } from '../../atoms/icon-button/icon-button';
 import { LvIconComponent } from '../../icons/icon/icon';
-import { LvLinkComponent } from '../../atoms/link/link';
 import { LvDividerComponent } from '../../atoms/divider/divider';
 import { LvParagraphComponent } from '../../atoms/paragraph/paragraph';
 import type { AppSidebarItem } from '../../../interfaces/app-sidebar.interface';
